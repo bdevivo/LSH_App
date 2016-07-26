@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import AnswerTypeOptions from './AnswerTypeOptions';
 
 class QuestionForm extends Component {
 
@@ -40,6 +41,11 @@ class QuestionForm extends Component {
                      <option value="dateRange">Date Range</option>
                      <option value="schedule">Calendar Schedule</option>
                   </select>
+
+                  <div className="answerTypeOptions">
+                     <AnswerTypeOptions answerType={this.props.draftQuestion.answerType}/>
+                  </div>
+
 
                   <div className="actions">
                      <button type="submit">{this.props.buttonLabel}</button>

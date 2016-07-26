@@ -3,12 +3,12 @@ import { render } from 'react-dom';
 
 class QuestionItem extends Component {
    render() {
-      return <li>{this.props.title}</li>
+      return <li>{this.props.name}</li>
    }
 }
 
 QuestionItem.propTypes = {
-   title: PropTypes.string.isRequired
+   name: PropTypes.string.isRequired
 }
 
 export default QuestionItem;

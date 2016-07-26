@@ -2,21 +2,22 @@
   "name": "pluralsight-redux-starter",
   "version": "1.0.0",
   "description": "Question Grid for LSH User Profiles and Job Postings",
-   "scripts": {
-      "prestart": "babel-node tools/startMessage.js",
-      "start": "npm-run-all --parallel open:src lint:watch",
-      "open:src": "babel-node tools/srcServer.js",
-      "lint": "node_modules/.bin/esw webpack.config.* src tools",
-      "lint:watch": "npm run lint -- --watch",
-      "test": "mocha --reporter progress tools/testSetup.js \"src/**/*.test.js\""
-   },
-   "author": "Bob De Vivo",
+  "scripts": {
+    "prestart": "babel-node tools/startMessage.js",
+    "start": "npm-run-all --parallel open:src lint:watch",
+    "open:src": "babel-node tools/srcServer.js",
+    "lint": "node_modules/.bin/esw webpack.config.* src tools",
+    "lint:watch": "npm run lint -- --watch",
+    "test": "mocha --reporter progress tools/testSetup.js \"src/**/*.test.js\""
+  },
+  "author": "Bob De Vivo",
   "license": "",
   "dependencies": {
     "babel-polyfill": "6.8.0",
     "bootstrap": "3.3.6",
     "jquery": "2.2.3",
     "react": "15.0.2",
+    "react-addons-update": "^15.2.1",
     "react-dom": "15.0.2",
     "react-redux": "4.4.5",
     "react-router": "2.4.0",

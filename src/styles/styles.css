@@ -29,11 +29,11 @@ nav {
 
 .question_big {
    position: absolute;
-   width: 550px;
-   height: 300px;
+   width: 650px;
+   height: 450px;
    margin: auto;
    padding: 25px;
-   top: 0; left: 0; bottom: 100px; right: 0;
+   top: 0; left: 0; bottom: 50px; right: 0;
    z-index: 3;
    border: 1px solid black;
    background-color: silver;
@@ -42,17 +42,12 @@ nav {
 .question_big input[type=text], textarea {
    width : 100%;
    margin: 13px 0;
-   font-size: 13px;
+   font-size: 13px !important;
    border: none;
    padding:5px;
 }
 
-.question_big input[type=text] {
-   font-size: 20px;
-   font-weight: bold;
-}
-
-.question_big select {git
+.question_big select {
    padding:5px;
    margin-top:13px;
 }
@@ -65,9 +60,9 @@ nav {
 
 .question_big label {
    margin: 3px 0 7px 3px;
-   color: #a7a7a7;
+   color: #204d74;
    display: inline-block;
-   width: 100px;
+
 }
 
 .actions {
@@ -81,6 +76,44 @@ nav {
    font-size:14px;
    padding: 8px;
 }
+
+#displayType {
+   margin-left: 30px;
+   margin-top:15px;
+}
+
+#answerType {
+   margin-left: 30px;
+   margin-top:15px;
+}
+
+ul.answerTypeSelection {
+   margin-top:10px;
+}
+
+div.answerTypeDiv {
+   margin-top:20px;
+   margin-bottom:20px;
+   font-weight: 700 !important;
+   color: #204d74;
+}
+
+div.divAnswerType {
+   border:solid 1px rgba(69, 40, 77, 0.94);
+   padding-bottom:20px;
+   padding-right: 20px;
+}
+
+div.answerTypeOptions {
+   padding-left: 30px;
+}
+
+#textWidth {
+   width:50px;
+   margin-left:10px;
+   margin-right: 50px;
+}
+
 
 
 .float-button {

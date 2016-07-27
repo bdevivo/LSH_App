@@ -12,7 +12,14 @@ class QuestionForm extends Component {
       this.props.handleClose();
    }
 
+
+
    render() {
+
+      var inlineDiv = {
+         display:'inline-block'
+      };
+
       return (
          <div>
             <div className="question_big">
@@ -21,31 +28,49 @@ class QuestionForm extends Component {
                   <input type="text"
                          value={this.props.draftQuestion.name}
                          onChange={this.handleChange.bind(this, "name")}
-                         placeholder="Name"
+                         placeholder="Enter Question Name"
                          required={true}
                          autoFocus={true} />
 
                   <textarea value={this.props.draftQuestion.text}
                             onChange={this.handleChange.bind(this, "text")}
-                            placeholder="Question Text"
+                            placeholder="Enter Question Text"
                             required={true} />
 
-                  <label htmlFor="answerType">Answer Type</label>
-                  <select id="answerType"
-                          value={this.props.draftQuestion.answerType}
-                          onChange={this.handleChange.bind(this, "answerType")}>
-                     <option value="selection">Selection</option>
-                     <option value="yesNo">Yes/No</option>
-                     <option value="text">Text</option>
-                     <option value="date">Date</option>
-                     <option value="dateRange">Date Range</option>
-                     <option value="schedule">Calendar Schedule</option>
-                  </select>
-
-                  <div className="answerTypeOptions">
-                     <AnswerTypeOptions answerType={this.props.draftQuestion.answerType}/>
+                  <label htmlFor="displayType">Display Type</label>
+                  <div id="displayType" style={inlineDiv}>
+                     <div className="radio-inline">
+                        <label><input type="radio" name="optDisplayType" />Question text above input</label>
+                     </div>
+                     <div className="radio-inline">
+                        <label><input type="radio" name="optDisplayType" />Question text inline with input</label>
+                     </div>
                   </div>
 
+
+                  <div className="divAnswerType">
+                     <label htmlFor="answerType">Answer Type:</label>
+                     <select id="answerType"
+                             value={this.props.draftQuestion.answerType}
+                             onChange={this.handleChange.bind(this, "answerType")}>
+                        <option value="selection">Selection</option>
+                        <option value="yesNo">Yes/No</option>
+                        <option value="text">Text</option>
+                        <option value="date">Date</option>
+                     </select>
+
+                     <div className="answerTypeOptions">
+                        <AnswerTypeOptions answerType={this.props.draftQuestion.answerType}/>
+                     </div>
+                   </div>
+
+                  <div className="checkbox answerTypeDiv">
+                     <label><input type="checkbox" value="hideByDefault" id="hideByDefault" />Hide by Default</label>
+                  </div>
+
+                  <div className="checkbox">
+                     <label><input type="checkbox" value="answerRequired" id="answerRequired" />Answer Required</label>
+                  </div>
 
                   <div className="actions">
                      <button type="submit">{this.props.buttonLabel}</button>

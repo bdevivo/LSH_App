@@ -8,8 +8,8 @@ class QuestionAnswerCondition extends Component {
          {
             andOr: "",
             question: "Major Field",
-            operator: "includes",
-            value: "Biostatistics",
+            operator: "contains",
+            value: "biostatistics",
             index: 1
          },
          {

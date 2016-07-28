@@ -6,27 +6,24 @@ import update from "react-addons-update";
 
 class QuestionPage extends React.Component {
 
-   // componentWillMount() {
-   //    this.setState({
-   //       currentId: 1,
-   //       questions: [
-   //          {
-   //             name: "test_question",
-   //             text: "Test Question",
-   //             answerType: "selection"
-   //          }
-   //       ]
-   //    });
-   // }
-
    constructor(){
       super(...arguments);
       this.state = {
          //currentId: 1,
          questions: [
             {
-               name: "test_question",
-               text: "Test Question",
+               name: "q1",
+               text: "Question 1",
+               answerType: "selection"
+            },
+            {
+               name: "q2",
+               text: "Question 2",
+               answerType: "selection"
+            },
+            {
+               name: "q3",
+               text: "Question 3",
                answerType: "selection"
             }
          ]
@@ -127,13 +124,18 @@ class QuestionPage extends React.Component {
 
       return (
          <div className="app">
-            <h1>Questions</h1>
-            <Link to="/new" className="float-button">+</Link>
-            <ul>
-               {this.state.questions.map(
-                  (question) => <QuestionItem key={question.name} name={question.name}/>
-               )}
-            </ul>
+
+            <div className="divQuestions">
+               <h1>Questions</h1>
+               <ul>
+                  {this.state.questions.map(
+                     (question) => <QuestionItem key={question.name} name={question.text}/>
+                  )}
+               </ul>
+
+               <Link to="/new" className="float-button">+</Link>
+
+            </div>
 
             {questionModal}
 

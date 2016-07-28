@@ -99,6 +99,7 @@ div.answerTypeDiv {
 }
 
 div.divAnswerType {
+   margin-top:20px;
    border:solid 1px rgba(69, 40, 77, 0.94);
    padding-bottom:20px;
    padding-right: 20px;
@@ -114,15 +115,24 @@ div.answerTypeOptions {
    margin-right: 50px;
 }
 
+div.displayType {
+   margin-top: 20px;
+   margin-bottom: 60px;
+}
 
+div.divQuestions {
+   border: solid 1px black;
+   width: 250px;
+   height: 350px;
+}
 
 .float-button {
-   position: absolute;
+   position: relative;
    height: 56px;
    width: 56px;
    z-index: 2;
-   right: 20px;
-   bottom: 20px;
+   right: -200px;
+   bottom: -20px;
    background: #D43A2F;
    color: white;
    border-radius: 100%;
@@ -158,6 +168,7 @@ table.conditionTable th {
 div.divCondition {
    border: solid 1px black;
    padding: 20px;
+   margin-top:20px;
 }
 
 div.divCondition > select, div.divScenario > select {

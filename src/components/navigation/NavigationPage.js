@@ -29,7 +29,7 @@ class NavigationPage extends React.Component {
                   <UserPropsCondition />
 
                   <label htmlFor="selectNextQuestion">Next Question:</label>
-                  <select id="selectNextQuestion">
+                  <select id="selectNextQuestion" value="q2">
                      <option value="q2">Question 2</option>
                      <option value="q3">Question 3</option>
                      <option value="q4">Question 4</option>
@@ -41,27 +41,18 @@ class NavigationPage extends React.Component {
             </div>
 
             <div className="divScenario">
-               <h3>Scenario 2</h3>
-
-               <label htmlFor="selectInitialQuestion">Initial Question:</label>
-               <select id="selectInitialQuestion">
-                  <option value="q1">Question 1</option>
-                  <option value="q2">Question 2</option>
-                  <option value="q3">Question 3</option>
-                  <option value="q4">Question 4</option>
-               </select>
 
 
                <div className="divCondition">
 
-                  <p>Condition 1</p>
+                  <p>Condition 2</p>
 
                   <QuestionAnswerCondition />
                   <div>{" "}</div>
                   <UserPropsCondition />
 
                   <label htmlFor="selectNextQuestion">Next Question:</label>
-                  <select id="selectNextQuestion">
+                  <select id="selectNextQuestion" value="q3">
                      <option value="q2">Question 2</option>
                      <option value="q3">Question 3</option>
                      <option value="q4">Question 4</option>

@@ -18,8 +18,8 @@ class NewQuestion extends Component{
 
    handleSubmit(e){
       e.preventDefault();
-      this.props.QuestionCallbacks.addQuestion(this.state);
-      this.props.history.pushState(null,"/");
+      //this.props.QuestionCallbacks.addQuestion(this.state);
+      this.props.history.pushState(null,"/questions");
    }
 
    handleClose(e){

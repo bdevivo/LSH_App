@@ -25,14 +25,18 @@ class QuestionForm extends Component {
             <div className="question_big">
                <form onSubmit={this.props.handleSubmit.bind(this)}>
 
+                  <label htmlFor="qName">Question Name:</label>
                   <input type="text"
+                         id="qName"
                          value={this.props.draftQuestion.name}
                          onChange={this.handleChange.bind(this, "name")}
                          placeholder="Enter Question Name"
                          required={true}
                          autoFocus={true} />
 
+                  <label htmlFor="qText">Question Text:</label>
                   <textarea value={this.props.draftQuestion.text}
+                            id="qText"
                             onChange={this.handleChange.bind(this, "text")}
                             placeholder="Enter Question Text"
                             required={true} />

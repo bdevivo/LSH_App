@@ -132,3 +132,34 @@ div.answerTypeOptions {
    line-height: 50px;
    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 }
+
+
+.conditionTable {
+   border:solid 1px black;
+   width: 450px;
+   border-spacing: 1px;
+   border-collapse: collapse;
+   margin-bottom: 20px;
+}
+
+table.conditionTable tr {
+   height: 30px;
+}
+
+table.conditionTable th,table.conditionTable td {
+   border:solid 1px black;
+   padding-left: 7px;
+}
+
+table.conditionTable th {
+   background-color: lightblue;
+}
+
+div.divCondition {
+   border: solid 1px black;
+   padding: 20px;
+}
+
+div.divCondition > select, div.divScenario > select {
+   margin-left: 10px;
+}

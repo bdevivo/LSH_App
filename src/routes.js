@@ -6,10 +6,11 @@ import NavigationPage from './components/navigation/NavigationPage';
 import UserPropsPage from './components/userprops/UserPropsPage';
 import NewQuestion from './components/questions/NewQuestion';
 import EditQuestion from './components/questions/EditQuestion';
-//import ManageCoursePage from './components/course/ManageCoursePage'; //eslint-disable-line import/no-named-as-default
+import HomePage from './HomePage';
 
 export default (
    <Route path="/" component={App}>
+      <IndexRoute component={HomePage}/>
       <Route path="questions" component={QuestionPage}>
          <Route path="/new" component={NewQuestion} />
          <Route path="edit/:question_id" component={EditQuestion} />

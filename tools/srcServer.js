@@ -4,6 +4,12 @@ import path from 'path';
 import config from '../webpack.config.dev';
 import open from 'open';
 
+let mongoose = require("mongoose");
+
+//import mongoose from 'mongoose';
+//import Question from './models/question';
+
+
 /* eslint-disable no-console */
 
 const port = 3001;
@@ -17,9 +23,10 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.get('*', function(req, res) {
-   res.sendFile(path.join( __dirname, '../src/index.html'));
-});
+mongoose.connect('mongodb://localhost:27017/qgrid');  // connect to local Mongo DB in db "qgrid"
+var routes = require("./routes");
+app.use('/', routes);
+
 
 app.listen(port, function(err) {
    if (err) {

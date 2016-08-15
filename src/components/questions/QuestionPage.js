@@ -37,7 +37,7 @@ class QuestionPage extends React.Component {
 
       // Add a temporary ID to the question
       if (question.id === null) {
-         let question = Object.assign({}, question, {id: Date.now()});
+        question = Object.assign({}, question, {id: Date.now()});
       }
 
       // Create a new object and push the new question to the array of questions
@@ -115,7 +115,7 @@ class QuestionPage extends React.Component {
 
    render() {
       let questionModal = this.props.children && React.cloneElement(this.props.children, {
-            questions: this.state.questions,
+            //questions: this.state.questions,
             questionCallbacks:{
                addQuestion: this.addQuestion.bind(this),
                updateQuestion: this.updateQuestion.bind(this)
@@ -129,7 +129,7 @@ class QuestionPage extends React.Component {
                <h1>Questions</h1>
                <ul>
                   {this.state.questions.map(
-                     (question) => <QuestionItem key={question.name} name={question.text}/>
+                     (question) => <QuestionItem key={question.name} name={question.name}/>
                   )}
                </ul>
 

@@ -3,31 +3,39 @@ import React from 'react';
 import QuestionItem from './QuestionItem';
 import { Link } from "react-router";
 import update from "react-addons-update";
+// Polyfills
+import 'babel-polyfill';
+import 'whatwg-fetch';
+
+const API_URL = 'http://localhost:3001';
+
+const API_HEADERS = {
+'Content-Type': 'application/json',
+Authorization: 'any-string-you-like'// The Authorization is not needed for local server
+};
 
 class QuestionPage extends React.Component {
 
    constructor(){
       super(...arguments);
       this.state = {
-         //currentId: 1,
-         questions: [
-            {
-               name: "q1",
-               text: "Question 1",
-               answerType: "selection"
-            },
-            {
-               name: "q2",
-               text: "Question 2",
-               answerType: "selection"
-            },
-            {
-               name: "q3",
-               text: "Question 3",
-               answerType: "selection"
-            }
-         ]
+         questions: []
       };
+   }
+
+   componentDidMount(){
+      fetch(`${API_URL}/questions`, // template string?
+          {
+             headers:API_HEADERS
+          })
+          .then((response) => response.json())
+          .then((responseData) => {
+             this.setState({
+                questions: responseData
+             });
+
+             window.state = this.state;
+          });
    }
 
    addQuestion(question) {
@@ -35,9 +43,10 @@ class QuestionPage extends React.Component {
       // in case we need to revert the optimistic changes in the UI
       let prevState = this.state;
 
+
       // Add a temporary ID to the question
       if (question.id === null) {
-        question = Object.assign({}, question, {id: Date.now()});
+         question = Object.assign({}, question, {id: Date.now()});
       }
 
       // Create a new object and push the new question to the array of questions
@@ -46,35 +55,31 @@ class QuestionPage extends React.Component {
       // set the component state to the mutated object
       this.setState({questions: nextState});
 
-      // Call the API to add the question on the server
-      // fetch(`${API_URL}/questions`, {
-      //    method: ’post’,
-      // headers: API_HEADERS,
-      //    body: JSON.stringify(question)
-      // })
-      // .then((response) => {
-      //       if(response.ok){
-      //          return response.json()
-      //       } else {
-      //          // Throw an error if server response wasn’t ’ok’
-      //          // so we can revert back the optimistic changes
-      //          // made to the UI.
-      //          throw new Error("Server response wasn’t OK")
-      //       }
-      //    })
-      //       .then((responseData) => {
-      //          // When the server returns the definitive ID
-      //          // used for the new Question on the server, update it on React
-      //          question.id=responseData.id
-      //          this.setState({questions:nextState});
-      //       })
-      //       .catch((error) => {
-      //          this.setState(prevState);
-      //       });
-      // }
-
-      // question.id = this.state.currentId;
-      // this.setState({currentId: this.state.currentId + 1});
+      //Call the API to add the question on the server
+      fetch(`${API_URL}/questions`, {
+         method: 'post',
+         headers: API_HEADERS,
+         body: JSON.stringify(question)
+      })
+      .then((response) => {
+            if(response.ok){
+               return response.json();
+            } else {
+               // Throw an error if server response wasn't 'ok'
+               // so we can revert back the optimistic changes
+               // made to the UI.
+               throw new Error("Server response wasn't OK");
+            }
+         })
+            .then((responseData) => {
+               // When the server returns the definitive ID
+               // used for the new Question on the server, update it on React
+               question.id = responseData.id;
+               this.setState({questions:nextState});
+            })
+            .catch((error) => {
+               this.setState(prevState);
+            });
    }
 
    updateQuestion(question) {
@@ -94,17 +99,17 @@ class QuestionPage extends React.Component {
       this.setState({questions: nextState});
 
       // Call the API to update the question on the server
-      //    fetch(`${API_URL}/questions/${question.id}`, {
-      //       method: ’put’,
+      //    fetch('${API_URL}/questions/${question.id}', {
+      //       method: 'put',
       //    headers: API_HEADERS,
       //       body: JSON.stringify(question)
       // })
       // .then((response) => {
       //       if(!response.ok){
-      //          // Throw an error if server response wasn’t ’ok’
+      //          // Throw an error if server response wasn't 'ok'
       //          // so we can revert back the optimistic changes
       //          // made to the UI.
-      //          throw new Error("Server response wasn’t OK")
+      //          throw new Error("Server response wasn't OK")
       //       }
       //    })
       //       .catch((error) => {
@@ -127,9 +132,10 @@ class QuestionPage extends React.Component {
 
             <div className="divQuestions">
                <h1>Questions</h1>
+                { if (this.state.questions is not null)
                <ul>
-                  {this.state.questions.map(
-                     (question) => <QuestionItem key={question.name} name={question.name}/>
+                  this.state.questions.map(
+                    (question) => <QuestionItem key={question.name} name={question.name}/>
                   )}
                </ul>
 
@@ -142,7 +148,6 @@ class QuestionPage extends React.Component {
          </div>
       );
    }
-
 }
 
 export default QuestionPage;

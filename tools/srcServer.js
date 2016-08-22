@@ -24,9 +24,15 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler));
 
 mongoose.connect('mongodb://localhost:27017/qgrid');  // connect to local Mongo DB in db "qgrid"
-var routes = require("./routes");
-app.use('/', routes);
 
+// Establish routes
+
+var routes = require("./routes");
+app.use('/api', routes);
+
+app.get('*', function(req, res) {
+   res.sendFile(path.join( __dirname, '../react_src/index.html'));
+});
 
 app.listen(port, function(err) {
    if (err) {

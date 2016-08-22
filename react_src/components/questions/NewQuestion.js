@@ -5,7 +5,7 @@ class NewQuestion extends Component{
 
    componentWillMount(){
       this.setState({
-         id: Date.now(),
+
          name:"",
          text:"",
          answerType:"none"

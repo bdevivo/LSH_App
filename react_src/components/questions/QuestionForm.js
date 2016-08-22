@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import AnswerTypeOptions from './AnswerTypeOptions';
+import DisplayType from '../../constants/QuestionEnum';
+import AnswerType from '../../constants/AnswerTypeEnum';
 
 class QuestionForm extends Component {
 
@@ -11,8 +13,6 @@ class QuestionForm extends Component {
       e.preventDefault();
       this.props.handleClose();
    }
-
-
 
    render() {
 
@@ -44,10 +44,10 @@ class QuestionForm extends Component {
                   <label htmlFor="displayType">Display Type</label>
                   <div id="displayType" style={inlineDiv}>
                      <div className="radio-inline">
-                        <label><input type="radio" name="optDisplayType" />Question text above input</label>
+                        <label><input type="radio" name="optDisplayType" onChange={this.handleChange.bind(this, "displayType")} value={DisplayType.ABOVE}  />Question text above input</label>
                      </div>
                      <div className="radio-inline">
-                        <label><input type="radio" name="optDisplayType" />Question text inline with input</label>
+                        <label><input type="radio" name="optDisplayType" onChange={this.handleChange.bind(this, "displayType")} value={DisplayType.INLINE} />Question text inline with input</label>
                      </div>
                   </div>
 
@@ -57,10 +57,10 @@ class QuestionForm extends Component {
                      <select id="answerType"
                              value={this.props.draftQuestion.answerType}
                              onChange={this.handleChange.bind(this, "answerType")}>
-                        <option value="selection">Selection</option>
-                        <option value="yesNo">Yes/No</option>
-                        <option value="text">Text</option>
-                        <option value="date">Date</option>
+                        <option value={AnswerType.SELECTION}>Selection</option>
+                        <option value={AnswerType.YESNO}>Yes/No</option>
+                        <option value={AnswerType.TEXT}>Text</option>
+                        <option value={AnswerType.DATE}>Date</option>
                      </select>
 
                      <div className="answerTypeOptions">
@@ -69,12 +69,10 @@ class QuestionForm extends Component {
                    </div>
 
                   <div className="checkbox answerTypeDiv">
-                     <label><input type="checkbox" value="hideByDefault" id="hideByDefault" />Hide by Default</label>
+                     <label><input type="checkbox" value="topLevel" id="topLevel" />Top Level</label>
                   </div>
 
-                  <div className="checkbox">
-                     <label><input type="checkbox" value="answerRequired" id="answerRequired" />Answer Required</label>
-                  </div>
+
 
                   <div className="actions">
                      <button type="submit">{this.props.buttonLabel}</button>
@@ -100,6 +98,6 @@ QuestionForm.propTypes = {
    handleChange: PropTypes.func.isRequired,
    handleSubmit: PropTypes.func.isRequired,
    handleClose: PropTypes.func.isRequired
-}
+};
 
 export default QuestionForm;

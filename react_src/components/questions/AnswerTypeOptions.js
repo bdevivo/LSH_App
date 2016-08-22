@@ -1,6 +1,13 @@
 import React, { Component, PropTypes } from 'react';
+import AnswerType from '../../constants/AnswerTypeEnum';
 
 class SelectionOption extends Component {
+
+    handleChange(field, e) {
+        this.props.handleChange(field, e.target.value);
+    }
+
+
     render() {
         return(
             <ul className="answerTypeSelection">
@@ -22,6 +29,10 @@ class TextOption extends Component {
                        name="textWidth"
                        id="textWidth"
                        required={true}/>
+
+                <div className="checkbox-inline">
+                    <label><input type="checkbox" value="multiLine" id="multiLine" />MultiLine</label>
+                </div>
 
                 <div className="checkbox-inline">
                     <label><input type="checkbox" value="numericText" id="numericText" />Numeric only</label>
@@ -65,13 +76,13 @@ class DateOption extends Component {
         return(
             <div id="displayType" style={inlineDiv}>
                 <div className="radio-inline">
-                    <label><input type="radio" name="optDateType" />Single date</label>
+                    <label><input type="radio" name="optDateType" value={AnswerType.SINGLE} />Single date</label>
                 </div>
                 <div className="radio-inline">
-                    <label><input type="radio" name="optDateType" />Date range</label>
+                    <label><input type="radio" name="optDateType" value={AnswerType.RANGE} />Date range</label>
                 </div>
                 <div className="radio-inline">
-                    <label><input type="radio" name="optDateType" />Schedule</label>
+                    <label><input type="radio" name="optDateType" value={AnswerType.SCHEDULE} />Schedule</label>
                 </div>
             </div>
         );
@@ -85,10 +96,10 @@ class AnswerTypeOptions extends Component {
         return(
 
             <div className="answerTypeOptions">
-                { this.props.answerType == "selection" ? <SelectionOption /> : null }
-                { this.props.answerType == "text" ? <TextOption /> : null }
-                { this.props.answerType == "yesNo" ? <BooleanOption /> : null }
-                { this.props.answerType == "date" ? <DateOption /> : null }
+                { this.props.answerType == "s" ? <SelectionOption /> : null }
+                { this.props.answerType == "t" ? <TextOption /> : null }
+                { this.props.answerType == "yn" ? <BooleanOption /> : null }
+                { this.props.answerType == "d" ? <DateOption /> : null }
             </div>
         );
     }

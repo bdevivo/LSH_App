@@ -7,11 +7,12 @@ import update from "react-addons-update";
 import 'babel-polyfill';
 import 'whatwg-fetch';
 
-const API_URL = 'http://localhost:3001';
+const API_URL = 'http://localhost:3001/api';
 
 const API_HEADERS = {
-'Content-Type': 'application/json',
-Authorization: 'any-string-you-like'// The Authorization is not needed for local server
+    'Content-Type': 'application/json',
+    'Cache-Control': 'no-cache',
+    'Authorization': 'any-string-you-like'// The Authorization is not needed for local server
 };
 
 class QuestionPage extends React.Component {
@@ -24,14 +25,25 @@ class QuestionPage extends React.Component {
    }
 
    componentDidMount(){
-      fetch(`${API_URL}/questions`, // template string?
+       var uri = `${API_URL}/questions`;
+       console.log("QuestionPage.componentDidMount fetch URI: " + uri);
+      fetch(uri, // template string?
           {
-             headers:API_HEADERS
+              method: 'get',
+              headers:API_HEADERS
           })
+          // .then((response) => {
+          //     if(response.ok){
+          //         console.log("QuestionPage.componentDidMount response is OK.  JSON response: " + response.json());
+          //     } else {
+          //         throw new Error("Server response for initial question load wasn't OK");
+          //     }
+          // })
           .then((response) => response.json())
           .then((responseData) => {
+              console.log("QuestionPage.componentDidMount responseData: " + responseData);
              this.setState({
-                questions: responseData
+                questions: responseData.questions
              });
 
              window.state = this.state;
@@ -71,15 +83,16 @@ class QuestionPage extends React.Component {
                throw new Error("Server response wasn't OK");
             }
          })
-            .then((responseData) => {
-               // When the server returns the definitive ID
-               // used for the new Question on the server, update it on React
-               question.id = responseData.id;
-               this.setState({questions:nextState});
-            })
-            .catch((error) => {
-               this.setState(prevState);
-            });
+        .then((responseData) => {
+           // When the server returns the definitive ID
+           // used for the new Question on the server, update it on React
+           question.id = responseData.id;
+           this.setState({questions:nextState});
+        })
+        .catch((error) => {
+            console.log("Error saving question: " + error);
+           this.setState(prevState);
+        });
    }
 
    updateQuestion(question) {
@@ -132,9 +145,9 @@ class QuestionPage extends React.Component {
 
             <div className="divQuestions">
                <h1>Questions</h1>
-                { if (this.state.questions is not null)
+
                <ul>
-                  this.state.questions.map(
+                   {this.state.questions.map(
                     (question) => <QuestionItem key={question.name} name={question.name}/>
                   )}
                </ul>

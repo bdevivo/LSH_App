@@ -31,14 +31,16 @@ router.get("/questions", function(req, res) {
                 res.json({error: "Bad request." });
                 return;
             }
-            res.json({ question: questions });
+            res.json({ "questions": questions });
         });
 });
 
 // Create a new question
 router.post("/questions", function(req, res) {
     var newQuestion = req.body;
-    new Question({
+    console.log("req.body: " + newQuestion);
+    console.log("id: " + newQuestion.id + "  name: " + newQuestion.name);
+    var qModel = new Question({
         name: newQuestion.name,
         text: newQuestion.text,
         displayType: newQuestion.displayType,
@@ -46,17 +48,22 @@ router.post("/questions", function(req, res) {
         topLevel: newQuestion.topLevel,
         required: newQuestion.required
     });
-    Question.save()
-        .exec(function(err) {
-            if (err) {
-                res.status(400);
-                res.json({error: "Bad request." });
-            }
-        });
+    qModel.save(function (err, qModel) {
+        if (err)
+            return console.error(err);
+        else
+            res.json(qModel);
+    });
+
+    // ()
+    //     .exec(function(err) {
+    //         if (err) {
+    //             res.status(400);
+    //             res.json({error: "Bad request." });
+    //         }
+    //     });
 });
 
-router.get('*', function(req, res) {
-    res.sendFile(path.join( __dirname, '../src/index.html'));
-});
+
 
 module.exports = router;

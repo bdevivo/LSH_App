@@ -89,15 +89,18 @@ class QuestionForm extends Component {
 }
 
 QuestionForm.propTypes = {
-   buttonLabel: PropTypes.string.isRequired,
-   draftQuestion: PropTypes.shape({
-      name: PropTypes.string,
-      text: PropTypes.string,
-      answerType: PropTypes.string
+    buttonLabel: PropTypes.string.isRequired,
+    draftQuestion: PropTypes.shape({
+        id: PropTypes.node,
+        name: PropTypes.string,
+        text: PropTypes.string,
+        selectionOptions: PropTypes.arrayOf(React.PropTypes.String),
+        answerType: PropTypes.string
       }).isRequired,
-   handleChange: PropTypes.func.isRequired,
-   handleSubmit: PropTypes.func.isRequired,
-   handleClose: PropTypes.func.isRequired
+    handleChange: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    handleClose: PropTypes.func.isRequired,
+    AnswerTypeCallbacks: PropTypes.object
 };
 
 export default QuestionForm;

@@ -3,19 +3,37 @@ import AnswerType from '../../constants/AnswerTypeEnum';
 
 class SelectionOption extends Component {
 
-    handleChange(field, e) {
-        this.props.handleChange(field, e.target.value);
+    // handleChange(field, e) {
+    //     this.props.handleChange(field, e.target.value);
+   // }
+
+    checkInputKeyPress(evt){
+        if(evt.key === 'Enter'){
+            this.props.AnswerTypeCallbacks.addSelectionOption(evt.target.value);    // we may have to add a temporary QuestionID here, so we can pass it back up to update the state of this question
+            evt.target.value = '';
+        }
     }
 
-
     render() {
-        return(
-            <ul className="answerTypeSelection">
-                <li>option 1</li>
-                <li>option 2</li>
-                <li>option 3</li>
-            </ul>
+        let options = this.props.selectionOptions.map(
+            (opt) => <li key={opt}>{opt}{' '}
+                <a href="#" className="answerType-option-remove" onClick={
+                    this.props.AnswerTypeCallbacks.deleteSelectionOption.bind(null, opt)
+                } /></li>
         );
+
+        return(
+            <div className="answerTypeOptions">
+
+                <ul className="answerTypeSelection">
+                    {options}
+                </ul>
+                <input type="text"
+                    className="checklist--add-task"
+                    placeholder="Type then hit Enter to add a task"
+                    onKeyPress={this.checkInputKeyPress.bind(this)}  />
+            </div>
+        )
     }
 }
 
@@ -110,7 +128,10 @@ class AnswerTypeOptions extends Component {
 
 
 AnswerTypeOptions.propTypes = {
-    answerType: PropTypes.string.isRequired
+    questionId: PropTypes.ObjectId.isRequired,
+    answerType: PropTypes.string.isRequired,
+    selectionOptions: PropTypes.arrayOf(React.PropTypes.String),
+    AnswerTypeCallbacks: PropTypes.object
 };
 
 export default AnswerTypeOptions;

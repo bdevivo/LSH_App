@@ -131,13 +131,60 @@ class QuestionPage extends React.Component {
       //       });
    }
 
+    addSelectionOption(optionString) {
+        // Keep a reference to the original state prior to the mutations
+        // in case we need to revert the optimistic changes in the UI
+        let prevState = this.state;
+
+
+
+        // Create a new object and push the new question to the array of questions
+        let nextState = update(this.state.questions, {$push: [question]});
+
+        // set the component state to the mutated object
+        this.setState({questions: nextState});
+
+        //Call the API to add the question on the server
+        fetch(`${API_URL}/questions`, {
+            method: 'post',
+            headers: API_HEADERS,
+            body: JSON.stringify(question)
+        })
+            .then((response) => {
+                if(response.ok){
+                    return response.json();
+                } else {
+                    // Throw an error if server response wasn't 'ok'
+                    // so we can revert back the optimistic changes
+                    // made to the UI.
+                    throw new Error("Server response wasn't OK");
+                }
+            })
+            .then((responseData) => {
+                // When the server returns the definitive ID
+                // used for the new Question on the server, update it on React
+                question.id = responseData.id;
+                this.setState({questions:nextState});
+            })
+            .catch((error) => {
+                console.log("Error saving question: " + error);
+                this.setState(prevState);
+            });
+    }
+
    render() {
       let questionModal = this.props.children && React.cloneElement(this.props.children, {
             //questions: this.state.questions,
-            questionCallbacks:{
+            QuestionCallbacks:{
                addQuestion: this.addQuestion.bind(this),
                updateQuestion: this.updateQuestion.bind(this)
+            },
+            AnswerTypeCallbacks:{
+                addSelectionOption: this.addSelectionOption.bind(this),
+                deleteSelectionOption: this.addSelectionOption.bind(this)
             }
+
+
          });
 
       return (

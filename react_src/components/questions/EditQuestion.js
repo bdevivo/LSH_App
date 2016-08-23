@@ -34,7 +34,8 @@ class EditQuestion extends Component{
 }
 
 EditQuestion.propTypes = {
-   questionCallbacks: PropTypes.object,
+   QuestionCallbacks: PropTypes.object,
+   AnswerTypeCallbacks: PropTypes.object,
    questions: PropTypes.object
 };
 

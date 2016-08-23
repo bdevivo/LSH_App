@@ -5,10 +5,10 @@ class NewQuestion extends Component{
 
    componentWillMount(){
       this.setState({
-
          name:"",
          text:"",
-         answerType:"none"
+         answerType:"none",
+         selectionOptions: []
       });
    }
 
@@ -38,7 +38,8 @@ class NewQuestion extends Component{
 }
 
 NewQuestion.propTypes = {
-   QuestionCallbacks: PropTypes.object
+   QuestionCallbacks: PropTypes.object,
+   AnswerTypeCallbacks: PropTypes.object
 };
 
 export default NewQuestion;

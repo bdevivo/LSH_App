@@ -14,7 +14,14 @@ class QuestionForm extends Component {
       this.props.handleClose();
    }
 
+   handleSubmit(e) {
+      console.log("QuestionForm: handling submit");
+      this.props.handleSubmit(e);
+   }
+
    render() {
+
+      console.log("QuestionForm selectionOptions: " + this.props.draftQuestion.selectionOptions);
 
       var inlineDiv = {
          display:'inline-block'
@@ -57,6 +64,7 @@ class QuestionForm extends Component {
                      <select id="answerType"
                              value={this.props.draftQuestion.answerType}
                              onChange={this.handleChange.bind(this, "answerType")}>
+                        <option value={AnswerType.NONE_SELECTED}>Choose an option...</option>
                         <option value={AnswerType.SELECTION}>Selection</option>
                         <option value={AnswerType.YESNO}>Yes/No</option>
                         <option value={AnswerType.TEXT}>Text</option>
@@ -64,7 +72,11 @@ class QuestionForm extends Component {
                      </select>
 
                      <div className="answerTypeOptions">
-                        <AnswerTypeOptions answerType={this.props.draftQuestion.answerType}/>
+                        <AnswerTypeOptions
+                           answerType={this.props.draftQuestion.answerType}
+                           selectionOptions={this.props.draftQuestion.selectionOptions}
+                           AnswerTypeCallbacks = {this.props.AnswerTypeCallbacks}
+                        />
                      </div>
                    </div>
 
@@ -75,7 +87,7 @@ class QuestionForm extends Component {
 
 
                   <div className="actions">
-                     <button type="submit">{this.props.buttonLabel}</button>
+                     <button type="button" onClick={this.handleSubmit.bind(this)}>{this.props.buttonLabel}</button>
                   </div>
                </form>
             </div>
@@ -94,12 +106,12 @@ QuestionForm.propTypes = {
         id: PropTypes.node,
         name: PropTypes.string,
         text: PropTypes.string,
-        selectionOptions: PropTypes.arrayOf(React.PropTypes.String),
+        selectionOptions: PropTypes.arrayOf(React.PropTypes.string),
         answerType: PropTypes.string
       }).isRequired,
-    handleChange: PropTypes.func.isRequired,
-    handleSubmit: PropTypes.func.isRequired,
-    handleClose: PropTypes.func.isRequired,
+    handleChange: PropTypes.func,
+    handleSubmit: PropTypes.func,
+    handleClose: PropTypes.func,
     AnswerTypeCallbacks: PropTypes.object
 };
 

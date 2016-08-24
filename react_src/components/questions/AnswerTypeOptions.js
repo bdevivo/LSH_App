@@ -9,33 +9,44 @@ class SelectionOption extends Component {
 
     checkInputKeyPress(evt){
         if(evt.key === 'Enter'){
-            this.props.AnswerTypeCallbacks.addSelectionOption(evt.target.value);    // we may have to add a temporary QuestionID here, so we can pass it back up to update the state of this question
+            this.props.AnswerTypeCallbacks.addSelectionOption(evt.target.value);
             evt.target.value = '';
         }
     }
 
     render() {
-        let options = this.props.selectionOptions.map(
-            (opt) => <li key={opt}>{opt}{' '}
+       let options;
+       console.log("Rendering SelectionOption");
+       console.log("selectionOptions: " + this.props.selectionOptions);
+       if (typeof(this.props.selectionOptions) !== "undefined" && this.props.selectionOptions !== null)
+       {
+          options = this.props.selectionOptions.map(
+             (opt) => <li key={opt}>{opt}{' '}
                 <a href="#" className="answerType-option-remove" onClick={
-                    this.props.AnswerTypeCallbacks.deleteSelectionOption.bind(null, opt)
-                } /></li>
-        );
+                   this.props.AnswerTypeCallbacks.deleteSelectionOption.bind(null, opt)
+                }/></li>
+          );
+       }
 
-        return(
+       return(
             <div className="answerTypeOptions">
-
+               <h3>Options:</h3>
                 <ul className="answerTypeSelection">
                     {options}
                 </ul>
                 <input type="text"
                     className="checklist--add-task"
-                    placeholder="Type then hit Enter to add a task"
+                    placeholder="Type then hit Enter to add option"
                     onKeyPress={this.checkInputKeyPress.bind(this)}  />
             </div>
         )
     }
 }
+
+SelectionOption.propTypes = {
+   selectionOptions: PropTypes.arrayOf(React.PropTypes.string),
+   AnswerTypeCallbacks: PropTypes.object
+};
 
 class TextOption extends Component {
     render() {
@@ -111,10 +122,10 @@ class DateOption extends Component {
 class AnswerTypeOptions extends Component {
 
     render() {
+       console.log("Rendering AnswerTypeOptions");
         return(
-
             <div className="answerTypeOptions">
-                { this.props.answerType == "s" ? <SelectionOption /> : null }
+                { this.props.answerType == "s" ? <SelectionOption selectionOptions={this.props.selectionOptions} AnswerTypeCallbacks={this.props.AnswerTypeCallbacks} /> : null }
                 { this.props.answerType == "t" ? <TextOption /> : null }
                 { this.props.answerType == "yn" ? <BooleanOption /> : null }
                 { this.props.answerType == "d" ? <DateOption /> : null }
@@ -128,9 +139,8 @@ class AnswerTypeOptions extends Component {
 
 
 AnswerTypeOptions.propTypes = {
-    questionId: PropTypes.ObjectId.isRequired,
     answerType: PropTypes.string.isRequired,
-    selectionOptions: PropTypes.arrayOf(React.PropTypes.String),
+    selectionOptions: PropTypes.arrayOf(React.PropTypes.string),
     AnswerTypeCallbacks: PropTypes.object
 };
 

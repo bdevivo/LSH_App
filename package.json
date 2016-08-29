@@ -16,6 +16,7 @@
     "babel-polyfill": "6.8.0",
     "body-parser": "^1.15.2",
     "bootstrap": "3.3.6",
+    "deep-get-set": "^1.0.0",
     "enum": "^2.3.0",
     "es6-enum": "^1.0.3",
     "jquery": "2.2.3",

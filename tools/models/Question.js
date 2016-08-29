@@ -1,11 +1,11 @@
 let mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+let Schema = mongoose.Schema;
 
+mongoose.Promise = require('es6-promise').Promise;
 
-
-var Question;
-var questionSchema;
-var db = mongoose.connection;
+let Question;
+let questionSchema;
+let db = mongoose.connection;
 //db.on('error', console.error.bind(console, 'connection error:'));
 //db.once('open', function() {
 
@@ -16,10 +16,10 @@ questionSchema = new Schema(
         displayType: { type: String },
         topLevel: {type: Boolean },
         answerType: { type: String },
-        selectionOptions: { type: Array },
+        selectionOptions: [String],
         textOptions: {
             width: { type: Number },
-            multiline: { type: Boolean },
+            multiLine: { type: Boolean },
             numeric: { type: Boolean }
         },
         booleanOptions: {

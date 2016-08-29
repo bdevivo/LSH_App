@@ -51,6 +51,10 @@ class QuestionPage extends React.Component {
    }
 
    addQuestion(question) {
+
+       console.log("QuestionPage.addQuestion: selectionOptions length is: " + question.selectionOptions.length);
+       console.log("QuestionPage.addQuestion: question json: " + JSON.stringify(question));
+
       // Keep a reference to the original state prior to the mutations
       // in case we need to revert the optimistic changes in the UI
       let prevState = this.state;

@@ -30,7 +30,7 @@ nav {
 .question_big {
    position: absolute;
    width: 650px;
-   height: 450px;
+   height: 650px;
    margin: auto;
    padding: 25px;
    top: 0; left: 0; bottom: 50px; right: 0;
@@ -103,6 +103,7 @@ div.divAnswerType {
    border:solid 1px rgba(69, 40, 77, 0.94);
    padding-bottom:20px;
    padding-right: 20px;
+    padding-left: 10px;
 }
 
 div.answerTypeOptions {
@@ -174,3 +175,20 @@ div.divCondition {
 div.divCondition > select, div.divScenario > select {
    margin-left: 10px;
 }
+
+div.answerTypeContainer {
+   margin-left:0px;
+}
+
+div.answerTypeOptions {
+   width: 580px;
+   height: 120px;
+   overflow-y: auto;
+   overflow-x:hidden;
+}
+
+div.add-selection-option {
+    width: 500px;
+    margin-left: 50px;
+}
+

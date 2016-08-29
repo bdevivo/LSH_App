@@ -1,16 +1,15 @@
-import path from 'path';
 import bodyParser from 'body-parser';
 
-var express = require("express");
-var Question = new require("./models/question");
-var router = express.Router();
+let express = require("express");
+let Question = new require("./models/question");
+let router = express.Router();
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended : false}));
 
 // Get a single question
 router.get("/questions/:questionId", function(req, res) {
-    var qid = parseInt(req.params.questionId);
+    let qid = parseInt(req.params.questionId);
     Question.findOne({'id': qid})
         .exec(function(err, question) {
             if (err) {
@@ -37,14 +36,16 @@ router.get("/questions", function(req, res) {
 
 // Create a new question
 router.post("/questions", function(req, res) {
-    var newQuestion = req.body;
+    let newQuestion = req.body;
     console.log("req.body: " + newQuestion);
     console.log("id: " + newQuestion.id + "  name: " + newQuestion.name);
-    var qModel = new Question({
+    let qModel = new Question({
         name: newQuestion.name,
         text: newQuestion.text,
         displayType: newQuestion.displayType,
         answerType: newQuestion.answerType,
+        selectionOptions: newQuestion.selectionOptions,
+        textOptions: newQuestion.textOptions,
         topLevel: newQuestion.topLevel,
         required: newQuestion.required
     });

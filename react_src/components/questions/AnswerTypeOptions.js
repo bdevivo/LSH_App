@@ -3,10 +3,6 @@ import AnswerType from '../../constants/AnswerTypeEnum';
 
 class SelectionOption extends Component {
 
-    // handleChange(field, e) {
-    //     this.props.handleChange(field, e.target.value);
-   // }
-
     checkInputKeyPress(evt){
         if(evt.key === 'Enter'){
             this.props.AnswerTypeCallbacks.addSelectionOption(evt.target.value);
@@ -29,16 +25,19 @@ class SelectionOption extends Component {
        }
 
        return(
-            <div className="answerTypeOptions">
-               <h3>Options:</h3>
-                <ul className="answerTypeSelection">
-                    {options}
-                </ul>
-                <input type="text"
-                    className="checklist--add-task"
-                    placeholder="Type then hit Enter to add option"
-                    onKeyPress={this.checkInputKeyPress.bind(this)}  />
-            </div>
+           <div>
+               <h4>Options:</h4>
+                <div className="answerTypeOptions">
+                    <ul className="answerTypeSelection">
+                        {options}
+                    </ul>
+                </div>
+              <div className="add-selection-option">
+                    <input type="text"
+                        placeholder="Type here, then hit Enter to add option"
+                        onKeyPress={this.checkInputKeyPress.bind(this)}  />
+              </div>
+           </div>
         )
     }
 }
@@ -49,6 +48,12 @@ SelectionOption.propTypes = {
 };
 
 class TextOption extends Component {
+
+    handleChange(field, isCheckBox, e) {
+        console.log("field: " + field + "   isCheckBox: " + isCheckBox + "   e: " + e);
+        this.props.AnswerTypeCallbacks.handleTextOptionChange(field, e.target.value, isCheckBox);
+    }
+
     render() {
         return(
             <div>
@@ -56,22 +61,39 @@ class TextOption extends Component {
                 <label htmlFor="textWidth">Width:</label>
                 <input type="text"
                        name="textWidth"
+                       value={this.props.textOptions.width}
+                       onChange={this.handleChange.bind(this, "width", false)}
                        id="textWidth"
                        required={true}/>
 
                 <div className="checkbox-inline">
-                    <label><input type="checkbox" value="multiLine" id="multiLine" />MultiLine</label>
+                    <label><input
+                        type="checkbox"
+                        value="multiLine"
+                        onChange={this.handleChange.bind(this, "multiLine", true)}
+                        id="multiLine" />MultiLine</label>
                 </div>
 
                 <div className="checkbox-inline">
-                    <label><input type="checkbox" value="numericText" id="numericText" />Numeric only</label>
+                    <label><input
+                        type="checkbox"
+                        value="numeric"
+                        onChange={this.handleChange.bind(this, "numeric", true)}
+                        id="numeric" />Numeric only</label>
                 </div>
-
-
             </div>
         );
     }
 }
+
+TextOption.propTypes = {
+    textOptions: PropTypes.shape({
+        width: PropTypes.number,
+        multiLine: PropTypes.bool,
+        numeric: PropTypes.bool
+    }),
+    AnswerTypeCallbacks: PropTypes.object
+};
 
 class BooleanOption extends Component {
 
@@ -122,25 +144,26 @@ class DateOption extends Component {
 class AnswerTypeOptions extends Component {
 
     render() {
-       console.log("Rendering AnswerTypeOptions");
         return(
-            <div className="answerTypeOptions">
+            <div className="answerTypeContainer">
                 { this.props.answerType == "s" ? <SelectionOption selectionOptions={this.props.selectionOptions} AnswerTypeCallbacks={this.props.AnswerTypeCallbacks} /> : null }
-                { this.props.answerType == "t" ? <TextOption /> : null }
+                { this.props.answerType == "t" ? <TextOption textOptions={this.props.textOptions} AnswerTypeCallbacks={this.props.AnswerTypeCallbacks} /> : null }
                 { this.props.answerType == "yn" ? <BooleanOption /> : null }
                 { this.props.answerType == "d" ? <DateOption /> : null }
             </div>
         );
     }
-
-
-
 }
 
 
 AnswerTypeOptions.propTypes = {
     answerType: PropTypes.string.isRequired,
     selectionOptions: PropTypes.arrayOf(React.PropTypes.string),
+    textOptions: PropTypes.shape({
+        width: PropTypes.number,
+        multiLine: PropTypes.bool,
+        numeric: PropTypes.bool
+    }),
     AnswerTypeCallbacks: PropTypes.object
 };
 

@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list id="23724d5d-f374-4c1f-8907-1c5c6ffa7959" name="Default" comment="" />
     <list default="true" id="db9cce2d-2ebf-4e24-9d2e-9ec417bf0e97" name="Add all changelist" comment="Add all changelist">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/question_wizard/SelectionOptions.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/index.html" afterPath="$PROJECT_DIR$/react_src/index.html" />
     </list>
     <ignored path="QuestionGrid.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -778,7 +776,7 @@
       <workItem from="1471710310432" duration="14693000" />
       <workItem from="1472007957357" duration="36702000" />
       <workItem from="1473210025016" duration="14000" />
-      <workItem from="1473210126215" duration="4067000" />
+      <workItem from="1473210126215" duration="4086000" />
     </task>
     <task id="LOCAL-00001" summary="Update from NJ">
       <created>1469553603490</created>
@@ -836,11 +834,18 @@
       <option name="project" value="LOCAL" />
       <updated>1472440689237</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Add all changelist">
+      <created>1473247898232</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1473247898232</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142703000" />
+    <option name="totallyTimeSpent" value="142722000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">

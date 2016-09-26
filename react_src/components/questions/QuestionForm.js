@@ -25,45 +25,45 @@ class QuestionForm extends Component {
 
    handleValidation(){
        // run validation (necessary because we don't have a real Submit button)
-       var $myForm = $('#qForm');
+       let $myForm = $('#qForm');
        $myForm[0].checkValidity();
        $('<input type="submit">').hide().appendTo($myForm).click().remove();
    }
 
    render() {
 
-      var inlineDiv = {
+       let inlineDiv = {
          display:'inline-block'
       };
 
       return (
          <div>
             <div className="question_big">
-               <form id="qForm" onSubmit={this.props.handleSubmit.bind(this)}>
+               <form id="qForm" onSubmit={this.props.handleSubmit(this)}>
 
                   <label htmlFor="qName">Question Name:</label>
                   <input type="text"
                          id="qName"
                          value={this.props.draftQuestion.name}
-                         onChange={this.handleChange.bind(this, "name")}
+                         onChange={this.handleChange(this, "name")}
                          placeholder="Enter Question Name"
-                         required={true}
-                         autoFocus={true} />
+                         required
+                         autoFocus />
 
                   <label htmlFor="qText">Question Text:</label>
                   <textarea value={this.props.draftQuestion.text}
                             id="qText"
-                            onChange={this.handleChange.bind(this, "text")}
+                            onChange={this.handleChange(this, "text")}
                             placeholder="Enter Question Text"
-                            required={true} />
+                            required />
 
                   <label htmlFor="displayType">Display Type</label>
                   <div id="displayType" style={inlineDiv}>
                      <div className="radio-inline">
-                        <label><input type="radio" name="optDisplayType" onChange={this.handleChange.bind(this, "displayType")} value={DisplayType.ABOVE}  />Question text above input</label>
+                        <label><input type="radio" name="optDisplayType" onChange={this.handleChange(this, "displayType")} value={DisplayType.ABOVE}  />Question text above input</label>
                      </div>
                      <div className="radio-inline">
-                        <label><input type="radio" name="optDisplayType" onChange={this.handleChange.bind(this, "displayType")} value={DisplayType.INLINE} />Question text inline with input</label>
+                        <label><input type="radio" name="optDisplayType" onChange={this.handleChange(this, "displayType")} value={DisplayType.INLINE} />Question text inline with input</label>
                      </div>
                   </div>
 
@@ -72,7 +72,7 @@ class QuestionForm extends Component {
                      <label htmlFor="answerType">Answer Type:</label>
                      <select id="answerType"
                              value={this.props.draftQuestion.answerType}
-                             onChange={this.handleChange.bind(this, "answerType")}>
+                             onChange={this.handleChange(this, "answerType")}>
                         <option value={AnswerType.NONE_SELECTED}>Choose an option...</option>
                         <option value={AnswerType.SELECTION}>Selection</option>
                         <option value={AnswerType.YESNO}>Yes/No</option>
@@ -93,18 +93,18 @@ class QuestionForm extends Component {
                   <div className="checkbox answerTypeDiv">
                      <label><input type="checkbox" id="topLevel"
                                    checked={this.props.draftQuestion.topLevel}
-                                   onChange={this.handleCheckChange.bind(this, "topLevel")}/>Top Level</label>
+                                   onChange={this.handleCheckChange(this, "topLevel")}/>Top Level</label>
                   </div>
 
 
 
                   <div className="actions">
-                     <button type="button" onClick={this.handleValidation.bind(this)}>{this.props.buttonLabel}</button>
+                     <button type="button" onClick={this.handleValidation(this)}>{this.props.buttonLabel}</button>
                   </div>
                </form>
             </div>
 
-            <div className="overlay" onClick={this.handleClose.bind(this)}>
+            <div className="overlay" onClick={this.handleClose(this)}>
             </div>
 
          </div>
@@ -118,6 +118,7 @@ QuestionForm.propTypes = {
         id: PropTypes.node,
         name: PropTypes.string,
         text: PropTypes.string,
+        topLevel: PropTypes.bool,
         selectionOptions: PropTypes.arrayOf(React.PropTypes.string),
         textOptions: PropTypes.shape({
             width: PropTypes.number,

@@ -14,7 +14,6 @@ class ConditionExpressionQuestionAnswer extends Component {
 }
 
 ConditionExpressionQuestionAnswer.propTypes = {
-   key: PropTypes.number.isRequired,
    expressionData: PropTypes.shape(
    {
       andOr: PropTypes.string.isRequired,

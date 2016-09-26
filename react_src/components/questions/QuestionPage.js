@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 //import QuestionList from './QuestionList';
 import QuestionItem from './QuestionItem';
 import { Link } from "react-router";
@@ -20,13 +20,13 @@ class QuestionPage extends React.Component {
    constructor(){
       super(...arguments);
       this.state = {
-         questions: []
-      };
+           questions: []
+       };
    }
 
    componentDidMount(){
-       var uri = `${API_URL}/questions`;
-       console.log("QuestionPage.componentDidMount fetch URI: " + uri);
+       let uri = `${API_URL}/questions`;
+       //console.log("QuestionPage.componentDidMount fetch URI: " + uri);
       fetch(uri, // template string?
           {
               method: 'get',
@@ -41,7 +41,7 @@ class QuestionPage extends React.Component {
           // })
           .then((response) => response.json())
           .then((responseData) => {
-              console.log("QuestionPage.componentDidMount responseData: " + responseData);
+             // console.log("QuestionPage.componentDidMount responseData: " + responseData);
              this.setState({
                 questions: responseData.questions
              });
@@ -52,8 +52,8 @@ class QuestionPage extends React.Component {
 
    addQuestion(question) {
 
-       console.log("QuestionPage.addQuestion: selectionOptions length is: " + question.selectionOptions.length);
-       console.log("QuestionPage.addQuestion: question json: " + JSON.stringify(question));
+       //console.log("QuestionPage.addQuestion: selectionOptions length is: " + question.selectionOptions.length);
+       //console.log("QuestionPage.addQuestion: question json: " + JSON.stringify(question));
 
       // Keep a reference to the original state prior to the mutations
       // in case we need to revert the optimistic changes in the UI
@@ -94,7 +94,7 @@ class QuestionPage extends React.Component {
            this.setState({questions:nextState});
         })
         .catch((error) => {
-            console.log("Error saving question: " + error);
+            //console.log("Error saving question: " + error);
            this.setState(prevState);
         });
    }
@@ -166,5 +166,6 @@ class QuestionPage extends React.Component {
       );
    }
 }
+
 
 export default QuestionPage;

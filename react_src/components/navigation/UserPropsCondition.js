@@ -45,13 +45,7 @@ class UserPropsCondition extends Component {
 }
 
 UserPropsCondition.propTypes = {
-   expressionData: PropTypes.shape(
-      {
-         andOr: PropTypes.string.isRequired,
-         operator: PropTypes.string.isRequired,
-         userProperty: PropTypes.string.isRequired,
-         value: PropTypes.string.isRequired
-      }).isRequired
+   expressionData: PropTypes.array.isRequired
 };
 
 export default UserPropsCondition;

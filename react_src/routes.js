@@ -6,6 +6,7 @@ import NavigationPage from './components/navigation/NavigationPage';
 import UserPropsPage from './components/userprops/UserPropsPage';
 import NewQuestion from './components/questions/NewQuestion';
 import EditQuestion from './components/questions/EditQuestion';
+import QuestionWizardPage from './components/question_wizard/QuestionWizardPage';
 import HomePage from './HomePage';
 
 export default (
@@ -17,5 +18,6 @@ export default (
       </Route>
       <Route path="navigation" component={NavigationPage} />
       <Route path="userprops" component={UserPropsPage} />
+       <Route path="questionwizard" component={QuestionWizardPage} />
    </Route>
 );

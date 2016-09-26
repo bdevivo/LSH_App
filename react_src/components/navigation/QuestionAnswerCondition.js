@@ -32,10 +32,11 @@ class QuestionAnswerCondition extends Component {
                <th>Value</th>
             </tr>
             </thead>
-
-            {questionAnswerExpressions.map(
-               (exp) => <ConditionExpressionQuestionAnswer expressionData={exp} key={exp.index} />
-            )}
+            <tbody>
+               {questionAnswerExpressions.map(
+                  (exp) => <ConditionExpressionQuestionAnswer expressionData={exp} key={exp.index} />
+               )}
+            </tbody>
          </table>
       );
    }

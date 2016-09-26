@@ -4,7 +4,7 @@ import AnswerType from '../../constants/AnswerTypeEnum';
 import update from "react-addons-update";
 import { Router } from 'react-router';
 
-var deep = require('deep-get-set');
+let deep = require('deep-get-set');
 
 class NewQuestion extends Component{
 
@@ -24,34 +24,34 @@ class NewQuestion extends Component{
    }
 
    handleChange(field, value){
-      console.log("handleChange: changing " + field + " to " + value);
+      //console.log("handleChange: changing " + field + " to " + value);
       this.setState({[field]: value});
    }
 
    handleCheckChange(field) {
         let currentCheckState = this.state[field];
-        console.log("NewQuestion.handleCheckChange: current state is: " + currentCheckState);
+        //console.log("NewQuestion.handleCheckChange: current state is: " + currentCheckState);
         this.setState({[field]: !currentCheckState});
    }
 
    handleTextOptionChange(field, value, isCheckBox) {
        if (isCheckBox) {
            let currentCheckState = deep(this.state, 'textOptions.multiLine' );        //this.state.textOptions[field];
-           console.log("NewQuestion.handleTextOptionChange: current state of textOptions." + field + " = " + currentCheckState);
+           //console.log("NewQuestion.handleTextOptionChange: current state of textOptions." + field + " = " + currentCheckState);
 
            let nextState = update(this.state.textOptions, {$merge: {[field]: !currentCheckState}});
            this.setState({textOptions: nextState});
-           console.log("NewQuestion.handleTextOptionChange: set textOptions." + field + " to " + this.state.textOptions[field]);
+           //console.log("NewQuestion.handleTextOptionChange: set textOptions." + field + " to " + this.state.textOptions[field]);
        }
        else {
-           console.log("NewQuestion.handleTextOptionChange: setting textOptions." + field + " to " + value);
+           //console.log("NewQuestion.handleTextOptionChange: setting textOptions." + field + " to " + value);
            let nextState = update(this.state.textOptions, {$merge: {[field]: value}});
            this.setState({textOptions: nextState});
        }
    }
 
    handleSubmit(e){
-        console.log("NewQuestion: handling submit");
+        //console.log("NewQuestion: handling submit");
         e.preventDefault();
         this.props.QuestionCallbacks.addQuestion(this.state);
         this.props.history.push("/questions");
@@ -62,7 +62,7 @@ class NewQuestion extends Component{
    }
 
    addSelectionOption(optionString) {
-      console.log("addSelectionOption: " + optionString);
+      //console.log("addSelectionOption: " + optionString);
       let nextState = update(this.state.selectionOptions, {$push: [optionString]});
       this.setState({selectionOptions: nextState});
    }
@@ -75,18 +75,18 @@ class NewQuestion extends Component{
    render(){
 
       let answerTypeCallbacks = {
-            addSelectionOption:this.addSelectionOption.bind(this),
-            deleteSelectionOption:this.addSelectionOption.bind(this),
-            handleTextOptionChange: this.handleTextOptionChange.bind(this)
+            addSelectionOption:this.addSelectionOption(this),
+            deleteSelectionOption:this.addSelectionOption(this),
+            handleTextOptionChange: this.handleTextOptionChange(this)
    };
 
       return (
          <QuestionForm draftQuestion={this.state}
                   buttonLabel="Add Question"
-                  handleChange={this.handleChange.bind(this)}
-                  handleCheckChange = {this.handleCheckChange.bind(this)}
-                  handleSubmit={this.handleSubmit.bind(this)}
-                  handleClose={this.handleClose.bind(this)}
+                  handleChange={this.handleChange(this)}
+                  handleCheckChange = {this.handleCheckChange(this)}
+                  handleSubmit={this.handleSubmit(this)}
+                  handleClose={this.handleClose(this)}
                   AnswerTypeCallbacks={answerTypeCallbacks}
          />
       );
@@ -94,7 +94,8 @@ class NewQuestion extends Component{
 }
 
 NewQuestion.propTypes = {
-   QuestionCallbacks: PropTypes.object,
+    QuestionCallbacks: PropTypes.object,
+    history: PropTypes.object
 };
 
 export default NewQuestion;

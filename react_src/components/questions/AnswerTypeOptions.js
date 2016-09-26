@@ -12,14 +12,14 @@ class SelectionOption extends Component {
 
     render() {
        let options;
-       console.log("Rendering SelectionOption");
-       console.log("selectionOptions: " + this.props.selectionOptions);
+       //console.log("Rendering SelectionOption");
+       //console.log("selectionOptions: " + this.props.selectionOptions);
        if (typeof(this.props.selectionOptions) !== "undefined" && this.props.selectionOptions !== null)
        {
           options = this.props.selectionOptions.map(
              (opt) => <li key={opt}>{opt}{' '}
                 <a href="#" className="answerType-option-remove" onClick={
-                   this.props.AnswerTypeCallbacks.deleteSelectionOption.bind(null, opt)
+                   this.props.AnswerTypeCallbacks.deleteSelectionOption(null, opt)
                 }/></li>
           );
        }
@@ -35,10 +35,10 @@ class SelectionOption extends Component {
               <div className="add-selection-option">
                     <input type="text"
                         placeholder="Type here, then hit Enter to add option"
-                        onKeyPress={this.checkInputKeyPress.bind(this)}  />
+                        onKeyPress={this.checkInputKeyPress(this)}  />
               </div>
            </div>
-        )
+        );
     }
 }
 
@@ -50,7 +50,7 @@ SelectionOption.propTypes = {
 class TextOption extends Component {
 
     handleChange(field, isCheckBox, e) {
-        console.log("field: " + field + "   isCheckBox: " + isCheckBox + "   e: " + e);
+        //console.log("field: " + field + "   isCheckBox: " + isCheckBox + "   e: " + e);
         this.props.AnswerTypeCallbacks.handleTextOptionChange(field, e.target.value, isCheckBox);
     }
 
@@ -62,15 +62,15 @@ class TextOption extends Component {
                 <input type="text"
                        name="textWidth"
                        value={this.props.textOptions.width}
-                       onChange={this.handleChange.bind(this, "width", false)}
+                       onChange={this.handleChange(this, "width", false)}
                        id="textWidth"
-                       required={true}/>
+                       required/>
 
                 <div className="checkbox-inline">
                     <label><input
                         type="checkbox"
                         value="multiLine"
-                        onChange={this.handleChange.bind(this, "multiLine", true)}
+                        onChange={this.handleChange(this, "multiLine", true)}
                         id="multiLine" />MultiLine</label>
                 </div>
 
@@ -78,7 +78,7 @@ class TextOption extends Component {
                     <label><input
                         type="checkbox"
                         value="numeric"
-                        onChange={this.handleChange.bind(this, "numeric", true)}
+                        onChange={this.handleChange(this, "numeric", true)}
                         id="numeric" />Numeric only</label>
                 </div>
             </div>
@@ -120,7 +120,7 @@ class DateOption extends Component {
 
     render() {
 
-        var inlineDiv = {
+        let inlineDiv = {
             display:'inline-block'
         };
 

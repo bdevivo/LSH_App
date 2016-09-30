@@ -7,7 +7,7 @@ let mongoose = require("mongoose");
 
 /*eslint-disable no-console */
 
-const port = 3000;
+const port = process.env.PORT;
 const app = express();
 
 app.use(compression());

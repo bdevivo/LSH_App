@@ -1,10 +1,6 @@
 {
   "name": "LSH Web Application",
   "version": "1.0.0",
-  "engines": {
-    "node": "6.2.2",
-    "npm": "3.9.5"
-  },
   "description": "Question Grid for LSH User Profiles and Job Postings",
   "scripts": {
     "prestart": "babel-node tools/startMessage.js",
@@ -80,5 +76,9 @@
     "rimraf": "2.5.2",
     "webpack-dev-middleware": "1.6.1",
     "webpack-hot-middleware": "2.10.0"
+  },
+  "engines": {
+    "node": "6.2.2",
+    "npm": "3.9.5"
   }
 }

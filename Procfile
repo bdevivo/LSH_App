@@ -1,1 +1,1 @@
-web: babel tools/srcServer.js
+web: node tools/prodServer.js

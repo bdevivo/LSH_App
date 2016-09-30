@@ -6,9 +6,6 @@ import open from 'open';
 
 let mongoose = require("mongoose");
 
-//import mongoose from 'mongoose';
-//import Question from './models/question';
-
 
 /* eslint-disable no-console */
 

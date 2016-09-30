@@ -1,6 +1,9 @@
 {
-  "name": "question-grid-admin-tool",
+  "name": "LSH Web Application",
   "version": "1.0.0",
+  "engines": {
+    "node": "6.2.2"
+  },
   "description": "Question Grid for LSH User Profiles and Job Postings",
   "scripts": {
     "prestart": "babel-node tools/startMessage.js",
@@ -15,7 +18,7 @@
     "build:html": "babel-node tools/buildHtml.js",
     "prebuild": "npm-run-all clean-dist  lint build:html",
     "build": "babel-node tools/build.js",
-    "postbuild": "babel-node tools/prodServer.js"
+    "postbuild": "node tools/prodServer.js"
   },
   "author": "Bob De Vivo",
   "license": "",
@@ -31,9 +34,10 @@
     "babel-register": "6.8.0",
     "body-parser": "^1.15.2",
     "bootstrap": "3.3.6",
+    "compression": "1.6.1",
     "css-loader": "0.23.1",
     "deep-get-set": "^1.0.0",
-    "enum": "^2.3.0",
+    "eventsource-polyfill": "0.9.6",
     "express": "4.13.4",
     "es6-enum": "^1.0.3",
     "file-loader": "0.8.5",
@@ -57,14 +61,12 @@
   },
   "devDependencies": {
     "colors": "1.1.2",
-    "compression": "1.6.1",
     "cross-env": "1.0.7",
     "enzyme": "2.2.0",
     "eslint": "2.9.0",
     "eslint-plugin-import": "1.6.1",
     "eslint-plugin-react": "5.0.1",
     "eslint-watch": "2.1.11",
-    "eventsource-polyfill": "0.9.6",
     "expect": "1.19.0",
     "extract-text-webpack-plugin": "1.0.1",
     "jsdom": "8.5.0",

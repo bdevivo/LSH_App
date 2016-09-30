@@ -37,6 +37,8 @@ class question_wizard_store extends EventEmitter {
                         question.visible = !question.visible;
                         this.emit('change', this.state);
                     }
+                    else
+                    break;
                 }
 
                 break;

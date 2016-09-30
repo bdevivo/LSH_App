@@ -1,6 +1,10 @@
 import webpack from 'webpack';
 import path from 'path';
 
+const GLOBALS = {
+    'process.env.NODE_ENV' : JSON.stringify('dev')
+};
+
 export default {
     debug: true,
     devtool: 'cheap-module-eval-source-map',

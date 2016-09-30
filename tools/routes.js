@@ -1,5 +1,4 @@
-import bodyParser from 'body-parser';
-
+let bodyParser = require("body-parser");
 let express = require("express");
 let Question = new require("./models/question");
 let router = express.Router();

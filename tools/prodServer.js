@@ -1,7 +1,7 @@
-import express from 'express';
-import path from 'path';
-import open from 'open';
-import compression from 'compression';
+let express = require("express");
+let path = require("path");
+let open = require("open");
+let compression = require("compression");
 
 let mongoose = require("mongoose");
 

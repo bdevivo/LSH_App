@@ -1,6 +1,6 @@
 let bodyParser = require("body-parser");
 let express = require("express");
-let Question = new require("./models/question");
+let Question = new require("./models/Question");
 let router = express.Router();
 
 router.use(bodyParser.json());

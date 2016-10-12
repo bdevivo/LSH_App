@@ -2,32 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list id="23724d5d-f374-4c1f-8907-1c5c6ffa7959" name="Default" comment="" />
-    <list default="true" id="db9cce2d-2ebf-4e24-9d2e-9ec417bf0e97" name="Add all changelist" comment="Add all changelist">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.env.default" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.eslintignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/App/App.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/Login/LoginPage.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/Login/LoginPage.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/Messages/Messages.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/Messages/Messages.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/common/Header.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/profile/ProfilePage.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/utils/AuthService.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/utils/jwtHelper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.babelrc" afterPath="$PROJECT_DIR$/.babelrc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.eslintrc" afterPath="$PROJECT_DIR$/.eslintrc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/bob.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/bob.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+    <list default="true" id="db9cce2d-2ebf-4e24-9d2e-9ec417bf0e97" name="Add all changelist" comment="Add Auth0 login">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log.txt" afterPath="$PROJECT_DIR$/log.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/common/Header.js" afterPath="$PROJECT_DIR$/react_src/components/common/Header.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/routes.js" afterPath="$PROJECT_DIR$/react_src/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/styles/styles.css" afterPath="$PROJECT_DIR$/react_src/styles/styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tools/srcServer.js" afterPath="$PROJECT_DIR$/tools/srcServer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack.config.dev.js" afterPath="$PROJECT_DIR$/webpack.config.dev.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack.config.prod.js" afterPath="$PROJECT_DIR$/webpack.config.prod.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/react_src/components/App.js" afterPath="$PROJECT_DIR$/react_src/components/App/App.js" />
     </list>
     <ignored path="QuestionGrid.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -904,7 +880,7 @@
       <workItem from="1474742002704" duration="28748000" />
       <workItem from="1475196064550" duration="43256000" />
       <workItem from="1475711911943" duration="25813000" />
-      <workItem from="1476209597546" duration="8085000" />
+      <workItem from="1476209597546" duration="8118000" />
     </task>
     <task id="LOCAL-00001" summary="Update from NJ">
       <created>1469553603490</created>
@@ -983,11 +959,18 @@
       <option name="project" value="LOCAL" />
       <updated>1474889550182</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Add Auth0 login">
+      <created>1476241643585</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1476241643585</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="297265000" />
+    <option name="totallyTimeSpent" value="297298000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1082,7 +1065,8 @@
     <MESSAGE value="More Persistence for Questions" />
     <MESSAGE value="Some adds -- not sure if these are necessary" />
     <MESSAGE value="Add all changelist" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add all changelist" />
+    <MESSAGE value="Add Auth0 login" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Auth0 login" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1187,6 +1171,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="15" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1262,6 +1247,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1276,6 +1262,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="53" selection-start-line="17" selection-start-column="53" selection-end-line="17" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#30#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1284,6 +1273,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>

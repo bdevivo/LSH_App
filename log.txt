@@ -1,101 +1,21 @@
-2016-09-30T03:02:04.365860+00:00 app[web.1]:     at Module._compile (module.js:541:32)
-2016-09-30T03:02:04.365860+00:00 app[web.1]:     at Object.Module._extensions..js (module.js:550:10)
-2016-09-30T03:02:04.365861+00:00 app[web.1]:     at Module.load (module.js:458:32)
-2016-09-30T03:02:04.365861+00:00 app[web.1]:     at tryModuleLoad (module.js:417:12)
-2016-09-30T03:02:04.365862+00:00 app[web.1]:     at Function.Module._load (module.js:409:3)
-2016-09-30T03:02:04.365863+00:00 app[web.1]:     at Module.require (module.js:468:17)
-2016-09-30T03:02:04.365863+00:00 app[web.1]:     at require (internal/module.js:20:19)
-2016-09-30T03:02:04.365864+00:00 app[web.1]:     at Object.<anonymous> (/app/tools/prodServer.js:18:14)
-2016-09-30T03:02:04.365864+00:00 app[web.1]:     at Module._compile (module.js:541:32)
-2016-09-30T03:02:04.365865+00:00 app[web.1]:     at Object.Module._extensions..js (module.js:550:10)
-2016-09-30T03:02:04.365866+00:00 app[web.1]:     at Module.load (module.js:458:32)
-2016-09-30T03:02:04.428845+00:00 heroku[web.1]: Process exited with status 1
-2016-09-30T03:02:04.445143+00:00 heroku[web.1]: State changed from starting to crashed
-2016-09-30T03:02:04.446081+00:00 heroku[web.1]: State changed from crashed to starting
-2016-09-30T03:02:08.365824+00:00 heroku[web.1]: Starting process with command `node tools/prodServer.js`
-2016-09-30T03:02:10.629260+00:00 app[web.1]: module.js:442
-2016-09-30T03:02:10.629276+00:00 app[web.1]:     throw err;
-2016-09-30T03:02:10.629277+00:00 app[web.1]:     ^
-2016-09-30T03:02:10.629278+00:00 app[web.1]: 
-2016-09-30T03:02:10.629284+00:00 app[web.1]: Error: Cannot find module './models/question'
-2016-09-30T03:02:10.629285+00:00 app[web.1]:     at Function.Module._resolveFilename (module.js:440:15)
-2016-09-30T03:02:10.629286+00:00 app[web.1]:     at Function.Module._load (module.js:388:25)
-2016-09-30T03:02:10.629287+00:00 app[web.1]:     at Module.require (module.js:468:17)
-2016-09-30T03:02:10.629287+00:00 app[web.1]:     at new require (internal/module.js:20:19)
-2016-09-30T03:02:10.629289+00:00 app[web.1]:     at Module._compile (module.js:541:32)
-2016-09-30T03:02:10.629288+00:00 app[web.1]:     at Object.<anonymous> (/app/tools/routes.js:3:16)
-2016-09-30T03:02:10.629289+00:00 app[web.1]:     at Object.Module._extensions..js (module.js:550:10)
-2016-09-30T03:02:10.629290+00:00 app[web.1]:     at Module.load (module.js:458:32)
-2016-09-30T03:02:10.629291+00:00 app[web.1]:     at tryModuleLoad (module.js:417:12)
-2016-09-30T03:02:10.629291+00:00 app[web.1]:     at Function.Module._load (module.js:409:3)
-2016-09-30T03:02:10.629292+00:00 app[web.1]:     at Module.require (module.js:468:17)
-2016-09-30T03:02:10.629293+00:00 app[web.1]:     at require (internal/module.js:20:19)
-2016-09-30T03:02:10.629293+00:00 app[web.1]:     at Object.<anonymous> (/app/tools/prodServer.js:18:14)
-2016-09-30T03:02:10.629294+00:00 app[web.1]:     at Module._compile (module.js:541:32)
-2016-09-30T03:02:10.629295+00:00 app[web.1]:     at Object.Module._extensions..js (module.js:550:10)
-2016-09-30T03:02:10.629295+00:00 app[web.1]:     at Module.load (module.js:458:32)
-2016-09-30T03:02:10.723536+00:00 heroku[web.1]: State changed from starting to crashed
-2016-09-30T03:02:10.711006+00:00 heroku[web.1]: Process exited with status 1
-2016-09-30T03:02:14.119692+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=blooming-basin-10861.herokuapp.com request_id=c6959cbd-70c5-47d4-830b-e08f70ab2432 fwd="98.113.208.74" dyno= connect= service= status=503 bytes=
-2016-09-30T03:02:15.765934+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=blooming-basin-10861.herokuapp.com request_id=2514d41a-2278-4335-b000-51255c3691c1 fwd="98.113.208.74" dyno= connect= service= status=503 bytes=
-2016-09-30T03:02:30.257125+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=blooming-basin-10861.herokuapp.com request_id=44af16a7-1e33-4a44-a6e9-0e1760e0f664 fwd="98.113.208.74" dyno= connect= service= status=503 bytes=
-2016-09-30T03:03:50.224768+00:00 heroku[run.6132]: State changed from up to complete
-2016-09-30T03:03:50.227518+00:00 heroku[run.6132]: Process exited with status 127
-2016-09-30T03:04:01.499488+00:00 heroku[api]: Starting process with command `bash` by devivobob@gmail.com
-2016-09-30T03:04:06.198699+00:00 heroku[run.7515]: Awaiting client
-2016-09-30T03:04:06.230299+00:00 heroku[run.7515]: Starting process with command `bash`
-2016-09-30T03:04:06.347017+00:00 heroku[run.7515]: State changed from starting to up
-2016-09-30T03:15:35.372220+00:00 heroku[api]: Deploy 717ecaa by devivobob@gmail.com
-2016-09-30T03:15:35.372220+00:00 heroku[api]: Release v12 created by devivobob@gmail.com
-2016-09-30T03:15:35.572093+00:00 heroku[slug-compiler]: Slug compilation started
-2016-09-30T03:15:35.572101+00:00 heroku[slug-compiler]: Slug compilation finished
-2016-09-30T03:15:35.668923+00:00 heroku[web.1]: State changed from crashed to starting
-2016-09-30T03:15:38.835813+00:00 heroku[web.1]: Starting process with command `node tools/prodServer.js`
-2016-09-30T03:15:40.954651+00:00 heroku[web.1]: Process exited with status 1
-2016-09-30T03:15:40.897623+00:00 app[web.1]: 
-2016-09-30T03:15:40.897637+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:261
-2016-09-30T03:15:40.897638+00:00 app[web.1]:         process.nextTick(function() { throw err; })
-2016-09-30T03:15:40.897639+00:00 app[web.1]:                                       ^
-2016-09-30T03:15:40.898249+00:00 app[web.1]: MongoError: failed to connect to server [localhost:27017] on first connect
-2016-09-30T03:15:40.898250+00:00 app[web.1]:     at .<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:313:35)
-2016-09-30T03:15:40.898251+00:00 app[web.1]:     at emitOne (events.js:96:13)
-2016-09-30T03:15:40.898251+00:00 app[web.1]:     at emit (events.js:188:7)
-2016-09-30T03:15:40.898252+00:00 app[web.1]:     at .<anonymous> (/app/node_modules/mongodb-core/lib/connection/pool.js:260:12)
-2016-09-30T03:15:40.898252+00:00 app[web.1]:     at g (events.js:286:16)
-2016-09-30T03:15:40.898253+00:00 app[web.1]:     at emitTwo (events.js:106:13)
-2016-09-30T03:15:40.898253+00:00 app[web.1]:     at emit (events.js:191:7)
-2016-09-30T03:15:40.898253+00:00 app[web.1]:     at Socket.<anonymous> (/app/node_modules/mongodb-core/lib/connection/connection.js:162:49)
-2016-09-30T03:15:40.898254+00:00 app[web.1]:     at Socket.g (events.js:286:16)
-2016-09-30T03:15:40.898254+00:00 app[web.1]:     at emitOne (events.js:96:13)
-2016-09-30T03:15:40.898255+00:00 app[web.1]:     at Socket.emit (events.js:188:7)
-2016-09-30T03:15:40.898255+00:00 app[web.1]:     at emitErrorNT (net.js:1272:8)
-2016-09-30T03:15:40.898255+00:00 app[web.1]:     at _combinedTickCallback (internal/process/next_tick.js:74:11)
-2016-09-30T03:15:40.898256+00:00 app[web.1]:     at process._tickCallback (internal/process/next_tick.js:98:9)
-2016-09-30T03:15:40.987841+00:00 heroku[web.1]: State changed from starting to crashed
-2016-09-30T03:15:40.988756+00:00 heroku[web.1]: State changed from crashed to starting
-2016-09-30T03:15:44.007351+00:00 heroku[web.1]: Starting process with command `node tools/prodServer.js`
-2016-09-30T03:15:46.013911+00:00 heroku[web.1]: State changed from starting to crashed
-2016-09-30T03:15:45.924434+00:00 app[web.1]: 
-2016-09-30T03:15:45.924461+00:00 app[web.1]: /app/node_modules/mongodb/lib/server.js:261
-2016-09-30T03:15:45.924462+00:00 app[web.1]:         process.nextTick(function() { throw err; })
-2016-09-30T03:15:45.924463+00:00 app[web.1]:                                       ^
-2016-09-30T03:15:45.925110+00:00 app[web.1]: MongoError: failed to connect to server [localhost:27017] on first connect
-2016-09-30T03:15:45.925112+00:00 app[web.1]:     at .<anonymous> (/app/node_modules/mongodb-core/lib/topologies/server.js:313:35)
-2016-09-30T03:15:45.925112+00:00 app[web.1]:     at emitOne (events.js:96:13)
-2016-09-30T03:15:45.925113+00:00 app[web.1]:     at emit (events.js:188:7)
-2016-09-30T03:15:45.925113+00:00 app[web.1]:     at .<anonymous> (/app/node_modules/mongodb-core/lib/connection/pool.js:260:12)
-2016-09-30T03:15:45.925114+00:00 app[web.1]:     at g (events.js:286:16)
-2016-09-30T03:15:45.925115+00:00 app[web.1]:     at emitTwo (events.js:106:13)
-2016-09-30T03:15:45.925115+00:00 app[web.1]:     at emit (events.js:191:7)
-2016-09-30T03:15:45.925116+00:00 app[web.1]:     at Socket.<anonymous> (/app/node_modules/mongodb-core/lib/connection/connection.js:162:49)
-2016-09-30T03:15:45.925116+00:00 app[web.1]:     at Socket.g (events.js:286:16)
-2016-09-30T03:15:45.925117+00:00 app[web.1]:     at emitOne (events.js:96:13)
-2016-09-30T03:15:45.925117+00:00 app[web.1]:     at Socket.emit (events.js:188:7)
-2016-09-30T03:15:45.925118+00:00 app[web.1]:     at emitErrorNT (net.js:1272:8)
-2016-09-30T03:15:45.925118+00:00 app[web.1]:     at _combinedTickCallback (internal/process/next_tick.js:74:11)
-2016-09-30T03:15:45.925119+00:00 app[web.1]:     at process._tickCallback (internal/process/next_tick.js:98:9)
-2016-09-30T03:15:46.032656+00:00 heroku[web.1]: Process exited with status 1
-2016-09-30T03:15:46.513248+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=blooming-basin-10861.herokuapp.com request_id=34963c00-060a-404c-a261-2cc9270538b4 fwd="98.113.208.74" dyno= connect= service= status=503 bytes=
-2016-09-30T03:15:51.150013+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=blooming-basin-10861.herokuapp.com request_id=48f03fae-cf10-4800-aa1f-15613fb1547d fwd="98.113.208.74" dyno= connect= service= status=503 bytes=
-2016-09-30T03:16:10.006988+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=blooming-basin-10861.herokuapp.com request_id=4e3b58f8-393b-4eb8-b3d6-707e0c8d6d77 fwd="98.113.208.74" dyno= connect= service= status=503 bytes=
-2016-09-30T03:16:10.913970+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=blooming-basin-10861.herokuapp.com request_id=401c051b-ef06-4824-868d-c3d7968b31be fwd="98.113.208.74" dyno= connect= service= status=503 bytes=
+
+> lsh_web_App@1.0.0 prestart E:\Development\React\QuestionGrid
+> babel-node tools/startMessage.js
+
+Starting app in dev mode...
+
+> lsh_web_App@1.0.0 start E:\Development\React\QuestionGrid
+> npm-run-all --parallel  open:src lint:watch
+
+
+> lsh_web_App@1.0.0 lint:watch E:\Development\React\QuestionGrid
+> npm run lint -- --watch
+
+
+> lsh_web_App@1.0.0 open:src E:\Development\React\QuestionGrid
+> babel-node tools/srcServer.js
+
+
+> lsh_web_App@1.0.0 lint E:\Development\React\QuestionGrid
+> esw webpack.config.* react_src tools "--watch"
+

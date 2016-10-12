@@ -1,19 +1,21 @@
 import React, {PropTypes} from 'react';
-import { Link, IndexLink } from 'react-router';
+import { Link } from 'react-router';
+import CSSModules from 'react-css-modules';
+import styles, { active } from './Header.css';
 // import LoadingDots from './LoadingDots';
 
 const Header = () => {
    return (
-      <nav>
-         <Link to="/questions" activeClassName="active">Questions</Link>
+      <nav styleName="nav">
+         <Link to="/questions" activeClassName={styles.active}>Questions</Link>
          {" | "}
-         <Link to="/navigation" activeClassName="active">Navigation</Link>
+         <Link to="/navigation" activeClassName={styles.active}>Navigation</Link>
          {" | "}
-         <Link to="/userprops" activeClassName="active">User Properties</Link>
+         <Link to="/userprops" activeClassName={styles.active}>User Properties</Link>
           {" | "}
-          <Link to="/questionwizard" activeClassName="active">Question Wizard</Link>
+          <Link to="/questionwizard" activeClassName={styles.active}>Question Wizard</Link>
       </nav>
    );
 };
 
-export default Header;
+export default CSSModules(Header, styles);

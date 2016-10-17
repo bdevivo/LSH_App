@@ -3,50 +3,14 @@
   <component name="ChangeListManager">
     <list id="23724d5d-f374-4c1f-8907-1c5c6ffa7959" name="Default" comment="" />
     <list default="true" id="db9cce2d-2ebf-4e24-9d2e-9ec417bf0e97" name="Add all changelist" comment="Add initial actions and reducers for Redux">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/api/delay.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/api/mockQuestionApi.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/Common/SelectInput.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/Common/TextInput.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/Profile/ProfilePage.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/Question/Question.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/Question/QuestionPage.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/reducers/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/store/configureStore.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/react_src/components/navigation/ConditionExpressionInputUserProp.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/react_src/components/navigation/ConditionExpressionQuestionAnswer.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/react_src/components/navigation/ConditionExpressionUserProp.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/react_src/components/navigation/NavigationPage.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/react_src/components/navigation/QuestionAnswerCondition.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/react_src/components/navigation/UserPropsCondition.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/react_src/components/question_wizard/Question.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/react_src/components/question_wizard/QuestionWizardPage.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/react_src/components/question_wizard/actions/toggle_question.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/react_src/components/question_wizard/stores/question_wizard_store.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/react_src/components/questions/AnswerTypeOptions.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/react_src/components/questions/EditQuestion.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/react_src/components/questions/NewQuestion.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/react_src/components/questions/QuestionForm.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/react_src/components/questions/QuestionItem.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/react_src/components/questions/QuestionPage.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/react_src/components/userprops/UserPropsPage.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/QuestionGrid.iml" afterPath="$PROJECT_DIR$/.idea/QuestionGrid.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/Profile/ProfileDetails.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/Profile/ProfileEdit.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/actions/actionTypes.js" afterPath="$PROJECT_DIR$/react_src/actions/actionTypes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/actions/questionWizardActions.js" afterPath="$PROJECT_DIR$/react_src/actions/questionWizardActions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/App/App.js" afterPath="$PROJECT_DIR$/react_src/components/App/App.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Login/LoginPage.js" afterPath="$PROJECT_DIR$/react_src/components/Login/LoginPage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/index.js" afterPath="$PROJECT_DIR$/react_src/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/reducers/questionWizardReducer.js" afterPath="$PROJECT_DIR$/react_src/reducers/questionWizardReducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/routes.js" afterPath="$PROJECT_DIR$/react_src/routes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Profile/ProfilePage.css" afterPath="$PROJECT_DIR$/react_src/components/Profile/ProfilePage.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Profile/ProfilePage.js" afterPath="$PROJECT_DIR$/react_src/components/Profile/ProfilePage.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/utils/AuthService.js" afterPath="$PROJECT_DIR$/react_src/utils/AuthService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/utils/jwtHelper.js" afterPath="$PROJECT_DIR$/react_src/utils/jwtHelper.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/react_src/components/common/Header.css" afterPath="$PROJECT_DIR$/react_src/components/Common/Header.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/react_src/components/common/Header.js" afterPath="$PROJECT_DIR$/react_src/components/Common/Header.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/react_src/components/profile/ProfilePage.js" afterPath="$PROJECT_DIR$/react_src/components/Profile/ProfilePage.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/react_src/components/question_wizard/SelectionOptions.js" afterPath="$PROJECT_DIR$/react_src/components/Question/SelectionOptions.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/react_src/components/question_wizard/TestPage.js" afterPath="$PROJECT_DIR$/react_src/components/Question/QuestionList.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/react_src/reducers/initialState.js" afterPath="$PROJECT_DIR$/react_src/store/initialState.js" />
     </list>
     <ignored path="QuestionGrid.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -69,55 +33,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Header.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react_src/components/Common/Header.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="23" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="23" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="AuthService.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/react_src/utils/AuthService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="548">
-              <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
+            <state relative-caret-position="350">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
+                <element signature="e#181#205#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jwtHelper.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react_src/utils/jwtHelper.js">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProfilePage.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react_src/components/Profile/ProfilePage.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Question.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react_src/components/Question/Question.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+            <state relative-caret-position="72">
+              <caret line="51" column="14" selection-start-line="51" selection-start-column="14" selection-end-line="51" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -126,21 +59,9 @@
       <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react_src/components/App/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
+            <state relative-caret-position="600">
               <caret line="27" column="25" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="25" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react_src/routes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="45" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -148,8 +69,8 @@
       <file leaf-file-name="LoginPage.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react_src/components/Login/LoginPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+            <state relative-caret-position="500">
+              <caret line="26" column="32" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="32" />
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
               </folding>
@@ -157,13 +78,57 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="LoginPage.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react_src/components/Login/LoginPage.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ProfilePage.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react_src/components/Profile/ProfilePage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+            <state relative-caret-position="100">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProfilePage.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react_src/components/Profile/ProfilePage.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="50">
+              <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProfileDetails.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react_src/components/Profile/ProfileDetails.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="475">
+              <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProfileEdit.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react_src/components/Profile/ProfileEdit.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1150">
+              <caret line="49" column="8" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
+              <folding>
+                <element signature="e#0#46#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -176,8 +141,8 @@
       <list>
         <option value="HTML File" />
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="React Redux Container Component" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -188,9 +153,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/react_src/components/profile/ProfilePage.js" />
-        <option value="$PROJECT_DIR$/react_src/components/App.js" />
-        <option value="$PROJECT_DIR$/react_src/components/Messages/styles.module.css" />
         <option value="$PROJECT_DIR$/npm-debug.log" />
         <option value="$PROJECT_DIR$/.env.default" />
         <option value="$PROJECT_DIR$/react_src/components/Messages/Messages.js" />
@@ -202,7 +164,6 @@
         <option value="$PROJECT_DIR$/.eslintrc.json" />
         <option value="$PROJECT_DIR$/.eslintignore" />
         <option value="$PROJECT_DIR$/.eslintrc" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/webpack.config.dev.js" />
         <option value="$PROJECT_DIR$/react_src/components/App/style.modules.css" />
         <option value="$PROJECT_DIR$/react_src/components/App/styles.module.css" />
@@ -231,13 +192,17 @@
         <option value="$PROJECT_DIR$/react_src/components/Question/ComponentTemplate.js" />
         <option value="$PROJECT_DIR$/react_src/components/common/Header.css" />
         <option value="$PROJECT_DIR$/react_src/components/common/Header.js" />
-        <option value="$PROJECT_DIR$/react_src/components/Profile/ProfilePage.css" />
         <option value="$PROJECT_DIR$/react_src/utils/jwtHelper.js" />
         <option value="$PROJECT_DIR$/react_src/components/App/App.js" />
-        <option value="$PROJECT_DIR$/react_src/components/Login/LoginPage.js" />
-        <option value="$PROJECT_DIR$/react_src/components/Profile/ProfilePage.js" />
         <option value="$PROJECT_DIR$/react_src/routes.js" />
         <option value="$PROJECT_DIR$/react_src/components/Common/Header.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/react_src/components/Login/LoginPage.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Profile/ProfilePage.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Login/LoginPage.css" />
+        <option value="$PROJECT_DIR$/react_src/components/Profile/ProfilePage.css" />
+        <option value="$PROJECT_DIR$/react_src/components/Profile/ProfileEdit.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Profile/ProfileDetails.js" />
         <option value="$PROJECT_DIR$/react_src/utils/AuthService.js" />
       </list>
     </option>
@@ -254,10 +219,10 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1176" />
+    <option name="x" value="-11" />
+    <option name="y" value="-11" />
+    <option name="width" value="2542" />
+    <option name="height" value="1537" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -306,6 +271,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -335,60 +302,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="react_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuestionGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuestionGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="react_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuestionGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuestionGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="react_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuestionGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuestionGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="react_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="reducers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -476,90 +389,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuestionGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuestionGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="react_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuestionGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuestionGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="react_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="App" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuestionGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuestionGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="react_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuestionGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuestionGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="react_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="actions" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -574,7 +405,7 @@
     <property name="editor.config.accepted" value="true" />
     <property name="SearchEverywhereHistoryKey" value="toggle_question&#9;FILE&#9;file://E:/Development/React/QuestionGrid/react_src/components/question_wizard/actions/toggle_question.js&#10;index.html&#9;FILE&#9;file://E:/Development/React/QuestionGrid/react_src/index.html" />
     <property name="javascript.nodejs.core.library.configured.version" value="6.2.2" />
-    <property name="js.eslint.eslintPackage" value="E:\Development\React\QuestionGrid\node_modules\eslint" />
+    <property name="js.eslint.eslintPackage" value="C:\Users\Robert.DeVivo\WebstormProjects\QuestionGrid\node_modules\eslint" />
     <property name="js.eslint.nodeInterpreter" value="project" />
     <property name="prop_add_unversioned_files" value="true" />
     <property name="JavaScriptPreferStrict" value="false" />
@@ -584,17 +415,17 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Development\React\QuestionGrid" />
+      <recent name="E:\Development\React\QuestionGrid\tools" />
+      <recent name="C:\Development\React\QuestionGrid\src\components\navigation" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Development\React\QuestionGrid\react_src\store" />
       <recent name="E:\Development\React\QuestionGrid\react_src" />
       <recent name="E:\Development\React\QuestionGrid\react_src\components\App" />
       <recent name="E:\Development\React\QuestionGrid\react_src\components\Login" />
       <recent name="E:\Development\React\QuestionGrid\src" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Development\React\QuestionGrid" />
-      <recent name="E:\Development\React\QuestionGrid\tools" />
-      <recent name="C:\Development\React\QuestionGrid\src\components\navigation" />
     </key>
   </component>
   <component name="RestClientSettings">
@@ -1029,6 +860,8 @@
       <workItem from="1476293440664" duration="10470000" />
       <workItem from="1476378580088" duration="26000" />
       <workItem from="1476378724270" duration="66859000" />
+      <workItem from="1476723648378" duration="750000" />
+      <workItem from="1476724438908" duration="5912000" />
     </task>
     <task id="LOCAL-00001" summary="Update from NJ">
       <created>1469553603490</created>
@@ -1125,7 +958,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="374653000" />
+    <option name="totallyTimeSpent" value="381315000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1137,18 +970,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
-    <editor active="true" />
+    <frame x="-11" y="-11" width="2542" height="1537" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18545838" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18511066" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32981783" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922733" sideWeight="0.50241256" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3284169" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32784432" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18969381" sideWeight="0.49758744" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21533923" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41017964" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3489933" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1239,7 +1072,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/react_src/index.js</url>
           <line>8</line>
-          <properties />
           <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
@@ -1248,20 +1080,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/eslint-watch/README.md" />
-    <entry file="file://$PROJECT_DIR$/node_modules/eslint-watch/bin/esw" />
-    <entry file="file://$PROJECT_DIR$/node_modules/.bin/esw" />
     <entry file="file://$PROJECT_DIR$/.eslintignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Login/LoginPage.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="18" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -1314,72 +1136,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/questions/QuestionPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1300">
-          <caret line="64" column="33" selection-start-line="64" selection-start-column="26" selection-end-line="64" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/question_wizard/actions/toggle_question.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/question_wizard/stores/question_wizard_store.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="36" column="40" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/immutable/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="-1479">
-            <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownFxPreviewEditor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/navigation/ConditionExpressionUserProp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="50" column="20" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/questions/QuestionForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-510">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/questions/QuestionPage.js" />
+    <entry file="file://$PROJECT_DIR$/react_src/components/question_wizard/actions/toggle_question.js" />
+    <entry file="file://$PROJECT_DIR$/react_src/components/question_wizard/stores/question_wizard_store.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/immutable/README.md" />
+    <entry file="file://$PROJECT_DIR$/react_src/components/navigation/ConditionExpressionUserProp.js" />
+    <entry file="file://$PROJECT_DIR$/react_src/components/questions/QuestionForm.js" />
     <entry file="file://$PROJECT_DIR$/react_src/api/delay.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="20" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1387,9 +1153,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#53#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1397,7 +1160,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="218">
           <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1405,7 +1167,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1413,7 +1174,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="146" selection-start-line="0" selection-start-column="146" selection-end-line="0" selection-end-column="146" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1421,33 +1181,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/userprops/UserPropsPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/questions/EditQuestion.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/userprops/UserPropsPage.js" />
+    <entry file="file://$PROJECT_DIR$/react_src/components/questions/EditQuestion.js" />
     <entry file="file://$PROJECT_DIR$/react_src/api/mockQuestionApi.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-170">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1455,7 +1197,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1473,7 +1214,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1481,7 +1221,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
           <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1489,31 +1228,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
           <caret line="34" column="25" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Question/TestContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Question/TestComponent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Question/TestContainer.js" />
+    <entry file="file://$PROJECT_DIR$/react_src/components/Question/TestComponent.js" />
     <entry file="file://$PROJECT_DIR$/.eslintrc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="4" selection-start-line="17" selection-start-column="3" selection-end-line="19" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1521,25 +1244,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#34#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Question/ComponentTemplate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-64">
-          <caret line="2" column="41" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Question/ComponentTemplate.js" />
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/structural.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="329">
           <caret line="36" column="16" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1547,7 +1259,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1561,16 +1272,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/react_src/utils/jwtHelper.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
+        <state relative-caret-position="125">
           <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/ProfilePage.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1580,35 +1283,17 @@
         <state relative-caret-position="272">
           <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#35#59#0" expanded="true" />
-            <element signature="e#368#430#0" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#35#59#0" expanded="false" />
+            <element signature="e#368#430#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Question/Question.js">
+    <entry file="file://$PROJECT_DIR$/react_src/components/Common/Header.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Login/LoginPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/ProfilePage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        <state relative-caret-position="375">
+          <caret line="18" column="23" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="23" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
@@ -1617,7 +1302,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/react_src/routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
+        <state relative-caret-position="400">
           <caret line="16" column="45" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
@@ -1625,30 +1310,103 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Common/Header.js">
+    <entry file="file://$PROJECT_DIR$/react_src/components/App/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="23" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="23" />
+        <state relative-caret-position="600">
+          <caret line="27" column="25" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Question/Question.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="46" column="2" selection-start-line="46" selection-start-column="2" selection-end-line="47" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="51" column="14" selection-start-line="51" selection-start-column="14" selection-end-line="51" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Login/LoginPage.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/ProfilePage.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/ProfilePage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/App/App.js">
+    <entry file="file://$PROJECT_DIR$/react_src/components/Login/LoginPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="27" column="25" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="25" />
-          <folding />
+        <state relative-caret-position="500">
+          <caret line="26" column="32" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/ProfileEdit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1150">
+          <caret line="49" column="8" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/ProfileDetails.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Messages/Messages.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/react_src/utils/AuthService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="548">
-          <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
+        <state relative-caret-position="350">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
+            <element signature="e#181#205#0" expanded="true" />
           </folding>
         </state>
       </provider>

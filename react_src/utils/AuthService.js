@@ -2,10 +2,14 @@ import { EventEmitter } from 'events';
 import { isTokenExpired } from './jwtHelper';
 import Auth0Lock from 'auth0-lock';
 import { browserHistory } from 'react-router';
+// Polyfills
+import 'babel-polyfill';
+import 'whatwg-fetch';
 
 export default class AuthService extends EventEmitter {
     constructor(clientId, domain) {
         super();
+       this.domain = domain; // setting domain parameter as an instance attribute
 
         let options = {
 
@@ -93,14 +97,31 @@ export default class AuthService extends EventEmitter {
         return profile ? JSON.parse(localStorage.profile) : {};
     }
 
+   updateProfile(userId, data){
+      const headers = {
+         'Accept': 'application/json',
+         'Content-Type': 'application/json',
+         'Authorization': 'Bearer ' + this.getToken() //setting authorization header
+      };
+
+      // making the PATCH http request to auth0 api
+      return fetch(`https://${this.domain}/api/v2/users/${userId}`, {
+         method: 'PATCH',
+         headers: headers,
+         body: JSON.stringify(data)
+      })
+         .then(response => response.json())
+         .then(newProfile => this.setProfile(newProfile)); //updating current local profile
+   }
+
     setToken(idToken){
-        debugger;
+        //debugger;
         // Saves user token to localStorage
         localStorage.setItem('id_token', idToken);
     }
 
     getToken(){
-        debugger;
+        //debugger;
         // Retrieves the user token from localStorage
         return localStorage.getItem('id_token');
     }
@@ -118,8 +139,8 @@ export default class AuthService extends EventEmitter {
 
     isAdmin()
     {
-        let profile = this.props.auth.getProfile();
-        let appMetadata = profile._json.app_metadata || {};
+        let profile = this.getProfile();
+        let appMetadata = profile.app_metadata || {};
         let roles = appMetadata.roles || [];
         return (roles.indexOf('admin') != -1);
     }

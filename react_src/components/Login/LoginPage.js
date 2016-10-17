@@ -28,7 +28,7 @@ class Login extends React.Component {
                 <h2>Login</h2>
                 <Messages auth={auth} />
                 <ButtonToolbar styleName="toolbar">
-                    <Button bsStyle="primary" onClick={this.onLogin()}>Login</Button>
+                    <Button bsStyle="primary" onClick={this.onLogin}>Login</Button>
                 </ButtonToolbar>
             </div>
         );

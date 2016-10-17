@@ -1,0 +1,17 @@
+.active {
+    color: orange;
+}
+
+.nav {
+    padding-top: 20px;
+}
+
+.navRight {
+    display:inline-block;
+    float:right;
+    padding-right:50px;
+}
+
+.link {
+    cursor: pointer;
+}

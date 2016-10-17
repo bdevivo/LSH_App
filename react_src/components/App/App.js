@@ -1,6 +1,6 @@
 // This component handles the App template used on every page.
 import React, {PropTypes} from 'react';
-import Header from '../common/Header';
+import Header from '../Common/Header';
 import CSSModules from 'react-css-modules';
 import styles from './App.css';
 
@@ -17,7 +17,7 @@ class App extends React.Component {
 
       return (
          <div className="container-fluid" styleName="appStyle">
-            <Header />
+            <Header auth={this.props.route.auth} />
             {children}
          </div>
       );

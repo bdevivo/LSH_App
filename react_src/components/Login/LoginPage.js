@@ -15,6 +15,7 @@ class Login extends React.Component {
 
     onLogin()
     {
+        debugger;
         this.props.auth.login();
     }
 

@@ -41,6 +41,7 @@ export default {
             {test: /\.js$/, include: path.join(__dirname, 'react_src'), loaders: ['babel'], exclude: /node_modules/},
             {test: /\.css$/,
                 loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')},
+           { test: /\.json$/, loader: "json-loader" },
             {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
             {test: /\.(woff|woff2)$/, loader: 'url?prefix=font/&limit=5000'},
             {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},

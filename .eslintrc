@@ -16,7 +16,7 @@
       }
    },
    "settings": {
-      "import/ignore": [".css$","node_modules/*"]
+      "import/ignore": [".css$",".json","node_modules/*"]
    },
    "env": {
       "es6": true,

@@ -44,10 +44,13 @@ export default class AuthService extends EventEmitter {
     }
 
     doAuthentication(authResult){
+       console.log("Calling doAuthentication");
+
         // Saves the user token
         this.setToken(authResult.idToken);
 
         // navigate to the profile route
+
         browserHistory.push('/profile');
 
         // Async loads the user profile data
@@ -104,14 +107,25 @@ export default class AuthService extends EventEmitter {
          'Authorization': 'Bearer ' + this.getToken() //setting authorization header
       };
 
+      const body = JSON.stringify(data);
+
       // making the PATCH http request to auth0 api
       return fetch(`https://${this.domain}/api/v2/users/${userId}`, {
          method: 'PATCH',
          headers: headers,
-         body: JSON.stringify(data)
+         body: body
       })
          .then(response => response.json())
-         .then(newProfile => this.setProfile(newProfile)); //updating current local profile
+         .then(newProfile =>
+         {
+            if (!newProfile.error) {
+                this.setProfile(newProfile);   //update current local profile
+               console.log("Updated profile: " + body);
+            }
+            else {
+               console.log(`Error updating profile! error: ${newProfile.error} | error code: ${newProfile.errorCode} | error message: ${newProfile.message}`);
+            }
+         });
    }
 
     setToken(idToken){

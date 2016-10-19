@@ -4,9 +4,8 @@ import AuthService from '../../utils/AuthService';
 import {Row, Col, Image, Form, FormGroup, FormControl, ControlLabel, Button} from 'react-bootstrap';
 import CSSModules from 'react-css-modules';
 import styles from './ProfilePage.css';
-//import FileReaderInput from 'react-file-reader-input';
 import FileUpload from './FileUpload';
-import AWS from 'aws-sdk'
+import AWS from 'aws-sdk';
 
 const pathParse = require('path-parse');
 
@@ -71,9 +70,9 @@ export class ProfileEdit extends React.Component {
                         console.log("Successfully uploaded data to " + bucketName + "/" + imgPath);
 
                         let imageUrl = `https://s3.amazonaws.com/${bucketName}/${imgPath}`;
-                        let nextProfile = Object.assign({}, profile, {picture:  imageUrl});
+                        let nextProfile = { 'user_metadata' : { 'profilePicture': imageUrl } };
 
-                        debugger;
+                        //debugger;
                         auth.updateProfile(profile.user_id, nextProfile);
                     }
 
@@ -106,7 +105,7 @@ export class ProfileEdit extends React.Component {
                                 Upload Profile Image
                             </Col>
                             <Col sm={10}>
-                                <FileUpload as="binary" id="my-file-input"
+                                <FileUpload as="buffer" id="my-file-input"
                                             onChange={this.handleFileUpload}>
                                     <button>Select a file!</button>
                                 </FileUpload>

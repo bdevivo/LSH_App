@@ -16,6 +16,7 @@ const auth = new AuthService(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMA
 // validate authentication for private routes
 const requireAuth = (nextState, replace) => {
     if (!auth.loggedIn()) {
+       console.log(`Not authorized to view route ${nextState}`);
         replace({ pathname: '/' });
     }
 };

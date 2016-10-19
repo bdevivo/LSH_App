@@ -1,17 +1,20 @@
 import React, { PropTypes } from 'react';
 import {Row, Col, Image} from 'react-bootstrap';
 import AuthService from '../../utils/AuthService';
+import CSSModules from 'react-css-modules';
+import styles from './ProfilePage.css';
 
 export class ProfileDetails extends React.Component {
 
    render(){
       const { profile } = this.props;
       const { address } = profile.user_metadata || {}; // new address field
+      const { profilePicture } = profile.user_metadata || {};
 
       return (
          <Row>
             <Col md={2}>
-               <Image src={profile.picture} circle/>
+               <Image styleName="avatar" src={profilePicture} circle />
             </Col>
             <Col md={6}>
                <p><strong>Name: </strong> {profile.name}</p>
@@ -31,4 +34,4 @@ ProfileDetails.propTypes = {
    profile: PropTypes.object.isRequired
 };
 
-export default ProfileDetails;
+export default CSSModules(ProfileDetails, styles);

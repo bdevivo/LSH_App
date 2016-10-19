@@ -51,6 +51,7 @@
     "mongodb": "^2.2.5",
     "mongoose": "^4.5.8",
     "open": "0.0.5",
+    "path-parse": "^1.0.5",
     "react": "15.2.1",
     "react-addons-update": "15.2.1",
     "react-bootstrap": "^0.30.3",

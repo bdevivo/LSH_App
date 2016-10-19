@@ -6,7 +6,7 @@ export class ProfileDetails extends React.Component {
 
    render(){
       const { profile } = this.props;
-      const { address } = profile.user_metadata || {} // new address field
+      const { address } = profile.user_metadata || {}; // new address field
 
       return (
          <Row>

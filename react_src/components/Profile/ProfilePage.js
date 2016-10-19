@@ -6,6 +6,7 @@ import ProfileEdit from './ProfileEdit';
 class ProfilePage extends React.Component {
 
    constructor(props, context) {
+       debugger;
       super(props, context);
       this.state = {
          profile: props.auth.getProfile()

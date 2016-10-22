@@ -7,8 +7,8 @@ let mongoose = require("mongoose");
 
 /*eslint-disable no-console */
 
-//const port = process.env.PORT;
-const port = 3001;
+const port = process.env.PORT || 5000;  // assigned by Heroku
+//const port = 3001;
 const app = express();
 
 app.use(compression());

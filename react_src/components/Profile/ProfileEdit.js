@@ -1,121 +1,164 @@
 import React, {PropTypes as T} from 'react';
-import ReactDOM from 'react-dom';
 import AuthService from '../../utils/AuthService';
 import {Row, Col, Image, Form, FormGroup, FormControl, ControlLabel, Button} from 'react-bootstrap';
 import CSSModules from 'react-css-modules';
 import styles from './ProfilePage.css';
 import FileUpload from './FileUpload';
-import AWS from 'aws-sdk';
+import AvatarImg from './Avatar';
+import 'react-select/dist/react-select.css';
+import states from './states';
+import { browserHistory } from 'react-router';
 
-const pathParse = require('path-parse');
+const Select = require('react-select');
 
 const access_key = process.env.AWS_ACCESS_KEY_ID;
 const secret_key = process.env.AWS_SECRET_ACCESS_KEY;
 
-export class ProfileEdit extends React.Component {
+class ProfileEdit extends React.Component {
 
     constructor(props, context) {
         super(props, context);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleFileUpload = this.handleFileUpload.bind(this);
     }
 
-    // method triggered when edit form is submitted
-    handleSubmit(e) {
-        e.preventDefault();
-        const {profile, auth} = this.props;
-        auth.updateProfile(profile.user_id, {
-            user_metadata: {
-                address: ReactDOM.findDOMNode(this.refs.address).value // the new address
-            }
-        });
-    }
-
-    handleFileUpload(event, results) {
-
-        const {profile, auth} = this.props;
-
-        //console.log('Selected file:', event.target.files[0]);
-        results.forEach(result => {
-            const [e, file] = result;
-            //this.props.dispatch(uploadFile(e.target.result));
-            //console.log(`Successfully uploaded ${file.name}!`);
-
-            let pathObj = pathParse(file.name);
-            let imgFile = profile.user_id.replace(/\|/g, '_')  + pathObj.ext;  //`{profile.email.${pathObj.ext}`;
-            let imgPath = `app_images/avatars/${imgFile}`;
-
-            // configure AWS client
-            //AWS.config.loadFromPath('../../../awsconfig.json');
-            AWS.config.update({
-                    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-                    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-                }
-            );
-
-            // Create an S3 client
-            let s3 = new AWS.S3();
-
-            //upload file to AWS bucket
-            let bucketName = 'lifescihub';
-            let keyName = `app_images/${file.name}`;
-
-            s3.createBucket({Bucket: bucketName}, function () {
-                let params = {Bucket: bucketName, Key: imgPath, Body: e.target.result};
-                s3.putObject(params, function (err, data) {
-                    if (err)
-                        console.log(err);
-                    else
-                    {
-                        console.log("Successfully uploaded data to " + bucketName + "/" + imgPath);
-
-                        let imageUrl = `https://s3.amazonaws.com/${bucketName}/${imgPath}`;
-                        let nextProfile = { 'user_metadata' : { 'profilePicture': imageUrl } };
-
-                        //debugger;
-                        auth.updateProfile(profile.user_id, nextProfile);
-                    }
-
-                });
-            });
-
-        });
+    handleCancel()
+    {
+        localStorage.removeItem('avatarTempData');
+        browserHistory.push('/profile');
     }
 
     render() {
-        const {profile} = this.props;
+        const {profile, updateProfileAddressField, updateProfileAddressState, updateProfileName, handleSubmit, handleAvatarChange, avatarTimestamp, avatarStorageKey} = this.props;
+        const {firstName} = profile.user_metadata || {};
+        const {lastName} = profile.user_metadata || {};
         const {address} = profile.user_metadata || {};
+        let {profilePicture} = profile.user_metadata || {};
+        if (!profilePicture)
+        {
+            let imgPath = 'app_images/avatars/avatar_placeholder.png';
+            let bucketName = 'lifescihub';
+            profilePicture = `https://s3.amazonaws.com/${bucketName}/${imgPath}`;
+        }
+
+        const left_col_wd = 3;
+        const right_col_wd = 6;
+        const right_col_short_wd = 3;
 
         return (
             <Row styleName="root">
-                <Col md={4} mdOffset={6}>
-                    <h3>Editing Profile</h3>
-                    <Form horizontal onSubmit={this.handleSubmit}>
-                        <FormGroup controlId="address">
-                            <Col componentClass={ControlLabel} sm={2}>
-                                Address
-                            </Col>
-                            <Col sm={10}>
-                                <FormControl type="text" defaultValue={address} ref="address"/>
-                            </Col>
+
+                <Col md={12}>
+
+
+                    <Form horizontal>
+                        <h4 styleName="subheader">Name</h4>
+
+                        <FormGroup>
+                            <Row>
+                                <Col componentClass={ControlLabel} sm={3}>
+                                    First
+                                </Col>
+                                <Col sm={3}>
+                                    <FormControl type="text" name="firstName" defaultValue={firstName} onChange={updateProfileName} />
+                                </Col>
+
+                                <Col componentClass={ControlLabel} sm={2}>
+                                    Last
+                                </Col>
+                                <Col sm={3}>
+                                    <FormControl type="text" name="lastName" defaultValue={lastName} onChange={updateProfileName} />
+                                </Col>
+                            </Row>
+
+
                         </FormGroup>
 
-                        <FormGroup controlId="imageUpload">
-                            <Col componentClass={ControlLabel} sm={2}>
-                                Upload Profile Image
+
+                        <h4 styleName="subheader">Address</h4>
+
+                        <FormGroup>
+                            <Col componentClass={ControlLabel} sm={left_col_wd}>
+                                Street 1
                             </Col>
-                            <Col sm={10}>
-                                <FileUpload as="buffer" id="my-file-input"
-                                            onChange={this.handleFileUpload}>
-                                    <button>Select a file!</button>
-                                </FileUpload>
+                            <Col sm={right_col_wd}>
+                                <FormControl type="text" name="street1" defaultValue={address.street1} onChange={updateProfileAddressField} />
                             </Col>
 
                         </FormGroup>
 
                         <FormGroup>
-                            <Col smOffset={2} sm={10}>
-                                <Button type="submit">Save</Button>
+                            <Col componentClass={ControlLabel} sm={left_col_wd}>
+                                Street 2
+                            </Col>
+                            <Col sm={right_col_wd}>
+                                <FormControl type="text" name="street2" defaultValue={address.street2} onChange={updateProfileAddressField} />
+                            </Col>
+                        </FormGroup>
+
+                        <FormGroup>
+                            <Col componentClass={ControlLabel} sm={left_col_wd}>
+                                City
+                            </Col>
+                            <Col sm={right_col_wd}>
+                                <FormControl type="text" name="city" defaultValue={address.city} onChange={updateProfileAddressField} />
+                            </Col>
+                        </FormGroup>
+
+                        <FormGroup>
+                            <Col componentClass={ControlLabel} sm={left_col_wd}>
+                                State
+                            </Col>
+                            <Col sm={right_col_short_wd}>
+                                <Select
+                                    name="state"
+                                    value={address.state}
+                                    options={states}
+                                    clearable={false}
+                                    styleName="select"
+                                    onChange={updateProfileAddressState}
+                                />
+                            </Col>
+                        </FormGroup>
+
+                        <FormGroup>
+                            <Col componentClass={ControlLabel} sm={left_col_wd}>
+                                ZIP Code
+                            </Col>
+                            <Col sm={right_col_short_wd}>
+                                <FormControl type="text" name="zip" defaultValue={address.zip} onChange={updateProfileAddressField} />
+                            </Col>
+                        </FormGroup>
+
+                        <FormGroup>
+                            <Col componentClass={ControlLabel} sm={left_col_wd}>
+                                Country
+                            </Col>
+                            <Col sm={right_col_short_wd}>
+                                <FormControl type="text" name="country" defaultValue={address.country} onChange={updateProfileAddressField} />
+                            </Col>
+                        </FormGroup>
+
+                        <h4 styleName="subheader">Avatar</h4>
+
+                        <FormGroup>
+                            <Col componentClass={ControlLabel} sm={left_col_wd}>
+                                <AvatarImg storageKey="avatarTempData" url={profilePicture} avatarTimestamp={avatarTimestamp} />
+                            </Col>
+                            <Col sm={right_col_wd} styleName="fileUploadCol">
+                                <FileUpload as="url" name="my-file-input"
+                                            onChange={handleAvatarChange}
+                                    className="pull-left">
+                                    <Button className="pull-left" type="button">Change image...</Button>
+                                </FileUpload>
+                            </Col>
+
+                        </FormGroup>
+
+                        <FormGroup >
+                            <Col smOffset={2} sm={3} styleName="submitButton">
+                                <Button onClick={this.handleCancel}>Cancel</Button>
+                            </Col>
+                            <Col  sm={4} styleName="submitButton">
+                                <Button onClick={handleSubmit}>Save</Button>
                             </Col>
                         </FormGroup>
                     </Form>
@@ -127,7 +170,14 @@ export class ProfileEdit extends React.Component {
 
 ProfileEdit.propTypes = {
     profile: T.object,
-    auth: T.instanceOf(AuthService)
+    auth: T.instanceOf(AuthService),
+    updateProfileAddressField: T.func.isRequired,
+    updateProfileAddressState: T.func.isRequired,
+    handleAvatarChange: T.func.isRequired,
+    updateProfileName: T.func.isRequired,
+    handleSubmit: T.func.isRequired,
+    avatarTimestamp: T.string.isRequired,
+    avatarStorageKey: T.string.isRequired
 };
 
 export default CSSModules(ProfileEdit, styles);

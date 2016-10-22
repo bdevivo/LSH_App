@@ -1,8 +1,33 @@
 .root{
-   text-align: center;
+    text-align: center;
+    margin-top:30px;
+}
+
+.userProfile
+{
+    margin-top:40px;
+}
+
+.subheader {
+    text-align: left;
+    margin-bottom:20px;
 }
 
 .avatar {
    height: 74px;
    width: 74px;
 }
+
+.submitButton {
+    margin-top:50px;
+}
+
+.select{
+    text-align: left;
+}
+
+.fileUploadCol {
+    margin-top: 20px;
+}
+
+

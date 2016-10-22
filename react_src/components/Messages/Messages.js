@@ -12,24 +12,24 @@ class Messages extends React.Component {
             privateMsg: ""
         };
     }
-
-    componentDidMount(){
-        const { auth } = this.props;
-        // public http request
-        fetch('/api/public')
-            .then(response => response.json())
-            .then(response => this.setState({publicMsg: response.message}));
-
-        // using auth to send an http request with authorization header
-        auth.fetch('/api/private')
-            .then(response =>
-                {
-                    console.log(response.message);
-                    this.setState({privateMsg: response.message});
-                }
-            )
-            .catch(error => this.setState({privateMsg: "Error fetching private resource: " + error }));
-    }
+// KEEPING THIS EXAMPLE AROUND.  IN PRODUCTION THIS SHOULD NOT HAPPEN IN componentDidMount
+    // componentDidMount(){
+    //     const { auth } = this.props;
+    //     // public http request
+    //     fetch('/api/public')
+    //         .then(response => response.json())
+    //         .then(response => this.setState({publicMsg: response.message}));
+    //
+    //     // using auth to send an http request with authorization header
+    //     auth.fetch('/api/private')
+    //         .then(response =>
+    //             {
+    //                 console.log(response.message);
+    //                 this.setState({privateMsg: response.message});
+    //             }
+    //         )
+    //         .catch(error => this.setState({privateMsg: "Error fetching private resource: " + error }));
+    // }
 
     render(){
 
@@ -48,11 +48,11 @@ class Messages extends React.Component {
                     {this.state.privateMsg}
                 </ListGroupItem>
             </ListGroup>
-        )
+        );
     }
 }
 
-Messages.PropTypes =  {
+Messages.propTypes =  {
     auth: T.instanceOf(AuthService)
 };
 

@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 import * as questionActions from '../../actions/questionWizardActions';
 
 
-export class QuestionPage extends React.Component {
+class QuestionPage extends React.Component {
     constructor(props) {
         super(props);
         //debugger;

@@ -1,4 +1,4 @@
-var DateType =
+const DateType =
 {
     SINGLE: "si",
     RANGE: "r",

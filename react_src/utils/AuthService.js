@@ -49,16 +49,14 @@ export default class AuthService extends EventEmitter {
         // Saves the user token
         this.setToken(authResult.idToken);
 
-        // navigate to the profile route
-
-        browserHistory.push('/profile');
-
         // Async loads the user profile data
         this.lock.getProfile(authResult.idToken, (error, profile) => {
             if (error) {
                 console.log('Error loading the Profile', error);
             } else {
                 this.setProfile(profile);
+                // navigate to the profile route
+                browserHistory.push('/profile');
             }
         });
     }
@@ -77,6 +75,9 @@ export default class AuthService extends EventEmitter {
         // Clear user token and profile data from localStorage
         localStorage.removeItem('id_token');
         localStorage.removeItem('profile');
+
+        this.emit('user_logout');
+
         // navigate to the home route
         browserHistory.push('/');
     }
@@ -84,10 +85,40 @@ export default class AuthService extends EventEmitter {
     loggedIn(){
         // Checks if there is a saved token and it's still valid
         const token = this.getToken();
+        // if (!token)
+        //     console.log("AuthService.loggedIn(): No token found!");
+        // else if (isTokenExpired(token))
+        //     console.log("AuthService.loggedIn(): token is expired!");
+        // else
+        //     console.log("AuthService.loggedIn(): token is VALID");
+
         return !!token && !isTokenExpired(token);
     }
 
+    validateProfile(profile) {
+        console.log ("Calling validateProfile");
+
+        // make sure all fields are present
+        let {user_metadata} = profile;
+
+        user_metadata.firstName = user_metadata.firstName || '';
+        user_metadata.lastName = user_metadata.lastName || '';
+
+        user_metadata.address = user_metadata.address || {};
+        let {address} = user_metadata;
+        address.street1 = address.street1 || '';
+        address.street2 = address.street2 || '';
+        address.city = address.city || '';
+        address.state = address.state || '';
+        address.zip = address.zip || '';
+        address.country = address.country || '';
+
+    }
+
     setProfile(profile){
+
+        this.validateProfile(profile);
+
         // Saves profile data to localStorage
         localStorage.setItem('profile', JSON.stringify(profile));
         // Triggers profile_updated event to update the UI
@@ -95,6 +126,8 @@ export default class AuthService extends EventEmitter {
     }
 
     getProfile(){
+        console.log ("Calling getProfile");
+
         // Retrieves the profile data from localStorage
         const profile = localStorage.getItem('profile');
         return profile ? JSON.parse(localStorage.profile) : {};

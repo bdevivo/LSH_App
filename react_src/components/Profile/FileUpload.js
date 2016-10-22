@@ -83,10 +83,13 @@ export default class FileInput extends React.Component {
          top: '-9999px'
       } : {};
 
+      const {as, ...rest} = this.props;
+
       return (<div className="_react-file-reader-input"
                   onClick={this.triggerInput}>
-         <input {...this.props} children={undefined} type="file"
-                onChange={this.handleChange} ref={c => this._reactFileReaderInput = c}
+         <input {...rest} children={undefined} type="file"
+                onChange={this.handleChange}
+                ref={c => this._reactFileReaderInput = c}
                 style={hiddenInputStyle}/>
 
          {this.props.children}
@@ -96,6 +99,6 @@ export default class FileInput extends React.Component {
 
 FileInput.propTypes = {
    as: React.PropTypes.oneOf(['binary', 'buffer', 'text', 'url']),
-   children: React.PropTypes.any,
+   children: React.PropTypes.object,
    onChange: React.PropTypes.func,
 };

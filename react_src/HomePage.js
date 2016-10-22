@@ -4,8 +4,8 @@ class HomePage extends Component {
    render() {
       return (
          <div>
-            <h1>Question Grid</h1>
-            <p>Click the links above to configure questions and question navigation</p>
+            <h1>LifeSciHub</h1>
+            <p>The On-Demand Talent Marketplace for Life Sciences</p>
          </div>
       );
    }

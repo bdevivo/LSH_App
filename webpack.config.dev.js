@@ -36,11 +36,19 @@ export default {
     module: {
         loaders: [
             {test: /\.js$/, include: path.join(__dirname, 'react_src'), loaders: ['babel']},
-            {test: /\.css$/,
+            {
+                test: /\.css$/,
+                exclude: /node_modules/,
                 loaders: [
                     'style?sourceMap',
                     'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
-                ]},
+                ]
+            },
+            {
+                test: /\.css$/,
+                exclude: /react_src/,
+                loaders: ['style', 'css']
+            },
             { test: /\.json$/, loader: "json-loader" },
             {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
             {test: /\.(woff|woff2)$/, loader: 'url?prefix=font/&limit=5000'},

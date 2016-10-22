@@ -1,4 +1,4 @@
-var AnswerType =
+const AnswerType =
 {
     NONE_SELECTED: "n",
     SELECTION: "s",

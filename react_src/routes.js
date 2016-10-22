@@ -7,7 +7,7 @@ import App from './components/App/App';
 import QuestionPage from './components/Question/QuestionPage';
 import HomePage from './HomePage';
 import ProfilePage from './components/Profile/ProfilePage';
-import Login from './components/Login/LoginPage';
+import ProfileEditPage from './components/Profile/ProfileEditPage';
 
 //noinspection JSUnresolvedVariable
 //console.log("AUTH0_CLIENT_ID: " + process.env.AUTH0_CLIENT_ID);
@@ -24,8 +24,10 @@ const requireAuth = (nextState, replace) => {
 export default (
     <Route path="/" component={App} auth={auth}>
         <IndexRoute component={HomePage}/>
+
         <Route path="profile" component={ProfilePage}  onEnter={requireAuth} />
-        <Route path="login" component={Login} />
+        <Route path="editprofile" component={ProfileEditPage}  onEnter={requireAuth} />
+
         <Route path="questionwizard" component={QuestionPage} />
    </Route>
 );

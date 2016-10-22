@@ -1,4 +1,4 @@
-var DisplayType =
+const DisplayType =
     {
         ABOVE: "a",
         INLINE: "i"

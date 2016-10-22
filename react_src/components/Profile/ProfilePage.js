@@ -14,11 +14,19 @@ class ProfilePage extends React.Component {
         };
 
         this.updateLocalProfile = this.updateLocalProfile.bind(this);
+    }
 
+    componentWillMount()
+    {
         //listen to profile_updated events to update internal state
         this.props.auth.on('profile_updated', (newProfile) => {
             this.updateLocalProfile(newProfile);
         });
+    }
+
+    componentWillUnmount()
+    {
+        this.props.auth.removeListener('profile_updated', this.updateLocalProfile);
     }
 
     updateLocalProfile(newProfile) {

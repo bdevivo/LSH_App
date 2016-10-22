@@ -1,9 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import DotenvPlugin from 'webpack-dotenv-plugin';
 
 const GLOBALS = {
-    'process.env.NODE_ENV' : JSON.stringify('production')
+    'process.env.NODE_ENV': JSON.stringify('production')
 };
 
 process.env.BABEL_ENV = 'production';
@@ -33,15 +34,27 @@ export default {
             compress: {
                 warnings: false
             }
+        }),
+        new DotenvPlugin({
+            sample: './.env.default',
+            path: './.env'
         })
 
     ],
     module: {
         loaders: [
             {test: /\.js$/, include: path.join(__dirname, 'react_src'), loaders: ['babel'], exclude: /node_modules/},
-            {test: /\.css$/,
-                loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')},
-           { test: /\.json$/, loader: "json-loader" },
+            {
+                test: /\.css$/,
+                exclude: /node_modules/,
+                loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
+            },
+            {
+                test: /(\.css)$/,
+                exclude: /react_src/,
+                loader: ExtractTextPlugin.extract("css?sourceMap")
+            },
+            {test: /\.json$/, loader: "json-loader"},
             {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
             {test: /\.(woff|woff2)$/, loader: 'url?prefix=font/&limit=5000'},
             {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},

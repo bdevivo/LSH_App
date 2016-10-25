@@ -1,9 +1,10 @@
-import Immutable from 'immutable';
+import  Immutable from 'immutable';
 
 export default Immutable.fromJS(
-   {
-      questions: []
-   }
+    {
+        questions: [],
+        profile: {}
+    }
 );
 
 

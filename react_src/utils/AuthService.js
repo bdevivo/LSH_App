@@ -1,7 +1,7 @@
-import { EventEmitter } from 'events';
-import { isTokenExpired } from './jwtHelper';
+import {EventEmitter} from 'events';
+import {isTokenExpired} from './jwtHelper';
 import Auth0Lock from 'auth0-lock';
-import { browserHistory } from 'react-router';
+import {browserHistory} from 'react-router';
 // Polyfills
 import 'babel-polyfill';
 import 'whatwg-fetch';
@@ -9,7 +9,7 @@ import 'whatwg-fetch';
 export default class AuthService extends EventEmitter {
     constructor(clientId, domain) {
         super();
-       this.domain = domain; // setting domain parameter as an instance attribute
+        this.domain = domain; // setting domain parameter as an instance attribute
 
         let options = {
 
@@ -43,8 +43,8 @@ export default class AuthService extends EventEmitter {
         this.login = this.login.bind(this);
     }
 
-    doAuthentication(authResult){
-       console.log("Calling doAuthentication");
+    doAuthentication(authResult) {
+        console.log("Calling doAuthentication");
 
         // Saves the user token
         this.setToken(authResult.idToken);
@@ -61,7 +61,7 @@ export default class AuthService extends EventEmitter {
         });
     }
 
-    authorizationError(error){
+    authorizationError(error) {
         // Unexpected authentication error
         console.log('Authentication Error', error);
     }
@@ -71,10 +71,11 @@ export default class AuthService extends EventEmitter {
         this.lock.show();
     }
 
-    logout(){
+    logout() {
         // Clear user token and profile data from localStorage
         localStorage.removeItem('id_token');
         localStorage.removeItem('profile');
+        localStorage.removeItem('user_id');
 
         this.emit('user_logout');
 
@@ -82,7 +83,7 @@ export default class AuthService extends EventEmitter {
         browserHistory.push('/');
     }
 
-    loggedIn(){
+    loggedIn() {
         // Checks if there is a saved token and it's still valid
         const token = this.getToken();
         // if (!token)
@@ -96,7 +97,7 @@ export default class AuthService extends EventEmitter {
     }
 
     validateProfile(profile) {
-        console.log ("Calling validateProfile");
+        console.log("Calling validateProfile");
 
         // make sure all fields are present
         let {user_metadata} = profile;
@@ -115,59 +116,63 @@ export default class AuthService extends EventEmitter {
 
     }
 
-    setProfile(profile){
+    setProfile(profile) {
 
         this.validateProfile(profile);
 
-        // Saves profile data to localStorage
-        localStorage.setItem('profile', JSON.stringify(profile));
+        // Save profile data and user_id to localStorage
+        let jsProfile = JSON.stringify(profile);
+        localStorage.setItem('profile', jsProfile);
+        localStorage.setItem('user_id', jsProfile.user_id); // redundant; for convenience only
+
         // Triggers profile_updated event to update the UI
         this.emit('profile_updated', profile);
     }
 
-    getProfile(){
-        console.log ("Calling getProfile");
+    getProfile() {
+        console.log("Calling getProfile");
 
         // Retrieves the profile data from localStorage
         const profile = localStorage.getItem('profile');
         return profile ? JSON.parse(localStorage.profile) : {};
     }
 
-   updateProfile(userId, data){
-      const headers = {
-         'Accept': 'application/json',
-         'Content-Type': 'application/json',
-         'Authorization': 'Bearer ' + this.getToken() //setting authorization header
-      };
+    updateProfile(data) {
+        const headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + this.getToken() //setting authorization header
+        };
 
-      const body = JSON.stringify(data);
+        const body = JSON.stringify(data);
+        const userId = localStorage.getItem("user_id");
 
-      // making the PATCH http request to auth0 api
-      return fetch(`https://${this.domain}/api/v2/users/${userId}`, {
-         method: 'PATCH',
-         headers: headers,
-         body: body
-      })
-         .then(response => response.json())
-         .then(newProfile =>
-         {
-            if (!newProfile.error) {
-                this.setProfile(newProfile);   //update current local profile
-               console.log("Updated profile: " + body);
-            }
-            else {
-               console.log(`Error updating profile! error: ${newProfile.error} | error code: ${newProfile.errorCode} | error message: ${newProfile.message}`);
-            }
-         });
-   }
+        // making the PATCH http request to auth0 api, which returns a Promise
+        return fetch(`https://${this.domain}/api/v2/users/${userId}`, {
+            method: 'PATCH',
+            headers: headers,
+            body: body
+        });
+        // .then(response => response.json())
+        // .then(newProfile =>
+        // {
+        //    if (!newProfile.error) {
+        //        this.setProfile(newProfile);   //update current local profile
+        //       console.log("Updated profile: " + body);
+        //    }
+        //    else {
+        //       console.log(`Error updating profile! error: ${newProfile.error} | error code: ${newProfile.errorCode} | error message: ${newProfile.message}`);
+        //    }
+        // });
+    }
 
-    setToken(idToken){
+    setToken(idToken) {
         //debugger;
         // Saves user token to localStorage
         localStorage.setItem('id_token', idToken);
     }
 
-    getToken(){
+    getToken() {
         //debugger;
         // Retrieves the user token from localStorage
         return localStorage.getItem('id_token');
@@ -184,22 +189,21 @@ export default class AuthService extends EventEmitter {
         }
     }
 
-    isAdmin()
-    {
+    isAdmin() {
         let profile = this.getProfile();
         let appMetadata = profile.app_metadata || {};
         let roles = appMetadata.roles || [];
         return (roles.indexOf('admin') != -1);
     }
 
-    fetch(url, options){
+    fetch(url, options) {
         // performs api calls sending the required authentication headers
         const headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         };
 
-        if (this.loggedIn()){
+        if (this.loggedIn()) {
             headers['Authorization'] = 'Bearer ' + this.getToken();
         }
 

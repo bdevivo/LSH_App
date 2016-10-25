@@ -1,6 +1,9 @@
 import React, {PropTypes} from 'react';
 import AuthService from '../../utils/AuthService';
 import ProfileEdit from './ProfileEdit';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as profileActions from '../../actions/profileActions';
 import { browserHistory } from 'react-router';
 import AWS from 'aws-sdk';
 
@@ -12,7 +15,7 @@ class ProfileEditPage extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            profile: props.auth.getProfile(),
+            profile: props.profile,
             avatarTimestamp: new Date().getTime().toString(),
             avatarStorageKey: "",
             avatarLocalFileName: "",
@@ -27,17 +30,17 @@ class ProfileEditPage extends React.Component {
         this.uploadAvatarImage = this.uploadAvatarImage.bind(this);
     }
 
-    componentWillMount()
-    {
-        this.props.auth.on('profile_updated', () => {
-            this.onProfileUpdated();
-        });
-    }
-
-    componentWillUnmount()
-    {
-        this.props.auth.removeListener('profile_updated', this.onProfileUpdated);
-    }
+    // componentWillMount()
+    // {
+    //     this.props.auth.on('profile_updated', () => {
+    //         this.onProfileUpdated();
+    //     });
+    // }
+    //
+    // componentWillUnmount()
+    // {
+    //     this.props.auth.removeListener('profile_updated', this.onProfileUpdated);
+    // }
 
     onProfileUpdated()
     {
@@ -65,10 +68,8 @@ class ProfileEditPage extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        const {auth} = this.props;
+        //const {auth} = this.props;
         const {profile, avatarLocalFileName} = this.state;
-
-
 
         let avatarUrl = profile.user_metadata.profilePicture;
         if (avatarLocalFileName)
@@ -76,16 +77,19 @@ class ProfileEditPage extends React.Component {
             this.uploadAvatarImage();
             localStorage.removeItem('avatarTempData');
         }
+        let {first, middle, last} = profile.user_metadata;
+
+        this.props.actions.updateProfileName(first, middle, last);
 
         //debugger;
-        auth.updateProfile(profile.user_id, {
-            user_metadata: {
-                firstName: profile.user_metadata.firstName,
-                lastName: profile.user_metadata.lastName,
-                address: profile.user_metadata.address,
-                profilePicture: avatarUrl
-            }
-        });
+        // auth.updateProfile(profile.user_id, {
+        //     user_metadata: {
+        //         firstName: profile.user_metadata.firstName,
+        //         lastName: profile.user_metadata.lastName,
+        //         address: profile.user_metadata.address,
+        //         profilePicture: avatarUrl
+        //     }
+        // });
 
         // auth.on('profile_updated', () => {
         //     browserHistory.push('/profile');
@@ -222,7 +226,6 @@ class ProfileEditPage extends React.Component {
                 <h3>Edit Profile</h3>
                 <ProfileEdit
                     profile={profile}
-                    auth={this.props.auth}
                     updateProfileAddressField = {this.updateProfileAddressField}
                     updateProfileAddressState={this.updateProfileAddressState}
                     updateProfileName = {this.updateProfileName}
@@ -231,13 +234,28 @@ class ProfileEditPage extends React.Component {
                     avatarStorageKey={this.state.avatarStorageKey}
                     handleAvatarChange={this.handleAvatarChange}
                 />
-            </div>
+            </div>``
         );
     }
 }
 
 ProfileEditPage.propTypes = {
-    auth: PropTypes.instanceOf(AuthService)
+    profile: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired
 };
 
-export default ProfileEditPage;
+function mapStateToProps(state) {
+    return {
+        profile: state.profile.toJS()
+    };
+}
+
+function mapDispatchToProps(dispatch)
+{
+    //debugger;
+    return {
+        actions: bindActionCreators(profileActions, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileEditPage);

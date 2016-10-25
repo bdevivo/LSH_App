@@ -1,5 +1,4 @@
 import React, {PropTypes as T} from 'react';
-import AuthService from '../../utils/AuthService';
 import {Row, Col, Image, Form, FormGroup, FormControl, ControlLabel, Button} from 'react-bootstrap';
 import CSSModules from 'react-css-modules';
 import styles from './ProfilePage.css';
@@ -170,7 +169,6 @@ class ProfileEdit extends React.Component {
 
 ProfileEdit.propTypes = {
     profile: T.object,
-    auth: T.instanceOf(AuthService),
     updateProfileAddressField: T.func.isRequired,
     updateProfileAddressState: T.func.isRequired,
     handleAvatarChange: T.func.isRequired,

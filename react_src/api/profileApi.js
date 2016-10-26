@@ -29,7 +29,17 @@ const ProfileApi = {
                 }
             });
         });
-    }
+    },
+
+    login() {
+        return new Promise(function (resolve, reject) {
+
+        // how to wrap the return event in a Promise?
+
+            auth.login();
+        }
+
+
 
 
 

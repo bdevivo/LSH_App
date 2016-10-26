@@ -53,18 +53,17 @@ class ProfileEdit extends React.Component {
 
                         <FormGroup>
                             <Row>
-                                <Col componentClass={ControlLabel} sm={3}>
-                                    First
-                                </Col>
+
                                 <Col sm={3}>
-                                    <FormControl type="text" name="firstName" defaultValue={firstName} onChange={updateProfileName} />
+                                    <FormControl type="text" name="first" defaultValue={firstName} placeholder="first name" onChange={updateProfileName} />
                                 </Col>
 
-                                <Col componentClass={ControlLabel} sm={2}>
-                                    Last
-                                </Col>
                                 <Col sm={3}>
-                                    <FormControl type="text" name="lastName" defaultValue={lastName} onChange={updateProfileName} />
+                                    <FormControl type="text" name="middle" defaultValue={firstName} placeholder="middle init." onChange={updateProfileName} />
+                                </Col>
+
+                                <Col sm={3}>
+                                    <FormControl type="text" name="last" defaultValue={lastName} placeholder="last name" onChange={updateProfileName} />
                                 </Col>
                             </Row>
 

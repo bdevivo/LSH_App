@@ -15,7 +15,13 @@ export function getProfile() {
         return { type: types.GET_PROFILE_FAILURE};
 }
 
+export function loginSuccess() {
+    return { type: types.USER_LOGIN };
+}
 
+export function logoutSuccess() {
+    return { type: types.USER_LOGOUT };
+}
 
 // THUNKS
 
@@ -27,5 +33,11 @@ export function updateProfileName(first, middle, last) {
             }).catch(error => {
                 throw(error);   // TODO: add real error handler action
             });
+    };
+}
+
+export function login() {
+    return function(dispatch) {
+
     };
 }

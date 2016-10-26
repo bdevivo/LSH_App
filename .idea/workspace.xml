@@ -2,22 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list id="23724d5d-f374-4c1f-8907-1c5c6ffa7959" name="Default" comment="" />
-    <list default="true" id="db9cce2d-2ebf-4e24-9d2e-9ec417bf0e97" name="Add all changelist" comment="Fixes for onProfileUpdate">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/actions/profileActions.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/api/profileApi.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/auth.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/reducers/profileReducer.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/react_src/dispatcher.js" afterPath="" />
+    <list default="true" id="db9cce2d-2ebf-4e24-9d2e-9ec417bf0e97" name="Add all changelist" comment="Moving profile stuff to redux (part 1)">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/Common/HeaderCenterNav.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/Common/HeaderLogin.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/Common/HeaderUserName.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/bundle.js" afterPath="$PROJECT_DIR$/dist/bundle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/bundle.js.map" afterPath="$PROJECT_DIR$/dist/bundle.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/actions/actionTypes.js" afterPath="$PROJECT_DIR$/react_src/actions/actionTypes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/actions/profileActions.js" afterPath="$PROJECT_DIR$/react_src/actions/profileActions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/api/profileApi.js" afterPath="$PROJECT_DIR$/react_src/api/profileApi.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Common/Header.js" afterPath="$PROJECT_DIR$/react_src/components/Common/Header.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Profile/ProfileEdit.js" afterPath="$PROJECT_DIR$/react_src/components/Profile/ProfileEdit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Profile/ProfileEditPage.js" afterPath="$PROJECT_DIR$/react_src/components/Profile/ProfileEditPage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/reducers/index.js" afterPath="$PROJECT_DIR$/react_src/reducers/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/routes.js" afterPath="$PROJECT_DIR$/react_src/routes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/store/initialState.js" afterPath="$PROJECT_DIR$/react_src/store/initialState.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/utils/AuthService.js" afterPath="$PROJECT_DIR$/react_src/utils/AuthService.js" />
     </list>
     <ignored path="QuestionGrid.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,23 +35,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="QuestionPage.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react_src/components/Question/QuestionPage.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="30" column="26" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="26" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ProfileEditPage.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react_src/components/Profile/ProfileEditPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="158" column="59" selection-start-line="158" selection-start-column="59" selection-end-line="158" selection-end-column="59" />
+            <state relative-caret-position="732">
+              <caret line="258" column="1" selection-start-line="246" selection-start-column="0" selection-end-line="258" selection-end-column="1" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
                 <element signature="n#!!block;n#updateProfileAddressField#0;n#ProfileEditPage#0" expanded="false" />
@@ -69,8 +52,8 @@
       <file leaf-file-name="profileActions.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react_src/actions/profileActions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="33" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="33" />
+            <state relative-caret-position="680">
+              <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -78,25 +61,83 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="profileApi.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AuthService.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react_src/utils/AuthService.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2098">
+              <caret line="194" column="36" selection-start-line="194" selection-start-column="32" selection-end-line="194" selection-end-column="36" />
+              <folding>
+                <element signature="e#3090#3736#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profileApi.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/react_src/api/profileApi.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="41" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="41" />
+            <state relative-caret-position="612">
+              <caret line="36" column="53" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="53" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="profileReducer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react_src/reducers/profileReducer.js">
+      <file leaf-file-name="actionTypes.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react_src/actions/actionTypes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="45" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
+            <state relative-caret-position="170">
+              <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Header.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react_src/components/Common/Header.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="227">
+              <caret line="55" column="31" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="31" />
               <folding>
-                <element signature="e#0#48#0" expanded="true" />
-                <marker date="1477362741405" expanded="true" signature="222:613" ph="{...}" />
-                <marker date="1477362741405" expanded="true" signature="250:611" ph="{...}" />
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HeaderUserName.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react_src/components/Common/HeaderUserName.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HeaderLogin.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react_src/components/Common/HeaderLogin.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="30" selection-end-column="47" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HeaderCenterNav.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react_src/components/Common/HeaderCenterNav.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-509">
+              <caret line="5" column="36" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="36" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+                <marker date="1477442435633" expanded="true" signature="229:2195" ph="{...}" />
+                <marker date="1477442435633" expanded="true" signature="1749:1828" ph="&lt;span/&gt;" />
               </folding>
             </state>
           </provider>
@@ -105,48 +146,8 @@
       <file leaf-file-name="initialState.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react_src/store/initialState.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="questionWizardActions.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react_src/actions/questionWizardActions.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="3" column="30" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react_src/routes.js">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
-              <caret line="5" column="59" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Header.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/react_src/components/Common/Header.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="auth.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react_src/auth.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="17" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="17" />
+              <caret line="5" column="18" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -171,9 +172,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/react_src/api/delay.js" />
-        <option value="$PROJECT_DIR$/react_src/api/mockQuestionApi.js" />
-        <option value="$PROJECT_DIR$/react_src/store/configureStore.js" />
         <option value="$PROJECT_DIR$/react_src/actions/questionWizardActions.js" />
         <option value="$PROJECT_DIR$/react_src/components/question_wizard/Question.js" />
         <option value="$PROJECT_DIR$/react_src/components/question_wizard/TestPage.js" />
@@ -202,7 +200,6 @@
         <option value="$PROJECT_DIR$/react_src/components/Profile/ProfilePage.css" />
         <option value="$PROJECT_DIR$/react_src/components/Profile/ProfileDetails.js" />
         <option value="$PROJECT_DIR$/react_src/HomePage.js" />
-        <option value="$PROJECT_DIR$/react_src/components/Common/Header.js" />
         <option value="$PROJECT_DIR$/react_src/components/Profile/Avatar.js" />
         <option value="$PROJECT_DIR$/react_src/components/Profile/ProfilePage.js" />
         <option value="$PROJECT_DIR$/.env" />
@@ -211,17 +208,21 @@
         <option value="$PROJECT_DIR$/tools/prodServer.js" />
         <option value="$PROJECT_DIR$/react_src/dispatcher.js" />
         <option value="$PROJECT_DIR$/react_src/auth.js" />
-        <option value="$PROJECT_DIR$/react_src/actions/actionTypes.js" />
         <option value="$PROJECT_DIR$/react_src/utils/AuthService.js" />
-        <option value="$PROJECT_DIR$/react_src/api/profileApi.js" />
-        <option value="$PROJECT_DIR$/react_src/components/Profile/ProfileEdit.js" />
         <option value="$PROJECT_DIR$/react_src/components/Question/QuestionPage.js" />
         <option value="$PROJECT_DIR$/react_src/reducers/index.js" />
-        <option value="$PROJECT_DIR$/react_src/store/initialState.js" />
         <option value="$PROJECT_DIR$/react_src/reducers/profileReducer.js" />
-        <option value="$PROJECT_DIR$/react_src/actions/profileActions.js" />
         <option value="$PROJECT_DIR$/react_src/components/Profile/ProfileEditPage.js" />
         <option value="$PROJECT_DIR$/react_src/routes.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Profile/ProfileEdit.js" />
+        <option value="$PROJECT_DIR$/react_src/store/initialState.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Common/HeaderCenterNav.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Common/HeaderLogin.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Common/HeaderUserName.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Common/Header.js" />
+        <option value="$PROJECT_DIR$/react_src/actions/actionTypes.js" />
+        <option value="$PROJECT_DIR$/react_src/actions/profileActions.js" />
+        <option value="$PROJECT_DIR$/react_src/api/profileApi.js" />
       </list>
     </option>
   </component>
@@ -318,6 +319,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="react_src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QuestionGrid" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QuestionGrid" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="react_src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -931,7 +950,7 @@
       <workItem from="1476834612826" duration="3573000" />
       <workItem from="1476844752867" duration="2162000" />
       <workItem from="1476976667858" duration="72376000" />
-      <workItem from="1477327374856" duration="16922000" />
+      <workItem from="1477327374856" duration="23138000" />
     </task>
     <task id="LOCAL-00001" summary="Update from NJ">
       <created>1469553603490</created>
@@ -1045,11 +1064,18 @@
       <option name="project" value="LOCAL" />
       <updated>1477146715532</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Moving profile stuff to redux (part 1)">
+      <created>1477365590382</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1477365590382</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="470640000" />
+    <option name="totallyTimeSpent" value="476856000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1072,7 +1098,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23500492" sideWeight="0.49758744" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37659785" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10226155" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3489933" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1148,7 +1174,8 @@
     <MESSAGE value="Add Auth0 login" />
     <MESSAGE value="Fixes for avatar upload" />
     <MESSAGE value="Fixes for onProfileUpdate" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixes for onProfileUpdate" />
+    <MESSAGE value="Moving profile stuff to redux (part 1)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Moving profile stuff to redux (part 1)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1171,33 +1198,18 @@
           <url>file://$PROJECT_DIR$/webpack.config.dev.js</url>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/react_src/components/Common/Header.js</url>
+          <line>79</line>
+          <properties />
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="11" />
+      <option name="time" value="12" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/react_src/constants/AnswerTypeEnum.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/react-select/dist/react-select.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/react-select/dist/react-select.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/react-select/dist/react-select.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1268,16 +1280,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/Avatar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="24" column="59" selection-start-line="24" selection-start-column="59" selection-end-line="24" selection-end-column="59" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/react_src/components/Profile/FileUpload.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="482">
@@ -1332,6 +1334,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
           <caret line="0" column="10893640" selection-start-line="0" selection-start-column="10893625" selection-end-line="0" selection-end-column="10893640" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1437,17 +1440,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/utils/AuthService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="146" column="42" selection-start-line="146" selection-start-column="42" selection-end-line="146" selection-end-column="42" />
-          <folding>
-            <element signature="e#2170#2258#0" expanded="false" />
-            <element signature="e#3090#3736#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/react_src/components/Question/Question.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1476,22 +1468,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/ProfileEdit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="59" column="83" selection-start-line="59" selection-start-column="81" selection-end-line="59" selection-end-column="83" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/react_src/reducers/questionWizardReducer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="49" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="49" />
           <folding>
-            <element signature="e#0#48#0" expanded="true" />
+            <element signature="e#0#48#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1504,28 +1486,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/store/initialState.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/actions/actionTypes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="32" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/react_src/reducers/profileReducer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="45" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
           <folding>
-            <element signature="e#0#48#0" expanded="true" />
+            <element signature="e#0#48#0" expanded="false" />
             <marker date="1477362741405" expanded="true" signature="222:613" ph="{...}" />
             <marker date="1477362741405" expanded="true" signature="250:611" ph="{...}" />
           </folding>
@@ -1552,10 +1518,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/api/profileApi.js">
+    <entry file="file://$PROJECT_DIR$/react_src/auth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="41" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="41" />
+        <state relative-caret-position="51">
+          <caret line="3" column="17" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -1568,36 +1534,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/actions/profileActions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="33" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/ProfileEditPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="158" column="59" selection-start-line="158" selection-start-column="59" selection-end-line="158" selection-end-column="59" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-            <element signature="n#!!block;n#updateProfileAddressField#0;n#ProfileEditPage#0" expanded="false" />
-            <marker date="1477364115967" expanded="true" signature="7707:8238" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="17" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/react_src/routes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1606,10 +1542,120 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Common/HeaderLogin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="30" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Common/HeaderUserName.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Common/HeaderCenterNav.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-509">
+          <caret line="5" column="36" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <marker date="1477442435633" expanded="true" signature="229:2195" ph="{...}" />
+            <marker date="1477442435633" expanded="true" signature="1749:1828" ph="&lt;span/&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/ProfileEdit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1053">
+          <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/Avatar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/ProfileEditPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="732">
+          <caret line="258" column="1" selection-start-line="246" selection-start-column="0" selection-end-line="258" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <element signature="n#!!block;n#updateProfileAddressField#0;n#ProfileEditPage#0" expanded="false" />
+            <marker date="1477364115967" expanded="true" signature="7707:8238" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/store/initialState.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="18" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/actions/profileActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/react_src/components/Common/Header.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+        <state relative-caret-position="227">
+          <caret line="55" column="31" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/actions/actionTypes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/utils/AuthService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2098">
+          <caret line="194" column="36" selection-start-line="194" selection-start-column="32" selection-end-line="194" selection-end-column="36" />
+          <folding>
+            <element signature="e#3090#3736#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/api/profileApi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" column="53" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="53" />
           <folding />
         </state>
       </provider>

@@ -1,6 +1,6 @@
 // This component handles the App template used on every page.
 import React, {PropTypes} from 'react';
-import Header from '../Common/Header';
+import Header from '../Header/Header';
 import CSSModules from 'react-css-modules';
 import styles from './App.css';
 

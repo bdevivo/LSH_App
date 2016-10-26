@@ -7,7 +7,7 @@ const ProfileApi = {
         return auth.getProfile();
     },
 
-    updateProfileName(first, middle, last) {
+    updateProfileUserName(first, middle, last) {
 
         auth.updateProfile({
             user_metadata: {
@@ -31,17 +31,20 @@ const ProfileApi = {
         });
     },
 
-    login() {
-        return new Promise(function (resolve, reject) {
+   isAdmin()
+   {
+      return auth.isAdmin();
+   },
 
-        // how to wrap the return event in a Promise?
+   isBuyer()
+   {
+      return auth.hasRole('buyer');
+   },
 
-            auth.login();
-        }
-
-
-
-
+   hasRole(roleName)
+   {
+      return auth.hasRole(roleName);
+   }
 
 };
 

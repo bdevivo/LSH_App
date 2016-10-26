@@ -67,20 +67,32 @@ export default class AuthService extends EventEmitter {
     }
 
     login() {
-        // Call the show method to display the widget.
-        this.lock.show();
+
+       return new Promise(function(resolve, reject) {
+         this.profileSet = resolve;    // called at the end of the authorization chain
+         this.authorizationError = reject;
+
+          // Call the show method to display the widget.
+          this.lock.show();
+       });
     }
 
     logout() {
-        // Clear user token and profile data from localStorage
-        localStorage.removeItem('id_token');
-        localStorage.removeItem('profile');
-        localStorage.removeItem('user_id');
+       return new Promise(function(resolve, reject) {
+          // Clear user token and profile data from localStorage
+          localStorage.removeItem('id_token');
+          localStorage.removeItem('profile');
+          localStorage.removeItem('user_id');
 
-        this.emit('user_logout');
+          resolve();
+       });
+
+
+
+        //this.emit('user_logout');
 
         // navigate to the home route
-        browserHistory.push('/');
+        //browserHistory.push('/');
     }
 
     loggedIn() {
@@ -123,10 +135,16 @@ export default class AuthService extends EventEmitter {
         // Save profile data and user_id to localStorage
         let jsProfile = JSON.stringify(profile);
         localStorage.setItem('profile', jsProfile);
-        localStorage.setItem('user_id', jsProfile.user_id); // redundant; for convenience only
 
         // Triggers profile_updated event to update the UI
-        this.emit('profile_updated', profile);
+        //this.emit('profile_updated', profile);
+
+       this.profileSet(profile);
+    }
+
+    profileSet(profile)
+    {
+       return profile;
     }
 
     getProfile() {
@@ -189,11 +207,17 @@ export default class AuthService extends EventEmitter {
         }
     }
 
+   hasRole(roleName)
+   {
+      let { profile } = this.getProfile();
+      let appMetadata = profile.app_metadata || {};
+      let roles = appMetadata.roles || [];
+
+      return (roles.indexOf(roleName) != -1);
+   }
+
     isAdmin() {
-        let profile = this.getProfile();
-        let appMetadata = profile.app_metadata || {};
-        let roles = appMetadata.roles || [];
-        return (roles.indexOf('admin') != -1);
+       return this.hasRole('admin');
     }
 
     fetch(url, options) {

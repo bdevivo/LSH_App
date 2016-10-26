@@ -2,25 +2,32 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as profileActions from '../../actions/profileActions';
+import * as authActions from '../../actions/authActions';
 import CSSModules from 'react-css-modules';
 import styles, { active } from './Header.css';
 import HeaderCenterNav from './HeaderCenterNav';
 import HeaderUserName from './HeaderUserName';
 import HeaderLogin from './HeaderLogin';
+import AuthApi from '../../api/authApi';
+
 // import LoadingDots from './LoadingDots';
 
 class Header extends React.Component {
 
-    // constructor(props, context) {
-    //     super(props, context);
-    //     this.state = {
-    //         profile: props.auth.getProfile()
-    //     };
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+            profile: props.profile,
+            isLoggedIn: (props.isLoggedIn && AuthApi.isLoggedIn()),  // add extra check to make sure login has not expired,
+            isAdmin: AuthApi.isAdmin(),
+            isBuyer: AuthApi.isBuyer()
 
-        // this.onLogin = this.onLogin.bind(this);
-        // this.onLogout = this.onLogout.bind(this);
+        };
 
-    //}
+        this.onLogin = this.onLogin.bind(this);
+        this.onLogout = this.onLogout.bind(this);
+
+    }
 
     // componentWillMount()
     // {
@@ -40,58 +47,50 @@ class Header extends React.Component {
     //     this.props.auth.removeListener('user_logout', this.onUserLogout);
     // }
 
-    onProfileUpdated(newProfile)
-    {
-        this.setState({profile: newProfile});
-    }
+    // onProfileUpdated(newProfile)
+    // {
+    //     this.setState({profile: newProfile});
+    // }
 
-    onUserLogout()
-    {
-        console.log("render Header on logout");
-        this.setState({profile: {}});
-    }
+    // onUserLogout()
+    // {
+    //     console.log("render Header on logout");
+    //     this.setState({profile: {}});
+    // }
 
     onLogin()
     {
-        this.props.auth.login();
+        //this.props.auth.login();
+       this.props.authActions.login();
     }
 
     onLogout()
     {
-        this.props.auth.logout();
-    }
-
-    isLoggedIn()
-    {
-        return this.props.auth.loggedIn();
-    }
-
-    hasRole(roleName)
-    {
-        let { profile } = this.state;
-        let { app_metadata } = profile || {};
-        let { roles } = app_metadata || {};
-        if (!roles)
-            return false;
-
-        return (roles.indexOf(roleName) != -1);
+        this.props.authActions.logout();
     }
 
     render() {
+
+       let { profile, isLoggedIn, isAdmin, isBuyer } = this.state;
 
        return (
            <header styleName="nav">
 
                <nav>
-                   <HeaderCenterNav isLoggedIn={} isAdmin={} isBuyer={} />
-                   <HeaderUserName user_name={} email={} />
-                   <HeaderLogin isLoggedIn={} onLogin={} onLogout={} />
+                   <HeaderCenterNav isLoggedIn={isLoggedIn} isAdmin={isAdmin} isBuyer={isBuyer} />
+                   <HeaderUserName user_name={profile.user_name} email={profile.email} />
+                   <HeaderLogin isLoggedIn={isLoggedIn} onLogin={this.onLogin} onLogout={this.onLogout} />
                </nav>
 
            </header>
        );
     }
 }
+
+Header.propTypes = {
+   profile: PropTypes.object.isRequired,
+   isLoggedIn: PropTypes.bool.isRequired
+};
 
 function mapStateToProps(state) {
     return {
@@ -103,7 +102,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch)
 {
     return {
-        actions: bindActionCreators(profileActions, dispatch)
+        profileActions: bindActionCreators(profileActions, dispatch),
+        authActions: bindActionCreators(authActions, dispatch),
     };
 }
 

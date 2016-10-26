@@ -6,6 +6,7 @@ export default Immutable.fromJS(
         isLoggedIn: false,
         profile: {
             user_id: '',
+            email: '',
             user_name: {
                 first: '',
                 middle: '',

@@ -18,6 +18,10 @@ export default function questionWizardReducer(profile = initialState.profile, ac
             return "Profile could not be retrieved";
         }
 
+       case types.REMOVE_PROFILE: {
+          return new Immutable.Map();  // set empty profile
+       }
+
 
         default:
             return profile;

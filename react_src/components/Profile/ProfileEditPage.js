@@ -79,7 +79,7 @@ class ProfileEditPage extends React.Component {
         }
         let {first, middle, last} = profile.user_metadata;
 
-        this.props.actions.updateProfileName(first, middle, last);
+        this.props.actions.updateProfileUserName(first, middle, last);
 
         //debugger;
         // auth.updateProfile(profile.user_id, {

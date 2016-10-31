@@ -44,19 +44,30 @@ export default class AuthService extends EventEmitter {
     }
 
     doAuthentication(authResult) {
-        console.log("Calling doAuthentication");
+        //console.log("Calling doAuthentication");
 
         // Saves the user token
         this.setToken(authResult.idToken);
 
+        this.emit('authenticated', authResult.idToken);
+
         // Async loads the user profile data
-        this.lock.getProfile(authResult.idToken, (error, profile) => {
+        // this.lock.getProfile(authResult.idToken, (error, profile) => {
+        //     if (error) {
+        //         console.log('Error loading the Profile', error);
+        //     } else {
+        //         this.setProfile(profile);
+        //     }
+        // });
+    }
+
+    load_profile(idToken)
+    {
+        this.lock.getProfile(idToken, (error, profile) => {
             if (error) {
                 console.log('Error loading the Profile', error);
             } else {
                 this.setProfile(profile);
-                // navigate to the profile route
-                browserHistory.push('/profile');
             }
         });
     }
@@ -67,32 +78,20 @@ export default class AuthService extends EventEmitter {
     }
 
     login() {
-
-       return new Promise(function(resolve, reject) {
-         this.profileSet = resolve;    // called at the end of the authorization chain
-         this.authorizationError = reject;
-
-          // Call the show method to display the widget.
-          this.lock.show();
-       });
+        // Call the show method to display the widget.
+        this.lock.show();
     }
 
     logout() {
-       return new Promise(function(resolve, reject) {
-          // Clear user token and profile data from localStorage
-          localStorage.removeItem('id_token');
-          localStorage.removeItem('profile');
-          localStorage.removeItem('user_id');
+        // Clear user token and profile data from localStorage
+        localStorage.removeItem('id_token');
+        localStorage.removeItem('profile');
+        localStorage.removeItem('user_id');
 
-          resolve();
-       });
-
-
-
-        //this.emit('user_logout');
+        this.emit('user_logout');
 
         // navigate to the home route
-        //browserHistory.push('/');
+        browserHistory.push('/');
     }
 
     loggedIn() {
@@ -109,7 +108,7 @@ export default class AuthService extends EventEmitter {
     }
 
     validateProfile(profile) {
-        console.log("Calling validateProfile");
+        //console.log("Calling validateProfile");
 
         // make sure all fields are present
         let {user_metadata} = profile;
@@ -130,25 +129,19 @@ export default class AuthService extends EventEmitter {
 
     setProfile(profile) {
 
-        this.validateProfile(profile);
+        //this.validateProfile(profile);
 
         // Save profile data and user_id to localStorage
         let jsProfile = JSON.stringify(profile);
         localStorage.setItem('profile', jsProfile);
+        //localStorage.setItem('user_id', jsProfile.user_id); // redundant; for convenience only
 
         // Triggers profile_updated event to update the UI
-        //this.emit('profile_updated', profile);
-
-       this.profileSet(profile);
-    }
-
-    profileSet(profile)
-    {
-       return profile;
+        this.emit('profile_updated', profile);
     }
 
     getProfile() {
-        console.log("Calling getProfile");
+        //console.log("Calling getProfile");
 
         // Retrieves the profile data from localStorage
         const profile = localStorage.getItem('profile');
@@ -207,17 +200,18 @@ export default class AuthService extends EventEmitter {
         }
     }
 
-   hasRole(roleName)
-   {
-      let { profile } = this.getProfile();
-      let appMetadata = profile.app_metadata || {};
-      let roles = appMetadata.roles || [];
-
-      return (roles.indexOf(roleName) != -1);
-   }
-
     isAdmin() {
-       return this.hasRole('admin');
+        let profile = this.getProfile();
+        let appMetadata = profile.app_metadata || {};
+        let roles = appMetadata.roles || [];
+        return (roles.indexOf('admin') != -1);
+    }
+
+    hasRole(role) {
+        let profile = this.getProfile();
+        let appMetadata = profile.app_metadata || {};
+        let roles = appMetadata.roles || [];
+        return (roles.indexOf(role) != -1);
     }
 
     fetch(url, options) {

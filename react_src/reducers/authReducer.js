@@ -1,19 +1,26 @@
 import * as types from '../actions/actionTypes';
 import initialState from '../store/initialState';
+//import  Immutable from 'immutable';
 
-export default function authReducer(isLoggedIn = initialState.isLoggedIn, action) {
+export default function authReducer(auth = initialState.auth, action) {
 
-   switch (action.type) {
+    switch (action.type) {
 
-      case types.USER_LOGIN: {
-         return true;   // set isLoggedin to TRUE
-      }
+        case types.USER_LOGIN: {
+           // console.log("authReducer USER_LOGIN: setting isLoggedIn to TRUE");
+            //debugger;
+            //return new Immutable.Map({"isLoggedIn": true});
+            return {"isLoggedIn": true};
+        }
 
-      case types.USER_LOGOUT: {
-         return false;  // set isLoggedin to FALSE
-      }
+        case types.USER_LOGOUT: {
+            //return new Immutable.Map({"isLoggedIn": false});
+            return {"isLoggedIn": false};
+        }
 
-      default:
-         return isLoggedIn;
-   }
+        default:
+            //debugger;
+            //console.log("authReducer DEFAULT: setting isLoggedIn to " + auth.get("isLoggedIn"));
+            return auth;
+    }
 }

@@ -27,9 +27,29 @@ class ProfileEdit extends React.Component {
 
     render() {
         const {profile, updateProfileAddressField, updateProfileAddressState, updateProfileName, handleSubmit, handleAvatarChange, avatarTimestamp, avatarStorageKey} = this.props;
-        const {firstName} = profile.user_metadata || {};
-        const {lastName} = profile.user_metadata || {};
-        const {address} = profile.user_metadata || {};
+        const {user_name} = profile;
+        let firstName = '', lastName = '', middleName = '';
+        if (user_name)
+        {
+            firstName = user_name.first;
+            lastName = user_name.last;
+            middleName = user_name.middle;
+        }
+
+        const {address} = profile;
+        let street1 = '', street2 = '', city = '', state = '', country = '', zip = '';
+        if (address)
+        {
+            street1 = address.street1;
+            street2 = address.street2;
+            city = address.city;
+            state = address.state;
+            country = address.country;
+            zip = address.zip;
+        }
+
+        //debugger;
+
         let {profilePicture} = profile.user_metadata || {};
         if (!profilePicture)
         {
@@ -59,7 +79,7 @@ class ProfileEdit extends React.Component {
                                 </Col>
 
                                 <Col sm={3}>
-                                    <FormControl type="text" name="middle" defaultValue={firstName} placeholder="middle init." onChange={updateProfileName} />
+                                    <FormControl type="text" name="middle" defaultValue={middleName} placeholder="middle init." onChange={updateProfileName} />
                                 </Col>
 
                                 <Col sm={3}>
@@ -78,7 +98,7 @@ class ProfileEdit extends React.Component {
                                 Street 1
                             </Col>
                             <Col sm={right_col_wd}>
-                                <FormControl type="text" name="street1" defaultValue={address.street1} onChange={updateProfileAddressField} />
+                                <FormControl type="text" name="street1" defaultValue={street1} onChange={updateProfileAddressField} />
                             </Col>
 
                         </FormGroup>
@@ -88,7 +108,7 @@ class ProfileEdit extends React.Component {
                                 Street 2
                             </Col>
                             <Col sm={right_col_wd}>
-                                <FormControl type="text" name="street2" defaultValue={address.street2} onChange={updateProfileAddressField} />
+                                <FormControl type="text" name="street2" defaultValue={street2} onChange={updateProfileAddressField} />
                             </Col>
                         </FormGroup>
 
@@ -97,7 +117,7 @@ class ProfileEdit extends React.Component {
                                 City
                             </Col>
                             <Col sm={right_col_wd}>
-                                <FormControl type="text" name="city" defaultValue={address.city} onChange={updateProfileAddressField} />
+                                <FormControl type="text" name="city" defaultValue={city} onChange={updateProfileAddressField} />
                             </Col>
                         </FormGroup>
 
@@ -108,7 +128,7 @@ class ProfileEdit extends React.Component {
                             <Col sm={right_col_short_wd}>
                                 <Select
                                     name="state"
-                                    value={address.state}
+                                    value={state}
                                     options={states}
                                     clearable={false}
                                     styleName="select"
@@ -122,7 +142,7 @@ class ProfileEdit extends React.Component {
                                 ZIP Code
                             </Col>
                             <Col sm={right_col_short_wd}>
-                                <FormControl type="text" name="zip" defaultValue={address.zip} onChange={updateProfileAddressField} />
+                                <FormControl type="text" name="zip" defaultValue={zip} onChange={updateProfileAddressField} />
                             </Col>
                         </FormGroup>
 
@@ -131,7 +151,7 @@ class ProfileEdit extends React.Component {
                                 Country
                             </Col>
                             <Col sm={right_col_short_wd}>
-                                <FormControl type="text" name="country" defaultValue={address.country} onChange={updateProfileAddressField} />
+                                <FormControl type="text" name="country" defaultValue={country} onChange={updateProfileAddressField} />
                             </Col>
                         </FormGroup>
 

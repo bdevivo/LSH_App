@@ -8,10 +8,19 @@ import { Router, browserHistory } from 'react-router';
 import routes from './routes';
 import {getAllQuestions} from './actions/questionWizardActions';
 import initialState from './store/initialState';
+//import AppProvider from './components/App/AppProvider';
 
 const store = configureStore(initialState);
 store.dispatch(getAllQuestions());
-// store.dispatch(loadAuthors());
+
+// let children = <Router history={browserHistory} routes={routes} />;
+//
+// render(
+//     <AppProvider store={store} children={children} />,
+//
+//     document.getElementById('app')
+// );
+
 
 render(
     <Provider store={store}>

@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
-import {Link} from 'react-router';
-import AuthService from '../../utils/AuthService';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as profileActions from '../../actions/profileActions';
 import ProfileDetails from './ProfileDetails';
 
 
@@ -10,28 +11,8 @@ class ProfilePage extends React.Component {
         super(props, context);
         console.log("Constructing ProfilePage component");
         this.state = {
-            profile: props.auth.getProfile()
+            profile: props.profile
         };
-
-        this.updateLocalProfile = this.updateLocalProfile.bind(this);
-    }
-
-    componentWillMount()
-    {
-        //listen to profile_updated events to update internal state
-        this.props.auth.on('profile_updated', (newProfile) => {
-            this.updateLocalProfile(newProfile);
-        });
-    }
-
-    componentWillUnmount()
-    {
-        this.props.auth.removeListener('profile_updated', this.updateLocalProfile);
-    }
-
-    updateLocalProfile(newProfile) {
-        console.log("ProfilePage: updating local profile");
-        this.setState({profile: newProfile});
     }
 
     render() {
@@ -43,14 +24,29 @@ class ProfilePage extends React.Component {
         return (
             <div>
                 <h3>User Profile</h3>
-                <ProfileDetails profile={profile} auth={this.props.auth}/>
+                <ProfileDetails profile={profile}/>
             </div>
         );
     }
 }
 
 ProfilePage.propTypes = {
-    auth: PropTypes.instanceOf(AuthService)
+    profile: PropTypes.object.isRequired,
+    profileActions: PropTypes.object.isRequired
 };
 
-export default ProfilePage;
+function mapStateToProps(state) {
+    return {
+        profile: state.profile
+
+        //profile: state.get("profile").toJS()
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        profileActions: bindActionCreators(profileActions, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);

@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react';
 import { Link } from 'react-router';
 import {Row, Col, Image} from 'react-bootstrap';
-import AuthService from '../../utils/AuthService';
 import CSSModules from 'react-css-modules';
 import styles from './ProfilePage.css';
 
@@ -9,27 +8,45 @@ class ProfileDetails extends React.Component {
 
     render() {
         const {profile} = this.props;
-        const {user_metadata} = profile;
-        let {profilePicture} = user_metadata || {};
-        //debugger;
-        if (!profilePicture)
+        let {avatarUrl} = profile;
+        if (!avatarUrl)
         {
             let imgPath = 'app_images/avatars/avatar_placeholder.png';
             let bucketName = 'lifescihub';
-            profilePicture = `https://s3.amazonaws.com/${bucketName}/${imgPath}`;
+            avatarUrl = `https://s3.amazonaws.com/${bucketName}/${imgPath}`;
         }
-        const {address} = user_metadata || {};
 
-        let userName = (user_metadata.firstName ? `${user_metadata.firstName} ${user_metadata.lastName}` : "Not Set");
+        const {address} = profile;
+        let street1 = '', street2 = '', city = '', state = '', country = '', zip = '';
+        if (address)
+        {
+            street1 = address.street1;
+            street2 = address.street2;
+            city = address.city;
+            state = address.state;
+            country = address.country;
+            zip = address.zip;
+        }
+
+        const {user_name} = profile;
+        let firstName = '', lastName = '', middleName = '';
+        if (user_name)
+        {
+            firstName = user_name.first;
+            lastName = user_name.last;
+            middleName = user_name.middle || ' ';
+        }
+
+        let userName = (firstName ? `${firstName}${middleName}${lastName}` : "Not Set");
 
         let addressCol;
         if (address.street1)
         {
             addressCol = (
                 <Col md={8}>
-                    <p>{address.street1}</p>
-                    <p>{address.street2}</p>
-                    <p>{address.city}, {address.state} {address.zip}</p>
+                    <p>{street1}</p>
+                    <p>{street2}</p>
+                    <p>{city}, {state} {zip}</p>
                 </Col>);
         }
         else {
@@ -43,7 +60,7 @@ class ProfileDetails extends React.Component {
         return (
             <Row styleName="userProfile">
                 <Col md={2}>
-                    <Image styleName="avatar" src={profilePicture} circle/>
+                    <Image styleName="avatar" src={avatarUrl} circle/>
                 </Col>
                 <Col md={6}>
                     <p><strong>Name: </strong> {userName}</p>
@@ -62,7 +79,6 @@ class ProfileDetails extends React.Component {
 }
 
 ProfileDetails.propTypes = {
-    auth: PropTypes.instanceOf(AuthService),
     profile: PropTypes.object.isRequired
 };
 

@@ -10,3 +10,23 @@ export const requireAuth = (nextState, replace) => {
         replace({ pathname: '/' });
     }
 };
+
+
+
+
+export const isAdmin = () =>
+{
+    //debugger;
+    return auth.isAdmin();
+};
+
+export const isBuyer = () =>
+{
+    //sdebugger;
+    return auth.hasRole('buyer');
+};
+
+export const hasRole = (roleName) =>
+{
+    return auth.hasRole(roleName);
+};

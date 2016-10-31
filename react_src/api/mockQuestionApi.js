@@ -1,5 +1,5 @@
 import delay from './delay';
-import Immutable from 'immutable';
+//import Immutable from 'immutable';
 
 // This file mocks a web API by working with the hard-coded data below.
 // It uses setTimeout to simulate the delay of an AJAX call.
@@ -33,7 +33,8 @@ class QuestionApi {
     static getAllQuestions() {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                resolve(Immutable.fromJS(questions));
+               // resolve(Immutable.fromJS(questions));
+                resolve(questions);
             }, delay);
         });
     }

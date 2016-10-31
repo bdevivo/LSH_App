@@ -66,6 +66,8 @@
     "react-select": "^1.0.0-rc.2",
     "redux": "3.5.2",
     "redux-immutable": "^3.0.8",
+    "redux-persist": "^4.0.0-alpha6",
+    "redux-persist-immutable": "^4.0.1",
     "redux-thunk": "2.0.1",
     "style-loader": "^0.13.1",
     "toastr": "2.1.2",

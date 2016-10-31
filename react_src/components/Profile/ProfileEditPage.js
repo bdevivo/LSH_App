@@ -1,5 +1,4 @@
 import React, {PropTypes} from 'react';
-import AuthService from '../../utils/AuthService';
 import ProfileEdit from './ProfileEdit';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -27,20 +26,18 @@ class ProfileEditPage extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.updateProfileName = this.updateProfileName.bind(this);
         this.handleAvatarChange = this.handleAvatarChange.bind(this);
-        this.uploadAvatarImage = this.uploadAvatarImage.bind(this);
     }
 
-    // componentWillMount()
-    // {
-    //     this.props.auth.on('profile_updated', () => {
-    //         this.onProfileUpdated();
-    //     });
-    // }
-    //
-    // componentWillUnmount()
-    // {
-    //     this.props.auth.removeListener('profile_updated', this.onProfileUpdated);
-    // }
+    componentWillReceiveProps(nextProps)
+    {
+        //console.log("componentWillReceiveProps");
+        //debugger;
+
+        if (nextProps.profile !== this.state.profile)
+        {
+            this.setState({profile: nextProps.profile});
+        }
+    }
 
     onProfileUpdated()
     {
@@ -68,32 +65,17 @@ class ProfileEditPage extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        //const {auth} = this.props;
-        const {profile, avatarLocalFileName} = this.state;
+        const {profile, avatarLocalFileName, localAvatarFile} = this.state;
+        let {user_id, first, middle, last} = profile.user_metadata;
 
-        let avatarUrl = profile.user_metadata.profilePicture;
         if (avatarLocalFileName)
         {
-            this.uploadAvatarImage();
+            this.props.actions.updateProfileAvatar(user_id, avatarLocalFileName, localAvatarFile);
+            //this.uploadAvatarImage();
             localStorage.removeItem('avatarTempData');
         }
-        let {first, middle, last} = profile.user_metadata;
 
         this.props.actions.updateProfileUserName(first, middle, last);
-
-        //debugger;
-        // auth.updateProfile(profile.user_id, {
-        //     user_metadata: {
-        //         firstName: profile.user_metadata.firstName,
-        //         lastName: profile.user_metadata.lastName,
-        //         address: profile.user_metadata.address,
-        //         profilePicture: avatarUrl
-        //     }
-        // });
-
-        // auth.on('profile_updated', () => {
-        //     browserHistory.push('/profile');
-        // });
     }
 
     updateProfileName(event) {
@@ -105,8 +87,6 @@ class ProfileEditPage extends React.Component {
                 }
             }
         );
-        //debugger;
-
         // update the local state
         return this.setState({profile: newProfile});
     }
@@ -144,74 +124,6 @@ class ProfileEditPage extends React.Component {
         return this.setState({profile: newProfile});
     }
 
-    uploadAvatarImage() {
-
-        //debugger;
-        const {profile} = this.state;
-        let pathObj = pathParse(this.state.avatarLocalFileName);
-        let imgFile = profile.user_id.replace(/\|/g, '_') + pathObj.ext;  //`{profile.email.${pathObj.ext}`;
-        let imgPath = `app_images/avatars/${imgFile}`;
-        let localAvatarFile = this.state.localAvatarFile;
-
-        // configure AWS client
-        //AWS.config.loadFromPath('../../../awsconfig.json');
-        AWS.config.update({
-                accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-                secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-            }
-        );
-
-        // Create an S3 client
-        let s3 = new AWS.S3();
-
-        //upload file to AWS bucket
-        let bucketName = 'lifescihub';
-        let {auth} = this.props;
-
-        s3.createBucket({Bucket: bucketName}, function () {
-            let deleteParams = {Bucket: bucketName, Key: imgPath};
-
-            // there is no "replace" function, so delete any existing image file first
-            s3.deleteObject(deleteParams, function (err, data) {
-                if (err)
-                    console.log(err);
-                // else {
-                //     // need to update profile here, even though we are updating again below.
-                //     // this is because, if the imageURL is the same as the previous one, we
-                //     // still need to fire the Profile Updated event.
-                //     let nextProfile = {'user_metadata': {'profilePicture': ''}};
-                //     auth.updateProfile(profile.user_id, nextProfile);
-                //
-                //     console.log("Successfully deleted image " + bucketName + "/" + imgPath);
-                // }
-            });
-
-            // read the image file from local filesystem
-            let reader = new FileReader();
-            //debugger;
-            reader.onload = function() {
-                let params = {Bucket: bucketName, Key: imgPath, Body: reader.result};
-               // debugger;
-                s3.putObject(params, function (err, data) {
-                    if (err)
-                        console.log(err);
-                    else {
-                        console.log("Successfully uploaded data to " + bucketName + "/" + imgPath);
-                        let rndQueryStr = '?random=' + new Date().getTime();    // required in order to fetch updated image with unchanged URL without refreshing the page
-                        let avatarUrl = `https://s3.amazonaws.com/${bucketName}/${imgPath}${rndQueryStr}`;
-                        auth.updateProfile(profile.user_id, {
-                            user_metadata: {
-                                profilePicture: avatarUrl
-                            }
-                        });
-                    }
-                });
-            };
-            reader.readAsArrayBuffer(localAvatarFile);
-        });
-
-    }
-
     render() {
 
         // listen to profile_updated events to update internal state
@@ -220,9 +132,11 @@ class ProfileEditPage extends React.Component {
         // });
 
         const { profile } = this.state;
+       // debugger;
 
         return (
             <div>
+
                 <h3>Edit Profile</h3>
                 <ProfileEdit
                     profile={profile}
@@ -234,7 +148,7 @@ class ProfileEditPage extends React.Component {
                     avatarStorageKey={this.state.avatarStorageKey}
                     handleAvatarChange={this.handleAvatarChange}
                 />
-            </div>``
+            </div>
         );
     }
 }
@@ -245,8 +159,9 @@ ProfileEditPage.propTypes = {
 };
 
 function mapStateToProps(state) {
+    debugger;
     return {
-        profile: state.profile.toJS()
+        profile: state.profile
     };
 }
 

@@ -6,7 +6,7 @@ const HeaderLogin = ({isLoggedIn, onLogin, onLogout}) => {
 
     let loginDiv;
 
-    if (isLoggedIn())
+    if (isLoggedIn)
     {
         loginDiv = (<div className="hidden-sm hidden-xs" styleName="navRight">
             <a styleName="link" onClick={onLogout}>Logout</a>
@@ -19,11 +19,11 @@ const HeaderLogin = ({isLoggedIn, onLogin, onLogout}) => {
         </div>);
     }
 
-    return {loginDiv};
+    return loginDiv;
 };
 
 HeaderLogin.propTypes = {
-    isLoggedIn: PropTypes.string.isRequired,
+    isLoggedIn: PropTypes.bool.isRequired,
     onLogin: PropTypes.func.isRequired,
     onLogout: PropTypes.func.isRequired
 };

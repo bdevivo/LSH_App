@@ -2,7 +2,6 @@ import * as types from './actionTypes';
 import profileApi from '../api/profileApi';
 
 export function updateProfileSuccess(profile) {
-    //debugger;
     return { type: types.UPDATE_PROFILE_SUCCESS, profile};
 }
 
@@ -24,9 +23,26 @@ export function getProfile() {
 
 // THUNKS
 
+export function updateProfile(profile) {
+    return function(dispatch) {
+        dispatch(updateProfileSuccess(profile));
+    };
+}
+
 export function updateProfileUserName(first, middle, last) {
     return function(dispatch) {
         return profileApi.updateProfileUserName(first, middle, last)
+            .then(profile => {
+                dispatch(updateProfileSuccess(profile));
+            }).catch(error => {
+                throw(error);   // TODO: add real error handler action
+            });
+    };
+}
+
+export function updateProfileAvatar(user_id, avatarLocalFileName, avatarLocalFile) {
+    return function(dispatch) {
+        return profileApi.updateProfileAvatar(user_id, avatarLocalFileName, avatarLocalFile)
             .then(profile => {
                 dispatch(updateProfileSuccess(profile));
             }).catch(error => {

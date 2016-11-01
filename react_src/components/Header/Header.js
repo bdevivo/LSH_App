@@ -85,7 +85,7 @@ class Header extends React.Component {
         // Called by the Auth Service whenever the profile is updated; we now need to
         // dispatch an action to update the state, which will re-render this component.
         // (This is also the third stage in the login sequence.)
-        //debugger;
+        debugger;
         this.props.profileActions.updateProfile(profile);
     }
 

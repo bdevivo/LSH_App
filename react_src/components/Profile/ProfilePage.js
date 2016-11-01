@@ -15,6 +15,18 @@ class ProfilePage extends React.Component {
         };
     }
 
+   componentWillReceiveProps(nextProps)
+   {
+      console.log("componentWillReceiveProps");
+      //debugger;
+
+      //debugger;
+      if (nextProps.profile !== this.state.profile)
+      {
+         this.setState({profile: nextProps.profile});
+      }
+   }
+
     render() {
 
         console.log("ProfilePage: rendering");
@@ -38,7 +50,6 @@ ProfilePage.propTypes = {
 function mapStateToProps(state) {
     return {
         profile: state.profile
-
         //profile: state.get("profile").toJS()
     };
 }

@@ -39,7 +39,7 @@ export default function profileReducer(profile = initialState.profile, action) {
 
         case types.UPDATE_PROFILE_SUCCESS: {
             console.log("profile reducer: UPDATE_PROFILE_SUCCESS");
-            //debugger;
+            debugger;
             return mapActionToProfile(action);
         }
 

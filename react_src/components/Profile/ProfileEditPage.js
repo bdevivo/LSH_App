@@ -66,7 +66,8 @@ class ProfileEditPage extends React.Component {
         e.preventDefault();
 
         const {profile, avatarLocalFileName, localAvatarFile} = this.state;
-        let {user_id, first, middle, last} = profile.user_metadata;
+        let {user_id, user_name} = profile;
+       let {first, middle, last} = user_id;
 
         if (avatarLocalFileName)
         {
@@ -82,7 +83,7 @@ class ProfileEditPage extends React.Component {
         const field = event.target.name;
         let newProfile = update(this.state.profile,
             {
-                user_metadata: {
+                user_name: {
                     [field]: {$set: event.target.value}
                 }
             }
@@ -159,7 +160,6 @@ ProfileEditPage.propTypes = {
 };
 
 function mapStateToProps(state) {
-    debugger;
     return {
         profile: state.profile
     };
@@ -167,7 +167,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch)
 {
-    //debugger;
     return {
         actions: bindActionCreators(profileActions, dispatch)
     };

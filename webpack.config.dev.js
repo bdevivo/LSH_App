@@ -5,7 +5,7 @@ import DotenvPlugin from 'webpack-dotenv-plugin';
 
 export default {
     debug: true,
-    devtool: 'cheap-module-eval-source-map',
+    //devtool: 'cheap-module-eval-source-map',
     noInfo: false,
     entry: [
         'eventsource-polyfill', // necessary for hot reloading with IE
@@ -25,6 +25,7 @@ export default {
         contentBase: './react_src'
     },
     plugins: [
+        new webpack.SourceMapDevToolPlugin(),
         new ExtractTextPlugin('style.css', { allChunks: true }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),

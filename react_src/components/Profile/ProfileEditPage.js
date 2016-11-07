@@ -3,11 +3,11 @@ import ProfileEdit from './ProfileEdit';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as profileActions from '../../actions/profileActions';
-import { browserHistory } from 'react-router';
-import AWS from 'aws-sdk';
+import {browserHistory} from 'react-router';
+import ProfileApi from '../../api/profileApi';
+import * as Auth from '../../auth_utils/auth';
 
 const update = require('react-addons-update');
-const pathParse = require('path-parse');
 
 class ProfileEditPage extends React.Component {
 
@@ -26,26 +26,26 @@ class ProfileEditPage extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.updateProfileName = this.updateProfileName.bind(this);
         this.handleAvatarChange = this.handleAvatarChange.bind(this);
+        this.onProfileUpdated = this.onProfileUpdated.bind(this);
     }
 
-    componentWillReceiveProps(nextProps)
+    componentWillMount()
     {
-        //console.log("componentWillReceiveProps");
-        //debugger;
+        Auth.auth.on('profile_updated', this.onProfileUpdated);
+    }
 
-        if (nextProps.profile !== this.state.profile)
-        {
+    componentWillUnmount()
+    {
+        Auth.auth.removeListener('profile_updated', this.onProfileUpdated);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.profile !== this.state.profile) {
             this.setState({profile: nextProps.profile});
         }
     }
 
-    onProfileUpdated()
-    {
-        browserHistory.push('/profile');
-    }
-
     handleAvatarChange(event, results) {
-        //debugger;
         const [e, file] = results[0];
         const storageKey = "avatarTempData";
         results.forEach(result => {
@@ -53,7 +53,6 @@ class ProfileEditPage extends React.Component {
             localStorage.setItem(storageKey, e.target.result);
         });
 
-        //debugger;
         this.setState({ // this should trigger the Avatar component to re-render
             avatarTimestamp: new Date().getTime().toString(),
             avatarStorageKey: storageKey,
@@ -67,16 +66,20 @@ class ProfileEditPage extends React.Component {
 
         const {profile, avatarLocalFileName, localAvatarFile} = this.state;
         let {user_id, user_name} = profile;
-       let {first, middle, last} = user_id;
+        let {first, middle, last} = user_name;
 
-        if (avatarLocalFileName)
-        {
+        if (avatarLocalFileName) {
             this.props.actions.updateProfileAvatar(user_id, avatarLocalFileName, localAvatarFile);
             //this.uploadAvatarImage();
             localStorage.removeItem('avatarTempData');
         }
 
-        this.props.actions.updateProfileUserName(first, middle, last);
+        ProfileApi.updateProfileUserName(first, middle, last);
+    }
+
+    onProfileUpdated(profile) {
+        this.props.actions.updateProfile(profile);
+        browserHistory.push('/profile');
     }
 
     updateProfileName(event) {
@@ -126,14 +129,8 @@ class ProfileEditPage extends React.Component {
     }
 
     render() {
-
-        // listen to profile_updated events to update internal state
-        // this.props.auth.on('profile_updated', (newProfile) => {
-        //     this.setState({profile: newProfile});
-        // });
-
-        const { profile } = this.state;
-       // debugger;
+        const {profile} = this.state;
+        console.log("ProfileEditPage: first = " + profile.user_name.first);
 
         return (
             <div>
@@ -141,9 +138,9 @@ class ProfileEditPage extends React.Component {
                 <h3>Edit Profile</h3>
                 <ProfileEdit
                     profile={profile}
-                    updateProfileAddressField = {this.updateProfileAddressField}
+                    updateProfileAddressField={this.updateProfileAddressField}
                     updateProfileAddressState={this.updateProfileAddressState}
-                    updateProfileName = {this.updateProfileName}
+                    updateProfileName={this.updateProfileName}
                     handleSubmit={this.handleSubmit}
                     avatarTimestamp={this.state.avatarTimestamp}
                     avatarStorageKey={this.state.avatarStorageKey}
@@ -165,8 +162,7 @@ function mapStateToProps(state) {
     };
 }
 
-function mapDispatchToProps(dispatch)
-{
+function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators(profileActions, dispatch)
     };

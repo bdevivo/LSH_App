@@ -48,19 +48,19 @@ class ProfileEdit extends React.Component {
             zip = address.zip;
         }
 
-        //debugger;
-
-        let {profilePicture} = profile.user_metadata || {};
-        if (!profilePicture)
+        let {avatarUrl} = profile || {};
+        if (!avatarUrl)
         {
             let imgPath = 'app_images/avatars/avatar_placeholder.png';
             let bucketName = 'lifescihub';
-            profilePicture = `https://s3.amazonaws.com/${bucketName}/${imgPath}`;
+            avatarUrl = `https://s3.amazonaws.com/${bucketName}/${imgPath}`;
         }
 
         const left_col_wd = 3;
         const right_col_wd = 6;
         const right_col_short_wd = 3;
+
+        console.log("ProfileEdit: first = " + firstName);
 
         return (
             <Row styleName="root">
@@ -159,7 +159,7 @@ class ProfileEdit extends React.Component {
 
                         <FormGroup>
                             <Col componentClass={ControlLabel} sm={left_col_wd}>
-                                <AvatarImg storageKey="avatarTempData" url={profilePicture} avatarTimestamp={avatarTimestamp} />
+                                <AvatarImg storageKey="avatarTempData" url={avatarUrl} avatarTimestamp={avatarTimestamp} />
                             </Col>
                             <Col sm={right_col_wd} styleName="fileUploadCol">
                                 <FileUpload as="url" name="my-file-input"

@@ -5,7 +5,7 @@ import QuestionPage from './components/Question/QuestionPage';
 import HomePage from './HomePage';
 import ProfilePage from './components/Profile/ProfilePage';
 import ProfileEditPage from './components/Profile/ProfileEditPage';
-import { auth, requireAuth } from './auth';
+import { auth, requireAuth } from './auth_utils/auth';
 
 //noinspection JSUnresolvedVariable
 //console.log("AUTH0_CLIENT_ID: " + process.env.AUTH0_CLIENT_ID);

@@ -20,10 +20,7 @@ export function logoutSuccess() {
 //////////////////////////////////////
 
 export function onLoginSuccess(profile) {
-    //debugger;
     return function (dispatch) {
-        console.log("authAction.login: top...");
-        //debugger;
         dispatch(loginSuccess(profile));
     };
 }

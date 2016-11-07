@@ -29,20 +29,23 @@ export function updateProfile(profile) {
     };
 }
 
-export function updateProfileUserName(first, middle, last) {
-    return function(dispatch) {
-        return profileApi.updateProfileUserName(first, middle, last)
-            .then(profile => {
-                dispatch(updateProfileSuccess(profile));
-            }).catch(error => {
-                throw(error);   // TODO: add real error handler action
-            });
-    };
-}
+// export function updateProfileUserName(first, middle, last) {
+//     return function(dispatch) {
+//         return profileApi.updateProfileUserName(first, middle, last)
+//             .then(profile => {
+//                 if (!profile.error) {
+//                     profileApi.setProfile(profile);   //update current profile in local storage
+//                     return profile;
+//                 }
+//             }).catch(error => {
+//                 throw(error);   // TODO: add real error handler action
+//             });
+//     };
+// }
 
 export function updateProfileAvatar(user_id, avatarLocalFileName, avatarLocalFile) {
     return function(dispatch) {
-        return profileApi.updateProfileAvatar(user_id, avatarLocalFileName, avatarLocalFile)
+        profileApi.updateProfileAvatar(user_id, avatarLocalFileName, avatarLocalFile)
             .then(profile => {
                 dispatch(updateProfileSuccess(profile));
             }).catch(error => {

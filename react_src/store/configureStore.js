@@ -19,13 +19,10 @@ export default function configureStore(initialState) {
 
 
 
-    // let store = createStore(
-    //     rootReducer,
-    //     initialState,
-    //     compose(
-    //         applyMiddleware(thunk, reduxImmutableStateInvariant()),
-    //         autoRehydrate()     // re-hydrates the store from localStorage after page refresh
-    //     )
-    // );
+   // return createStore(
+   //     rootReducer,
+   //     initialState,
+   //     applyMiddleware(thunk, reduxImmutableStateInvariant())
+   // );
 
 }

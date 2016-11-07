@@ -9,7 +9,6 @@ class ProfilePage extends React.Component {
 
     constructor(props, context) {
         super(props, context);
-        console.log("Constructing ProfilePage component");
         this.state = {
             profile: props.profile
         };
@@ -17,10 +16,6 @@ class ProfilePage extends React.Component {
 
    componentWillReceiveProps(nextProps)
    {
-      console.log("componentWillReceiveProps");
-      //debugger;
-
-      //debugger;
       if (nextProps.profile !== this.state.profile)
       {
          this.setState({profile: nextProps.profile});
@@ -28,9 +23,6 @@ class ProfilePage extends React.Component {
    }
 
     render() {
-
-        console.log("ProfilePage: rendering");
-
         const {profile} = this.state;
 
         return (

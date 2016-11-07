@@ -9,7 +9,6 @@ function mapActionToProfile(action) {
     let {address} = user_metadata || {};
     let {app_metadata} = profile;
 
-    //debugger;
 
     // Project data into the correct shape
     return{
@@ -38,7 +37,7 @@ export default function profileReducer(profile = initialState.profile, action) {
     switch (action.type) {
 
         case types.UPDATE_PROFILE_SUCCESS: {
-            console.log("profile reducer: UPDATE_PROFILE_SUCCESS");
+            //console.log("profile reducer: UPDATE_PROFILE_SUCCESS");
             return mapActionToProfile(action);
         }
 

@@ -2,6 +2,7 @@ import {EventEmitter} from 'events';
 import {isTokenExpired} from './jwtHelper';
 import Auth0Lock from 'auth0-lock';
 import {browserHistory} from 'react-router';
+import * as CONSTANTS from './constants';
 // Polyfills
 import 'babel-polyfill';
 import 'whatwg-fetch';
@@ -84,9 +85,9 @@ export default class AuthService extends EventEmitter {
 
     logout() {
         // Clear user token and profile data from localStorage
-        localStorage.removeItem('id_token');
-        localStorage.removeItem('profile');
-        localStorage.removeItem('user_id');
+        localStorage.removeItem(CONSTANTS.ID_TOKEN_KEY);
+        localStorage.removeItem(CONSTANTS.PROFILE_KEY);
+        localStorage.removeItem(CONSTANTS.USER_ID_KEY);
 
         this.emit('user_logout');
 
@@ -99,10 +100,7 @@ export default class AuthService extends EventEmitter {
         const token = this.getToken();
         // if (!token)
         //     console.log("AuthService.loggedIn(): No token found!");
-        // else if (isTokenExpired(token))
-        //     console.log("AuthService.loggedIn(): token is expired!");
-        // else
-        //     console.log("AuthService.loggedIn(): token is VALID");
+
 
         return !!token && !isTokenExpired(token);
     }
@@ -132,20 +130,18 @@ export default class AuthService extends EventEmitter {
         //this.validateProfile(profile);
 
         // Save profile data and user_id to localStorage
-        let jsProfile = JSON.stringify(profile);
-        localStorage.setItem('profile', jsProfile);
-        //localStorage.setItem('user_id', jsProfile.user_id); // redundant; for convenience only
+        let profileString = JSON.stringify(profile);
+        localStorage.setItem(CONSTANTS.PROFILE_KEY, profileString);
+        localStorage.setItem(CONSTANTS.USER_ID_KEY, profile.user_id);
 
         // Triggers profile_updated event to update the UI
         this.emit('profile_updated', profile);
     }
 
     getProfile() {
-        //console.log("Calling getProfile");
-
         // Retrieves the profile data from localStorage
-        const profile = localStorage.getItem('profile');
-        return profile ? JSON.parse(localStorage.profile) : {};
+        const profile = localStorage.getItem(CONSTANTS.PROFILE_KEY);
+        return profile ? JSON.parse(profile) : {};
     }
 
     updateProfile(data) {
@@ -156,9 +152,9 @@ export default class AuthService extends EventEmitter {
         };
 
         const body = JSON.stringify(data);
-        const userId = localStorage.getItem("user_id");
+        const userId = localStorage.getItem(CONSTANTS.USER_ID_KEY);
 
-        // making the PATCH http request to auth0 api, which returns a Promise
+        // make the PATCH http request to Auth0 api, which returns a Promise
         return fetch(`https://${this.domain}/api/v2/users/${userId}`, {
             method: 'PATCH',
             headers: headers,
@@ -178,15 +174,13 @@ export default class AuthService extends EventEmitter {
     }
 
     setToken(idToken) {
-        //debugger;
         // Saves user token to localStorage
-        localStorage.setItem('id_token', idToken);
+        localStorage.setItem(CONSTANTS.ID_TOKEN_KEY, idToken);
     }
 
     getToken() {
-        //debugger;
         // Retrieves the user token from localStorage
-        return localStorage.getItem('id_token');
+        return localStorage.getItem(CONSTANTS.ID_TOKEN_KEY);
     }
 
     checkStatus(response) {

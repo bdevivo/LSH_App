@@ -1,6 +1,6 @@
 import React, { PropTypes as T } from 'react';
 import {ListGroup, ListGroupItem} from 'react-bootstrap';
-import AuthService from '../../utils/AuthService';
+import AuthService from '../../auth_utils/AuthService';
 //import styles from './styles.module.css';
 
 class Messages extends React.Component {

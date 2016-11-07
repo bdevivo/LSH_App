@@ -1,4 +1,4 @@
-import {auth} from '../auth';
+import {auth} from '../auth_utils/auth';
 import AWS from 'aws-sdk';
 const pathParse = require('path-parse');
 
@@ -11,20 +11,6 @@ const avatarUrlRoot = 'https://s3.amazonaws.com';
 
 
 export default class ProfileApi {
-
-
-    static setProfileAsync(newProfile) {
-        return new Promise(function (resolve, reject) {
-            if (!newProfile.error) {
-                auth.setProfile(newProfile);   //update current profile in local storage
-                resolve(newProfile);
-            }
-            else {
-                console.log(`Error updating profile! error: ${newProfile.error} | error code: ${newProfile.errorCode} | error message: ${newProfile.message}`);
-                reject();
-            }
-        });
-    }
 
     static getProfile() {
         return auth.getProfile();
@@ -40,7 +26,14 @@ export default class ProfileApi {
         })
         .then(response => response.json())
         .then(newProfile => {
-            return ProfileApi.setProfileAsync(newProfile);
+            if (newProfile.error) {
+                console.log("ProfileApi.updateProfileUserName error: " + newProfile.error);
+            }
+            else {
+                auth.setProfile(newProfile);   //update current profile in local storage, and emit an event
+            }
+        }, (error) => {
+            console.log("ProfileApi.updateProfileUserName error: " + error);
         });
     }
 
@@ -57,10 +50,7 @@ export default class ProfileApi {
                 }
             }
         })
-        .then(response => response.json())
-        .then(newProfile => {
-            return ProfileApi.setProfileAsync(newProfile);
-        });
+        .then(response => response.json());
     }
 
     static updateProfileAvatar(user_id, avatarLocalFileName, avatarLocalFile)  // avatarLocalFile is a File object
@@ -129,50 +119,17 @@ export default class ProfileApi {
             .catch((err) => {
                 console.log(err);
             })
-            .then(response => response.json())
-            .then(newProfile => {
-                return ProfileApi.setProfileAsync(newProfile);
-            });
-
-
-            //debugger;
-            // reader.onload = function() {
-            //     let params = {Bucket: avatarStorageBucketName, Key: imgPath, Body: reader.result};
-            //     s3.putObject(params, function (err, data) {
-            //         if (err)
-            //             console.log(err);
-            //
-            //         else {
-            //             console.log("Successfully uploaded data to " + avatarStorageBucketName + "/" + imgPath);
-            //
-            //             // update the profile with the new Avatar URL
-            //             let rndQueryStr = '?random=' + new Date().getTime();    // required in order to fetch updated image with unchanged URL without refreshing the page
-            //             let avatarUrl = `${avatarUrlRoot}/${avatarStorageBucketName}/${imgPath}${rndQueryStr}`;
-            //             auth.updateProfile(user_id, {
-            //                 user_metadata: {
-            //                     profilePicture: avatarUrl
-            //                 }
-            //             })
-            //             .then(response => response.json())
-            //             .then(newProfile => {
-            //                 return setProfileAsync(newProfile);
-            //             });
-            //         }
-            //     });
-            // };
-            // reader.readAsArrayBuffer(avatarLocalFile);
+            .then(response => response.json());
         });
     }
 
     static isAdmin()
     {
-        debugger;
         return auth.isAdmin();
     }
 
     static isBuyer()
     {
-        debugger;
         return auth.hasRole('buyer');
     }
 

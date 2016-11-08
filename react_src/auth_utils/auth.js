@@ -30,7 +30,14 @@ export const updateProfileUserName = (first, middle, last) =>
         });
 };
 
-
+export const updateProfileAvatar = (avatarUrl) =>
+{
+    return auth.updateProfile({
+        user_metadata: {
+            profilePicture: avatarUrl
+        }
+    });
+};
 
 
 

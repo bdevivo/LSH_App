@@ -43,15 +43,15 @@ export function updateProfile(profile) {
 //     };
 // }
 
-export function updateProfileAvatar(user_id, avatarLocalFileName, avatarLocalFile) {
-    return function(dispatch) {
-        profileApi.updateProfileAvatar(user_id, avatarLocalFileName, avatarLocalFile)
-            .then(profile => {
-                dispatch(updateProfileSuccess(profile));
-            }).catch(error => {
-                throw(error);   // TODO: add real error handler action
-            });
-    };
-}
+// export function updateProfileAvatar(user_id, avatarLocalFileName, avatarLocalFile) {
+//     return function(dispatch) {
+//         profileApi.updateProfileAvatar(user_id, avatarLocalFileName, avatarLocalFile)
+//             .then(profile => {
+//                 dispatch(updateProfileSuccess(profile));
+//             }).catch(error => {
+//                 throw(error);   // TODO: add real error handler action
+//             });
+//     };
+// }
 
 

@@ -69,7 +69,7 @@ class ProfileEditPage extends React.Component {
         let {first, middle, last} = user_name;
 
         if (avatarLocalFileName) {
-            this.props.actions.updateProfileAvatar(user_id, avatarLocalFileName, localAvatarFile);
+            ProfileApi.updateProfileAvatar(user_id, avatarLocalFileName, localAvatarFile);
             //this.uploadAvatarImage();
             localStorage.removeItem('avatarTempData');
         }
@@ -130,7 +130,7 @@ class ProfileEditPage extends React.Component {
 
     render() {
         const {profile} = this.state;
-        console.log("ProfileEditPage: first = " + profile.user_name.first);
+        //console.log("ProfileEditPage: first = " + profile.user_name.first);
 
         return (
             <div>

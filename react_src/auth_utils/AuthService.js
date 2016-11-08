@@ -132,7 +132,7 @@ export default class AuthService extends EventEmitter {
         // Save profile data and user_id to localStorage
         let profileString = JSON.stringify(profile);
         localStorage.setItem(CONSTANTS.PROFILE_KEY, profileString);
-        localStorage.setItem(CONSTANTS.USER_ID_KEY, profile.user_id);
+        localStorage.setItem(CONSTANTS.USER_ID_KEY,profile.user_id);
 
         // Triggers profile_updated event to update the UI
         this.emit('profile_updated', profile);
@@ -155,22 +155,22 @@ export default class AuthService extends EventEmitter {
         const userId = localStorage.getItem(CONSTANTS.USER_ID_KEY);
 
         // make the PATCH http request to Auth0 api, which returns a Promise
-        return fetch(`https://${this.domain}/api/v2/users/${userId}`, {
+        fetch(`https://${this.domain}/api/v2/users/${userId}`, {    // return fetch(`https://${this.domain}/api/v2/users/${userId}`, {
             method: 'PATCH',
             headers: headers,
             body: body
+        })
+        .then(response => response.json())
+        .then(newProfile =>
+        {
+           if (!newProfile.error) {
+               this.setProfile(newProfile);   //update current local profile
+              console.log("Updated profile: " + body);
+           }
+           else {
+              console.log(`Error updating profile! error: ${newProfile.error} | error code: ${newProfile.errorCode} | error message: ${newProfile.message}`);
+           }
         });
-        // .then(response => response.json())
-        // .then(newProfile =>
-        // {
-        //    if (!newProfile.error) {
-        //        this.setProfile(newProfile);   //update current local profile
-        //       console.log("Updated profile: " + body);
-        //    }
-        //    else {
-        //       console.log(`Error updating profile! error: ${newProfile.error} | error code: ${newProfile.errorCode} | error message: ${newProfile.message}`);
-        //    }
-        // });
     }
 
     setToken(idToken) {

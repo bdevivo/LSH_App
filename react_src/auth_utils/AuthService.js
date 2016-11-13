@@ -98,37 +98,10 @@ export default class AuthService extends EventEmitter {
     loggedIn() {
         // Checks if there is a saved token and it's still valid
         const token = this.getToken();
-        // if (!token)
-        //     console.log("AuthService.loggedIn(): No token found!");
-
-
         return !!token && !isTokenExpired(token);
     }
 
-    validateProfile(profile) {
-        //console.log("Calling validateProfile");
-
-        // make sure all fields are present
-        let {user_metadata} = profile;
-
-        user_metadata.firstName = user_metadata.firstName || '';
-        user_metadata.lastName = user_metadata.lastName || '';
-
-        user_metadata.address = user_metadata.address || {};
-        let {address} = user_metadata;
-        address.street1 = address.street1 || '';
-        address.street2 = address.street2 || '';
-        address.city = address.city || '';
-        address.state = address.state || '';
-        address.zip = address.zip || '';
-        address.country = address.country || '';
-
-    }
-
     setProfile(profile) {
-
-        //this.validateProfile(profile);
-
         // Save profile data and user_id to localStorage
         let profileString = JSON.stringify(profile);
         localStorage.setItem(CONSTANTS.PROFILE_KEY, profileString);
@@ -165,7 +138,6 @@ export default class AuthService extends EventEmitter {
         {
            if (!newProfile.error) {
                this.setProfile(newProfile);   //update current local profile
-              console.log("Updated profile: " + body);
            }
            else {
               console.log(`Error updating profile! error: ${newProfile.error} | error code: ${newProfile.errorCode} | error message: ${newProfile.message}`);

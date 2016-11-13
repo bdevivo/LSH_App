@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import {Image} from 'react-bootstrap';
 import CSSModules from 'react-css-modules';
-import styles from './ProfilePage.css';
+import styles from './Account.css';
 
 const AvatarImg = ({storageKey, url, avatarTimestamp}) => {
 

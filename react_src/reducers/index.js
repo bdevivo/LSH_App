@@ -3,12 +3,14 @@ import {combineReducers} from 'redux';
 import questions from './questionWizardReducer';
 import profile from './profileReducer';
 import auth from './authReducer';
+import ui from './uiReducer';
 
 const rootReducer = combineReducers( {
     // using shorthand property names
     questions,
     profile,
-    auth
+    auth,
+    ui
 });
 
 export default rootReducer;

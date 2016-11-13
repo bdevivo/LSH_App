@@ -10,6 +10,7 @@ import HeaderUserName from './HeaderUserName';
 import HeaderLoginContainer from './HeaderLoginContainer';
 import AuthApi from '../../api/authApi';
 import * as Auth from '../../auth_utils/auth';
+import {Row, Col} from 'react-bootstrap';
 
 // import LoadingDots from './LoadingDots';
 
@@ -54,10 +55,19 @@ class Header extends React.Component {
         return (
             <header styleName="nav">
                 <nav>
-                    <HeaderCenterNav isLoggedIn={isLoggedIn} isAdmin={isAdmin} isBuyer={isBuyer}/>
-                    <HeaderUserName user_name={user_name} email={email} isLoggedIn={isLoggedIn}/>
-                    <HeaderLoginContainer isLoggedIn={isLoggedIn} authActions={this.props.authActions} profileActions={this.props.profileActions} />
+                    <Row>
+                        <Col md={6} mdOffset={3}>
+                            <HeaderCenterNav isLoggedIn={isLoggedIn} isAdmin={isAdmin} isBuyer={isBuyer}/>
+                        </Col>
+                        <Col md={2}>
+                            <HeaderUserName user_name={user_name} email={email} isLoggedIn={isLoggedIn}/>
+                        </Col>
+                        <Col md={1}>
+                            <HeaderLoginContainer isLoggedIn={isLoggedIn} authActions={this.props.authActions} profileActions={this.props.profileActions} />
+                        </Col>
+                    </Row>
                 </nav>
+
             </header>
         );
     }

@@ -22,10 +22,30 @@ export default
             country: '',
             zip: ''
         },
+        education: [],
         avatarUrl: '',
         roles: []
+    },
+    ui: {
+        in_profile_edit_mode: false,
+        profile_section: 'account',
+        profile_section_name: 'Account'
     }
 };
+
+
+// NOT EXPORTED -- JUST HERE FOR REFERENCE
+
+const educationFormat = {
+        id: 0,
+        school: '',
+        fromYear: '',
+        toYear: '',
+        degree: '',
+        fieldsOfStudy: '',
+        description: '',
+        gpa: ''
+    };
 
 
 

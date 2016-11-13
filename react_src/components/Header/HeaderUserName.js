@@ -16,7 +16,7 @@ const HeaderUserName = ({user_name, email, isLoggedIn}) => {
         }
 
         userDiv = (<div className="hidden-sm hidden-xs" styleName="navRight">
-            <Link to="/profile">{userName}</Link>
+            <Link to="/profile/account">{userName}</Link>
         </div>);
     }
 

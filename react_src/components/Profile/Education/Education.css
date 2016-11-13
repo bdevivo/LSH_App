@@ -1,0 +1,31 @@
+.root {
+    composes: root from "../ProfilePage.css";
+}
+
+.userProfile {
+    composes: userProfile from "../ProfilePage.css";
+}
+
+.subheader {
+    composes: subheader from "../ProfilePage.css";
+}
+
+.submitButton {
+    composes: submitButton from "../ProfilePage.css";
+}
+
+.select{
+    composes: select from "../ProfilePage.css";
+}
+
+.placeholder {
+    composes: placeholder from "../ProfilePage.css";
+}
+
+.showError {
+    composes: showError from "../ProfilePage.css";
+}
+
+.hideError {
+    composes: hideError from "../ProfilePage.css";
+}

@@ -6,18 +6,18 @@ import thunk from 'redux-thunk';
 import {persistStore, autoRehydrate} from 'redux-persist';
 
 export default function configureStore(initialState) {
-   console.log("Creating new store...");
-
 
    let store = compose(
       applyMiddleware(thunk, reduxImmutableStateInvariant()),
       autoRehydrate()
    )(createStore)(rootReducer);
 
-   persistStore(store);
+   const config = {
+       blacklist: ['ui']
+   };
+
+   persistStore(store, config);
    return store;
-
-
 
    // return createStore(
    //     rootReducer,

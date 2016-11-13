@@ -6,10 +6,14 @@
     padding-top: 20px;
 }
 
+.navCenter {
+    display: inline-block;
+}
+
 .navRight {
-    display:inline-block;
-    float:right;
-    padding-right:50px;
+    display: inline-block;
+    /*float: right;*/
+    /*padding-right: 50px;*/
 }
 
 .link {

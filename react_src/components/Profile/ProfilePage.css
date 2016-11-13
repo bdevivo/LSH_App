@@ -8,14 +8,13 @@
     margin-top:40px;
 }
 
+.profileSection {
+    margin-top: 50px;
+}
+
 .subheader {
     text-align: left;
     margin-bottom:20px;
-}
-
-.avatar {
-   height: 74px;
-   width: 74px;
 }
 
 .submitButton {
@@ -26,8 +25,36 @@
     text-align: left;
 }
 
-.fileUploadCol {
+.leftNavCol {
+    margin-top: 100px;
+}
+
+.leftNavLink {
+    font-size: 12pt;
+    margin-top:20px;
+    margin-bottom: 20px;
+    height: 40px;
+    width: 100px;
+    padding: 11px 5px 10px 5px;
+}
+
+.leftNavLinkActive {
+    composes: leftNavLink;
+    background-color: skyblue;
+}
+
+.rightCol {
     margin-top: 20px;
 }
 
+.placeholder {
+    font-style: italic;
+}
 
+.showError {
+    display: inline;
+}
+
+.hideError {
+    display: none;
+}

@@ -50,25 +50,24 @@ const HeaderCenterNav = ({isLoggedIn, isAdmin, isBuyer}) => {
         }
 
         centerNav = (
-            <span>
+            <div styleName="navCenter">
                 {adminNav}
                 {rootNav}
-            </span>
+            </div>
         );
 
     }
     else // not logged in
     {
         centerNav = (
-            <span>
+            <div styleName="navCenter">
                 <Link to="/dummy" >Browse Talent (not logged in)</Link>
                 {" | "}
                 <Link to="/dummy" >Learn More</Link>
-            </span>
+            </div>
         );
     }
 
-//debugger;
     return centerNav;
 };
 
@@ -78,5 +77,5 @@ HeaderCenterNav.propTypes = {
     isBuyer: PropTypes.bool.isRequired
 };
 
-//export default CSSModules(HeaderCenterNav, styles);
-export default HeaderCenterNav;
+export default CSSModules(HeaderCenterNav, styles);
+//export default HeaderCenterNav;

@@ -1,6 +1,10 @@
 /* Styles */
 
 
+.container-fluid{
+    max-width: 1970px !important;
+}
+
 .overlay {
    position: absolute;
    width: 100%;

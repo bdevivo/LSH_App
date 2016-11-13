@@ -38,8 +38,7 @@ export default class ProfileApi {
                     zip: address.zip
                 }
             }
-        })
-        .then(response => response.json());
+        });
     }
 
     static updateProfileAvatar(user_id, avatarLocalFileName, avatarLocalFile)  // avatarLocalFile is a File object

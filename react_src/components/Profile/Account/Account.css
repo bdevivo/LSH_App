@@ -1,0 +1,24 @@
+.root {
+    composes: root from "../ProfilePage.css";
+}
+
+.userProfile {
+    composes: userProfile from "../ProfilePage.css";
+}
+
+.subheader {
+    composes: subheader from "../ProfilePage.css";
+}
+
+.submitButton {
+    composes: submitButton from "../ProfilePage.css";
+}
+
+.avatar {
+    height: 74px;
+    width: 74px;
+}
+
+.fileUploadCol {
+    margin-top: 20px;
+}

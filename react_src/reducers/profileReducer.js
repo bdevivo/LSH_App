@@ -1,6 +1,6 @@
 import * as types from '../actions/actionTypes';
 import initialState from '../store/initialState';
-//import  Immutable from 'immutable';
+import update from 'immutability-helper';
 
 function mapActionToProfile(action) {
 
@@ -57,8 +57,14 @@ export default function profileReducer(profile = initialState.profile, action) {
 
         case types.UPDATE_PROFILE_EDUCATION_SUCCESS: {
             let oldEduIndex = profile.education.findIndex((x) => x.id == action.education.id);
-            if (oldEduIndex) {
-                return profile.education.splice(oldEduIndex, 1, action.education);
+            if (oldEduIndex > -1) {
+                //return profile.education.splice(oldEduIndex, 1, action.education);
+               let updatedProfile = update(profile,
+                  {
+                     education: {$splice: [[oldEduIndex, 1, action.education]]}
+                  });
+
+               return updatedProfile;
             }
             else {
                 return profile;

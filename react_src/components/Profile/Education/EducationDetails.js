@@ -7,45 +7,20 @@ import styles from './Education.css';
 const EducationDetails = ({educationRecord, enterEducationEditMode}) => {
 
     return (
-        <div>
-            <Row styleName="userProfile">
-                <Col md={12}>
-                    <strong>{educationRecord.school}</strong>
-                </Col>
-            </Row>
-
-            <Row styleName="userProfile">
-                <Col md={12}>
-                    <p>{educationRecord.degree}</p>
-                </Col>
-            </Row>
-
-            <Row styleName="userProfile">
-                <Col md={12}>
-                    <p>{educationRecord.fromYear}{'-'}{educationRecord.toYear}</p>
-                </Col>
-            </Row>
-
-            <Row styleName="userProfile">
-                <Col md={12}>
-                    <p>{educationRecord.fieldsOfStudy}</p>
-                </Col>
-            </Row>
-
-            <Row styleName="userProfile">
-                <Col md={12}>
-                    <p>{educationRecord.gpa}</p>
-                </Col>
-            </Row>
-
-            <Row styleName="userProfile">
-                <Col md={12}>
-                    <p>{educationRecord.description}</p>
-                </Col>
-            </Row>
-
+        <div styleName="profileDiv">
             <Row>
-                <a href="#" onClick={() => enterEducationEditMode(educationRecord.id)}>Edit</a>
+                <Col md={6} mdOffset={1}>
+                    <p><strong>{educationRecord.school}</strong></p>
+                   <p>{educationRecord.degree}</p>
+                   <p>{educationRecord.fromYear}{'-'}{educationRecord.toYear}</p>
+                   <p><span>GPA: </span>{educationRecord.gpa}</p>
+                   <p><span>Field(s) of study: </span>{educationRecord.fieldsOfStudy}</p>
+                   <p><span>Description: </span>{educationRecord.description}</p>
+                </Col>
+
+               <Col md={1}>
+                  <a href="#" onClick={() => enterEducationEditMode(educationRecord.id)}>Edit</a>
+               </Col>
             </Row>
         </div>
     );

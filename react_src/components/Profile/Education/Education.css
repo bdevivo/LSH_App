@@ -6,6 +6,12 @@
     composes: userProfile from "../ProfilePage.css";
 }
 
+.profileDiv {
+   background-color: white;
+   padding-top: 15px;
+   margin-bottom: 30px;
+}
+
 .subheader {
     composes: subheader from "../ProfilePage.css";
 }
@@ -48,4 +54,8 @@
     width: 285px !important;
     margin-left: 35px !important;
     margin-bottom: 30px !important;
+}
+
+.addButtonRow {
+   margin-top: 25px;
 }

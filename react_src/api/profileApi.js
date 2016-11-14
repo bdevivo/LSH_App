@@ -51,6 +51,7 @@ export default class ProfileApi {
     static addProfileEducation(education) {
         // TODO: call Mongo and add new edu record
         return new Promise((resolve, reject) => {
+           education.id = Math.floor((Math.random() * 100) + 1);  // for now, just assign random int btw 1 and 100
             resolve(education);
         });
     }

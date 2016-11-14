@@ -41,6 +41,20 @@ export default class ProfileApi {
         });
     }
 
+    static updateProfileEducation(education) {
+        // TODO: call Mongo and update edu record
+        return new Promise((resolve, reject) => {
+            resolve(education);
+        });
+    }
+
+    static addProfileEducation(education) {
+        // TODO: call Mongo and add new edu record
+        return new Promise((resolve, reject) => {
+            resolve(education);
+        });
+    }
+
     static updateProfileAvatar(user_id, avatarLocalFileName, avatarLocalFile)  // avatarLocalFile is a File object
     {
         let pathObj = pathParse(avatarLocalFileName);
@@ -132,11 +146,6 @@ export default class ProfileApi {
     static isAdmin()
     {
         return auth.isAdmin();
-    }
-
-    static isBuyer()
-    {
-        return auth.hasRole('buyer');
     }
 
     static hasRole(roleName)

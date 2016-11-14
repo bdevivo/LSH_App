@@ -12,7 +12,9 @@ class EducationContainer extends React.Component {
             currentEduRecord: {},
             currentEduRecordId: 0,
             validationState: {
-                school: true
+                school: true,
+                degree: true,
+                fromYear: true
             }
         };
 
@@ -29,27 +31,47 @@ class EducationContainer extends React.Component {
 
     componentWillReceiveProps(nextProps)
     {
-        if (nextProps.profile !== this.state.profile)
+        if (nextProps.profile.education !== this.state.educationRecords)
         {
-            this.setState({profile: nextProps.profile});
+            this.setState({educationRecords: nextProps.profile.education});
         }
     }
 
     handleSubmit(e) {
         e.preventDefault();
+        let isValid = true;
+        let newValidationState = {};
+        let updateObj = {};
 
         if (this.state.currentEduRecord.school.length == 0)
         {
-            let newValidationState = update(this.state.validationState,
-                {
-                    school: {$set: false}
-                }
-            );
-            this.setState({validationState: newValidationState});
+            updateObj.school = {$set: false};
+            isValid = false;
+        }
+        if (this.state.currentEduRecord.degree.length == 0)
+        {
+            updateObj.degree = {$set: false};
+            isValid = false;
+        }
+        if (this.state.currentEduRecord.fromYear == 0)
+        {
+            updateObj.fromYear = {$set: false};
+            isValid = false;
+        }
 
+        if (isValid) {
+            if (this.state.currentEduRecord.id == 0) {
+                this.props.profileActions.addProfileEducation(this.state.currentEduRecord);
+            }
+            else {
+                this.props.profileActions.updateProfileEducation(this.state.currentEduRecord);
+            }
+
+            this.props.profileEditFuncs.exitProfileEditMode();
         }
         else {
-            ProfileApi.updateProfileAddress(this.state.profile.address);
+            newValidationState = update(this.state.validationState, updateObj);
+            this.setState({validationState: newValidationState});
         }
 
     }
@@ -78,6 +100,15 @@ class EducationContainer extends React.Component {
 
     handleCancel()
     {
+        // re-set validation states
+        let newValidationState = update(this.state.validationState,
+            {
+                school: {$set: true},
+                degree: {$set: true},
+                fromYear: {$set: true}
+            });
+        this.setState({validationState: newValidationState});
+
         this.props.profileEditFuncs.exitProfileEditMode();
     }
 
@@ -88,8 +119,8 @@ class EducationContainer extends React.Component {
                         : { // create  new, blank record
                             id: 0,
                             school: '',
-                            fromYear: '',
-                            toYear: '',
+                            fromYear: 0,
+                            toYear: 0,
                             degree: '',
                             fieldsOfStudy: '',
                             description: '',

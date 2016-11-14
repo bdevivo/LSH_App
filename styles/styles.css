@@ -1,6 +1,11 @@
 /* Styles */
 
 
+.has-success .form-control {
+   border-color: blue !important;
+}
+
+
 .container-fluid{
     max-width: 1970px !important;
 }

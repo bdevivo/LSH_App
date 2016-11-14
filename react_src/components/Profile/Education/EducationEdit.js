@@ -29,18 +29,19 @@ const EducationEdit = ({educationRecord, handleSubmit, handleCancel, updateProfi
     }
 
     function getValidationState(field, value) {
-        //const length = source.value.length;
-        // const length = 10;
-        // if (length > 10) return 'success';
-        // else if (length > 5) return 'warning';
-        // else if (length > 0) return 'error';
-
         if (value.length > 0)
             return 'success';
         else if (!validationState[field])
             return 'error';
         else
             return 'success';
+    }
+
+    function getValidationStateSelect(field, value) {
+        if (value > 0)
+            return 'success';
+        else
+            return 'error';
     }
 
     function createValidationStyleName(field, value) {
@@ -62,45 +63,76 @@ const EducationEdit = ({educationRecord, handleSubmit, handleCancel, updateProfi
                             School
                         </Col>
                         <Col sm={right_col_wd}>
-                            <FormControl type="text" name="school"
+                            <FormControl styleName="formInput"
+                                         type="text"
+                                         name="school"
                                          defaultValue={educationRecord.school}
                                          onChange={updateProfileEducationField} />
-                            {/*<span styleName={createValidationStyleName('school')}>Please enter school name</span>*/}
                             <FormControl.Feedback styleName={createValidationStyleName('school')} />
-
                         </Col>
                         <HelpBlock styleName={createValidationStyleName('school', educationRecord.school)}>Please enter school name</HelpBlock>
-
                     </FormGroup>
 
-                    <FormGroup>
+                    <FormGroup validationState={getValidationState('degree', educationRecord.degree)}>
                         <Col componentClass={ControlLabel} sm={left_col_wd}>
                             Degree
                         </Col>
                         <Col sm={right_col_wd}>
-                            <FormControl type="text" name="degree" defaultValue={educationRecord.degree} onChange={updateProfileEducationField} />
+                            <FormControl  styleName="formInput"
+                                          type="text"
+                                          name="degree"
+                                          defaultValue={educationRecord.degree}
+                                          onChange={updateProfileEducationField} />
+                            <FormControl.Feedback styleName={createValidationStyleName('degree')} />
                         </Col>
+                        <HelpBlock styleName={createValidationStyleName('degree', educationRecord.degree)}>Please enter degree obtained or expected</HelpBlock>
                     </FormGroup>
 
-                    <FormGroup>
-                        <Col sm={left_col_wd}>
-                            <ControlLabel>Start Year</ControlLabel>
-                        </Col>
-                        <Col sm={right_col_short_wd}>
-                            <FormControl componentClass="select" placeholder="select" name="fromYear" defaultValue={educationRecord.fromYear} onChange={updateProfileEducationField}>
-                                {startYearOptions}
-                            </FormControl>
-                        </Col>
+                </Form>
 
-                        <Col componentClass={ControlLabel} sm={left_col_wd}>
-                            <ControlLabel>End Year</ControlLabel>
-                        </Col>
-                        <Col sm={right_col_short_wd}>
-                            <FormControl componentClass="select" placeholder="select" name="endYear" defaultValue={educationRecord.toYear} onChange={updateProfileEducationField}>
-                                {endYearOptions}
-                            </FormControl>
-                        </Col>
+                <Form inline styleName="formInline">
+
+                    <FormGroup styleName="formGroupInline"
+                               validationState={getValidationStateSelect('fromYear', educationRecord.fromYear)} >
+                        <ControlLabel>Start Year</ControlLabel>
+                        {' '}
+                        <FormControl styleName="formInputSelect"
+                            componentClass="select"
+                            placeholder="select"
+                            name="fromYear"
+                            defaultValue={educationRecord.fromYear}
+                            onChange={updateProfileEducationField}>
+                            {startYearOptions}
+                        </FormControl>
+
+                        <FormControl.Feedback styleName={createValidationStyleName('fromYear')} />
+
                     </FormGroup>
+
+
+
+                    <FormGroup styleName="formGroupInline"
+                               validationState="success">
+                        <ControlLabel>End Year</ControlLabel>
+                        {'  '}
+                        <FormControl styleName="formInputSelect"
+                                     componentClass="select"
+                                     placeholder="select"
+                                     name="endYear"
+                                     defaultValue={educationRecord.toYear}
+                                     onChange={updateProfileEducationField}>
+                            {endYearOptions}
+                        </FormControl>
+                    </FormGroup>
+
+                    <FormGroup styleName="formGroupInline">
+                        <HelpBlock styleName={createValidationStyleName('fromYear', educationRecord.fromYear)}>Please enter year studies began</HelpBlock>
+                    </FormGroup>
+
+
+                </Form>
+
+                <Form horizontal>
 
                     <FormGroup>
                         <Col  sm={left_col_wd}>

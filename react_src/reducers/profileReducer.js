@@ -55,6 +55,22 @@ export default function profileReducer(profile = initialState.profile, action) {
             return {};
         }
 
+        case types.UPDATE_PROFILE_EDUCATION_SUCCESS: {
+            let oldEduIndex = profile.education.findIndex((x) => x.id == action.education.id);
+            if (oldEduIndex) {
+                return profile.education.splice(oldEduIndex, 1, action.education);
+            }
+            else {
+                return profile;
+            }
+        }
+
+        case types.ADD_PROFILE_EDUCATION_SUCCESS: {
+            let newEduList = profile.education.slice();
+            newEduList.push(action.education);
+            return Object.assign({}, profile, {education: newEduList});
+        }
+
         default:
             return profile;
     }

@@ -5,6 +5,14 @@ export function updateProfileSuccess(profile) {
     return { type: types.UPDATE_PROFILE_SUCCESS, profile};
 }
 
+export function updateProfileEducationSuccess(education) {
+    return { type: types.UPDATE_PROFILE_EDUCATION_SUCCESS, education};
+}
+
+export function addProfileEducationSuccess(education) {
+    return { type: types.ADD_PROFILE_EDUCATION_SUCCESS, education};
+}
+
 export function removeProfile() {
    //debugger;
    return { type: types.REMOVE_PROFILE};
@@ -26,6 +34,24 @@ export function getProfile() {
 export function updateProfile(profile) {
     return function(dispatch) {
         dispatch(updateProfileSuccess(profile));
+    };
+}
+
+export function updateProfileEducation(education) {
+    return function(dispatch) {
+        profileApi.updateProfileEducation(education)
+            .then(education => {
+                dispatch(updateProfileEducationSuccess(education));
+            });
+    };
+}
+
+export function addProfileEducation(education) {
+    return function(dispatch) {
+        profileApi.addProfileEducation(education)
+            .then(education => {
+                dispatch(addProfileEducationSuccess(education));
+            });
     };
 }
 

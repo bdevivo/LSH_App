@@ -38,7 +38,7 @@ const ProfilePage = ({profile, profileActions, ui, uiActions, profileEditFuncs, 
                 </Row>
             </Col>
 
-            <Col md={9} mdOffset={0} styleName="rightCol">
+            <Col md={10} mdOffset={0} styleName="rightCol">
                 <Row>
                     <h3>User Profile</h3>
                     {/*<h4 styleName="subheader">{ui.profile_section_name}</h4>*/}

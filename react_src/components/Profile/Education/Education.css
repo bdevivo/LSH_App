@@ -29,3 +29,23 @@
 .hideError {
     composes: hideError from "../ProfilePage.css";
 }
+
+.formInput {
+    border-color: #ccc !important;
+}
+
+.formInputSelect {
+    composes: formInput;
+    width: 150px !important;
+    margin-left: 32px;
+}
+
+.formInline {
+    text-align: left;
+}
+
+.formGroupInline {
+    width: 285px !important;
+    margin-left: 35px !important;
+    margin-bottom: 30px !important;
+}

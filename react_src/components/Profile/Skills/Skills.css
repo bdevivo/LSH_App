@@ -1,0 +1,7 @@
+.root {
+    composes: root from "../ProfilePage.css";
+}
+
+.submitButton {
+    composes: submitButton from "../ProfilePage.css";
+}

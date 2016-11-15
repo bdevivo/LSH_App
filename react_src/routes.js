@@ -7,6 +7,7 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import AccountContainer from './components/Profile/Account/AccountContainer';
 import AddressContainer from './components/Profile/Address/AddressContainer';
 import EducationContainer from './components/Profile/Education/EducationContainer';
+import SkillsContainer from './components/Profile/Skills/SkillsContainer';
 import { auth, requireAuth } from './auth_utils/auth';
 
 //noinspection JSUnresolvedVariable
@@ -29,6 +30,7 @@ export default (
             <Route path="account" component={AccountContainer} onEnter={requireAuth} />
             <Route path="address" component={AddressContainer} onEnter={requireAuth} />
             <Route path="education" component={EducationContainer} onEnter={requireAuth} />
+            <Route path="skills" component={SkillsContainer} onEnter={requireAuth} />
         </Route>
         <Route path="questionwizard" component={QuestionPage} />
    </Route>

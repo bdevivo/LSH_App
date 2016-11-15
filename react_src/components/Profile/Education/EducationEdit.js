@@ -118,7 +118,7 @@ const EducationEdit = ({educationRecord, handleSubmit, handleCancel, updateProfi
                         <FormControl styleName="formInputSelect"
                                      componentClass="select"
                                      placeholder="select"
-                                     name="endYear"
+                                     name="toYear"
                                      defaultValue={educationRecord.toYear}
                                      onChange={updateProfileEducationField}>
                             {endYearOptions}
@@ -139,7 +139,7 @@ const EducationEdit = ({educationRecord, handleSubmit, handleCancel, updateProfi
                             <ControlLabel>Grade/GPA</ControlLabel>
                         </Col>
                         <Col sm={right_col_wd}>
-                            <FormControl type="text" name="degree" defaultValue={educationRecord.gpa} onChange={updateProfileEducationField} />
+                            <FormControl type="text" name="gpa" defaultValue={educationRecord.gpa} onChange={updateProfileEducationField} />
                         </Col>
                     </FormGroup>
 

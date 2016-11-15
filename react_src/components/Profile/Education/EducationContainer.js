@@ -1,5 +1,4 @@
 import React, {PropTypes} from 'react';
-import ProfileApi from '../../../api/profileApi';
 import EducationList from './EducationList';
 import EducationEdit from './EducationEdit';
 import update from 'immutability-helper';
@@ -115,7 +114,7 @@ class EducationContainer extends React.Component {
     enterEducationEditMode(eduId)
     {
         let currentEdu = (eduId > 0   // eduId == 0 is a signal to add a new education record
-                        ? this.state.educationRecords.find(edu => edu.id == this.state.currentEduRecordId)
+                        ? this.state.educationRecords.find(edu => edu.id == eduId)
                         : { // create  new, blank record
                             id: 0,
                             school: '',
@@ -146,6 +145,8 @@ class EducationContainer extends React.Component {
 
     render() {
 
+       let eduRecords = this.state.educationRecords || [];
+
         return (
             <div>
                 {this.props.ui.in_profile_edit_mode
@@ -157,7 +158,7 @@ class EducationContainer extends React.Component {
                             validationState={this.state.validationState}
                         />)
                     : (<EducationList
-                            educationRecords={this.state.educationRecords}
+                            educationRecords={eduRecords}
                             enterEducationEditMode={this.enterEducationEditMode}
                         />)
                 }

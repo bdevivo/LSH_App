@@ -1,11 +1,10 @@
 import React, {PropTypes} from 'react';
-import { Link } from 'react-router';
-import {Row, Col, Image} from 'react-bootstrap';
+import {Row, Col, Image, Button} from 'react-bootstrap';
 import CSSModules from 'react-css-modules';
 import styles from './Account.css';
 
 
-const AccountDetails = ({profile, enterProfileEditMode}) => {
+const AccountDetails = ({profile, enterAccountEditMode}) => {
 
     let {avatarUrl} = profile;
     if (!avatarUrl)
@@ -36,7 +35,9 @@ const AccountDetails = ({profile, enterProfileEditMode}) => {
                 <p><strong>Name: </strong> {userName}</p>
                 <p><strong>Email: </strong> {profile.email}</p>
 
-                <a href="#" onClick={enterProfileEditMode}>Edit</a>
+                <Button type="button" className="btn btn-sm btn-default" aria-label="Edit" onClick={enterAccountEditMode}>
+                    <span className="glyphicon glyphicon-pencil"></span>
+                </Button>
             </Col>
         </Row>
     );
@@ -45,7 +46,7 @@ const AccountDetails = ({profile, enterProfileEditMode}) => {
 
 AccountDetails.propTypes = {
     profile: PropTypes.object.isRequired,
-    enterProfileEditMode: PropTypes.func.isRequired
+    enterAccountEditMode: PropTypes.func.isRequired
 };
 
 export default CSSModules(AccountDetails, styles);

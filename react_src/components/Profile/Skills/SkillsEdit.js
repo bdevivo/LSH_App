@@ -2,38 +2,31 @@ import React, {PropTypes as T} from 'react';
 import {Row, Col, Form, FormGroup, FormControl, ControlLabel, Button} from 'react-bootstrap';
 import CSSModules from 'react-css-modules';
 import styles from './Skills.css';
-import 'react-select/dist/react-select.css';
 
 let Select = require('react-select');
 
 
-const SkillsEdit = ({profile, handleSubmit, handleCancel, updateProfileSkills}) => {
+const SkillsEdit = ({skills, handleSubmit, handleCancel, updateProfileSkills}) => {
 
     let options = [
-        { value: 'biostats', label: 'BiosState' },
-        { value: 'csr', label: 'CSR', clearableValue: false }
+        { value: 'biostats', label: 'BiosStats' },
+        { value: 'csr', label: 'CSR' }
     ];
 
     return (
         <Row styleName="root">
 
-            <Col md={12}>
+            <Col md={10}>
 
                 <Form horizontal>
-
-
                     <FormGroup>
                         <Select
                             multi
+                            clearable={false}
                             name="form-field-name"
-
+                            value={skills}
                             options={options}
-                            onChange={updateProfileSkills}
-                        />
-
-
-
-
+                            onChange={updateProfileSkills}/>
                     </FormGroup>
 
 
@@ -55,7 +48,7 @@ const SkillsEdit = ({profile, handleSubmit, handleCancel, updateProfileSkills}) 
 };
 
 SkillsEdit.propTypes = {
-    profile: T.object,
+    skills: T.array,
     handleSubmit: T.func.isRequired,
     handleCancel: T.func.isRequired,
     updateProfileSkills:  T.func.isRequired

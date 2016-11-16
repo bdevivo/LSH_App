@@ -14,12 +14,15 @@ body {
 }
 
 .has-success .form-control {
-   border-color: blue !important;
+   border-color: #ccc !important;
 }
-
 
 .container-fluid{
     max-width: 1970px !important;
+}
+
+.eduModal {
+    width: 800px;
 }
 
 .overlay {

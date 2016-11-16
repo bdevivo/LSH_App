@@ -17,6 +17,11 @@
     margin-bottom:20px;
 }
 
+.inlineHeader {
+    color: #aaaaaa;
+    font-weight: bold;
+}
+
 .submitButton {
     margin-top:50px;
 }

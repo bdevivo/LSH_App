@@ -7,7 +7,6 @@ import {Provider} from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import routes from './routes';
 import {getAllQuestions} from './actions/questionWizardActions';
-import {editProfileOff} from './actions/uiActions';
 import initialState from './store/initialState';
 //import AppProvider from './components/App/AppProvider';
 

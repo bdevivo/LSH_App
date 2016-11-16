@@ -13,6 +13,26 @@ export function addProfileEducationSuccess(education) {
     return { type: types.ADD_PROFILE_EDUCATION_SUCCESS, education};
 }
 
+export function removeProfileEducationSuccess(eduId) {  // TODO: change payload to updated Edu list
+    return { type: types.REMOVE_PROFILE_EDUCATION_SUCCESS, eduId};
+}
+
+export function updateProfileEmploymentSuccess(employment) {
+    return { type: types.UPDATE_PROFILE_EMPLOYMENT_SUCCESS, employment};
+}
+
+export function addProfileEmploymentSuccess(employment) {
+    return { type: types.ADD_PROFILE_EMPLOYMENT_SUCCESS, employment};
+}
+
+export function removeProfileEmploymentSuccess(empId) {  // TODO: change payload to updated Emp list
+    return { type: types.REMOVE_PROFILE_EMPLOYMENT_SUCCESS, empId};
+}
+
+export function updateProfileSkillsSuccess(skills) {
+    return { type: types.UPDATE_PROFILE_SKILLS_SUCCESS, skills};
+}
+
 export function removeProfile() {
    //debugger;
    return { type: types.REMOVE_PROFILE};
@@ -55,29 +75,51 @@ export function addProfileEducation(education) {
     };
 }
 
-// export function updateProfileUserName(first, middle, last) {
-//     return function(dispatch) {
-//         return profileApi.updateProfileUserName(first, middle, last)
-//             .then(profile => {
-//                 if (!profile.error) {
-//                     profileApi.setProfile(profile);   //update current profile in local storage
-//                     return profile;
-//                 }
-//             }).catch(error => {
-//                 throw(error);   // TODO: add real error handler action
-//             });
-//     };
-// }
+export function removeProfileEducation(eduId) {
+    return function(dispatch) {
+        profileApi.removeProfileEducation(eduId)
+            .then(eduId => {
+                dispatch(removeProfileEducationSuccess(eduId));
+            });
+    };
+}
 
-// export function updateProfileAvatar(user_id, avatarLocalFileName, avatarLocalFile) {
-//     return function(dispatch) {
-//         profileApi.updateProfileAvatar(user_id, avatarLocalFileName, avatarLocalFile)
-//             .then(profile => {
-//                 dispatch(updateProfileSuccess(profile));
-//             }).catch(error => {
-//                 throw(error);   // TODO: add real error handler action
-//             });
-//     };
-// }
+export function updateProfileEmployment(employment) {
+    return function(dispatch) {
+        profileApi.updateProfileEmployment(employment)
+            .then(employment => {
+                dispatch(updateProfileEmploymentSuccess(employment));
+            });
+    };
+}
+
+export function addProfileEmployment(employment) {
+    return function(dispatch) {
+        profileApi.addProfileEmployment(employment)
+            .then(employment => {
+                dispatch(addProfileEmploymentSuccess(employment));
+            });
+    };
+}
+
+export function removeProfileEmployment(empId) {
+    return function(dispatch) {
+        profileApi.removeProfileEmployment(empId)
+            .then(empId => {
+                dispatch(removeProfileEmploymentSuccess(empId));
+            });
+    };
+}
+
+export function updateProfileSkills(skills) {
+    return function(dispatch) {
+        profileApi.updateProfileSkills(skills)
+            .then(skills => {
+                dispatch(updateProfileSkillsSuccess(skills));
+            });
+    };
+}
+
+
 
 

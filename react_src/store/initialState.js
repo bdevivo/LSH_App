@@ -23,6 +23,7 @@ export default
             zip: ''
         },
         education: [],
+        employment: [],
         skills: [],
         avatarUrl: '',
         roles: []

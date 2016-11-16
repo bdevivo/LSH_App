@@ -58,13 +58,7 @@ export default function profileReducer(profile = initialState.profile, action) {
         case types.UPDATE_PROFILE_EDUCATION_SUCCESS: {
             let oldEduIndex = profile.education.findIndex((x) => x.id == action.education.id);
             if (oldEduIndex > -1) {
-                //return profile.education.splice(oldEduIndex, 1, action.education);
-               let updatedProfile = update(profile,
-                  {
-                     education: {$splice: [[oldEduIndex, 1, action.education]]}
-                  });
-
-               return updatedProfile;
+               return update(profile, {education: {$splice: [[oldEduIndex, 1, action.education]]}});
             }
             else {
                 return profile;
@@ -72,9 +66,55 @@ export default function profileReducer(profile = initialState.profile, action) {
         }
 
         case types.ADD_PROFILE_EDUCATION_SUCCESS: {
-            let newEduList = profile.education.slice();
-            newEduList.push(action.education);
-            return Object.assign({}, profile, {education: newEduList});
+            // let newEduList = profile.education.slice();
+            // newEduList.push(action.education);
+            // return Object.assign({}, profile, {education: newEduList});
+            return update(profile, {education: {$push: [action.education]}});
+        }
+
+        case types.REMOVE_PROFILE_EDUCATION_SUCCESS: {
+            // TODO: change payload to updated edu list, instead of ID to remove
+            let oldEduIndex = profile.education.findIndex((x) => x.id == action.eduId);
+            if (oldEduIndex > -1) {
+                return update(profile, {education: {$splice: [[oldEduIndex, 1]]}});
+            }
+            else {
+                return profile;
+            }
+
+        }
+
+        case types.UPDATE_PROFILE_EMPLOYMENT_SUCCESS: {
+            let oldEmpIndex = profile.employment.findIndex((x) => x.id == action.employment.id);
+            if (oldEmpIndex > -1) {
+                return update(profile, {employment: {$splice: [[oldEmpIndex, 1, action.employment]]}});
+            }
+            else {
+                return profile;
+            }
+        }
+
+        case types.ADD_PROFILE_EMPLOYMENT_SUCCESS: {
+            // let newEmpList = profile.employment.slice();
+            // newEmpList.push(action.employment);
+            // return Object.assign({}, profile, {education: newEduList});
+            return update(profile, {employment: {$push: [action.employment]}});
+        }
+
+        case types.REMOVE_PROFILE_EMPLOYMENT_SUCCESS: {
+            // TODO: change payload to updated edu list, instead of ID to remove
+            let oldEduIndex = profile.education.findIndex((x) => x.id == action.eduId);
+            if (oldEduIndex > -1) {
+                return update(profile, {education: {$splice: [[oldEduIndex, 1]]}});
+            }
+            else {
+                return profile;
+            }
+
+        }
+
+        case types.UPDATE_PROFILE_SKILLS_SUCCESS: {
+            return update(profile, {skills: {$set: action.skills}});
         }
 
         default:

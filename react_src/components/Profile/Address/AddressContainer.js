@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import {Modal} from 'react-bootstrap';
 import ProfileApi from '../../../api/profileApi';
 import AddressDetails from './AddressDetails';
 import AddressEdit from './AddressEdit';
@@ -8,32 +9,27 @@ class AddressContainer extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            profile: props.profile
+            profile: props.profile,
+            showModal: false,
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
         this.updateProfileAddressField = this.updateProfileAddressField.bind(this);
         this.updateProfileAddressState = this.updateProfileAddressState.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        this.enterAddressEditMode = this.enterAddressEditMode.bind(this);
     }
 
-    componentWillMount()
-    {
+    componentWillMount() {
         let path = this.props.route.path;
         this.props.uiActions.profileSectionEntered(path);
     }
 
-    componentWillReceiveProps(nextProps)
-    {
-        if (nextProps.profile !== this.state.profile)
-        {
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.profile !== this.state.profile) {
             this.setState({profile: nextProps.profile});
         }
-    }
-
-    handleSubmit(e) {
-        e.preventDefault();
-        ProfileApi.updateProfileAddress(this.state.profile.address);
     }
 
     // Called when any field except State is updated
@@ -50,8 +46,7 @@ class AddressContainer extends React.Component {
         return this.setState({profile: newProfile});
     }
 
-    updateProfileAddressState(event)
-    {
+    updateProfileAddressState(event) {
         let newProfile = update(this.state.profile,
             {
                 address: {
@@ -63,9 +58,29 @@ class AddressContainer extends React.Component {
         return this.setState({profile: newProfile});
     }
 
-    handleCancel()
+    enterAddressEditMode()
     {
-        this.props.profileEditFuncs.exitProfileEditMode();
+        let newState = update(this.state, {
+                showModal: {$set: true}});
+
+        this.setState(newState);
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        ProfileApi.updateProfileAddress(this.state.profile.address);
+        this.closeModal();
+    }
+
+    handleCancel() {
+        this.closeModal();
+    }
+
+    closeModal() {
+        let newState = update(this.state, {
+            showModal: {$set: false}
+        });
+        this.setState(newState);
     }
 
     render() {
@@ -74,18 +89,21 @@ class AddressContainer extends React.Component {
 
         return (
             <div>
-                {this.props.ui.in_profile_edit_mode
-                    ? (<AddressEdit
-                            profile={profile}
-                            updateProfileName={this.updateProfileName}
-                            handleSubmit={this.handleSubmit}
-                            handleCancel={this.handleCancel}
-                            updateProfileAddressField={this.updateProfileAddressField}
-                            updateProfileAddressState={this.updateProfileAddressState}/>)
-                    : (<AddressDetails
-                            profile={profile}
-                            enterProfileEditMode={this.props.profileEditFuncs.enterProfileEditMode} />)
-                }
+
+                <AddressDetails
+                    profile={profile}
+                    enterAddressEditMode={this.enterAddressEditMode}/>
+
+                <Modal dialogClassName="eduModal" show={this.state.showModal} onHide={this.closeModal}>
+                    <AddressEdit
+                        profile={profile}
+                        updateProfileName={this.updateProfileName}
+                        handleSubmit={this.handleSubmit}
+                        handleCancel={this.handleCancel}
+                        updateProfileAddressField={this.updateProfileAddressField}
+                        updateProfileAddressState={this.updateProfileAddressState}/>
+                </Modal>
+
             </div>
         );
     }
@@ -99,7 +117,6 @@ AddressContainer.propTypes = {
     ui: PropTypes.object,
     profileActions: PropTypes.object,
     uiActions: PropTypes.object,
-    profileEditFuncs: PropTypes.object,
     route: PropTypes.object
 };
 

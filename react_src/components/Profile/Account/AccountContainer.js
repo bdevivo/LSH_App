@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import {Modal} from 'react-bootstrap';
 import ProfileApi from '../../../api/profileApi';
 import AccountDetails from './AccountDetails';
 import AccountEdit from './AccountEdit';
@@ -10,6 +11,7 @@ class AccountContainer extends React.Component {
         this.state = {
             profile: props.profile,
             profileActions: props.profileActions,
+            showModal: false,
             avatarTimestamp: new Date().getTime().toString(),
             avatarStorageKey: "",
             avatarLocalFileName: ""
@@ -19,18 +21,18 @@ class AccountContainer extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
         this.updateProfileName = this.updateProfileName.bind(this);
+        this.enterAccountEditMode = this.enterAccountEditMode.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+
     }
 
-    componentWillMount()
-    {
+    componentWillMount() {
         let path = this.props.route.path;
         this.props.uiActions.profileSectionEntered(path);
     }
 
-    componentWillReceiveProps(nextProps)
-    {
-        if (nextProps.profile !== this.state.profile)
-        {
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.profile !== this.state.profile) {
             this.setState({profile: nextProps.profile});
         }
     }
@@ -48,12 +50,20 @@ class AccountContainer extends React.Component {
         }
 
         ProfileApi.updateProfileUserName(first, middle, last);
+        this.closeModal();
     }
 
-    handleCancel()
-    {
+    handleCancel() {
         localStorage.removeItem('avatarTempData');
-        this.props.profileEditFuncs.exitProfileEditMode();
+        this.closeModal();
+    }
+
+    closeModal()
+    {
+        let newState = update(this.state, {
+                showModal: {$set: false}
+            });
+        this.setState(newState);
     }
 
     handleAvatarChange(event, results) {
@@ -85,24 +95,36 @@ class AccountContainer extends React.Component {
         return this.setState({profile: newProfile});
     }
 
+    enterAccountEditMode()
+    {
+        let newState = update(this.state, {
+                showModal: {$set: true}
+            }
+        );
+
+        this.setState(newState);
+    }
+
     render() {
 
         let {profile} = this.state;
 
         return (
             <div>
-                {this.props.ui.in_profile_edit_mode
-                    ? (<AccountEdit
-                            profile={profile}
-                            updateProfileName={this.updateProfileName}
-                            handleSubmit={this.handleSubmit}
-                            handleCancel={this.handleCancel}
-                            avatarTimestamp={this.state.avatarTimestamp}
-                            handleAvatarChange={this.handleAvatarChange}/>)
-                    : (<AccountDetails
-                            profile={profile}
-                            enterProfileEditMode={this.props.profileEditFuncs.enterProfileEditMode} />)
-                }
+                <AccountDetails
+                    profile={profile}
+                    enterAccountEditMode={this.enterAccountEditMode}/>
+
+                <Modal dialogClassName="eduModal" show={this.state.showModal} onHide={this.closeModal}>
+                    <AccountEdit
+                        profile={profile}
+                        updateProfileName={this.updateProfileName}
+                        handleSubmit={this.handleSubmit}
+                        handleCancel={this.handleCancel}
+                        avatarTimestamp={this.state.avatarTimestamp}
+                        handleAvatarChange={this.handleAvatarChange}/>)\
+                </Modal>
+
             </div>
         );
     }

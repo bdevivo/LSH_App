@@ -16,14 +16,11 @@ class ProfileContainer extends React.Component {
         };
 
         this.onProfileUpdated = this.onProfileUpdated.bind(this);
-        this.enterProfileEditMode = this.enterProfileEditMode.bind(this);
-        this.exitProfileEditMode = this.exitProfileEditMode.bind(this);
     }
 
     componentWillMount()
     {
         Auth.auth.on('profile_updated', this.onProfileUpdated);
-        this.exitProfileEditMode();  // always enter in Details mode, not Edit mode
     }
 
     componentWillReceiveProps(nextProps)
@@ -41,32 +38,16 @@ class ProfileContainer extends React.Component {
     componentWillUnmount()
     {
         Auth.auth.removeListener('profile_updated', this.onProfileUpdated);
-        this.exitProfileEditMode();
     }
 
     onProfileUpdated(profile) {
         this.props.profileActions.updateProfile(profile);
-        this.exitProfileEditMode();
-    }
-
-    enterProfileEditMode()
-    {
-        this.props.uiActions.editProfileOn();
-    }
-
-    exitProfileEditMode()
-    {
-        this.props.uiActions.editProfileOff();
     }
 
     render()
     {
         const {profile, ui} = this.state;
         const {profileActions, uiActions} = this.props;
-        const profileEditFuncs = {
-            enterProfileEditMode: this.enterProfileEditMode,
-            exitProfileEditMode: this.exitProfileEditMode
-        };
 
         return (
             <ProfilePage
@@ -74,7 +55,6 @@ class ProfileContainer extends React.Component {
                 profileActions={profileActions}
                 ui={ui}
                 uiActions={uiActions}
-                profileEditFuncs={profileEditFuncs}
                 children={this.props.children}/>
         );
     }

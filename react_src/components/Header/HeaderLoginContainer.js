@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react';
-//import {connect} from 'react-redux';
-//import {bindActionCreators} from 'redux';
+import {browserHistory} from 'react-router';
 import HeaderLogin from './HeaderLogin';
 import AuthApi from '../../api/authApi';
 import * as Auth from '../../auth_utils/auth';
@@ -48,6 +47,9 @@ export default class HeaderLoginContainer extends React.Component {
         // dispatch an action to update the state.
         // (This is also the third stage in the login sequence.)
         this.props.profileActions.updateProfile(profile);
+
+        // navigate to the home route
+        //browserHistory.push('/');
     }
 
     onLogout() {

@@ -56,13 +56,13 @@ class Header extends React.Component {
             <header styleName="nav">
                 <nav>
                     <Row>
-                        <Col md={6} mdOffset={3}>
+                        <Col md={5} mdOffset={2}>
                             <HeaderCenterNav isLoggedIn={isLoggedIn} isAdmin={isAdmin} isBuyer={isBuyer}/>
                         </Col>
                         <Col md={2}>
                             <HeaderUserName user_name={user_name} email={email} isLoggedIn={isLoggedIn}/>
                         </Col>
-                        <Col md={1}>
+                        <Col md={2}>
                             <HeaderLoginContainer isLoggedIn={isLoggedIn} authActions={this.props.authActions} profileActions={this.props.profileActions} />
                         </Col>
                     </Row>

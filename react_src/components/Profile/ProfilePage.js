@@ -7,7 +7,7 @@ import styles from './ProfilePage.css';
 const classNames = require('classnames');
 
 
-const ProfilePage = ({profile, profileActions, ui, uiActions, profileEditFuncs, children}) => {
+const ProfilePage = ({profile, profileActions, ui, uiActions, children}) => {
 
     function createStyleName(path) {
         return classNames({
@@ -22,8 +22,7 @@ const ProfilePage = ({profile, profileActions, ui, uiActions, profileEditFuncs, 
                 profile: profile,
                 profileActions: profileActions,
                 ui: ui,
-                uiActions: uiActions,
-                profileEditFuncs: profileEditFuncs
+                uiActions: uiActions
             });
 
     return (
@@ -33,8 +32,9 @@ const ProfilePage = ({profile, profileActions, ui, uiActions, profileEditFuncs, 
                 <Row>
                     <div styleName={createStyleName('account')}><Link to="/profile/account">Account</Link></div>
                     <div styleName={createStyleName('address')}><Link to="/profile/address">Address</Link></div>
-                    <div styleName={createStyleName('education')}><Link to="/profile/education">Education</Link>
-                    </div>
+                    <div styleName={createStyleName('employment')}><Link to="/profile/employment">Employment</Link></div>
+                    <div styleName={createStyleName('education')}><Link to="/profile/education">Education</Link></div>
+                    <div styleName={createStyleName('skills')}><Link to="/profile/skills">Skills</Link></div>
                 </Row>
             </Col>
 
@@ -58,7 +58,6 @@ ProfilePage.propTypes = {
     profileActions: PropTypes.object.isRequired,
     ui: PropTypes.object.isRequired,
     uiActions: PropTypes.object.isRequired,
-    profileEditFuncs: PropTypes.object.isRequired,
     children: PropTypes.object.isRequired
 };
 

@@ -37,45 +37,44 @@ class SkillsContainer extends React.Component {
 
 
     // Called when any field except State is updated
-    updateProfileSkills(val) {
+    updateProfileSkills(vals) {
         //const field = event.target.name;
-        let vals = val.map(x => x.value);
+        //let vals = val.map(x => x.value);
         let newProfile = update(this.state.profile,
             {
                 skills: {$set: vals}
             }
         );
 
-        return this.setState({profile: newProfile});
+        this.setState({profile: newProfile});
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        //ProfileApi.updateProfileAddress(this.state.profile.address);
+        this.props.profileActions.updateProfileSkills(this.state.profile.skills);
     }
 
     handleCancel()
     {
-        this.props.profileEditFuncs.exitProfileEditMode();
+       // restore initial state
+        let newProfile = update(this.state.profile,
+            {
+                skills: {$set: this.props.profile.skills}
+            }
+        );
+
+        this.setState({profile: newProfile});
     }
 
 
     render()
     {
-        const {profile, ui} = this.state;
-        const {profileActions, uiActions} = this.props;
-        const profileEditFuncs = {
-            enterProfileEditMode: this.enterProfileEditMode,
-            exitProfileEditMode: this.exitProfileEditMode
-        };
-
         return (
             <SkillsEdit
-                profile={profile}
+                skills={this.state.profile.skills}
                 handleSubmit={this.handleSubmit}
                 handleCancel={this.handleCancel}
-                updateProfileSkills={this.updateProfileSkills}
-                profileEditFuncs={profileEditFuncs}/>
+                updateProfileSkills={this.updateProfileSkills}/>
         );
     }
 }

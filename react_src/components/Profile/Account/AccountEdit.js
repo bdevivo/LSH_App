@@ -1,5 +1,5 @@
 import React, {PropTypes as T} from 'react';
-import {Row, Col, Form, FormGroup, FormControl, ControlLabel, Button} from 'react-bootstrap';
+import {Row, Col, Form, FormGroup, FormControl, ControlLabel, Button, Modal} from 'react-bootstrap';
 import CSSModules from 'react-css-modules';
 import styles from './Account.css';
 import FileUpload from './FileUpload';
@@ -27,62 +27,84 @@ const AccountEdit = ({profile, updateProfileName, handleSubmit, handleCancel, ha
     const right_col_wd = 6;
 
     return (
-        <Row styleName="root">
+        <div>
+            <Modal.Header closeButton>
+                <Modal.Title>Edit Account</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
 
-            <Col md={12}>
+                <Row styleName="root">
 
-                <Form horizontal>
-                    <h4 styleName="subheader">Name</h4>
+                    <Col md={12}>
 
-                    <FormGroup>
-                        <Row>
+                        <Form horizontal>
 
-                            <Col sm={3}>
-                                <FormControl type="text" name="first" defaultValue={firstName}
-                                             placeholder="first name" onChange={updateProfileName}/>
-                            </Col>
 
-                            <Col sm={3}>
-                                <FormControl type="text" name="middle" defaultValue={middleName}
-                                             placeholder="middle init." onChange={updateProfileName}/>
-                            </Col>
+                            <FormGroup>
 
-                            <Col sm={3}>
-                                <FormControl type="text" name="last" defaultValue={lastName} placeholder="last name"
-                                             onChange={updateProfileName}/>
-                            </Col>
-                        </Row>
+                                <Row>
+                                    <Col sm={3} smOffset={1}>
+                                        <h4 styleName="subheader">Name</h4>
+                                    </Col>
+                                </Row>
 
-                    </FormGroup>
+                                <Row>
 
-                    <h4 styleName="subheader">Avatar</h4>
+                                    <Col sm={3} smOffset={1}>
 
-                    <FormGroup>
-                        <Col componentClass={ControlLabel} sm={left_col_wd}>
-                            <AvatarImg storageKey="avatarTempData" url={avatarUrl}
-                                       avatarTimestamp={avatarTimestamp}/>
-                        </Col>
-                        <Col sm={right_col_wd} styleName="fileUploadCol">
-                            <FileUpload as="url" name="my-file-input"
-                                        onChange={handleAvatarChange}
-                                        className="pull-left">
-                                <Button className="pull-left" type="button">Change image...</Button>
-                            </FileUpload>
-                        </Col>
+                                        <FormControl type="text" name="first" defaultValue={firstName}
+                                                     placeholder="first name" onChange={updateProfileName}/>
+                                    </Col>
 
-                    </FormGroup>
+                                    <Col sm={3}>
+                                        <FormControl type="text" name="middle" defaultValue={middleName}
+                                                     placeholder="middle init." onChange={updateProfileName}/>
+                                    </Col>
 
-                    <FormGroup >
-                        <Col smOffset={2} sm={3} styleName="submitButton">
-                            <Button onClick={handleCancel}>Cancel</Button>
-                        </Col>
-                        <Col sm={4} styleName="submitButton">
-                            <Button onClick={handleSubmit}>Save</Button>
-                        </Col>
-                    </FormGroup>
-                </Form>
-            </Col>
-        </Row>
+                                    <Col sm={3}>
+                                        <FormControl type="text" name="last" defaultValue={lastName}
+                                                     placeholder="last name"
+                                                     onChange={updateProfileName}/>
+                                    </Col>
+                                </Row>
+
+                            </FormGroup>
+
+                            <Row>
+
+                                <FormGroup>
+                                    <Col componentClass={ControlLabel} sm={3} >
+                                        <AvatarImg storageKey="avatarTempData" url={avatarUrl}
+                                                   avatarTimestamp={avatarTimestamp}/>
+                                    </Col>
+                                    <Col sm={right_col_wd} styleName="fileUploadCol">
+                                        <FileUpload as="url" name="my-file-input"
+                                                    onChange={handleAvatarChange}
+                                                    className="pull-left">
+                                            <Button className="pull-left" type="button">Change image...</Button>
+                                        </FileUpload>
+                                    </Col>
+
+                                </FormGroup>
+                            </Row>
+
+
+                        </Form>
+                    </Col>
+                </Row>
+
+            </Modal.Body>
+            <Modal.Footer>
+                <Row>
+                    <Col md={3} mdOffset={2}>
+                        <Button onClick={handleCancel}>Cancel</Button>
+                    </Col>
+                    <Col md={3}>
+                        <Button onClick={handleSubmit}>Save</Button>
+                    </Col>
+                </Row>
+            </Modal.Footer>
+        </div>
     );
 
 

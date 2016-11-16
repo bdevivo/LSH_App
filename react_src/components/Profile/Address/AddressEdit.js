@@ -1,5 +1,5 @@
 import React, {PropTypes as T} from 'react';
-import {Row, Col, Form, FormGroup, FormControl, ControlLabel, Button} from 'react-bootstrap';
+import {Row, Col, Form, FormGroup, FormControl, ControlLabel, Button, Modal} from 'react-bootstrap';
 import CSSModules from 'react-css-modules';
 import styles from './Address.css';
 import states from './US_States';
@@ -27,13 +27,17 @@ const AddressEdit = ({profile, handleSubmit, handleCancel, updateProfileAddressF
     const right_col_short_wd = 3;
 
     return (
+        <div>
+            <Modal.Header closeButton>
+                <Modal.Title>Edit Address</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+
         <Row styleName="root">
 
             <Col md={12}>
 
                 <Form horizontal>
-
-                    <h4 styleName="subheader">Address</h4>
 
                     <FormGroup>
                         <Col componentClass={ControlLabel} sm={left_col_wd}>
@@ -97,20 +101,22 @@ const AddressEdit = ({profile, handleSubmit, handleCancel, updateProfileAddressF
                         </Col>
                     </FormGroup>
 
-
-
-
-                    <FormGroup >
-                        <Col smOffset={2} sm={3} styleName="submitButton">
-                            <Button onClick={handleCancel}>Cancel</Button>
-                        </Col>
-                        <Col  sm={4} styleName="submitButton">
-                            <Button onClick={handleSubmit}>Save</Button>
-                        </Col>
-                    </FormGroup>
                 </Form>
             </Col>
         </Row>
+
+            </Modal.Body>
+            <Modal.Footer>
+                <Row>
+                    <Col md={3} mdOffset={2}>
+                        <Button onClick={handleCancel}>Cancel</Button>
+                    </Col>
+                    <Col md={3}>
+                        <Button onClick={handleSubmit}>Save</Button>
+                    </Col>
+                </Row>
+            </Modal.Footer>
+        </div>
     );
 
 

@@ -1,15 +1,14 @@
 import React, {PropTypes} from 'react';
-import {Row, Col, Image} from 'react-bootstrap';
+import {Row, Col, Button} from 'react-bootstrap';
 import CSSModules from 'react-css-modules';
 import styles from './Address.css';
 
 
-const AddressDetails = ({profile, enterProfileEditMode}) => {
+const AddressDetails = ({profile, enterAddressEditMode}) => {
 
     const {address} = profile;
     let street1 = '', street2 = '', city = '', state = '', country = '', zip = '';
-    if (address)
-    {
+    if (address) {
         street1 = address.street1;
         street2 = address.street2;
         city = address.city;
@@ -19,8 +18,7 @@ const AddressDetails = ({profile, enterProfileEditMode}) => {
     }
 
     let addressCol;
-    if (address.street1)
-    {
+    if (address.street1) {
         addressCol = (
             <Col md={8}>
                 <p>{street1}</p>
@@ -46,8 +44,14 @@ const AddressDetails = ({profile, enterProfileEditMode}) => {
             </Row>
 
             <Row>
-                <a href="#" onClick={enterProfileEditMode}>Edit</a>
+                <Col md={2}>
+                    <Button type="button" className="btn btn-sm btn-default" aria-label="Edit"
+                            onClick={enterAddressEditMode}>
+                        <span className="glyphicon glyphicon-pencil"></span>
+                    </Button>
+                </Col>
             </Row>
+
         </div>
     );
 
@@ -55,7 +59,7 @@ const AddressDetails = ({profile, enterProfileEditMode}) => {
 
 AddressDetails.propTypes = {
     profile: PropTypes.object.isRequired,
-    enterProfileEditMode: PropTypes.func.isRequired
+    enterAddressEditMode: PropTypes.func.isRequired,
 };
 
 export default CSSModules(AddressDetails, styles);

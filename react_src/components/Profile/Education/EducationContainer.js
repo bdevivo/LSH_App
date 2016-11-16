@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import {Modal} from 'react-bootstrap';
 import EducationList from './EducationList';
 import EducationEdit from './EducationEdit';
 import update from 'immutability-helper';
@@ -10,6 +11,7 @@ class EducationContainer extends React.Component {
             educationRecords: props.profile.education,
             currentEduRecord: {},
             currentEduRecordId: 0,
+            showModal: false,
             validationState: {
                 school: true,
                 degree: true,
@@ -21,6 +23,8 @@ class EducationContainer extends React.Component {
         this.handleCancel = this.handleCancel.bind(this);
         this.enterEducationEditMode = this.enterEducationEditMode.bind(this);
         this.updateProfileEducationField = this.updateProfileEducationField.bind(this);
+        this.removeEduRecord = this.removeEduRecord.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
 
     componentWillMount()
@@ -66,7 +70,8 @@ class EducationContainer extends React.Component {
                 this.props.profileActions.updateProfileEducation(this.state.currentEduRecord);
             }
 
-            this.props.profileEditFuncs.exitProfileEditMode();
+            //this.props.profileEditFuncs.exitProfileEditMode();
+            this.closeModal();
         }
         else {
             newValidationState = update(this.state.validationState, updateObj);
@@ -108,7 +113,7 @@ class EducationContainer extends React.Component {
             });
         this.setState({validationState: newValidationState});
 
-        this.props.profileEditFuncs.exitProfileEditMode();
+        this.closeModal();
     }
 
     enterEducationEditMode(eduId)
@@ -129,18 +134,30 @@ class EducationContainer extends React.Component {
 
         let newState = update(this.state, {
                 currentEduRecord: {$set: currentEdu},
-                currentEduRecordId: {$set: eduId}
+                currentEduRecordId: {$set: eduId},
+                showModal: {$set: true}
             }
         );
 
-        // let newEduId = update(this.state, {
-        //         currentEduRecordId: {$set: eduId}
-        //     }
-        // );
-
         this.setState(newState);
 
-        this.props.profileEditFuncs.enterProfileEditMode();
+        //this.props.profileEditFuncs.enterProfileEditMode();
+
+    }
+
+    closeModal()
+    {
+        let newState = update(this.state, {
+                showModal: {$set: false}
+            }
+        );
+
+        this.setState(newState);
+    }
+
+    removeEduRecord(eduId)
+    {
+        this.props.profileActions.removeProfileEducation(eduId);
     }
 
     render() {
@@ -149,19 +166,23 @@ class EducationContainer extends React.Component {
 
         return (
             <div>
-                {this.props.ui.in_profile_edit_mode
-                    ? (<EducationEdit
-                            educationRecord={this.state.currentEduRecord}
-                            updateProfileEducationField={this.updateProfileEducationField}
-                            handleSubmit={this.handleSubmit}
-                            handleCancel={this.handleCancel}
-                            validationState={this.state.validationState}
-                        />)
-                    : (<EducationList
+                <EducationList
                             educationRecords={eduRecords}
                             enterEducationEditMode={this.enterEducationEditMode}
-                        />)
-                }
+                            removeEduRecord={this.removeEduRecord}
+                        />
+
+                <Modal dialogClassName="eduModal" show={this.state.showModal} onHide={this.closeModal}>
+                    <EducationEdit
+                        currentEducationRecord={this.state.currentEduRecord}
+                        updateProfileEducationField={this.updateProfileEducationField}
+                        showModal={this.state.showModal}
+                        closeModal={this.closeModal}
+                        handleSubmit={this.handleSubmit}
+                        handleCancel={this.handleCancel}
+                        validationState={this.state.validationState}
+                    />
+                </Modal>
             </div>
         );
     }
@@ -175,7 +196,6 @@ EducationContainer.propTypes = {
     ui: PropTypes.object,
     profileActions: PropTypes.object,
     uiActions: PropTypes.object,
-    profileEditFuncs: PropTypes.object,
     route: PropTypes.object
 };
 

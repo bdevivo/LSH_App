@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as Auth from '../../auth_utils/auth';
 import * as profileActions from '../../actions/profileActions';
 import * as uiActions from '../../actions/uiActions';
+import * as userActions from '../../actions/userActions';
 import ProfilePage from './ProfilePage';
 
 class ProfileContainer extends React.Component {
@@ -16,6 +17,7 @@ class ProfileContainer extends React.Component {
         };
 
         this.onProfileUpdated = this.onProfileUpdated.bind(this);
+        this.addUser = this.addUser.bind(this);
     }
 
     componentWillMount()
@@ -44,6 +46,10 @@ class ProfileContainer extends React.Component {
         this.props.profileActions.updateProfile(profile);
     }
 
+    addUser() {
+        this.props.userActions.addUser(this.props.profile);
+    }
+
     render()
     {
         const {profile, ui} = this.state;
@@ -53,6 +59,7 @@ class ProfileContainer extends React.Component {
             <ProfilePage
                 profile={profile}
                 profileActions={profileActions}
+                addUser={this.addUser}
                 ui={ui}
                 uiActions={uiActions}
                 children={this.props.children}/>
@@ -63,6 +70,7 @@ class ProfileContainer extends React.Component {
 ProfileContainer.propTypes = {
     profile: PropTypes.object.isRequired,
     profileActions: PropTypes.object.isRequired,
+    userActions: PropTypes.object.isRequired,
     ui: PropTypes.object.isRequired,
     uiActions: PropTypes.object.isRequired,
     children: PropTypes.object.isRequired
@@ -78,7 +86,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         profileActions: bindActionCreators(profileActions, dispatch),
-        uiActions: bindActionCreators(uiActions, dispatch)
+        uiActions: bindActionCreators(uiActions, dispatch),
+        userActions: bindActionCreators(userActions, dispatch)
     };
 }
 

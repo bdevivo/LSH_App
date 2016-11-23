@@ -29,7 +29,6 @@ export default
         roles: []
     },
     ui: {
-        in_profile_edit_mode: false,
         profile_section: 'account',
         profile_section_name: 'Account'
     }

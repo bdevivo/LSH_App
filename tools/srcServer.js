@@ -26,12 +26,10 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-//mongoose.connect('mongodb://localhost:27017/qgrid');  // connect to local Mongo DB in db "qgrid"
+mongoose.connect('mongodb://localhost:27017/qgrid');  // connect to local Mongo DB in db "qgrid"
 
 // Establish routes
-
-let routes = require("./routes");
-app.use('/api', routes);
+app.use('/api', require("./routes"));
 
 app.get('/api/public', function(req, res) {
    res.json({ message: "Hello from a public endpoint! You don't need to be authenticated to see this." });

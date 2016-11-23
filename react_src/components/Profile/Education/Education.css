@@ -7,9 +7,7 @@
 }
 
 .profileDiv {
-   background-color: white;
-   padding-top: 15px;
-   margin-bottom: 30px;
+    composes: profileDiv from "../ProfilePage.css";
 }
 
 .editModal {
@@ -28,7 +26,7 @@
     composes: submitButton from "../ProfilePage.css";
 }
 
-.select{
+.select {
     composes: select from "../ProfilePage.css";
 }
 
@@ -65,5 +63,5 @@
 }
 
 .addButtonRow {
-   margin-top: 10px;
+    margin-top: 10px;
 }

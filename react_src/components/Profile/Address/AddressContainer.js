@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import {Modal} from 'react-bootstrap';
-import ProfileApi from '../../../api/profileApi';
+//import ProfileApi from '../../../api/profileApi';
 import AddressDetails from './AddressDetails';
 import AddressEdit from './AddressEdit';
 import update from 'immutability-helper';
@@ -68,7 +68,8 @@ class AddressContainer extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        ProfileApi.updateProfileAddress(this.state.profile.address);
+        //ProfileApi.updateProfileAddress(this.state.profile.address);
+        this.props.profileActions.updateProfileAddress(this.state.profile.address);
         this.closeModal();
     }
 

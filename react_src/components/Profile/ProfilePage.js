@@ -1,13 +1,13 @@
 import React, {PropTypes} from 'react';
 import CSSModules from 'react-css-modules';
 import {Link} from 'react-router';
-import {Row, Col} from 'react-bootstrap';
+import {Row, Col, Button} from 'react-bootstrap';
 import styles from './ProfilePage.css';
 
 const classNames = require('classnames');
 
 
-const ProfilePage = ({profile, profileActions, ui, uiActions, children}) => {
+const ProfilePage = ({profile, profileActions, ui, uiActions, addUser, children}) => {
 
     function createStyleName(path) {
         return classNames({
@@ -46,6 +46,12 @@ const ProfilePage = ({profile, profileActions, ui, uiActions, children}) => {
                         {profileSections}
                     </div>
                 </Row>
+
+                {/*<Row>*/}
+                    {/*<Button type="button" className="btn btn-sm btn-default" aria-label="Edit" onClick={addUser}>*/}
+                        {/*Add User*/}
+                    {/*</Button>*/}
+                {/*</Row>*/}
             </Col>
         </Row>
 
@@ -56,6 +62,7 @@ const ProfilePage = ({profile, profileActions, ui, uiActions, children}) => {
 ProfilePage.propTypes = {
     profile: PropTypes.object.isRequired,
     profileActions: PropTypes.object.isRequired,
+    addUser: PropTypes.func.isRequired,
     ui: PropTypes.object.isRequired,
     uiActions: PropTypes.object.isRequired,
     children: PropTypes.object.isRequired

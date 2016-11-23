@@ -8,8 +8,6 @@ const avatarStorageBucketName = 'lifescihub';
 const avatarUrlRoot = 'https://s3.amazonaws.com';
 
 
-
-
 export default class ProfileApi {
 
     static getProfile() {
@@ -27,18 +25,42 @@ export default class ProfileApi {
     }
 
     static updateProfileAddress(address) {
-        auth.updateProfile({
-            user_metadata: {
-                address: {
-                    street1: address.street1,
-                    street2: address.street2,
-                    city: address.city,
-                    state: address.state,
-                    country: address.country,
-                    zip: address.zip
-                }
-            }
+        return new Promise((resolve, reject) => {
+        const headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        };
+
+            let profile = {
+                _id: auth.getUserId(),
+                address: address
+            };
+
+            const body = JSON.stringify(profile);
+
+            return fetch('/api/users/address', {
+                method: 'PUT',
+                headers: headers,
+                body: body
+            })
+                .then(response => resolve());
         });
+
+
+
+
+        // auth.updateProfile({
+        //     user_metadata: {
+        //         address: {
+        //             street1: address.street1,
+        //             street2: address.street2,
+        //             city: address.city,
+        //             state: address.state,
+        //             country: address.country,
+        //             zip: address.zip
+        //         }
+        //     }
+        // });
     }
 
     static updateProfileEducation(education) {

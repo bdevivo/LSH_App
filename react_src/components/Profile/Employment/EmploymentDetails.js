@@ -1,15 +1,34 @@
 import React, {PropTypes} from 'react';
 import {Row, Col, Button} from 'react-bootstrap';
+import months from './Months';
 import CSSModules from 'react-css-modules';
 import styles from './Employment.css';
 
 
 const EmploymentDetails = ({employmentRecord, enterEmploymentEditMode, removeEmpRecord}) => {
 
+    let empFromMonth;
+    if (employmentRecord.fromMonth > 0) {
+        empFromMonth = months.find(x => x.key == employmentRecord.fromMonth).val;
+    }
+
+    let empFromSpan = (
+        empFromMonth
+                ? <span>{empFromMonth}{', '}{employmentRecord.fromYear}</span>
+                : <span>{employmentRecord.fromYear}</span>
+    );
+
+    let empToMonth;
+    if (employmentRecord.toMonth > 0) {
+        empToMonth = months.find(x => x.key == employmentRecord.toMonth).val;
+    }
+
     let empToSpan = (   // if the position is current, the time range will be "<start date> - Present"
         employmentRecord.isCurrent
             ? <span>Present</span>
-            : <span>{employmentRecord.toMonth}{', '}{employmentRecord.toYear}</span>
+            : empToMonth
+                ? <span>{empToMonth}{', '}{employmentRecord.toYear}</span>
+                : <span>{employmentRecord.toYear}</span>
     );
 
     return (
@@ -19,7 +38,7 @@ const EmploymentDetails = ({employmentRecord, enterEmploymentEditMode, removeEmp
                     <p><strong>{employmentRecord.company}</strong></p>
                    <p>{employmentRecord.location}</p>
                     <p>{employmentRecord.title}</p>
-                   <p>{employmentRecord.fromMonth}{', '}{employmentRecord.fromYear}{' - '}{empToSpan}</p>
+                   <p>{empFromSpan}{' - '}{empToSpan}</p>
                    <p><span styleName="inlineHeader">Description: </span>{employmentRecord.description}</p>
                 </Col>
 

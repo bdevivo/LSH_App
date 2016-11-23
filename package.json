@@ -16,7 +16,9 @@
     "build:html": "babel-node tools/buildHtml.js",
     "prebuild": "npm-run-all clean-dist  lint build:html",
     "build": "babel-node tools/build.js",
-    "postbuild": "node tools/prodServer.js"
+    "postbuild": "node tools/prodServer.js",
+    "debug": "babel-node --debug tools/srcServer.js",
+    "mongo": "mongod --dbpath 'e:/Data'"
   },
   "author": "Bob De Vivo",
   "license": "",
@@ -40,6 +42,7 @@
     "css-loader": "0.23.1",
     "deep-get-set": "^1.0.0",
     "es6-enum": "^1.0.3",
+    "es6-promise": "^4.0.5",
     "eventsource-polyfill": "0.9.6",
     "express": "4.13.4",
     "express-jwt": "^5.1.0",

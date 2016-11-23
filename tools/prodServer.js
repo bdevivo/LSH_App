@@ -16,7 +16,7 @@ app.use(express.static('dist'));
 
 mongoose.connect('mongodb://bob:poivcx@ds047166.mlab.com:47166/heroku_fgvsh90k/qgrid');  // connect to mLab Mongo DB in db "qgrid"
 
-const routes = require("./routes");
+const routes = require("./routes/questions");
 app.use('/api', routes);
 
 app.get('*', function(req, res) {

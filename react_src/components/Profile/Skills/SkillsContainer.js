@@ -1,9 +1,11 @@
 import React, {PropTypes} from 'react';
+import {Modal} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as profileActions from '../../../actions/profileActions';
 import update from 'immutability-helper';
 import SkillsEdit from './SkillsEdit';
+import SkillsDetails from './SkillsDetails';
 
 
 class SkillsContainer extends React.Component {
@@ -11,76 +13,83 @@ class SkillsContainer extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            profile: props.profile,
-            ui: props.ui
+            skills: props.skills || [],
+            ui: props.ui,
+            showModal: false
         };
 
         this.updateProfileSkills = this.updateProfileSkills.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
+        this.enterEditMode = this.enterEditMode.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
 
-    componentWillMount()
-    {
+    componentWillMount() {
         let path = this.props.route.path;
         this.props.uiActions.profileSectionEntered(path);
     }
 
-    componentWillReceiveProps(nextProps)
-    {
-        if (nextProps.profile !== this.state.profile)
-        {
-            this.setState({profile: nextProps.profile});
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.skills !== this.state.skills) {
+            this.setState({skills: nextProps.skills});
         }
     }
 
-
-
     // Called when any field except State is updated
     updateProfileSkills(vals) {
-        //const field = event.target.name;
-        //let vals = val.map(x => x.value);
-        let newProfile = update(this.state.profile,
-            {
-                skills: {$set: vals}
-            }
-        );
-
-        this.setState({profile: newProfile});
+        this.setState({skills: vals});
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.profileActions.updateProfileSkills(this.state.profile.skills);
+        this.props.profileActions.updateProfileSkills(this.state.skills);
+        this.closeModal();
     }
 
-    handleCancel()
-    {
-       // restore initial state
-        let newProfile = update(this.state.profile,
-            {
-                skills: {$set: this.props.profile.skills}
-            }
-        );
+    handleCancel() {
+        // restore initial state
+        this.setState({skills: this.props.skills});
+        this.closeModal();
+    }
 
-        this.setState({profile: newProfile});
+    enterEditMode()
+    {
+        let newState = update(this.state, {
+            showModal: {$set: true}});
+
+        this.setState(newState);
+    }
+
+    closeModal() {
+        this.setState({showModal: false});
     }
 
 
-    render()
-    {
+    render() {
         return (
-            <SkillsEdit
-                skills={this.state.profile.skills}
-                handleSubmit={this.handleSubmit}
-                handleCancel={this.handleCancel}
-                updateProfileSkills={this.updateProfileSkills}/>
+            <div>
+                <SkillsDetails
+                    skills={this.state.skills}
+                    enterEditMode={this.enterEditMode}
+                />
+
+
+                <Modal dialogClassName="skillsModal" show={this.state.showModal} onHide={this.closeModal}>
+                    <SkillsEdit
+                        skills={this.state.skills}
+                        handleSubmit={this.handleSubmit}
+                        handleCancel={this.handleCancel}
+                        updateProfileSkills={this.updateProfileSkills}/>
+                </Modal>
+
+            </div>
         );
     }
 }
 
 SkillsContainer.propTypes = {
-    profile: PropTypes.object,
+    skills: PropTypes.array,
     ui: PropTypes.object,
     profileActions: PropTypes.object,
     uiActions: PropTypes.object,
@@ -90,7 +99,7 @@ SkillsContainer.propTypes = {
 
 function mapStateToProps(state) {
     return {
-        profile: state.profile
+        skills: state.profile.skills || []
     };
 }
 

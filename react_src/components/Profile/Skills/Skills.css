@@ -1,5 +1,14 @@
 .root {
     composes: root from "../ProfilePage.css";
+    height: 280px;
+}
+
+.userProfile {
+    composes: userProfile from "../ProfilePage.css";
+}
+
+.editRow {
+    margin-top: 20px;
 }
 
 .submitButton {

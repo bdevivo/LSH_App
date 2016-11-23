@@ -38,6 +38,7 @@ const AccountDetails = ({profile, enterAccountEditMode}) => {
                 <Button type="button" className="btn btn-sm btn-default" aria-label="Edit" onClick={enterAccountEditMode}>
                     <span className="glyphicon glyphicon-pencil"></span>
                 </Button>
+
             </Col>
         </Row>
     );

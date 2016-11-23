@@ -20,15 +20,15 @@ export default class AuthService extends EventEmitter {
             languageDictionary: {
                 title: 'LifeSciHub'
             },
-            additionalSignUpFields: [{
-                type: 'select',
-                name: 'account_type',
-                placeholder: 'Account Type',
-                options: [
-                    {value: 'buyer', label: 'Employer'},
-                    {value: 'talent', label: 'Freelancer'}
-                ]
-            }]
+            // additionalSignUpFields: [{
+            //     type: 'select',
+            //     name: 'account_type',
+            //     placeholder: 'Account Type',
+            //     options: [
+            //         {value: 'buyer', label: 'Employer'},
+            //         {value: 'talent', label: 'Freelancer'}
+            //     ]
+            // }]
         };
 
         // Configure Auth0
@@ -153,6 +153,12 @@ export default class AuthService extends EventEmitter {
     getToken() {
         // Retrieves the user token from localStorage
         return localStorage.getItem(CONSTANTS.ID_TOKEN_KEY);
+    }
+
+    getUserId() {
+        //return localStorage.getItem(CONSTANTS.USER_ID_KEY);
+        // TODO: store the real _id from Mongo and retrieve here
+        return '5830e916b5ef877238c5c1f3';
     }
 
     checkStatus(response) {

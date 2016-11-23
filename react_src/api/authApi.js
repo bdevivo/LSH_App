@@ -29,6 +29,10 @@ export default class AuthApi {
     static load_profile(idToken) {
         Auth.auth.load_profile(idToken);
     }
+
+    static getUserId() {
+        return Auth.auth.getUserId();
+    }
 }
 
 

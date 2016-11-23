@@ -12,6 +12,14 @@
     margin-top: 50px;
 }
 
+.profileDiv {
+    width: 650px;
+    background-color: white;
+    padding-top: 15px;
+    margin-bottom: 30px;
+    border: 2px solid silver;
+}
+
 .subheader {
     text-align: left;
     margin-bottom:20px;

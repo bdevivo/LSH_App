@@ -2,41 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list id="23724d5d-f374-4c1f-8907-1c5c6ffa7959" name="Default" comment="" />
-    <list default="true" id="db9cce2d-2ebf-4e24-9d2e-9ec417bf0e97" name="Add all changelist" comment="Adding modal windows, Education and Employment profile">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/actions/userActions.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/api/userApi.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/Profile/Skills/SkillsDetails.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/models/User.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/routes/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/routes/users.js" />
+    <list default="true" id="db9cce2d-2ebf-4e24-9d2e-9ec417bf0e97" name="Add all changelist" comment="Mongo fixes">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/actions/actionTypes.js" afterPath="$PROJECT_DIR$/react_src/actions/actionTypes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/actions/profileActions.js" afterPath="$PROJECT_DIR$/react_src/actions/profileActions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/api/authApi.js" afterPath="$PROJECT_DIR$/react_src/api/authApi.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/api/profileApi.js" afterPath="$PROJECT_DIR$/react_src/api/profileApi.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/auth_utils/AuthService.js" afterPath="$PROJECT_DIR$/react_src/auth_utils/AuthService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Profile/Account/AccountDetails.js" afterPath="$PROJECT_DIR$/react_src/components/Profile/Account/AccountDetails.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Profile/Address/AddressContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Profile/Address/AddressContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Profile/Education/Education.css" afterPath="$PROJECT_DIR$/react_src/components/Profile/Education/Education.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Profile/Employment/Employment.css" afterPath="$PROJECT_DIR$/react_src/components/Profile/Employment/Employment.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Profile/Employment/EmploymentContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Profile/Employment/EmploymentContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Profile/Employment/EmploymentDetails.js" afterPath="$PROJECT_DIR$/react_src/components/Profile/Employment/EmploymentDetails.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Profile/Employment/EmploymentEdit.js" afterPath="$PROJECT_DIR$/react_src/components/Profile/Employment/EmploymentEdit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Profile/Employment/Months.js" afterPath="$PROJECT_DIR$/react_src/components/Profile/Employment/Months.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Profile/ProfileContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Profile/ProfileContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Profile/ProfilePage.css" afterPath="$PROJECT_DIR$/react_src/components/Profile/ProfilePage.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Profile/ProfilePage.js" afterPath="$PROJECT_DIR$/react_src/components/Profile/ProfilePage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Profile/Skills/Skills.css" afterPath="$PROJECT_DIR$/react_src/components/Profile/Skills/Skills.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Profile/Skills/SkillsContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Profile/Skills/SkillsContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Profile/Skills/SkillsEdit.js" afterPath="$PROJECT_DIR$/react_src/components/Profile/Skills/SkillsEdit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/reducers/profileReducer.js" afterPath="$PROJECT_DIR$/react_src/reducers/profileReducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/store/initialState.js" afterPath="$PROJECT_DIR$/react_src/store/initialState.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/styles.css" afterPath="$PROJECT_DIR$/styles/styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tools/models/Question.js" afterPath="$PROJECT_DIR$/tools/models/Question.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tools/prodServer.js" afterPath="$PROJECT_DIR$/tools/prodServer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tools/srcServer.js" afterPath="$PROJECT_DIR$/tools/srcServer.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tools/routes.js" afterPath="$PROJECT_DIR$/tools/routes/questions.js" />
     </list>
     <ignored path="QuestionGrid.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -97,8 +64,8 @@
       <file leaf-file-name="users.js" pinned="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tools/routes/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
-              <caret line="100" column="12" lean-forward="true" selection-start-line="100" selection-start-column="12" selection-end-line="100" selection-end-column="12" />
+            <state relative-caret-position="176">
+              <caret line="108" column="44" lean-forward="true" selection-start-line="108" selection-start-column="44" selection-end-line="108" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -1382,7 +1349,7 @@
       <workItem from="1478995675433" duration="28375000" />
       <workItem from="1479169012125" duration="75618000" />
       <workItem from="1479672234969" duration="669000" />
-      <workItem from="1479674201176" duration="17094000" />
+      <workItem from="1479674201176" duration="17718000" />
     </task>
     <task id="LOCAL-00001" summary="Update from NJ">
       <created>1469553603490</created>
@@ -1566,11 +1533,18 @@
       <option name="project" value="LOCAL" />
       <updated>1479270181555</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Mongo fixes">
+      <created>1479904451643</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1479904451643</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="801045000" />
+    <option name="totallyTimeSpent" value="801669000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1681,7 +1655,8 @@
     <MESSAGE value="Added Education profile" />
     <MESSAGE value="Added initial skills" />
     <MESSAGE value="Adding modal windows, Education and Employment profile" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding modal windows, Education and Employment profile" />
+    <MESSAGE value="Mongo fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mongo fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2119,8 +2094,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tools/routes/users.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="100" column="12" lean-forward="true" selection-start-line="100" selection-start-column="12" selection-end-line="100" selection-end-column="12" />
+        <state relative-caret-position="176">
+          <caret line="108" column="44" lean-forward="true" selection-start-line="108" selection-start-column="44" selection-end-line="108" selection-end-column="44" />
           <folding />
         </state>
       </provider>

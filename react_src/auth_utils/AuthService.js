@@ -40,7 +40,6 @@ export default class AuthService extends EventEmitter {
         // Add callback for lock `authorization_error` event
         this.lock.on('authorization_error', this.authorizationError.bind(this));
 
-        // binds login functions to keep this context
         this.login = this.login.bind(this);
     }
 

@@ -31,12 +31,23 @@ const questions = [
 class QuestionApi {
 
     static getAllQuestions() {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-               // resolve(Immutable.fromJS(questions));
-                resolve(questions);
-            }, delay);
-        });
+
+
+       fetch('/api/questions', {
+          method: 'GET'
+       })
+          .then(response => response.json())
+          .then(questions =>
+          {
+            console.log(questions);
+          });
+
+        // return new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //        // resolve(Immutable.fromJS(questions));
+        //         resolve(questions);
+        //     }, delay);
+        // });
     }
 
     // static saveAuthor(author) {

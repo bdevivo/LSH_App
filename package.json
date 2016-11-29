@@ -6,6 +6,7 @@
     "prestart": "babel-node tools/startMessage.js",
     "start": "npm-run-all --parallel  open:src lint:watch",
     "open:src": "babel-node tools/srcServer.js",
+    "debug": "babel-node --debug tools/srcServer.js",
     "lint": "node_modules/.bin/esw webpack.config.* react_src tools",
     "lint-test": "eslint  react_src//components/Login/LoginPage.js ",
     "lint:watch": "npm run lint -- --watch",
@@ -17,12 +18,12 @@
     "prebuild": "npm-run-all clean-dist  lint build:html",
     "build": "babel-node tools/build.js",
     "postbuild": "node tools/prodServer.js",
-    "debug": "babel-node --debug tools/srcServer.js",
     "mongo": "mongod --dbpath 'e:/Data'"
   },
   "author": "Bob De Vivo",
   "license": "",
   "dependencies": {
+    "auth0-js": "^7.5.0",
     "auth0-lock": "^10.4.0",
     "aws-sdk": ">= 2.0.9",
     "babel-cli": "^6.8.0",

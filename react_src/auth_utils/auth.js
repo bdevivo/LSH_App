@@ -1,23 +1,47 @@
 import AuthService from './AuthService';
-import * as profileActions from '../actions/profileActions';
-import * as authActions from '../actions/authActions';
 import ProfileApi from '../api/profileApi';
+import CustomAuthService from './CustomAuthService';
+import * as CONSTANTS from './constants';
 
-// need to export the auth instance so we can use it in non-React modules, like profileApi.  There is probably a better solution than this...
+// need to export the auth instance so we can use it in non-React modules, like profileApi.
+// TODO: eliminate the need for this by wrapping all AuthService calls in new methods within this module
 export const auth = new AuthService(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMAIN);
 
 // validate authentication for private routes
 export const requireAuth = (nextState, replace) => {
-    if (!auth.loggedIn()) {
+    if (!CustomAuthService.isLoggedIn()) {
         console.log(`Not authorized to view route ${nextState}`);
         replace({ pathname: '/' });
     }
 };
 
+// OnEnter for callback url to parse access_token
+const parseAuthHash = (nextState, replace) => {
+   if (nextState.location.hash) {
+      CustomAuthService.parseHash(nextState.location.hash);
+      replace({ pathname: '/' });
+   }
+};
+
+
+// TODO: just store profile in app state (but what about roles?)
+export const getProfile = () =>
+{
+   // Retrieves the profile data from localStorage
+   const profile = localStorage.getItem(CONSTANTS.PROFILE_KEY);
+   return profile ? JSON.parse(profile) : {};
+};
+
+// TODO: update the profile in Mongo, not in Auth0
+export const updateProfile = (data) =>
+{
+   AuthService.updateProfile(data);
+};
+
 
 export const updateProfileUserName = (first, middle, last) =>
 {
-    auth.updateProfile({
+   AuthService.updateProfile({
         user_metadata: {
             firstName: first,
             middleInit: middle,
@@ -32,26 +56,33 @@ export const updateProfileUserName = (first, middle, last) =>
 
 export const updateProfileAvatar = (avatarUrl) =>
 {
-    return auth.updateProfile({
+    return AuthService.updateProfile({
         user_metadata: {
             profilePicture: avatarUrl
         }
     });
 };
 
-
+export const getUserId = () =>
+{
+   //return localStorage.getItem(CONSTANTS.USER_ID_KEY);
+   // TODO: store the real _id from Mongo and retrieve here
+   return '5830e916b5ef877238c5c1f3';
+}
 
 export const isAdmin = () =>
 {
-    return auth.isAdmin();
+    return CustomAuthService.isAdmin();
 };
 
 export const isBuyer = () =>
 {
-    return auth.hasRole('buyer');
+    return CustomAuthService.hasRole('buyer');
 };
 
 export const hasRole = (roleName) =>
 {
-    return auth.hasRole(roleName);
+    return CustomAuthService.hasRole(roleName);
 };
+
+

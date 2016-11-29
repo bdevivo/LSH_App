@@ -1,4 +1,5 @@
-import {auth} from '../auth_utils/auth';
+//import {auth} from '../auth_utils/auth';
+import * as Auth from '../auth_utils/auth';
 import AWS from 'aws-sdk';
 const pathParse = require('path-parse');
 
@@ -11,11 +12,11 @@ const avatarUrlRoot = 'https://s3.amazonaws.com';
 export default class ProfileApi {
 
     static getProfile() {
-        return auth.getProfile();
+        return Auth.getProfile();
     }
 
     static updateProfileUserName(first, middle, last) {
-        auth.updateProfile({
+       Auth.updateProfile({
             user_metadata: {
                 firstName: first,
                 middleInit: middle,
@@ -32,7 +33,7 @@ export default class ProfileApi {
         };
 
             let profile = {
-                _id: auth.getUserId(),
+                _id: Auth.getUserId(),
                 address: address
             };
 
@@ -45,22 +46,6 @@ export default class ProfileApi {
             })
                 .then(response => resolve());
         });
-
-
-
-
-        // auth.updateProfile({
-        //     user_metadata: {
-        //         address: {
-        //             street1: address.street1,
-        //             street2: address.street2,
-        //             city: address.city,
-        //             state: address.state,
-        //             country: address.country,
-        //             zip: address.zip
-        //         }
-        //     }
-        // });
     }
 
     static updateProfileEducation(education) {
@@ -191,7 +176,7 @@ export default class ProfileApi {
                 // update the profile with the new Avatar URL
                 let rndQueryStr = '?random=' + new Date().getTime();    // required in order to fetch updated image with unchanged URL without refreshing the page
                 let avatarUrl = `${avatarUrlRoot}/${avatarStorageBucketName}/${imgPath}${rndQueryStr}`;
-                auth.updateProfile({    // this will update the profile, set the new profile in local storage, and emit an event
+                Auth.updateProfile({    // this will update the profile, set the new profile in local storage, and emit an event
                     user_metadata: {
                         profilePicture: avatarUrl
                     }
@@ -203,14 +188,10 @@ export default class ProfileApi {
         });
     }
 
-    static isAdmin()
-    {
-        return auth.isAdmin();
-    }
 
     static hasRole(roleName)
     {
-        return auth.hasRole(roleName);
+        return Auth.hasRole(roleName);
     }
 
 }

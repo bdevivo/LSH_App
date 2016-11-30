@@ -111,7 +111,7 @@ router.put("/address", function (req, res) {
 
     let {_id, address} = profile;
 
-   // _id or throw new error("Update address: missing user id");
+    if (!_id) throw new Error("Update address: missing user id");
 
     // use blank fields for default
     address = address || {

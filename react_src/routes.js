@@ -9,13 +9,14 @@ import AddressContainer from './components/Profile/Address/AddressContainer';
 import EmploymentContainer from './components/Profile/Employment/EmploymentContainer';
 import EducationContainer from './components/Profile/Education/EducationContainer';
 import SkillsContainer from './components/Profile/Skills/SkillsContainer';
-import { auth, requireAuth, parseAuthHash } from './auth_utils/auth';
+import LoginContainer from './components/Login/LoginContainer';
+import { requireAuth, onEnterLogin } from './auth_utils/auth';
 
 //noinspection JSUnresolvedVariable
 
 
 export default (
-    <Route path="/" component={App} auth={auth}>
+    <Route path="/" component={App}>
         <IndexRoute component={HomePage}/>
         <Route path="profile" component={ProfileContainer} onEnter={requireAuth}>
             <Route path="account" component={AccountContainer} onEnter={requireAuth} />
@@ -24,6 +25,7 @@ export default (
             <Route path="education" component={EducationContainer} onEnter={requireAuth} />
             <Route path="skills" component={SkillsContainer} onEnter={requireAuth} />
         </Route>
+        <Route path="login/:type" component={LoginContainer} onEnter={onEnterLogin} />
         <Route path="questionwizard" component={QuestionPage} />
    </Route>
 );

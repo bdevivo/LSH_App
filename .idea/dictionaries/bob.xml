@@ -4,6 +4,7 @@
       <w>devtool</w>
       <w>dotenv</w>
       <w>funcs</w>
+      <w>localstorage</w>
       <w>multiline</w>
       <w>polyfills</w>
       <w>questionwizard</w>

@@ -32,15 +32,28 @@ class QuestionApi {
 
     static getAllQuestions() {
 
+        return new Promise((resolve, reject) => {
+            const headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            };
 
-       fetch('/api/questions', {
-          method: 'GET'
-       })
-          .then(response => response.json())
-          .then(questions =>
-          {
-            console.log(questions);
-          });
+
+            return fetch('/api/questions', {
+                method: 'GET',
+                headers: headers
+            })
+                .then(response => response.json())
+                .then(questions =>
+                {
+                    resolve(questions);
+                });
+        });
+
+
+
+
+
 
         // return new Promise((resolve, reject) => {
         //     setTimeout(() => {

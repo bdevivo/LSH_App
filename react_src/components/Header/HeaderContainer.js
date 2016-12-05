@@ -1,34 +1,36 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {browserHistory} from 'react-router';
 import * as profileActions from '../../actions/profileActions';
 import * as authActions from '../../actions/authActions';
 import CSSModules from 'react-css-modules';
 import styles, {active} from './Header.css';
 import HeaderCenterNav from './HeaderCenterNav';
 import HeaderUserName from './HeaderUserName';
-import HeaderLoginContainer from './HeaderLoginContainer';
-import AuthApi from '../../api/authApi';
+import HeaderLogin from './HeaderLogin';
 import * as Auth from '../../auth_utils/auth';
 import {Row, Col} from 'react-bootstrap';
 
 // import LoadingDots from './LoadingDots';
 
-class Header extends React.Component {
+class HeaderContainer extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             profile: props.profile,
-            isLoggedIn: (props.isLoggedIn && AuthApi.isLoggedIn()),  // add extra check to make sure login has not expired,
+            isLoggedIn: (props.isLoggedIn && Auth.isLoggedIn()),  // add extra check to make sure login has not expired
             isAdmin: Auth.isAdmin(),
             isBuyer: Auth.isBuyer()
         };
+
+        this.onLogout = this.onLogout.bind(this);
     }
 
     componentWillReceiveProps(nextProps)
     {
-        if (nextProps.isLoggedIn && nextProps.isLoggedIn !== this.state.isLoggedIn)
+        if (nextProps.isLoggedIn !== this.state.isLoggedIn)
         {
             this.setState({isLoggedIn: nextProps.isLoggedIn});
         }
@@ -43,14 +45,20 @@ class Header extends React.Component {
         }
     }
 
+    onLogout() {
+        // Called when user clicks the Logout button.
+        Auth.logout();
+        //this.props.profileActions.updateProfile(Auth.getProfile());
+        this.props.authActions.logout();
+        browserHistory.push('/');
+    }
+
     render() {
 
-        let {profile, isLoggedIn, isAdmin, isBuyer} = this.state;
+        let {profile, isAdmin, isBuyer} = this.state;
         let user_name = profile.user_name || {};
         let email = profile.email || '';
-        //isLoggedIn = isLoggedIn && Auth.auth.loggedIn();
-        isLoggedIn = Auth.auth.loggedIn();
-        //console.log("Logged in: " + isLoggedIn);
+        let isLoggedIn = Auth.isLoggedIn();
 
         return (
             <header styleName="nav">
@@ -63,7 +71,7 @@ class Header extends React.Component {
                             <HeaderUserName user_name={user_name} email={email} isLoggedIn={isLoggedIn}/>
                         </Col>
                         <Col md={2}>
-                            <HeaderLoginContainer isLoggedIn={isLoggedIn} authActions={this.props.authActions} profileActions={this.props.profileActions} />
+                            <HeaderLogin isLoggedIn={isLoggedIn} onLogout={this.onLogout} />
                         </Col>
                     </Row>
                 </nav>
@@ -73,7 +81,7 @@ class Header extends React.Component {
     }
 }
 
-Header.propTypes = {
+HeaderContainer.propTypes = {
     profile: PropTypes.object.isRequired,
     isLoggedIn: PropTypes.bool.isRequired,
     authActions: PropTypes.object.isRequired,
@@ -94,5 +102,5 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CSSModules(Header, styles));
+export default connect(mapStateToProps, mapDispatchToProps)(CSSModules(HeaderContainer, styles));
 //export default connect(mapStateToProps, mapDispatchToProps)(Header);

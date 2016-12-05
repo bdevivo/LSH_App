@@ -20,10 +20,10 @@ class ProfileContainer extends React.Component {
         this.addUser = this.addUser.bind(this);
     }
 
-    componentWillMount()
-    {
-        Auth.auth.on('profile_updated', this.onProfileUpdated);
-    }
+    // componentWillMount()
+    // {
+    //     Auth.auth.on('profile_updated', this.onProfileUpdated);
+    // }
 
     componentWillReceiveProps(nextProps)
     {
@@ -37,10 +37,10 @@ class ProfileContainer extends React.Component {
         }
     }
 
-    componentWillUnmount()
-    {
-        Auth.auth.removeListener('profile_updated', this.onProfileUpdated);
-    }
+    // componentWillUnmount()
+    // {
+    //     Auth.auth.removeListener('profile_updated', this.onProfileUpdated);
+    // }
 
     onProfileUpdated(profile) {
         this.props.profileActions.updateProfile(profile);

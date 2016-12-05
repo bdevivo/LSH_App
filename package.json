@@ -18,7 +18,7 @@
     "prebuild": "npm-run-all clean-dist  lint build:html",
     "build": "babel-node tools/build.js",
     "postbuild": "node tools/prodServer.js",
-    "mongo": "mongod --dbpath 'e:/Data'"
+    "mongo": "mongod --dbpath e:/Data"
   },
   "author": "Bob De Vivo",
   "license": "",

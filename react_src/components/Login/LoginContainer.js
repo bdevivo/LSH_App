@@ -64,7 +64,8 @@ class LoginContainer extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        Auth.login(this.state.email, this.state.pwd);
+        //Auth.login(this.state.email, this.state.pwd);
+       this.props.authActions.login(this.state.email, this.state.pwd);
     }
 
 
@@ -73,9 +74,13 @@ class LoginContainer extends React.Component {
     {
         let title = (this.state.loginType == "default" ? "Login" : (this.state.loginType == "hire" ? "Sign Up to Hire Resources" : "Sign Up to Find Work"));
 
+       let buttonText = (this.props.loading ? "Loading..." : (this.state.loginType == "default" ? "Login" : "Sign Up"));
+
         return (
             <Login
                 title={title}
+                buttonText={buttonText}
+                loading={this.props.loading}
                 handleSubmit={this.handleSubmit}
                 updateLoginField={this.updateLoginField} />
         );
@@ -86,18 +91,20 @@ LoginContainer.propTypes = {
     profile: PropTypes.object.isRequired,
     profileActions: PropTypes.object.isRequired,
     authActions: PropTypes.object.isRequired,
+   loading: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {
     return {
         profile: state.profile,
+       loading: state.ajaxCallsInProgress > 0
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         profileActions: bindActionCreators(profileActions, dispatch),
-        authActions: bindActionCreators(authActions, dispatch)
+        authActions: bindActionCreators(authActions, dispatch),
     };
 }
 

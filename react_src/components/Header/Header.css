@@ -19,3 +19,9 @@
 .link {
     cursor: pointer;
 }
+
+.buttonLink {
+   color: white;
+   font-weight: normal;
+   text-shadow: none;
+}

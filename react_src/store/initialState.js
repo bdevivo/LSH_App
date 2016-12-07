@@ -31,7 +31,8 @@ export default
     ui: {
         profile_section: 'account',
         profile_section_name: 'Account'
-    }
+    },
+   ajaxCallsInProgress: 0
 };
 
 

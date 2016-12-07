@@ -1,3 +1,6 @@
+export const BEGIN_AJAX_CALL = 'BEGIN_AJAX_CALL';
+export const AJAX_CALL_ERROR = 'AJAX_CALL_ERROR';
+
 // Question Actions
 export const TOGGLE_QUESTION = 'TOGGLE_QUESTION';
 export const LOAD_QUESTIONS_SUCCESS = 'LOAD_QUESTIONS_SUCCESS';

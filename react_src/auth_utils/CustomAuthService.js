@@ -12,21 +12,61 @@ export default class CustomAuthService extends EventEmitter {
         this.auth0 = new Auth0({
             clientID: clientId,
             domain: domain,
-            callbackURL:  'http://localhost:3000/login',
-            responseType: 'token'
+            //callbackURL:  'http://localhost:3000/login',
+           callbackURL: window.location.href,
+            responseType: 'token',
         });
 
         this.login = this.login.bind(this);
         this.signup = this.signup.bind(this);
+        this.onLoginComplete = this.onLoginComplete.bind(this);
+        this.onSignupComplete = this.onSignupComplete.bind(this);
     }
 
-    login(params, onError) {
-        this.auth0.login(params, onError);
+   signup(params) {
+      //this.auth0.login(params, onError);
+
+      this.auth0.signup(params, this.onSignupComplete);
+   }
+
+   onSignupComplete(err, result)
+   {
+      if (err) {
+         // handle error
+      }
+      else {
+         //create a new user in Mongo
+         console.log("token: " + result.idToken);
+
+      }
+   }
+
+    login(params) {
+        //this.auth0.login(params, onError);
+       let auth0 = this.auth0;
+
+       return new Promise(function(resolve, reject) {
+          auth0.login(params, function(err, result) {
+             if (err) {
+                reject(err);
+             }
+             else {
+                resolve(result.idToken);
+             }
+          });
+       });
+
+       //this.auth0.login(params, this.onLoginComplete);
     }
 
-    signup(params, onError) {
-        //redirects the call to auth0 instance
-        this.auth0.signup(params, onError);
+    onLoginComplete(err, result)
+    {
+       if (err) {
+          // handle error
+       }
+       else {
+          this.load_profile(result.idToken);
+       }
     }
 
     parseHash(hash) {

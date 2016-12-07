@@ -7,8 +7,8 @@ class HomePage extends Component {
    render() {
       return (
          <div styleName="container">
-            <h1>LifeSciHub</h1>
-            <p>The On-Demand Talent Marketplace for Life Sciences</p>
+            {/*<h1>LifeSciHub</h1>*/}
+            {/*<p>The On-Demand Talent Marketplace for Life Sciences</p>*/}
          </div>
       );
    }

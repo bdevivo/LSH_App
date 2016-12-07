@@ -11,8 +11,7 @@ import HeaderUserName from './HeaderUserName';
 import HeaderLogin from './HeaderLogin';
 import * as Auth from '../../auth_utils/auth';
 import {Row, Col} from 'react-bootstrap';
-
-// import LoadingDots from './LoadingDots';
+import LoadingDots from '../Common/LoadingDots';
 
 class HeaderContainer extends React.Component {
 
@@ -64,18 +63,18 @@ class HeaderContainer extends React.Component {
             <header styleName="nav">
                 <nav>
                     <Row>
-                        <Col md={5} mdOffset={2}>
+                        <Col md={4} mdOffset={1}>
                             <HeaderCenterNav isLoggedIn={isLoggedIn} isAdmin={isAdmin} isBuyer={isBuyer}/>
                         </Col>
                         <Col md={2}>
                             <HeaderUserName user_name={user_name} email={email} isLoggedIn={isLoggedIn}/>
                         </Col>
-                        <Col md={2}>
+                        <Col md={5}>
                             <HeaderLogin isLoggedIn={isLoggedIn} onLogout={this.onLogout} />
                         </Col>
                     </Row>
                 </nav>
-
+               {this.props.loading && <LoadingDots interval={100} dots={20}/>}
             </header>
         );
     }
@@ -85,13 +84,15 @@ HeaderContainer.propTypes = {
     profile: PropTypes.object.isRequired,
     isLoggedIn: PropTypes.bool.isRequired,
     authActions: PropTypes.object.isRequired,
-    profileActions: PropTypes.object.isRequired
+    profileActions: PropTypes.object.isRequired,
+    loading: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {
     return {
         profile: state.profile,
-        isLoggedIn: state.auth.isLoggedIn
+        isLoggedIn: state.auth.isLoggedIn,
+        loading: state.ajaxCallsInProgress > 0
     };
 }
 

@@ -30,14 +30,47 @@ export const onEnterLogin = (nextState, replace) => {
 };
 
 export const login = (email, password) => {
-    customAuth.login({
-        connection: 'Username-Password-Authentication',
-        responseType: 'token',
-        email: email,
-        password: password
-    }, function (err) {
-        if (err) alert("something went wrong: " + err.message);
-    });
+    // customAuth.login({
+    //     connection: 'Username-Password-Authentication',
+    //     responseType: 'token',
+    //     popup: false,
+    //    sso:false,
+    //     email: email,
+    //     password: password
+    // }, function (err) {
+    //     if (err) alert("something went wrong: " + err.message);
+    // });
+
+   let params = {
+          connection: 'Username-Password-Authentication',
+          responseType: 'token',
+          popup: false,
+          sso:false,
+          email: email,
+          password: password
+       };
+
+   customAuth.login(params)
+      .then(function(idToken) {
+         customAuth.load_profile(idToken);
+      });
+
+};
+
+export const signup = (email, password) => {
+   customAuth.signup({
+      connection: 'Username-Password-Authentication',
+      responseType: 'token',
+      popup: false,
+      sso:false,
+      email: email,
+      password: password,
+      user_metadata: {
+         account_type: 'talent'
+      }
+   }, function (err) {
+      if (err) alert("something went wrong: " + err.message);
+   });
 };
 
 export const logout = () => {   // Clear user token and profile data from localStorage

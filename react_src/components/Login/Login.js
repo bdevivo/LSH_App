@@ -3,7 +3,15 @@ import {Form, FormGroup, FormControl, ControlLabel, Button, ButtonToolbar} from 
 import CSSModules from 'react-css-modules';
 import styles from './Login.css';
 
-const Login = ({title, handleSubmit, updateLoginField}) => {
+const classNames = require('classnames');
+
+const Login = ({title, handleSubmit, updateLoginField, buttonText, loading}) => {
+
+   function createLoginButtonStyleName() {
+      return classNames({
+         'disabled': loading
+      });
+   }
 
     return (
         <div className={styles.root}>
@@ -20,7 +28,7 @@ const Login = ({title, handleSubmit, updateLoginField}) => {
                 </FormGroup>
 
                 <ButtonToolbar>
-                    <Button type="submit" bsStyle="primary">Login</Button>
+                    <Button type="submit" bsStyle="primary" className={createLoginButtonStyleName()}>{buttonText}</Button>
                 </ButtonToolbar>
             </Form>
         </div>
@@ -30,7 +38,10 @@ const Login = ({title, handleSubmit, updateLoginField}) => {
 Login.propTypes = {
     title: T.string.isRequired,
     handleSubmit: T.func.isRequired,
-    updateLoginField: T.func.isRequired
+    updateLoginField: T.func.isRequired,
+   buttonText: T.string.isRequired,
+   loading: T.bool.isRequired,
+
 };
 
 export default CSSModules(Login, styles);

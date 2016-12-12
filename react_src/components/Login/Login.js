@@ -3,19 +3,48 @@ import {Form, FormGroup, FormControl, ControlLabel, Button, ButtonToolbar} from 
 import CSSModules from 'react-css-modules';
 import styles from './Login.css';
 
+
 const classNames = require('classnames');
 
-const Login = ({title, handleSubmit, updateLoginField, buttonText, loading}) => {
+const Login = ({loginType, handleSubmit, updateLoginField, isLoading}) => {
 
-   function createLoginButtonStyleName() {
-      return classNames({
-         'disabled': loading
-      });
-   }
+    function createLoginButtonStyleName() {
+        return classNames({
+            'disabled': isLoading
+        });
+    }
+
+    let headerText, buttonText;
+    switch(loginType)
+    {
+        case "default":
+            headerText = "Login";
+            buttonText = "Login";
+            break;
+
+        case "hire":
+            headerText = "Sign Up to Hire Resources";
+            buttonText = "Sign Up";
+            break;
+
+        case "work":
+            headerText = "Sign Up to Find Work";
+            buttonText = "Sign Up";
+            break;
+
+        default:
+            headerText = "Login";
+            buttonText = "Login";
+            break;
+    }
+
+    if (isLoading) {    // override the button text when the ajax call is in progress
+        buttonText = "Loading...";
+    }
 
     return (
         <div className={styles.root}>
-            <h2>{title}</h2>
+            <h2>{headerText}</h2>
             <Form onSubmit={handleSubmit}>
                 <FormGroup controlId="email">
                     <ControlLabel>E-mail</ControlLabel>
@@ -36,12 +65,10 @@ const Login = ({title, handleSubmit, updateLoginField, buttonText, loading}) => 
 };
 
 Login.propTypes = {
-    title: T.string.isRequired,
+    loginType: T.string.isRequired,
     handleSubmit: T.func.isRequired,
     updateLoginField: T.func.isRequired,
-   buttonText: T.string.isRequired,
-   loading: T.bool.isRequired,
-
+    isLoading: T.bool.isRequired,
 };
 
 export default CSSModules(Login, styles);

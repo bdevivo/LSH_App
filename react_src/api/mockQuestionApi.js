@@ -1,5 +1,4 @@
-import delay from './delay';
-//import Immutable from 'immutable';
+import 'whatwg-fetch';
 
 // This file mocks a web API by working with the hard-coded data below.
 // It uses setTimeout to simulate the delay of an AJAX call.
@@ -32,27 +31,48 @@ class QuestionApi {
 
     static getAllQuestions() {
 
-        return new Promise((resolve, reject) => {
-            const headers = {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            };
+        const headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Cache-control': 'no-cache'
+        };
 
-
-            return fetch('/api/questions', {
-                method: 'GET',
-                headers: headers
+        return fetch('/api/questions', {
+            method: 'GET',
+            headers: headers
+        })
+            .then((response) => {
+                console.log("GetAllQuestions bodyUsed: " + response.bodyUsed);
+                return response.json();
+                //resolve(response);
             })
-                .then(response => response.json())
-                .then(questions =>
-                {
-                    resolve(questions);
-                });
-        });
+            .then(questions => {
+                return(questions);
+            });
 
 
 
 
+        // return new Promise((resolve, reject) => {
+        //     const headers = {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json',
+        //         'Cache-control': 'no-cache'
+        //     };
+        //
+        //
+        //     return fetch('/api/questions', {
+        //         method: 'GET',
+        //         headers: headers
+        //     })
+        //     .then(response => {
+        //         return response.json();
+        //         //resolve(response);
+        //     })
+        //     .then(questions => {
+        //         resolve(questions);
+        //     });
+        // });
 
 
         // return new Promise((resolve, reject) => {

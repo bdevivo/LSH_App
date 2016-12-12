@@ -1,5 +1,6 @@
 import * as types from './actionTypes';
 import questionApi from '../api/mockQuestionApi';
+import {beginAjaxCall} from './ajaxStatusActions';
 
 export function toggleQuestion(questionID) {
    //debugger;
@@ -15,6 +16,7 @@ export function loadQuestionsSuccess(questions) {
 
 export function getAllQuestions() {
     return function(dispatch) {
+        dispatch(beginAjaxCall());
         return questionApi.getAllQuestions()
             .then(questions => {
                 dispatch(loadQuestionsSuccess(questions));

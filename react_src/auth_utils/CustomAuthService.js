@@ -13,11 +13,10 @@ export default class CustomAuthService extends EventEmitter {
             clientID: clientId,
             domain: domain,
             //callbackURL:  'http://localhost:3000/login',
-           callbackURL: window.location.href,
+            callbackURL: window.location.href,
             responseType: 'token',
         });
 
-        this.login = this.login.bind(this);
         this.signup = this.signup.bind(this);
         this.onLoginComplete = this.onLoginComplete.bind(this);
         this.onSignupComplete = this.onSignupComplete.bind(this);
@@ -111,12 +110,16 @@ export default class CustomAuthService extends EventEmitter {
     }
 
     load_profile(idToken) {
-        this.auth0.getProfile(idToken, (error, profile) => {
-            if (error) {
-                console.log('Error loading the Profile', error);
-            } else {
-                this.setProfile(profile);
-            }
+
+        return new Promise((resolve, reject) => {
+            this.auth0.getProfile(idToken, (error, profile) => {
+                if (error) {
+                    reject('Error loading the Profile', error);
+                } else {
+                    this.setProfile(profile);
+                    resolve(profile.user_id);
+                }
+            });
         });
     }
 
@@ -126,7 +129,7 @@ export default class CustomAuthService extends EventEmitter {
         localStorage.setItem(CONSTANTS.PROFILE_KEY, profileString);
         localStorage.setItem(CONSTANTS.USER_ID_KEY, profile.user_id);
 
-        this.emit('profile_updated', profile);
+        //this.emit('profile_updated', profile);
     }
 
     getProfile() {

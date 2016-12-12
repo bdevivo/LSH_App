@@ -54,6 +54,10 @@ export function getProfile() {
         return { type: types.GET_PROFILE_FAILURE};
 }
 
+export function setProfile(profile) {
+    return { type: types.GET_PROFILE_SUCCESS, profile};
+}
+
 
 // THUNKS
 

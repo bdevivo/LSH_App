@@ -8,7 +8,11 @@ import {beginAjaxCall} from './ajaxStatusActions';
 //////////////////////////////////////
 
 export function loginSuccess() {
-    return {type: types.USER_LOGIN};
+    return {type: types.USER_LOGIN_SUCCESS};
+}
+
+export function loginFailure() {
+    return {type: types.USER_LOGIN_FAILURE};
 }
 
 export function logoutSuccess() {
@@ -21,20 +25,24 @@ export function logoutSuccess() {
 //////////////////////////////////////
 
 export function login(email, password) {
-   return function (dispatch) {
-      dispatch(beginAjaxCall());
-
-      Auth.login(email, password);
-
-      //dispatch(loginSuccess(profile));
-   };
-}
-
-export function onLoginSuccess(profile) {
     return function (dispatch) {
-        dispatch(loginSuccess(profile));
+        dispatch(beginAjaxCall());
+
+        Auth.login(email, password)
+            .then(
+                (user) => {
+                    dispatch(loginSuccess());
+                    dispatch(profileActions.setProfile(user));
+                    // re-direct here?
+                },
+                (err) => {
+                    dispatch(loginFailure(err));
+                }
+            );
+
     };
 }
+
 
 export function logout() {
     return function (dispatch) {

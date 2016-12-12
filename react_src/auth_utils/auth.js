@@ -1,15 +1,16 @@
 import CustomAuthService from './CustomAuthService';
-import {EventEmitter} from 'events';
+//import {EventEmitter} from 'events';
+import userApi from '../api/userApi';
 import * as CONSTANTS from './constants';
 
 const customAuth = new CustomAuthService(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMAIN);
 
-export const notifier = new EventEmitter();
+//export const notifier = new EventEmitter();
 
 // re-emit the profile_updated event from the CustomAuthService
-customAuth.on('profile_updated', (profile) => {
-    notifier.emit('profile_updated', profile);
-});
+// customAuth.on('profile_updated', (profile) => {
+//     notifier.emit('profile_updated', profile);
+// });
 
 // validate authentication for private routes
 export const requireAuth = (nextState, replace) => {
@@ -19,59 +20,83 @@ export const requireAuth = (nextState, replace) => {
     }
 };
 
-// OnEnter for callback url to parse access_token
-export const onEnterLogin = (nextState, replace) => {
-    if (nextState.location.hash) {  // if hash exists, this is the callback from the Auth0 service
-        if (customAuth.parseHash(nextState.location.hash))  // hash the id token and add to localstorage
-        {
-            customAuth.load_profile(customAuth.getToken());     // retrieve profile from Auth0 and add to localstorage
-        }
-    }
-};
+// Called when entering the callback URL (see the CustomAuthService constructor) to parse the access_token returned on successful login
+// export const onEnterLogin = (nextState, replace) => {
+//     if (nextState.location.hash) {  // if hash exists, this is the callback from the Auth0 service (as opposed to the user navigating to this page)
+//         if (customAuth.parseHash(nextState.location.hash))  // hash the id token and add to localstorage
+//         {
+//             customAuth.load_profile(customAuth.getToken());     // retrieve profile from Auth0 and add to localstorage
+//         }
+//     }
+// };
 
+// Called when user clicks the Login button.  On successful login, the callback URL specified in the
+// CustomAuthService constructor is called, and the onEnterLogin method above is invoked.
 export const login = (email, password) => {
-    // customAuth.login({
-    //     connection: 'Username-Password-Authentication',
-    //     responseType: 'token',
-    //     popup: false,
-    //    sso:false,
-    //     email: email,
-    //     password: password
-    // }, function (err) {
-    //     if (err) alert("something went wrong: " + err.message);
-    // });
 
-   let params = {
-          connection: 'Username-Password-Authentication',
-          responseType: 'token',
-          popup: false,
-          sso:false,
-          email: email,
-          password: password
-       };
+    let params = {
+        connection: 'Username-Password-Authentication',
+        responseType: 'token',
+        popup: false,
+        sso: false,
+        email: email,
+        password: password
+    };
 
-   customAuth.login(params)
-      .then(function(idToken) {
-         customAuth.load_profile(idToken);
-      });
+    return new Promise((resolve, reject) => {
+        customAuth.login(params)
+            .then(
+                (idToken) => {
+                    return customAuth.load_profile(idToken);   // returns a new Promise
+                }, (err) => {
+                    reject(err);
+                })
+            .then(
+                (auth0_userId) => {
+                   return userApi.getUserByAuth0Id(auth0_userId);      // get user info from Mongo -- save what you need in localstorage
+                })
+            .then((user) => {
+                resolve(user);
+            });
+    });
+
 
 };
 
-export const signup = (email, password) => {
-   customAuth.signup({
-      connection: 'Username-Password-Authentication',
-      responseType: 'token',
-      popup: false,
-      sso:false,
-      email: email,
-      password: password,
-      user_metadata: {
-         account_type: 'talent'
-      }
-   }, function (err) {
-      if (err) alert("something went wrong: " + err.message);
-   });
+
+// Just like the login method above, but for initial signup.
+export const signup = (email, password, userType) => {
+
+    let accountType = (userType == "work" ? "talent" : "buyer");
+
+    let params = {
+        connection: 'Username-Password-Authentication',
+        responseType: 'token',
+        popup: false,
+        sso: false,
+        email: email,
+        password: password,
+        user_metadata: {
+            account_type: accountType
+        }
+    };
+
+    return new Promise((resolve, reject) => {
+        customAuth.signup(params)
+            .then(
+                (idToken) => {
+                    return customAuth.load_profile(idToken);   // returns a new Promise
+                }, (err) => {
+                    reject(err);
+                })
+            .then(
+                (auth0_userId) => {
+                    return userApi.addUser(auth0_userId);      // add user info from Mongo -- save what you need in localstorage
+                })
+            .then(user => resolve(user));
+    });
 };
+
 
 export const logout = () => {   // Clear user token and profile data from localStorage
     localStorage.removeItem(CONSTANTS.ID_TOKEN_KEY);

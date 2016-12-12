@@ -22,7 +22,7 @@ router.get("/", function(req, res) {
 
 // Get a single user
 router.get("/:userId", function (req, res) {
-    let uid = parseInt(req.params.user_id);
+    let uid = parseInt(req.params.userId);
     User.findOne({'id': uid})
         .exec(function (err, user) {
             if (err) {
@@ -34,65 +34,27 @@ router.get("/:userId", function (req, res) {
         });
 });
 
+// Get a single user by Auth0 ID
+router.get("/auth0/:userId", function (req, res) {
+    let auth0_id = req.params.userId;
+    console.log("auth0_id: " + auth0_id);
+    User.findOne({'auth0_id': auth0_id})
+        .exec(function (err, user) {
+            if (err) {
+                res.status(400);
+                res.json({error: "Bad request."});
+                return;
+            }
+            res.json({"user": user});
+        });
+});
+
 // Create a new user
 router.post("/", function (req, res) {
-    let newUser = req.body;
-
-    // let {address, education, employment, skills} = newUser;
-    // address = address || {
-    //         street1: '',
-    //         street2: '',
-    //         city: '',
-    //         state: '',
-    //         country: '',
-    //         zip: ''
-    //     };
-    // education = education || [];
-    // employment = employment || [];
-    // skills = skills || [];
-    //
-    //
-    // let addressModel = {
-    //     street1: address.street1,
-    //     street2: address.street2,
-    //     city: address.city,
-    //     state: address.state,
-    //     country: address.country,
-    //     zip: address.zip
-    // };
-    //
-    // let educationModel = education.map(e => {
-    //     return {
-    //         school: e.school,
-    //         fromYear: e.fromYear,
-    //         toYear: e.toYear,
-    //         degree: e.degree,
-    //         fieldsOfStudy: e.fieldsOfStudy,
-    //         description: e.description,
-    //         gpa: e.gpa
-    //     };
-    // });
-    //
-    // let employmentModel = employment.map(e => {
-    //     return {
-    //         company: e.company,
-    //         location: e.location,
-    //         title: e.title,
-    //         fromMonth: e.fromMonth,
-    //         fromYear: e.fromYear,
-    //         toMonth: e.toMonth,
-    //         toYear: e.toYear,
-    //         isCurrent: e.isCurrent,
-    //         description: e.description
-    //     };
-    // });
+    let auth0_id = req.body;
 
     let uModel = new User({
-        auth0_id: newUser.user_id
-        // address: addressModel,
-        // education: educationModel,
-        // employment: employmentModel,
-        // skills: skills
+        auth0_id: auth0_id
     });
 
     uModel.save(function (err, uModel) {
@@ -132,8 +94,72 @@ router.put("/address", function (req, res) {
         }
 
     });
+});
 
+// Add Education record
+router.put("/education", function (req, res) {
+    let profile = req.body;
 
+    let {_id, edu} = profile;
+
+    if (!_id) throw new Error("Add Education: missing user id");
+
+    // use blank fields for default
+    edu = edu || {
+            school: '',
+            fromYear: '',
+            toYear: '',
+            degree: '',
+            fieldsOfStudy: '',
+            description: '',
+            gpa: ''
+        };
+
+    User.update(
+        {_id: _id},
+        {$push: {education: edu}},
+        function (err, raw) {
+            if (err)
+                return handleError(err);
+            else {
+                console.log('The raw response from Mongo was ', raw);
+                res.send("success");
+        }
+    });
+});
+
+// Add Employment record
+router.put("/employment", function (req, res) {
+    let profile = req.body;
+
+    let {_id, emp} = profile;
+
+    if (!_id) throw new Error("Add Employment: missing user id");
+
+    // use blank fields for default
+    emp = emp || {
+            company: '',
+            location: '',
+            title: '',
+            fromMonth: '',
+            fromYear: '',
+            toMonth: '',
+            toYear: '',
+            isCurrent: '',
+            description: ''
+        };
+
+    User.update(
+        {_id: _id},
+        {$push: {employment: emp}},
+        function (err, raw) {
+            if (err)
+                return handleError(err);
+            else {
+                console.log('The raw response from Mongo was ', raw);
+                res.send("success");
+            }
+        });
 });
 
 

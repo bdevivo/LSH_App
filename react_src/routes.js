@@ -10,7 +10,7 @@ import EmploymentContainer from './components/Profile/Employment/EmploymentConta
 import EducationContainer from './components/Profile/Education/EducationContainer';
 import SkillsContainer from './components/Profile/Skills/SkillsContainer';
 import LoginContainer from './components/Login/LoginContainer';
-import { requireAuth, onEnterLogin } from './auth_utils/auth';
+import { requireAuth } from './auth_utils/auth';
 
 //noinspection JSUnresolvedVariable
 
@@ -25,7 +25,7 @@ export default (
             <Route path="education" component={EducationContainer} onEnter={requireAuth} />
             <Route path="skills" component={SkillsContainer} onEnter={requireAuth} />
         </Route>
-        <Route path="login/:type" component={LoginContainer} onEnter={onEnterLogin} />
+        <Route path="login/:type" component={LoginContainer} />
         <Route path="questionwizard" component={QuestionPage} />
    </Route>
 );

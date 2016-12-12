@@ -6,6 +6,13 @@ let Question = new require("../models/Question");
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended : false}));
 
+function nocache(req, res, next) {
+    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    res.header('Expires', '-1');
+    res.header('Pragma', 'no-cache');
+    next();
+}
+
 // Get a single question
 router.get("/:questionId", function(req, res) {
     let qid = parseInt(req.params.questionId);
@@ -21,7 +28,7 @@ router.get("/:questionId", function(req, res) {
 });
 
 // Get all questions
-router.get("/", function(req, res) {
+router.get("/", nocache, function(req, res) {
     Question.find()
         .exec(function(err, questions) {
             if (err) {
@@ -30,6 +37,7 @@ router.get("/", function(req, res) {
                 return;
             }
             res.json({ "questions": questions });
+            //res.send(questions);
         });
 });
 

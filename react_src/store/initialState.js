@@ -8,6 +8,7 @@ export default
     },
     profile: {
         user_id: '',
+        auth0_id: '',
         email: '',
         user_name: {
             first: '',

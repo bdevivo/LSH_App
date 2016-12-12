@@ -11,7 +11,35 @@ function mapActionToProfile(action) {
 
 
     // Project data into the correct shape
-    return{
+    return {
+        user_id: profile.user_id,
+        email: profile.email,
+        user_name: {
+            first: user_metadata.firstName,
+            middle: user_metadata.middleName,
+            last: user_metadata.lastName
+        },
+        address: {
+            street1: address.street1,
+            street2: address.street2,
+            city: address.city,
+            state: address.state,
+            country: address.country,
+            zip: address.zip
+        },
+        avatarUrl: user_metadata.profilePicture,
+        roles: app_metadata.roles
+    };
+}
+
+function mapUserToProfile(user) {
+
+    let {address} = user || {};
+    let {app_metadata} = profile;
+
+
+    // Project data into the correct shape
+    return {
         user_id: profile.user_id,
         email: profile.email,
         user_name: {
@@ -42,7 +70,7 @@ export default function profileReducer(profile = initialState.profile, action) {
         }
 
         case types.GET_PROFILE_SUCCESS: {
-            return mapActionToProfile(action);
+            return mapActionToProfile(action.profile.user);
         }
 
         case types.GET_PROFILE_FAILURE: {
@@ -122,8 +150,10 @@ export default function profileReducer(profile = initialState.profile, action) {
         }
 
         case types.ADD_USER_SUCCESS: {
-            // add the user id to the profile here
-            break;
+            return {
+                user_id: action.user_id,
+                email: action.email
+            };
         }
 
         default:

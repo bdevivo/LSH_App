@@ -2,23 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list id="23724d5d-f374-4c1f-8907-1c5c6ffa7959" name="Default" comment="" />
-    <list default="true" id="db9cce2d-2ebf-4e24-9d2e-9ec417bf0e97" name="Add all changelist" comment="Part 1 of adding custom authentication">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/actions/ajaxStatusActions.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/Common/LoadingDots.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/reducers/ajaxStatusReducer.js" />
+    <list default="true" id="db9cce2d-2ebf-4e24-9d2e-9ec417bf0e97" name="Add all changelist" comment="Fixes for login page">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/react_src/components/Login/BuyerSignup.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/react_src/components/Login/TalentSignup.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/actions/actionTypes.js" afterPath="$PROJECT_DIR$/react_src/actions/actionTypes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/actions/authActions.js" afterPath="$PROJECT_DIR$/react_src/actions/authActions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/actions/profileActions.js" afterPath="$PROJECT_DIR$/react_src/actions/profileActions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/actions/questionWizardActions.js" afterPath="$PROJECT_DIR$/react_src/actions/questionWizardActions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/api/mockQuestionApi.js" afterPath="$PROJECT_DIR$/react_src/api/mockQuestionApi.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/api/userApi.js" afterPath="$PROJECT_DIR$/react_src/api/userApi.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/auth_utils/CustomAuthService.js" afterPath="$PROJECT_DIR$/react_src/auth_utils/CustomAuthService.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/auth_utils/auth.js" afterPath="$PROJECT_DIR$/react_src/auth_utils/auth.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Header/Header.css" afterPath="$PROJECT_DIR$/react_src/components/Header/Header.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Header/HeaderContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Header/HeaderContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Header/HeaderLogin.js" afterPath="$PROJECT_DIR$/react_src/components/Header/HeaderLogin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Home/HomePage.js" afterPath="$PROJECT_DIR$/react_src/components/Home/HomePage.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Login/Login.js" afterPath="$PROJECT_DIR$/react_src/components/Login/Login.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Login/LoginContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Login/LoginContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/reducers/index.js" afterPath="$PROJECT_DIR$/react_src/reducers/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/reducers/ajaxStatusReducer.js" afterPath="$PROJECT_DIR$/react_src/reducers/ajaxStatusReducer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/reducers/authReducer.js" afterPath="$PROJECT_DIR$/react_src/reducers/authReducer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/reducers/profileReducer.js" afterPath="$PROJECT_DIR$/react_src/reducers/profileReducer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/routes.js" afterPath="$PROJECT_DIR$/react_src/routes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/store/initialState.js" afterPath="$PROJECT_DIR$/react_src/store/initialState.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tools/routes/questions.js" afterPath="$PROJECT_DIR$/tools/routes/questions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tools/routes/users.js" afterPath="$PROJECT_DIR$/tools/routes/users.js" />
     </list>
     <ignored path="QuestionGrid.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,11 +45,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="LoginContainer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react_src/components/Login/LoginContainer.js">
+      <file leaf-file-name="userActions.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react_src/actions/userActions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="84" column="59" lean-forward="true" selection-start-line="84" selection-start-column="59" selection-end-line="84" selection-end-column="59" />
+            <state relative-caret-position="68">
+              <caret line="4" column="41" lean-forward="false" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="41" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -53,50 +57,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Login.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/react_src/components/Login/Login.js">
+      <file leaf-file-name="authReducer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react_src/reducers/authReducer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="42" lean-forward="true" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
-              <folding>
-                <element signature="e#0#46#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="119">
+              <caret line="8" column="40" lean-forward="false" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EducationEdit.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react_src/components/Profile/Education/EducationEdit.js">
+      <file leaf-file-name="profileReducer.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/react_src/reducers/profileReducer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1071">
-              <caret line="90" column="70" lean-forward="true" selection-start-line="90" selection-start-column="70" selection-end-line="90" selection-end-column="70" />
-              <folding>
-                <element signature="e#0#44#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="340">
+              <caret line="37" column="33" lean-forward="true" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HeaderContainer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react_src/components/Header/HeaderContainer.js">
+      <file leaf-file-name="profileActions.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react_src/actions/profileActions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="87" column="38" lean-forward="true" selection-start-line="87" selection-start-column="4" selection-end-line="87" selection-end-column="38" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HeaderLogin.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react_src/components/Header/HeaderLogin.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="337">
+              <caret line="56" column="26" lean-forward="false" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="26" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -104,22 +90,10 @@
       <file leaf-file-name="authActions.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react_src/actions/authActions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="9" column="32" lean-forward="true" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+            <state relative-caret-position="397">
+              <caret line="34" column="62" lean-forward="false" selection-start-line="34" selection-start-column="62" selection-end-line="34" selection-end-column="62" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ajaxStatusReducer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/react_src/reducers/ajaxStatusReducer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#48#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -128,25 +102,67 @@
       <file leaf-file-name="auth.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react_src/auth_utils/auth.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="31" column="37" lean-forward="false" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="37" />
+            <state relative-caret-position="464">
+              <caret line="58" column="30" lean-forward="true" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
+              <folding>
+                <element signature="e#92#129#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="userApi.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react_src/api/userApi.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="453">
+              <caret line="45" column="14" lean-forward="true" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CustomAuthService.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ajaxStatusReducer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react_src/reducers/ajaxStatusReducer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="13" column="7" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="13" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tools/routes/users.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="175">
+              <caret line="39" column="41" lean-forward="true" selection-start-line="39" selection-start-column="41" selection-end-line="39" selection-end-column="41" />
+              <folding>
+                <element signature="e#1741#2343#0" expanded="false" />
+                <marker date="1481254116930" expanded="false" signature="2416:3098" ph="{...}" />
+                <marker date="1481254116930" expanded="false" signature="3173:3918" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CustomAuthService.js" pinned="true" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react_src/auth_utils/CustomAuthService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="52" column="19" lean-forward="false" selection-start-line="52" selection-start-column="19" selection-end-line="52" selection-end-column="19" />
+            <state relative-caret-position="333">
+              <caret line="122" column="11" lean-forward="true" selection-start-line="122" selection-start-column="11" selection-end-line="122" selection-end-column="11" />
               <folding>
-                <element signature="e#2030#2191#0" expanded="false" />
-                <element signature="e#2207#2401#0" expanded="false" />
-                <element signature="e#2421#2612#0" expanded="false" />
-                <element signature="e#2636#2751#0" expanded="false" />
-                <element signature="e#2768#2891#0" expanded="false" />
+                <element signature="e#0#29#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="initialState.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react_src/store/initialState.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -157,91 +173,111 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="CSS File" />
         <option value="React Redux Container Component" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>userprofile</find>
-      <find>EducationList</find>
-      <find>entered</find>
-      <find>static</find>
-      <find>update(</find>
+      <find>updateProfile</find>
+      <find>logout</find>
+      <find>getpro</find>
+      <find>setProfile</find>
+      <find>profile</find>
+      <find>getProfile</find>
+      <find>authActions</find>
+      <find>push</find>
+      <find>pathname</find>
+      <find>history</find>
+      <find>isTokenExpired</find>
+      <find>AuthNotification</find>
+      <find>emit</find>
+      <find>userActions</find>
+      <find>uiActions</find>
+      <find>ui</find>
+      <find>onlogin</find>
+      <find>profileActions</find>
+      <find>USER_ID_KEY</find>
+      <find>span</find>
+      <find>addUser</find>
+      <find>user_id</find>
+      <find>`</find>
+      <find>getAllQuestions</find>
+      <find>log</find>
+      <find>ADD_USER_SUCCESS</find>
       <find>fetch</find>
-      <find>CONSTANTS.PROFILE_KEY</find>
-      <find>hasrole</find>
+      <find>header</find>
       <find>auth</find>
-      <find>Auth.auth</find>
-      <find>&lt;Button</find>
-      <find>new promise</find>
+      <find>GET_PROFILE_SUCCESS</find>
     </findStrings>
     <dirStrings>
-      <dir>C:\Users\Robert.DeVivo\WebstormProjects\QuestionGrid\react_src\components</dir>
-      <dir>C:\Users\Robert.DeVivo\WebstormProjects\QuestionGrid\react_src</dir>
-      <dir>C:\Users\Robert.DeVivo\WebstormProjects\QuestionGrid\</dir>
+      <dir>E:\Development\React\QuestionGrid</dir>
+      <dir>E:\Development\React\QuestionGrid\react_src\</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="dummy://restClient/response43.json" root0="SKIP_INSPECTION" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.eslintignore" />
-        <option value="$PROJECT_DIR$/webpack.config.prod.js" />
-        <option value="$PROJECT_DIR$/awsconfig.json" />
-        <option value="$PROJECT_DIR$/.env.default" />
-        <option value="$PROJECT_DIR$/.eslintrc" />
-        <option value="$PROJECT_DIR$/react_src/components/Profile/ProfileEdit.js" />
-        <option value="$PROJECT_DIR$/react_src/components/Profile/ProfileDetails.js" />
-        <option value="$PROJECT_DIR$/react_src/components/Profile/ProfilePage.css" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/react_src/reducers/authReducer.js" />
-        <option value="$PROJECT_DIR$/react_src/utils/AuthService.js" />
-        <option value="$PROJECT_DIR$/react_src/api/authApi.js" />
-        <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/dist/index.html" />
-        <option value="$PROJECT_DIR$/react_src/store/configureStore.js" />
-        <option value="$PROJECT_DIR$/react_src/components/Profile/ProfilePage.js" />
-        <option value="$PROJECT_DIR$/webpack.config.dev.js" />
-        <option value="$PROJECT_DIR$/react_src/components/Header/Header.js" />
-        <option value="$PROJECT_DIR$/react_src/components/Profile/ProfileEditPage.js" />
-        <option value="$PROJECT_DIR$/react_src/actions/profileActions.js" />
-        <option value="$PROJECT_DIR$/react_src/components/Profile/Education/EducationEdit.js" />
-        <option value="$PROJECT_DIR$/react_src/components/Profile/Education/EducationList.js" />
-        <option value="$PROJECT_DIR$/react_src/components/Profile/Education/EducationContainer.js" />
-        <option value="$PROJECT_DIR$/react_src/reducers/profileReducer.js" />
-        <option value="$PROJECT_DIR$/react_src/components/App/App.css" />
-        <option value="$PROJECT_DIR$/react_src/components/Profile/Education/EducationDetails.js" />
-        <option value="$PROJECT_DIR$/react_src/components/Profile/Education/Education.css" />
+        <option value="$PROJECT_DIR$/react_src/components/Profile/Employment/Months.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Profile/Employment/EmploymentEdit.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Profile/Employment/EmploymentContainer.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Profile/Employment/EmploymentDetails.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Profile/Account/AccountDetails.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Profile/Account/AccountContainer.js" />
+        <option value="$PROJECT_DIR$/react_src/actions/userActions.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Profile/Skills/SkillsDetails.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Profile/Skills/SkillsEdit.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Profile/Skills/Skills.css" />
         <option value="$PROJECT_DIR$/styles/styles.css" />
-        <option value="$PROJECT_DIR$/tools/srcServer.js" />
-        <option value="$PROJECT_DIR$/react_src/index.html" />
-        <option value="$PROJECT_DIR$/react_src/api/mockQuestionApi.js" />
-        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/react_src/components/Profile/Education/EducationDetails.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Profile/ProfilePage.css" />
+        <option value="$PROJECT_DIR$/react_src/components/Profile/Education/Education.css" />
+        <option value="$PROJECT_DIR$/tools/models/User.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Profile/ProfilePage.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Profile/Skills/SkillsContainer.js" />
         <option value="$PROJECT_DIR$/react_src/auth_utils/AuthService.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Profile/Address/AddressContainer.js" />
         <option value="$PROJECT_DIR$/react_src/api/profileApi.js" />
-        <option value="$PROJECT_DIR$/react_src/routes.js" />
-        <option value="$PROJECT_DIR$/react_src/components/Header/Header.css" />
-        <option value="$PROJECT_DIR$/react_src/components/Home/HomePage.js" />
-        <option value="$PROJECT_DIR$/react_src/auth_utils/auth.js" />
-        <option value="$PROJECT_DIR$/react_src/auth_utils/CustomAuthService.js" />
-        <option value="$PROJECT_DIR$/react_src/actions/authorActions.js" />
-        <option value="$PROJECT_DIR$/react_src/actions/ajaxStatusActions.js" />
-        <option value="$PROJECT_DIR$/react_src/actions/actionTypes.js" />
-        <option value="$PROJECT_DIR$/react_src/store/initialState.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Login/TalentLogin.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Login/TalentSignup.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Login/BuyerSignup.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Login/Login.css" />
+        <option value="$PROJECT_DIR$/react_src/api/authApi.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Profile/ProfileContainer.js" />
         <option value="$PROJECT_DIR$/react_src/reducers/index.js" />
-        <option value="$PROJECT_DIR$/react_src/components/Common/LoadingDots.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/react_src/components/Header/HeaderLoginContainer.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Header/Header.js" />
         <option value="$PROJECT_DIR$/react_src/components/Header/HeaderContainer.js" />
-        <option value="$PROJECT_DIR$/react_src/actions/authActions.js" />
+        <option value="$PROJECT_DIR$/react_src/components/App/App.js" />
         <option value="$PROJECT_DIR$/react_src/components/Header/HeaderLogin.js" />
+        <option value="$PROJECT_DIR$/react_src/auth_utils/CustomAuthService.js" />
         <option value="$PROJECT_DIR$/react_src/components/Login/Login.js" />
+        <option value="$PROJECT_DIR$/react_src/actions/questionWizardActions.js" />
         <option value="$PROJECT_DIR$/react_src/components/Login/LoginContainer.js" />
+        <option value="$PROJECT_DIR$/react_src/routes.js" />
+        <option value="$PROJECT_DIR$/react_src/auth_utils/auth.js" />
+        <option value="$PROJECT_DIR$/tools/routes/users.js" />
         <option value="$PROJECT_DIR$/react_src/reducers/ajaxStatusReducer.js" />
+        <option value="$PROJECT_DIR$/tools/srcServer.js" />
+        <option value="$PROJECT_DIR$/react_src/api/mockQuestionApi.js" />
+        <option value="$PROJECT_DIR$/tools/routes/questions.js" />
+        <option value="$PROJECT_DIR$/react_src/api/userApi.js" />
+        <option value="$PROJECT_DIR$/react_src/store/initialState.js" />
+        <option value="$PROJECT_DIR$/react_src/actions/actionTypes.js" />
+        <option value="$PROJECT_DIR$/react_src/reducers/authReducer.js" />
+        <option value="$PROJECT_DIR$/react_src/actions/profileActions.js" />
+        <option value="$PROJECT_DIR$/react_src/actions/authActions.js" />
+        <option value="$PROJECT_DIR$/react_src/reducers/profileReducer.js" />
       </list>
     </option>
   </component>
@@ -259,8 +295,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1696" />
-    <option name="height" value="1026" />
+    <option name="width" value="1936" />
+    <option name="height" value="1176" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -270,10 +306,16 @@
             <id />
           </State>
           <State>
+            <id>General</id>
+          </State>
+          <State>
             <id>HTML</id>
           </State>
           <State>
             <id>XML</id>
+          </State>
+          <State>
+            <id>XPath</id>
           </State>
         </expanded-state>
         <selected-state>
@@ -302,8 +344,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -362,99 +402,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuestionGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuestionGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="react_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Profile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuestionGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuestionGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="react_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Profile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Education" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuestionGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuestionGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="react_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Login" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuestionGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuestionGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="react_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Header" />
+              <option name="myItemId" value="reducers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -478,10 +426,12 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="C:/Development/Auth0/auth0.js-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tools/srcServer.js" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
@@ -489,9 +439,9 @@
     <property name="nodejs.mocha.mocha_node_package_dir" value="C:\Development\React\QuestionGrid\node_modules\mocha" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="editor.config.accepted" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="toggle_question&#9;FILE&#9;file://E:/Development/React/QuestionGrid/react_src/components/question_wizard/actions/toggle_question.js&#10;index.html&#9;FILE&#9;file://E:/Development/React/QuestionGrid/react_src/index.html" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/Development/React/QuestionGrid/tools/srcServer.js&#10;toggle_question&#9;FILE&#9;file://E:/Development/React/QuestionGrid/react_src/components/question_wizard/actions/toggle_question.js&#10;index.html&#9;FILE&#9;file://E:/Development/React/QuestionGrid/react_src/index.html" />
     <property name="javascript.nodejs.core.library.configured.version" value="6.2.2" />
-    <property name="js.eslint.eslintPackage" value="C:\Users\Robert.DeVivo\WebstormProjects\QuestionGrid\node_modules\eslint" />
+    <property name="js.eslint.eslintPackage" value="E:\Development\React\QuestionGrid\node_modules\eslint" />
     <property name="js.eslint.nodeInterpreter" value="project" />
     <property name="prop_add_unversioned_files" value="true" />
     <property name="JavaScriptPreferStrict" value="false" />
@@ -502,13 +452,14 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Robert.DeVivo\WebstormProjects\QuestionGrid\react_src\components\Header" />
-      <recent name="E:\Development\React\QuestionGrid\react_src\store" />
-      <recent name="E:\Development\React\QuestionGrid\react_src" />
-      <recent name="E:\Development\React\QuestionGrid\react_src\components\App" />
-      <recent name="E:\Development\React\QuestionGrid\react_src\components\Login" />
+      <recent name="E:\Development\React\QuestionGrid\tools\routes" />
+      <recent name="E:\Development\React\QuestionGrid\react_src\components\Profile\Address" />
+      <recent name="E:\Development\React\QuestionGrid\react_src\components\Profile\Account" />
+      <recent name="E:\Development\React\QuestionGrid\react_src\components\Home" />
+      <recent name="E:\Development\React\QuestionGrid" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Development\React\QuestionGrid\react_src\components\Profile" />
       <recent name="E:\Development\React\QuestionGrid" />
       <recent name="E:\Development\React\QuestionGrid\tools" />
       <recent name="C:\Development\React\QuestionGrid\src\components\navigation" />
@@ -517,6 +468,296 @@
   <component name="RestClientSettings">
     <option name="REQUEST_HISTORY">
       <list>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:3000" />
+          <option name="urlPath" value="api/questions" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="{ &quot;_id&quot;: &quot;5830e916b5ef877238c5c1f3&quot;,  &quot;address&quot;: { &#9;&quot;street1&quot;: &quot;2547 Bourbon  St.&quot;, &#9;&quot;street2&quot;: &quot;#6F&quot;, &#9;&#9;&quot;city&quot;: &quot;New Rochelle&quot;, &#9;&#9;&quot;state&quot;: &quot;NY&quot;, &#9;&#9;&quot;country&quot;: &quot;US&quot;, &#9;&#9;&quot;zip&quot;: &quot;23456&quot; &#9;} }" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:3000" />
+          <option name="urlPath" value="api/questions" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="{ &quot;_id&quot;: &quot;5830e916b5ef877238c5c1f3&quot;,  &quot;address&quot;: { &#9;&quot;street1&quot;: &quot;2547 Bourbon  St.&quot;, &#9;&quot;street2&quot;: &quot;#6F&quot;, &#9;&#9;&quot;city&quot;: &quot;New Rochelle&quot;, &#9;&#9;&quot;state&quot;: &quot;NY&quot;, &#9;&#9;&quot;country&quot;: &quot;US&quot;, &#9;&#9;&quot;zip&quot;: &quot;23456&quot; &#9;} }" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:3000" />
+          <option name="urlPath" value="api/questions" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="{ &quot;_id&quot;: &quot;5830e916b5ef877238c5c1f3&quot;,  &quot;address&quot;: { &#9;&quot;street1&quot;: &quot;2547 Bourbon  St.&quot;, &#9;&quot;street2&quot;: &quot;#6F&quot;, &#9;&#9;&quot;city&quot;: &quot;New Rochelle&quot;, &#9;&#9;&quot;state&quot;: &quot;NY&quot;, &#9;&#9;&quot;country&quot;: &quot;US&quot;, &#9;&#9;&quot;zip&quot;: &quot;23456&quot; &#9;} }" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:3000" />
+          <option name="urlPath" value="api/users/auth0/auth0%7C5806e27b5a0ea98a61851c5c" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="{ &quot;_id&quot;: &quot;5830e916b5ef877238c5c1f3&quot;,  &quot;address&quot;: { &#9;&quot;street1&quot;: &quot;2547 Bourbon  St.&quot;, &#9;&quot;street2&quot;: &quot;#6F&quot;, &#9;&#9;&quot;city&quot;: &quot;New Rochelle&quot;, &#9;&#9;&quot;state&quot;: &quot;NY&quot;, &#9;&#9;&quot;country&quot;: &quot;US&quot;, &#9;&#9;&quot;zip&quot;: &quot;23456&quot; &#9;} }" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="PUT" />
+          <option name="urlBase" value="http://localhost:3000" />
+          <option name="urlPath" value="api/users/address" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{ &quot;_id&quot;: &quot;5830e916b5ef877238c5c1f3&quot;,  &quot;address&quot;: { &#9;&quot;street1&quot;: &quot;2547 Bourbon  St.&quot;, &#9;&quot;street2&quot;: &quot;#6F&quot;, &#9;&#9;&quot;city&quot;: &quot;New Rochelle&quot;, &#9;&#9;&quot;state&quot;: &quot;NY&quot;, &#9;&#9;&quot;country&quot;: &quot;US&quot;, &#9;&#9;&quot;zip&quot;: &quot;23456&quot; &#9;} }" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:3000" />
+          <option name="urlPath" value="api/users" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{   &quot;user_id&quot;: &quot;auth0_99782354278&quot; }" />
+          <option name="filesToSend" value="$PROJECT_DIR$/../../data_files/test_user.json" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:3000" />
+          <option name="urlPath" value="api/users" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{   user_id: &quot;auth0_99782354278&quot; }" />
+          <option name="filesToSend" value="$PROJECT_DIR$/../../data_files/test_user.json" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:3000" />
+          <option name="urlPath" value="api/users" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="haveFileToSend" value="true" />
+          <option name="textToSend" value="{&quot;name&quot;: &quot;new question&quot;, &quot;text&quot;: &quot;questiontext&quot;}" />
+          <option name="filesToSend" value="$PROJECT_DIR$/../../data_files/test_user.json" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:3000" />
+          <option name="urlPath" value="api/questions" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&quot;name&quot;: &quot;new question&quot;, &quot;text&quot;: &quot;questiontext&quot;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:3000" />
+          <option name="urlPath" value="api/users" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{user_id: &quot;123456&quot;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:3000" />
+          <option name="urlPath" value="api/questions" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:27017" />
+          <option name="urlPath" value="api/questions" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
         <RestClientRequest>
           <option name="httpMethod" value="GET" />
           <option name="urlBase" value="http://localhost:3001" />
@@ -857,17 +1098,19 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/dictionaries/bob.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/package.json</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/api/mockQuestionApi.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/actions/actionTypes.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/actions/authActions.js</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/auth_utils/CustomAuthService.js</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/auth_utils/auth.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/components/App/App.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/components/Header/Header.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/components/Header/HeaderContainer.js</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/components/Header/HeaderLogin.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/components/Profile/ProfileContainer.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/routes.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/tools/routes/users.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/components/Home/HomePage.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/components/Login/Login.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/components/Login/LoginContainer.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/reducers/index.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/store/initialState.js</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -875,12 +1118,9 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/components/Header/HeaderContainer.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/components/Login/BuyerSignup.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/components/Login/Login.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/components/Login/Login.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/components/Login/LoginContainer.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/components/Login/TalentSignup.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/actions/ajaxStatusActions.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/components/Common/LoadingDots.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/reducers/ajaxStatusReducer.js</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -888,9 +1128,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/api/authApi.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/components/Header/Header.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/react_src/components/Header/HeaderLoginContainer.js</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -972,7 +1209,7 @@
       </FILE-GROUP>
     </UpdatedFiles>
   </component>
-  <component name="RunManager" selected="Node.js Remote Debug.LSH Debug Remote">
+  <component name="RunManager" selected="npm.LSH NPM Debug">
     <configuration default="false" name="NewQuestion.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="$PROJECT_DIR$/react_src/components/questions/NewQuestion.js" working-dir="$PROJECT_DIR$/react_src/components/questions">
       <profiling v8-profiler-path="" />
       <EXTENSION ID="com.jetbrains.nodejs.remote.docker.NodeJSDockerRunConfigurationExtension">
@@ -1064,13 +1301,54 @@
       <recursive>false</recursive>
       <method />
     </configuration>
-    <configuration default="false" name="LSH Debug Remote" type="NodeJSRemoteDebug" factoryName="Node.js Remote Debug">
+    <configuration default="false" name="LifeSciHub" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" path-to-js-file="tools/srcServer.js" working-dir="$PROJECT_DIR$">
+      <profiling v8-profiler-path="" />
+      <EXTENSION ID="com.jetbrains.nodejs.remote.docker.NodeJSDockerRunConfigurationExtension">
+        <option name="envVars">
+          <list />
+        </option>
+        <option name="extraHosts">
+          <list />
+        </option>
+        <option name="links">
+          <list />
+        </option>
+        <option name="networkDisabled" value="false" />
+        <option name="networkMode" value="bridge" />
+        <option name="portBindings">
+          <list />
+        </option>
+        <option name="publishAllPorts" value="false" />
+        <option name="version" value="1" />
+        <option name="volumeBindings">
+          <list />
+        </option>
+      </EXTENSION>
+      <EXTENSION ID="com.jetbrains.nodejs.run.NodeJSProfilingRunConfigurationExtension">
+        <profiling v8-profiler-path="" />
+      </EXTENSION>
+      <method />
+    </configuration>
+    <configuration default="false" name="LSH Remote Debug" type="NodeJSRemoteDebug" factoryName="Node.js Remote Debug">
       <node-js-remote-debug />
       <method />
     </configuration>
-    <list size="2">
-      <item index="0" class="java.lang.String" itemvalue="Node.js Remote Debug.LSH Debug Remote" />
-      <item index="1" class="java.lang.String" itemvalue="Node.js.NewQuestion.js" />
+    <configuration default="false" name="LSH NPM Debug" type="js.build_tools.npm" factoryName="npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run-script" />
+      <scripts>
+        <script value="open:src" />
+      </scripts>
+      <node-interpreter value="project" />
+      <node-options value="--debug-brk=5858" />
+      <envs />
+      <method />
+    </configuration>
+    <list size="4">
+      <item index="0" class="java.lang.String" itemvalue="Node.js.LifeSciHub" />
+      <item index="1" class="java.lang.String" itemvalue="Node.js Remote Debug.LSH Remote Debug" />
+      <item index="2" class="java.lang.String" itemvalue="npm.LSH NPM Debug" />
+      <item index="3" class="java.lang.String" itemvalue="Node.js.NewQuestion.js" />
     </list>
     <recent_temporary>
       <list size="1">
@@ -1114,29 +1392,22 @@
       <workItem from="1476209597546" duration="8118000" />
       <workItem from="1476293440664" duration="10470000" />
       <workItem from="1476378580088" duration="26000" />
-      <workItem from="1476378724270" duration="66859000" />
-      <workItem from="1476723648378" duration="750000" />
-      <workItem from="1476724438908" duration="5945000" />
-      <workItem from="1476810215712" duration="10428000" />
-      <workItem from="1476834454319" duration="9240000" />
-      <workItem from="1477411046533" duration="151000" />
-      <workItem from="1477411262140" duration="1193000" />
-      <workItem from="1477502678705" duration="9454000" />
-      <workItem from="1477935358807" duration="515000" />
-      <workItem from="1478019431716" duration="6028000" />
-      <workItem from="1478106310794" duration="4211000" />
-      <workItem from="1478205884273" duration="708000" />
-      <workItem from="1479142751927" duration="957000" />
-      <workItem from="1479144262800" duration="149000" />
-      <workItem from="1479145346658" duration="10861000" />
-      <workItem from="1479332307937" duration="726000" />
-      <workItem from="1479737416020" duration="2350000" />
-      <workItem from="1479851934364" duration="442000" />
-      <workItem from="1479865256005" duration="849000" />
-      <workItem from="1479929483695" duration="716000" />
-      <workItem from="1480442121571" duration="650000" />
-      <workItem from="1480442830249" duration="3945000" />
-      <workItem from="1481120031444" duration="15378000" />
+      <workItem from="1476378724270" duration="67813000" />
+      <workItem from="1476834612826" duration="3573000" />
+      <workItem from="1476844752867" duration="2162000" />
+      <workItem from="1476976667858" duration="72376000" />
+      <workItem from="1477327374856" duration="37162000" />
+      <workItem from="1477618212289" duration="20569000" />
+      <workItem from="1477690992445" duration="100741000" />
+      <workItem from="1478804238522" duration="26495000" />
+      <workItem from="1478873985723" duration="24919000" />
+      <workItem from="1478914332535" duration="5351000" />
+      <workItem from="1478967478586" duration="10334000" />
+      <workItem from="1478995675433" duration="28375000" />
+      <workItem from="1479169012125" duration="75618000" />
+      <workItem from="1479672234969" duration="669000" />
+      <workItem from="1479674201176" duration="43302000" />
+      <workItem from="1480737966111" duration="56661000" />
     </task>
     <task id="LOCAL-00001" summary="Update from NJ">
       <created>1469553603490</created>
@@ -1229,67 +1500,130 @@
       <option name="project" value="LOCAL" />
       <updated>1476302433561</updated>
     </task>
-    <task id="LOCAL-00014" summary="Add and update profile info">
-      <created>1476737233249</created>
+    <task id="LOCAL-00014" summary="Add Auth0 login">
+      <created>1476674954019</created>
       <option name="number" value="00014" />
       <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1476737233249</updated>
+      <updated>1476674954019</updated>
     </task>
-    <task id="LOCAL-00015" summary="Add image uplod to AWS S3">
-      <created>1476834518709</created>
+    <task id="LOCAL-00015" summary="Fixes for avatar upload">
+      <created>1477111824584</created>
       <option name="number" value="00015" />
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
-      <updated>1476834518709</updated>
+      <updated>1477111824584</updated>
     </task>
-    <task id="LOCAL-00016" summary="Fixed image upload to AWS S3">
-      <created>1476903238646</created>
+    <task id="LOCAL-00016" summary="Fixes for onProfileUpdate">
+      <created>1477146715532</created>
       <option name="number" value="00016" />
       <option name="presentableId" value="LOCAL-00016" />
       <option name="project" value="LOCAL" />
-      <updated>1476903238646</updated>
+      <updated>1477146715532</updated>
     </task>
-    <task id="LOCAL-00017" summary="Refactoring Header component to use actions rather than calling Auth0 Service directly">
-      <created>1477513728983</created>
+    <task id="LOCAL-00017" summary="Moving profile stuff to redux (part 1)">
+      <created>1477365590382</created>
       <option name="number" value="00017" />
       <option name="presentableId" value="LOCAL-00017" />
       <option name="project" value="LOCAL" />
-      <updated>1477513728983</updated>
+      <updated>1477365590382</updated>
     </task>
-    <task id="LOCAL-00018" summary="Fixing react-persist stuff">
-      <created>1478033345521</created>
+    <task id="LOCAL-00018" summary="More work on reduxifying the Header">
+      <created>1477445525188</created>
       <option name="number" value="00018" />
       <option name="presentableId" value="LOCAL-00018" />
       <option name="project" value="LOCAL" />
-      <updated>1478033345521</updated>
+      <updated>1477445525188</updated>
     </task>
-    <task id="LOCAL-00019" summary="Fixing react-persist stuff">
-      <created>1478205916910</created>
+    <task id="LOCAL-00019" summary="Removed Immutable.js">
+      <created>1477885683677</created>
       <option name="number" value="00019" />
       <option name="presentableId" value="LOCAL-00019" />
       <option name="project" value="LOCAL" />
-      <updated>1478205916910</updated>
+      <updated>1477885683677</updated>
     </task>
-    <task id="LOCAL-00020" summary="Formatting of Education, and fixing of static css file serving">
-      <created>1479159637907</created>
+    <task id="LOCAL-00020" summary="Fixed profile name updating">
+      <created>1478491854496</created>
       <option name="number" value="00020" />
       <option name="presentableId" value="LOCAL-00020" />
       <option name="project" value="LOCAL" />
-      <updated>1479159637907</updated>
+      <updated>1478491854496</updated>
     </task>
-    <task id="LOCAL-00021" summary="Part 1 of adding custom authentication">
-      <created>1480453868576</created>
+    <task id="LOCAL-00021" summary="Fixes for avatar updating">
+      <created>1478578171551</created>
       <option name="number" value="00021" />
       <option name="presentableId" value="LOCAL-00021" />
       <option name="project" value="LOCAL" />
-      <updated>1480453868576</updated>
+      <updated>1478578171551</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Added more Profile components">
+      <created>1479009449804</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1479009449804</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Added Education profile">
+      <created>1479097570428</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1479097570428</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Added Education profile">
+      <created>1479168990731</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1479168990731</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Added initial skills">
+      <created>1479184125369</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1479184125369</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Adding modal windows, Education and Employment profile">
+      <created>1479270181555</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1479270181555</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Mongo fixes">
+      <created>1479904451643</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1479904451643</updated>
+    </task>
+    <task id="LOCAL-00028" summary="More Mongo fixes">
+      <created>1480336657143</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1480336657143</updated>
+    </task>
+    <task id="LOCAL-00029" summary="More Mongo fixes">
+      <created>1480509484910</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1480509484910</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Fixes for login page">
+      <created>1480912637076</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1480912637076</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="460299000" />
+    <option name="totallyTimeSpent" value="883914000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1301,50 +1635,29 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2074789" sideWeight="0.49375" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32981783" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922733" sideWeight="0.50241256" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22732362" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32138857" sideWeight="0.49758744" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33923304" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" x="-77" y="978" width="1717" height="871" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5014749" sideWeight="0.49758744" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32940018" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20648968" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16965227" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35201573" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28331468" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2074789" sideWeight="0.50625" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31287426" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3480826" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24544583" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32981783" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922733" sideWeight="0.50241256" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24544583" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24524076" sideWeight="0.49758744" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41209406" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18154404" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32474804" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34826428" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
@@ -1387,16 +1700,23 @@
     <MESSAGE value="More Persistence for Questions" />
     <MESSAGE value="Some adds -- not sure if these are necessary" />
     <MESSAGE value="Add all changelist" />
-    <MESSAGE value="Add Auth0 login" />
     <MESSAGE value="Add initial actions and reducers for Redux" />
-    <MESSAGE value="Add and update profile info" />
-    <MESSAGE value="Add image uplod to AWS S3" />
-    <MESSAGE value="Fixed image upload to AWS S3" />
-    <MESSAGE value="Refactoring Header component to use actions rather than calling Auth0 Service directly" />
-    <MESSAGE value="Fixing react-persist stuff" />
-    <MESSAGE value="Formatting of Education, and fixing of static css file serving" />
-    <MESSAGE value="Part 1 of adding custom authentication" />
-    <option name="LAST_COMMIT_MESSAGE" value="Part 1 of adding custom authentication" />
+    <MESSAGE value="Add Auth0 login" />
+    <MESSAGE value="Fixes for avatar upload" />
+    <MESSAGE value="Fixes for onProfileUpdate" />
+    <MESSAGE value="Moving profile stuff to redux (part 1)" />
+    <MESSAGE value="More work on reduxifying the Header" />
+    <MESSAGE value="Removed Immutable.js" />
+    <MESSAGE value="Fixed profile name updating" />
+    <MESSAGE value="Fixes for avatar updating" />
+    <MESSAGE value="Added more Profile components" />
+    <MESSAGE value="Added Education profile" />
+    <MESSAGE value="Added initial skills" />
+    <MESSAGE value="Adding modal windows, Education and Employment profile" />
+    <MESSAGE value="Mongo fixes" />
+    <MESSAGE value="More Mongo fixes" />
+    <MESSAGE value="Fixes for login page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes for login page" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1412,247 +1732,101 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/react_src/index.js</url>
-          <line>5</line>
+          <line>7</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/react_src/components/Header/HeaderLogin.js</url>
+          <url>file://$PROJECT_DIR$/webpack.config.dev.js</url>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/tools/routes/users.js</url>
+          <line>73</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/react_src/reducers/profileReducer.js</url>
+          <line>154</line>
           <properties />
-          <option name="timeStamp" value="14" />
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="15" />
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="24" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/ProfileDetails.js" />
-    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/ProfileEdit.js" />
-    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/ProfileEditPage.js" />
-    <entry file="file://$PROJECT_DIR$/webpack.config.dev.js">
+    <entry file="file://$PROJECT_DIR$/log.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="25" column="6" lean-forward="false" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
+        <state relative-caret-position="102">
+          <caret line="6" column="59" lean-forward="true" selection-start-line="6" selection-start-column="59" selection-end-line="6" selection-end-column="59" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/ProfilePage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/Address/AddressContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1035">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/ProfilePage.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/Education/EducationList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="39" lean-forward="false" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/actions/profileActions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="41" column="52" lean-forward="false" selection-start-line="41" selection-start-column="52" selection-end-line="41" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tools/prodServer.js">
+    <entry file="file://$PROJECT_DIR$/react_src/components/Login/TalentSignup.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/App/App.css">
+    <entry file="file://$PROJECT_DIR$/react_src/components/Login/BuyerSignup.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/Skills/Skills.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="15" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/Skills/SkillsEdit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-272">
+          <caret line="8" column="83" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="83" />
+          <folding>
+            <element signature="e#0#44#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/Skills/SkillsContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="63" column="18" lean-forward="false" selection-start-line="63" selection-start-column="18" selection-end-line="63" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/Education/EducationEdit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="196" column="54" lean-forward="false" selection-start-line="196" selection-start-column="32" selection-end-line="196" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#44#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/react_src/components/Profile/Education/EducationContainer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2244">
-          <caret line="135" column="33" lean-forward="false" selection-start-line="135" selection-start-column="26" selection-end-line="135" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/Education/Education.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="21" lean-forward="false" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/styles/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="13" column="1" lean-forward="false" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/reducers/profileReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="59" column="32" lean-forward="false" selection-start-line="59" selection-start-column="32" selection-end-line="59" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="9" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/actions/questionWizardActions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="9" column="6" lean-forward="false" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tools/routes.js" />
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="19" column="41" lean-forward="false" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/ProfileContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="24" column="17" lean-forward="false" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tools/srcServer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="45" column="3" lean-forward="false" selection-start-line="45" selection-start-column="3" selection-end-line="45" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tools/routes/users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="36" lean-forward="true" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Header/Header.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="51" column="21" lean-forward="false" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/Account/AccountDetails.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="37" column="72" lean-forward="true" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/Address/AddressDetails.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="24" lean-forward="false" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/App/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="27" column="25" lean-forward="false" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Home/HomePage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="72" lean-forward="false" selection-start-line="9" selection-start-column="15" selection-end-line="10" selection-end-column="72" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Header/Header.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="20" lean-forward="false" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="18" column="36" lean-forward="false" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/api/mockQuestionApi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="34" column="15" lean-forward="false" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/aws-sdk/dist/aws-sdk.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="90536" column="13" lean-forward="true" selection-start-line="90536" selection-start-column="13" selection-end-line="90536" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/api/profileApi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="28" column="15" lean-forward="false" selection-start-line="28" selection-start-column="15" selection-end-line="28" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/actions/authorActions.js">
+    <entry file="file://$PROJECT_DIR$/react_src/components/Login/Login.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1660,163 +1834,355 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/actions/actionTypes.js">
+    <entry file="file://$PROJECT_DIR$/react_src/components/Header/HeaderCenterNav.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="1" column="49" lean-forward="false" selection-start-line="1" selection-start-column="49" selection-end-line="1" selection-end-column="49" />
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/store/initialState.js">
+    <entry file="file://$PROJECT_DIR$/tools/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="34" column="25" lean-forward="false" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
+        <state relative-caret-position="102">
+          <caret line="6" column="24" lean-forward="false" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/Account/AccountContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="30" column="29" lean-forward="false" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/auth_utils/AuthService.js">
+    <entry file="file://$PROJECT_DIR$/react_src/actions/uiActions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2941">
-          <caret line="181" column="40" lean-forward="false" selection-start-line="181" selection-start-column="40" selection-end-line="181" selection-end-column="40" />
-          <folding>
-            <marker date="1480443096492" expanded="true" signature="5201:5208" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/auth_utils/CustomAuthService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="52" column="19" lean-forward="false" selection-start-line="52" selection-start-column="19" selection-end-line="52" selection-end-column="19" />
-          <folding>
-            <element signature="e#2030#2191#0" expanded="false" />
-            <element signature="e#2207#2401#0" expanded="false" />
-            <element signature="e#2421#2612#0" expanded="false" />
-            <element signature="e#2636#2751#0" expanded="false" />
-            <element signature="e#2768#2891#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/store/configureStore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="19" column="16" lean-forward="false" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+        <state relative-caret-position="85">
+          <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Common/LoadingDots.js">
+    <entry file="file://$PROJECT_DIR$/react_src/api/authApi.js" />
+    <entry file="file://$PROJECT_DIR$/react_src/components/Header/HeaderUserName.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="21" column="13" lean-forward="true" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/auth_utils/auth.js">
+    <entry file="file://$PROJECT_DIR$/react_src/auth_utils/constants.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="31" column="37" lean-forward="false" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="37" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/actions/ajaxStatusActions.js">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="1" lean-forward="false" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+        <state relative-caret-position="289">
+          <caret line="20" column="37" lean-forward="false" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/react_src/reducers/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="27" lean-forward="true" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-          <folding>
-            <element signature="e#138#186#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/actions/authActions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="9" column="32" lean-forward="true" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/Education/EducationDetails.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="23" column="18" lean-forward="false" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+        <state relative-caret-position="221">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/react_src/components/Header/HeaderLogin.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="34">
+          <caret line="5" column="42" lean-forward="false" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/ProfileContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="37" column="5" lean-forward="true" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/Address/AddressContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="24" column="41" lean-forward="true" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/actions/ajaxStatusActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Header/HeaderLogin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/react_src/components/Header/HeaderContainer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="87" column="38" lean-forward="true" selection-start-line="87" selection-start-column="4" selection-end-line="87" selection-end-column="38" />
+        <state relative-caret-position="850">
+          <caret line="98" column="17" lean-forward="false" selection-start-line="98" selection-start-column="17" selection-end-line="98" selection-end-column="17" />
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/Education/EducationEdit.js">
+    <entry file="file://$PROJECT_DIR$/react_src/components/Common/LoadingDots.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="90" column="70" lean-forward="true" selection-start-line="90" selection-start-column="70" selection-end-line="90" selection-end-column="70" />
+        <state relative-caret-position="476">
+          <caret line="37" column="11" lean-forward="false" selection-start-line="37" selection-start-column="3" selection-end-line="37" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/auth_utils/CustomAuthService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="122" column="11" lean-forward="true" selection-start-line="122" selection-start-column="11" selection-end-line="122" selection-end-column="11" />
           <folding>
-            <element signature="e#0#44#0" expanded="true" />
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/App/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="19" column="28" lean-forward="false" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="63" lean-forward="true" selection-start-line="27" selection-start-column="63" selection-end-line="27" selection-end-column="63" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/store/configureStore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="12" lean-forward="false" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="13" column="15" lean-forward="false" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/actions/questionWizardActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="2" column="50" lean-forward="false" selection-start-line="2" selection-start-column="50" selection-end-line="2" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/api/profileApi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="41" column="19" lean-forward="false" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/whatwg-fetch/fetch.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6307">
+          <caret line="371" column="12" lean-forward="false" selection-start-line="371" selection-start-column="7" selection-end-line="371" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/jsdom/lib/jsdom/browser/resource-loader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="113" column="9" lean-forward="false" selection-start-line="113" selection-start-column="9" selection-end-line="113" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/react_src/reducers/ajaxStatusReducer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="204">
+          <caret line="13" column="7" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="13" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/srcServer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="14" column="33" lean-forward="false" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
           <folding>
-            <element signature="e#0#48#0" expanded="true" />
+            <element signature="e#0#30#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/api/mockQuestionApi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="44" column="78" lean-forward="true" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/routes/questions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="37" column="13" lean-forward="true" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/api/userApi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="45" column="14" lean-forward="true" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/auth_utils/AuthService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/routes/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="39" column="41" lean-forward="true" selection-start-line="39" selection-start-column="41" selection-end-line="39" selection-end-column="41" />
+          <folding>
+            <element signature="e#1741#2343#0" expanded="false" />
+            <marker date="1481254116930" expanded="false" signature="2416:3098" ph="{...}" />
+            <marker date="1481254116930" expanded="false" signature="3173:3918" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/store/initialState.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Login/Login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="16" lean-forward="true" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#46#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/react_src/components/Login/LoginContainer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="84" column="59" lean-forward="true" selection-start-line="84" selection-start-column="59" selection-end-line="84" selection-end-column="59" />
+        <state relative-caret-position="-357">
+          <caret line="6" column="28" lean-forward="false" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/actions/userActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="41" lean-forward="false" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="41" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Login/Login.js">
+    <entry file="file://$PROJECT_DIR$/react_src/actions/actionTypes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="42" lean-forward="true" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
+        <state relative-caret-position="459">
+          <caret line="27" column="31" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/auth_utils/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="58" column="30" lean-forward="true" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
           <folding>
-            <element signature="e#0#46#0" expanded="true" />
+            <element signature="e#92#129#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/reducers/authReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="8" column="40" lean-forward="false" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/actions/authActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="34" column="62" lean-forward="false" selection-start-line="34" selection-start-column="62" selection-end-line="34" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/actions/profileActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="56" column="26" lean-forward="false" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/reducers/profileReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="37" column="33" lean-forward="true" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>

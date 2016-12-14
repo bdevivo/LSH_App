@@ -10,7 +10,7 @@ export default function authReducer(auth = initialState.auth, action) {
             return {"isLoggedIn": true};
         }
 
-        case types.USER_LOGOUT: {
+        case types.USER_LOGOUT_SUCCESS: {
             return {"isLoggedIn": false};
         }
 

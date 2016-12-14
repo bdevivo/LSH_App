@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import {Row, Col, Image, Button} from 'react-bootstrap';
+import * as StringUtils from '../../../string_utils/UrlHelper';
 import CSSModules from 'react-css-modules';
 import styles from './Account.css';
 
@@ -9,9 +10,7 @@ const AccountDetails = ({profile, enterAccountEditMode}) => {
     let {avatarUrl} = profile;
     if (!avatarUrl)
     {
-        let imgPath = 'app_images/avatars/avatar_placeholder.png';
-        let bucketName = 'lifescihub';
-        avatarUrl = `https://s3.amazonaws.com/${bucketName}/${imgPath}`;
+        avatarUrl = StringUtils.getDefaultAvatarUrl();
     }
 
     const {user_name} = profile;

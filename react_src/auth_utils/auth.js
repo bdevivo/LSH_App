@@ -1,16 +1,9 @@
 import CustomAuthService from './CustomAuthService';
-//import {EventEmitter} from 'events';
+import * as StringUtils from '../string_utils/UrlHelper';
 import userApi from '../api/userApi';
 import * as CONSTANTS from './constants';
 
 const customAuth = new CustomAuthService(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMAIN);
-
-//export const notifier = new EventEmitter();
-
-// re-emit the profile_updated event from the CustomAuthService
-// customAuth.on('profile_updated', (profile) => {
-//     notifier.emit('profile_updated', profile);
-// });
 
 // validate authentication for private routes
 export const requireAuth = (nextState, replace) => {
@@ -19,16 +12,6 @@ export const requireAuth = (nextState, replace) => {
         replace({pathname: '/login'});
     }
 };
-
-// Called when entering the callback URL (see the CustomAuthService constructor) to parse the access_token returned on successful login
-// export const onEnterLogin = (nextState, replace) => {
-//     if (nextState.location.hash) {  // if hash exists, this is the callback from the Auth0 service (as opposed to the user navigating to this page)
-//         if (customAuth.parseHash(nextState.location.hash))  // hash the id token and add to localstorage
-//         {
-//             customAuth.load_profile(customAuth.getToken());     // retrieve profile from Auth0 and add to localstorage
-//         }
-//     }
-// };
 
 // Called when user clicks the Login button.  On successful login, the callback URL specified in the
 // CustomAuthService constructor is called, and the onEnterLogin method above is invoked.
@@ -47,18 +30,52 @@ export const login = (email, password) => {
         customAuth.login(params)
             .then(
                 (idToken) => {
-                    return customAuth.load_profile(idToken);   // returns a new Promise
-                }, (err) => {
-                    reject(err);
+                    return customAuth.load_auth0_user(idToken);   // loads profile from Auth0; returns a new Promise
                 })
             .then(
-                (auth0_userId) => {
-                   return userApi.getUserByAuth0Id(auth0_userId);      // get user info from Mongo -- save what you need in localstorage
+                (auth0_user) => {
+                    let auth0_user_string = JSON.stringify(auth0_user);
+                    localStorage.setItem(CONSTANTS.AUTH0_USER_KEY, auth0_user_string);
+                    localStorage.setItem(CONSTANTS.AUTH0_USER_ID_KEY, auth0_user.user_id);
+                    return userApi.getUserByAuth0Id(auth0_user.user_id);    // loads user info from db
                 })
-            .then((user) => {
-                resolve(user);
+            .then(
+                (db_user) => {
+                    let dbUserString = JSON.stringify(db_user);
+                    localStorage.setItem(CONSTANTS.DB_USER_ID_KEY, db_user._id);
+                    localStorage.setItem(CONSTANTS.DB_USER_KEY, dbUserString);
+                    return db_user.user;
+                })
+            .then(
+                (db_user) => {
+                    let auth0_user_string = localStorage.getItem(CONSTANTS.AUTH0_USER_KEY);
+                    let auth0_user = auth0_user_string ? JSON.parse(auth0_user_string) : {};
+
+                    let user = {
+                        user_id: db_user._id,
+                        auth0_id: auth0_user.user_id,
+                        email: auth0_user.email,
+                        roles: auth0_user.app_metadata.roles
+                    };
+
+                    if (db_user.name) {
+                        user.user_name = {
+                            first: db_user.name.first,
+                            last: db_user.name.last
+                        };
+                    }
+
+                    user.avatarUrl = db_user.avatarUrl || StringUtils.getDefaultAvatarUrl();
+
+                    resolve(user);
+                }
+            )
+            .catch((err) => {
+                reject(err);
             });
     });
+
+
 
 
 };
@@ -85,7 +102,7 @@ export const signup = (email, password, userType) => {
         customAuth.signup(params)
             .then(
                 (idToken) => {
-                    return customAuth.load_profile(idToken);   // returns a new Promise
+                    return customAuth.load_auth0_user(idToken);   // returns a new Promise
                 }, (err) => {
                     reject(err);
                 })
@@ -100,8 +117,8 @@ export const signup = (email, password, userType) => {
 
 export const logout = () => {   // Clear user token and profile data from localStorage
     localStorage.removeItem(CONSTANTS.ID_TOKEN_KEY);
-    localStorage.removeItem(CONSTANTS.PROFILE_KEY);
-    localStorage.removeItem(CONSTANTS.USER_ID_KEY);
+    localStorage.removeItem(CONSTANTS.AUTH0_USER_KEY);
+    localStorage.removeItem(CONSTANTS.AUTH0_USER_ID_KEY);
 };
 
 export const isLoggedIn = () => {
@@ -111,7 +128,7 @@ export const isLoggedIn = () => {
 // TODO: split into Profile (from Auth0) and User_Data (from Mongo)
 export const getProfile = () => {
     // Retrieves the profile data from localStorage
-    const profile = localStorage.getItem(CONSTANTS.PROFILE_KEY);
+    const profile = localStorage.getItem(CONSTANTS.AUTH0_USER_KEY);
     return profile ? JSON.parse(profile) : {};
 };
 
@@ -144,7 +161,7 @@ export const updateProfileAvatar = (avatarUrl) => {
 };
 
 export const getUserId = () => {
-    //return localStorage.getItem(CONSTANTS.USER_ID_KEY);
+    //return localStorage.getItem(CONSTANTS.AUTH0_USER_ID_KEY);
     // TODO: store the real _id from Mongo and retrieve here
     return '5830e916b5ef877238c5c1f3';
 };

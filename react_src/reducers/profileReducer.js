@@ -2,78 +2,38 @@ import * as types from '../actions/actionTypes';
 import initialState from '../store/initialState';
 import update from 'immutability-helper';
 
-function mapActionToProfile(action) {
-
-    let {profile} = action;
-    let {user_metadata} = profile;
-    let {address} = user_metadata || {};
-    let {app_metadata} = profile;
-
-
-    // Project data into the correct shape
-    return {
-        user_id: profile.user_id,
-        email: profile.email,
-        user_name: {
-            first: user_metadata.firstName,
-            middle: user_metadata.middleName,
-            last: user_metadata.lastName
-        },
-        address: {
-            street1: address.street1,
-            street2: address.street2,
-            city: address.city,
-            state: address.state,
-            country: address.country,
-            zip: address.zip
-        },
-        avatarUrl: user_metadata.profilePicture,
-        roles: app_metadata.roles
-    };
-}
-
 function mapUserToProfile(user) {
 
-    let {address} = user || {};
-    let {app_metadata} = profile;
-
+    let {user_name, app_metadata} = user;
 
     // Project data into the correct shape
-    return {
-        user_id: profile.user_id,
-        email: profile.email,
-        user_name: {
-            first: user_metadata.firstName,
-            middle: user_metadata.middleName,
-            last: user_metadata.lastName
-        },
-        address: {
-            street1: address.street1,
-            street2: address.street2,
-            city: address.city,
-            state: address.state,
-            country: address.country,
-            zip: address.zip
-        },
-        avatarUrl: user_metadata.profilePicture,
+    let profile = {
+        auth0_id: user.user_id,
+        email: user.email,
+        avatarUrl: user.avatarUrl,
         roles: app_metadata.roles
     };
+
+    if (user_name) {
+        profile.user_name = {
+                first: user_name.first,
+                middle: user_name.middle,
+                last: user_name.last
+            };
+    }
+
+    return profile;
 }
 
 export default function profileReducer(profile = initialState.profile, action) {
 
     switch (action.type) {
 
-        case types.UPDATE_PROFILE_SUCCESS: {
-            //console.log("profile reducer: UPDATE_PROFILE_SUCCESS");
-            return mapActionToProfile(action);
+        case types.GET_AUTH0_USER_SUCCESS: {
+            return mapUserToProfile(action.user);
         }
 
-        case types.GET_PROFILE_SUCCESS: {
-            return mapActionToProfile(action.profile.user);
-        }
-
-        case types.GET_PROFILE_FAILURE: {
+        case types.GET_AUTH0_USER_FAILURE: {
             //return "Profile could not be retrieved";
             break;
         }

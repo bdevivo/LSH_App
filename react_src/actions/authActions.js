@@ -16,7 +16,7 @@ export function loginFailure() {
 }
 
 export function logoutSuccess() {
-    return {type: types.USER_LOGOUT};
+    return {type: types.USER_LOGOUT_SUCCESS};
 }
 
 
@@ -39,7 +39,6 @@ export function login(email, password) {
                     dispatch(loginFailure(err));
                 }
             );
-
     };
 }
 

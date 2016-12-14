@@ -45,7 +45,7 @@ export default class UserApi {
                 headers: headers
             })
                 .then(response => {
-                    console.log("getUserByAuth0Id bodyUsed: " + response.bodyUsed);
+                    //console.log("getUserByAuth0Id bodyUsed: " + response.bodyUsed);
                     return response.json();
                 })
                 .then(user => {

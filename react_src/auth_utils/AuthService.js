@@ -85,8 +85,8 @@ export default class AuthService extends EventEmitter {
     logout() {
         // Clear user token and profile data from localStorage
         localStorage.removeItem(CONSTANTS.ID_TOKEN_KEY);
-        localStorage.removeItem(CONSTANTS.PROFILE_KEY);
-        localStorage.removeItem(CONSTANTS.USER_ID_KEY);
+        localStorage.removeItem(CONSTANTS.AUTH0_USER_KEY);
+        localStorage.removeItem(CONSTANTS.AUTH0_USER_ID_KEY);
 
         this.emit('user_logout');
 
@@ -103,8 +103,8 @@ export default class AuthService extends EventEmitter {
     setProfile(profile) {
         // Save profile data and user_id to localStorage
         let profileString = JSON.stringify(profile);
-        localStorage.setItem(CONSTANTS.PROFILE_KEY, profileString);
-        localStorage.setItem(CONSTANTS.USER_ID_KEY,profile.user_id);
+        localStorage.setItem(CONSTANTS.AUTH0_USER_KEY, profileString);
+        localStorage.setItem(CONSTANTS.AUTH0_USER_ID_KEY,profile.user_id);
 
         // Triggers profile_updated event to update the UI
         this.emit('profile_updated', profile);
@@ -112,7 +112,7 @@ export default class AuthService extends EventEmitter {
 
     getProfile() {
         // Retrieves the profile data from localStorage
-        const profile = localStorage.getItem(CONSTANTS.PROFILE_KEY);
+        const profile = localStorage.getItem(CONSTANTS.AUTH0_USER_KEY);
         return profile ? JSON.parse(profile) : {};
     }
 
@@ -124,7 +124,7 @@ export default class AuthService extends EventEmitter {
         };
 
         const body = JSON.stringify(data);
-        const userId = localStorage.getItem(CONSTANTS.USER_ID_KEY);
+        const userId = localStorage.getItem(CONSTANTS.AUTH0_USER_ID_KEY);
 
         // make the PATCH http request to Auth0 api, which returns a Promise
         fetch(`https://${this.domain}/api/v2/users/${userId}`, {    // return fetch(`https://${this.domain}/api/v2/users/${userId}`, {
@@ -155,7 +155,7 @@ export default class AuthService extends EventEmitter {
     }
 
     getUserId() {
-        //return localStorage.getItem(CONSTANTS.USER_ID_KEY);
+        //return localStorage.getItem(CONSTANTS.AUTH0_USER_ID_KEY);
         // TODO: store the real _id from Mongo and retrieve here
         return '5830e916b5ef877238c5c1f3';
     }

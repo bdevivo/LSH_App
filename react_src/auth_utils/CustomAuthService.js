@@ -64,7 +64,7 @@ export default class CustomAuthService extends EventEmitter {
           // handle error
        }
        else {
-          this.load_profile(result.idToken);
+          this.load_auth0_user(result.idToken);
        }
     }
 
@@ -109,15 +109,16 @@ export default class CustomAuthService extends EventEmitter {
         return localStorage.getItem(CONSTANTS.ID_TOKEN_KEY);
     }
 
-    load_profile(idToken) {
+    load_auth0_user(idToken) {
 
         return new Promise((resolve, reject) => {
             this.auth0.getProfile(idToken, (error, profile) => {
                 if (error) {
                     reject('Error loading the Profile', error);
                 } else {
-                    this.setProfile(profile);
-                    resolve(profile.user_id);
+                   // this.setProfile(profile);
+                   // resolve(profile.user_id);
+                    resolve(profile);
                 }
             });
         });
@@ -126,15 +127,15 @@ export default class CustomAuthService extends EventEmitter {
     setProfile(profile) {
         // Save profile data and user_id to localStorage
         let profileString = JSON.stringify(profile);
-        localStorage.setItem(CONSTANTS.PROFILE_KEY, profileString);
-        localStorage.setItem(CONSTANTS.USER_ID_KEY, profile.user_id);
+        localStorage.setItem(CONSTANTS.AUTH0_USER_KEY, profileString);
+        localStorage.setItem(CONSTANTS.AUTH0_USER_ID_KEY, profile.user_id);
 
         //this.emit('profile_updated', profile);
     }
 
     getProfile() {
         // Retrieves the profile data from localStorage
-        const profile = localStorage.getItem(CONSTANTS.PROFILE_KEY);
+        const profile = localStorage.getItem(CONSTANTS.AUTH0_USER_KEY);
         return profile ? JSON.parse(profile) : {};
     }
 }

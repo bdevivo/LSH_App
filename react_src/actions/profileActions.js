@@ -2,8 +2,12 @@ import * as types from './actionTypes';
 import profileApi from '../api/profileApi';
 import userApi from '../api/userApi';
 
-export function updateProfileSuccess(profile) {
-    return { type: types.UPDATE_PROFILE_SUCCESS, profile};
+export function setProfile(user) {
+    return { type: types.GET_AUTH0_USER_SUCCESS, user};
+}
+
+export function removeProfile() {
+    return { type: types.REMOVE_PROFILE};
 }
 
 export function updateProfileAddressSuccess(address) {
@@ -42,30 +46,8 @@ export function updateProfileSkillsSuccess(skills) {
     return { type: types.UPDATE_PROFILE_SKILLS_SUCCESS, skills};
 }
 
-export function removeProfile() {
-   return { type: types.REMOVE_PROFILE};
-}
-
-export function getProfile() {
-    const profile = profileApi.getProfile();
-    if (profile && Object.keys(profile).length > 0)
-        return { type: types.GET_PROFILE_SUCCESS, profile};
-    else
-        return { type: types.GET_PROFILE_FAILURE};
-}
-
-export function setProfile(profile) {
-    return { type: types.GET_PROFILE_SUCCESS, profile};
-}
-
 
 // THUNKS
-
-export function updateProfile(profile) {
-    return function(dispatch) {
-        dispatch(updateProfileSuccess(profile));
-    };
-}
 
 export function updateProfileAddress(address) {
     return function(dispatch) {

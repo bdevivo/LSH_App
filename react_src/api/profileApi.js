@@ -11,10 +11,6 @@ const avatarUrlRoot = 'https://s3.amazonaws.com';
 
 export default class ProfileApi {
 
-    static getProfile() {
-        return Auth.getProfile();
-    }
-
     static updateProfileUserName(first, middle, last) {
        Auth.updateProfile({
             user_metadata: {

@@ -1,70 +1,64 @@
 import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
+import {Nav, NavItem} from 'react-bootstrap';
+import HeaderLink from './HeaderLink';
 import CSSModules from 'react-css-modules';
-import styles, { active } from './Header.css';
+import styles, {active} from './Header.css';
 
 const HeaderCenterNav = ({isLoggedIn, isAdmin, isBuyer}) => {
 
     let centerNav;
 
-    if (isLoggedIn)
-    {
-        let rootNav;
-        let adminNav;
-        if (isAdmin) {
-            adminNav = (
-                <span>
-                    <Link to="/admin" >Admin</Link>
-                    {" | "}
-                    </span>
-            );
-            // admin users get all center nav links
-            rootNav = (
-                <span>
-                    <Link to="/questionwizard" >Post a Job</Link>
-                    {" | "}
-                    <Link to="/questionwizard" >Browse Jobs</Link>
-                    {" | "}
-                    <Link to="/questionwizard" >Browse Talent</Link>
-                    </span>
+    if (isLoggedIn) {
 
-            );
+        let rootNavItems = [];
+        let adminNavItems = [];
+
+
+        if (isAdmin) {
+
+            adminNavItems = [
+                <HeaderLink to="admin" key="admin" className="navItemWithSep">Admin</HeaderLink>,
+            ];
+
+            // admin users get all center nav links
+            rootNavItems = [
+                <HeaderLink to="post" key="postJob" className="navItemWithSep">Post a Job</HeaderLink>,
+                <HeaderLink to="browseJobs" key="browseJobs" className="navItemWithSep">Browse Jobs</HeaderLink>,
+                <HeaderLink to="browseTalent" key="browseTalent" className="navItem">Browse Talent</HeaderLink>
+            ];
         }
         else {
-            if (isBuyer)
-            {
-                rootNav = (
-                    <span>
-                            <Link to="/questionwizard" >Post a Job</Link>
-                        {" | "}
-                        <Link to="/questionwizard" >Browse Talent</Link>
-                        </span>
-                );
+            if (isBuyer) {
+
+                rootNavItems = [
+                    <HeaderLink key="postJob" to="/postJob" className="navItemWithSep">Post a Job</HeaderLink>,
+                    <HeaderLink key="browseTalent" to="/browseTalent" className="navItem">Browse Talent</HeaderLink>
+                ];
             }
             else    // assumption: only other role is Talent
             {
-                rootNav = (
-                    <Link to="/questionwizard" >Browse Jobs</Link>
-                );
+                rootNavItems = [
+                    <HeaderLink key="browseTalent" to="/browseTalent" className="navItem">Browse Talent</HeaderLink>
+                ];
             }
         }
 
         centerNav = (
-            <div styleName="navCenter">
-                {adminNav}
-                {rootNav}
-            </div>
+            <Nav>
+                {adminNavItems}
+                {rootNavItems}
+            </Nav>
         );
 
     }
     else // not logged in
     {
         centerNav = (
-            <div styleName="navCenter">
-                <Link to="/dummy" >Browse Talent (not logged in)</Link>
-                {" | "}
-                <Link to="/dummy" >Learn More</Link>
-            </div>
+            <Nav>
+                <HeaderLink key="browseTalent" to="/browseTalent" className="navItemWithSep">Browse Talent (not logged in)</HeaderLink>
+                <HeaderLink key="learnMore" to="/learnMore" className="navItem">Learn More</HeaderLink>
+            </Nav>
         );
     }
 

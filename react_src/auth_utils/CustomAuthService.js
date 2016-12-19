@@ -18,32 +18,26 @@ export default class CustomAuthService extends EventEmitter {
         });
 
         this.signup = this.signup.bind(this);
-        this.onLoginComplete = this.onLoginComplete.bind(this);
-        this.onSignupComplete = this.onSignupComplete.bind(this);
     }
 
    signup(params) {
-      //this.auth0.login(params, onError);
+       let auth0 = this.auth0;
+       return new Promise(function(resolve, reject) {
+           auth0.signup(params, function(err, result) {
+               if (err) {
+                   reject(err);
+               }
+               else {
+                   resolve(result.idToken);
+               }
+           });
+       });
 
-      this.auth0.signup(params, this.onSignupComplete);
-   }
-
-   onSignupComplete(err, result)
-   {
-      if (err) {
-         // handle error
-      }
-      else {
-         //create a new user in Mongo
-         console.log("token: " + result.idToken);
-
-      }
+      //this.auth0.signup(params, this.onSignupComplete);
    }
 
     login(params) {
-        //this.auth0.login(params, onError);
        let auth0 = this.auth0;
-
        return new Promise(function(resolve, reject) {
           auth0.login(params, function(err, result) {
              if (err) {
@@ -54,19 +48,9 @@ export default class CustomAuthService extends EventEmitter {
              }
           });
        });
-
-       //this.auth0.login(params, this.onLoginComplete);
     }
 
-    onLoginComplete(err, result)
-    {
-       if (err) {
-          // handle error
-       }
-       else {
-          this.load_auth0_user(result.idToken);
-       }
-    }
+
 
     parseHash(hash) {
         // uses auth0 parseHash method to extract data from url hash

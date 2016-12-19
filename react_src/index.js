@@ -5,10 +5,10 @@ import { render } from 'react-dom';
 import configureStore from './store/configureStore';
 import {Provider} from 'react-redux';
 import { Router, browserHistory } from 'react-router';
+import {syncHistoryWithStore} from 'react-router-redux';
 import routes from './routes';
 import {getAllQuestions} from './actions/questionWizardActions';
 import initialState from './store/initialState';
-//import AppProvider from './components/App/AppProvider';
 
 const store = configureStore(initialState);
 store.dispatch(getAllQuestions());

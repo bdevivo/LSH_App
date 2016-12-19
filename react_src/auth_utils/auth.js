@@ -13,8 +13,6 @@ export const requireAuth = (nextState, replace) => {
     }
 };
 
-// Called when user clicks the Login button.  On successful login, the callback URL specified in the
-// CustomAuthService constructor is called, and the onEnterLogin method above is invoked.
 export const login = (email, password) => {
 
     let params = {
@@ -30,6 +28,7 @@ export const login = (email, password) => {
         customAuth.login(params)
             .then(
                 (idToken) => {
+                    localStorage.setItem(CONSTANTS.ID_TOKEN_KEY, idToken);
                     return customAuth.load_auth0_user(idToken);   // loads profile from Auth0; returns a new Promise
                 })
             .then(
@@ -74,10 +73,6 @@ export const login = (email, password) => {
                 reject(err);
             });
     });
-
-
-
-
 };
 
 
@@ -102,15 +97,42 @@ export const signup = (email, password, userType) => {
         customAuth.signup(params)
             .then(
                 (idToken) => {
-                    return customAuth.load_auth0_user(idToken);   // returns a new Promise
-                }, (err) => {
-                    reject(err);
+                    localStorage.setItem(CONSTANTS.ID_TOKEN_KEY, idToken);
+                    return customAuth.load_auth0_user(idToken);   // loads profile from Auth0; returns a new Promise
                 })
             .then(
-                (auth0_userId) => {
-                    return userApi.addUser(auth0_userId);      // add user info from Mongo -- save what you need in localstorage
+                (auth0_user) => {
+                    let auth0_user_string = JSON.stringify(auth0_user);
+                    localStorage.setItem(CONSTANTS.AUTH0_USER_KEY, auth0_user_string);
+                    localStorage.setItem(CONSTANTS.AUTH0_USER_ID_KEY, auth0_user.user_id);
+                    return userApi.addUser(auth0_user.user_id);      // add user info from Mongo -- save what you need in localstorage
                 })
-            .then(user => resolve(user));
+            .then(
+                (db_user) => {
+                    let dbUserString = JSON.stringify(db_user);
+                    localStorage.setItem(CONSTANTS.DB_USER_ID_KEY, db_user._id);
+                    localStorage.setItem(CONSTANTS.DB_USER_KEY, dbUserString);
+                    return db_user.user;
+                })
+            .then(
+                (db_user) => {
+                    let auth0_user_string = localStorage.getItem(CONSTANTS.AUTH0_USER_KEY);
+                    let auth0_user = auth0_user_string ? JSON.parse(auth0_user_string) : {};
+
+                    let user = {
+                        user_id: db_user._id,
+                        auth0_id: auth0_user.user_id,
+                        email: auth0_user.email,
+                        roles: auth0_user.app_metadata.roles
+                    };
+
+                    user.avatarUrl = StringUtils.getDefaultAvatarUrl();
+                    resolve(user);
+                }
+            )
+            .catch((err) => {
+                reject(err);
+            });
     });
 };
 

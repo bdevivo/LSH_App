@@ -1,6 +1,6 @@
 import * as types from './actionTypes';
 import questionApi from '../api/mockQuestionApi';
-import {beginAjaxCall} from './ajaxStatusActions';
+import {beginAjaxCall, endAjaxCall} from './ajaxStatusActions';
 
 export function toggleQuestion(questionID) {
    //debugger;
@@ -19,8 +19,11 @@ export function getAllQuestions() {
         dispatch(beginAjaxCall());
         return questionApi.getAllQuestions()
             .then(questions => {
+                dispatch(endAjaxCall());
                 dispatch(loadQuestionsSuccess(questions));
-            }).catch(error => {
+            })
+            .catch(error => {
+                dispatch(endAjaxCall());
                 throw(error);   // TODO: add real error handler action
             });
     };

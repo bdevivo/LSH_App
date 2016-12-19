@@ -14,7 +14,6 @@ import { requireAuth } from './auth_utils/auth';
 
 //noinspection JSUnresolvedVariable
 
-
 export default (
     <Route path="/" component={App}>
         <IndexRoute component={HomePage}/>

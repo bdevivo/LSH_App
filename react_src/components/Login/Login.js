@@ -1,4 +1,5 @@
 import React, { PropTypes as T } from 'react';
+import { browserHistory } from 'react-router';
 import {Form, FormGroup, FormControl, ControlLabel, Button, ButtonToolbar} from 'react-bootstrap';
 import CSSModules from 'react-css-modules';
 import styles from './Login.css';
@@ -58,6 +59,7 @@ const Login = ({loginType, handleSubmit, updateLoginField, isLoading}) => {
 
                 <ButtonToolbar>
                     <Button type="submit" bsStyle="primary" className={createLoginButtonStyleName()}>{buttonText}</Button>
+                    <Button type="button" bsStyle="primary" onClick={browserHistory.goBack}>Cancel</Button>
                 </ButtonToolbar>
             </Form>
         </div>

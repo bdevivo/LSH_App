@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
-import { Link } from 'react-router';
+import {Nav, NavItem} from 'react-bootstrap';
+import HeaderLink from './HeaderLink';
 import CSSModules from 'react-css-modules';
 import styles from './Header.css';
 
@@ -15,12 +16,15 @@ const HeaderUserName = ({user_name, email, isLoggedIn}) => {
             userName = `${user_name.first} ${user_name.last}`;
         }
 
-        userDiv = (<div className="hidden-sm hidden-xs" styleName="navRight">
-            <Link to="/profile/account">{userName}</Link>
-        </div>);
+        userDiv = (
+        <HeaderLink to="/profile/account" key="postJob" className="navItem">{userName}</HeaderLink>
+            // <Nav className="hidden-sm hidden-xs" styleName="navUserName">
+            //     <NavItem><Link to="/profile/account">{userName}</Link></NavItem>
+            // </Nav>
+        );
     }
 
-    return userDiv;
+    return (<Nav styleName="navUserName">{userDiv}</Nav>);
 };
 
 HeaderUserName.propTypes = {
@@ -30,4 +34,3 @@ HeaderUserName.propTypes = {
 };
 
 export default CSSModules(HeaderUserName, styles);
-//export default HeaderUserName;

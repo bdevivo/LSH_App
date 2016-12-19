@@ -6,14 +6,37 @@
     padding-top: 20px;
 }
 
+.topNavbar {
+    margin-top: 0px;
+}
+
 .navCenter {
     display: inline-block;
+}
+
+.navUserName {
+    position:absolute;
+    right: 20%;
+}
+
+.navLogin {
+    position: absolute;
+    right: 0;
+    top: 25%;
 }
 
 .navRight {
     display: inline-block;
     /*float: right;*/
     /*padding-right: 50px;*/
+}
+
+.navItemWithSep {
+    display: inline-block;
+}
+
+.navItem {
+    display: inline-block;
 }
 
 .link {
@@ -24,4 +47,5 @@
    color: white;
    font-weight: normal;
    text-shadow: none;
+    margin-left: 7px;
 }

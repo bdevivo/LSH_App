@@ -14,6 +14,10 @@ export default function authReducer(auth = initialState.auth, action) {
             return {"isLoggedIn": false};
         }
 
+        case types.USER_LOGIN_FAILURE: {
+            return {"isLoggedIn": false};
+        }
+
         default:
             return auth;
     }

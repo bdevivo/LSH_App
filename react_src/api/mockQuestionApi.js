@@ -42,7 +42,6 @@ class QuestionApi {
             headers: headers
         })
             .then((response) => {
-                console.log("GetAllQuestions bodyUsed: " + response.bodyUsed);
                 return response.json();
                 //resolve(response);
             })

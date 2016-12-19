@@ -2,16 +2,14 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {browserHistory} from 'react-router';
-import * as profileActions from '../../actions/profileActions';
 import * as authActions from '../../actions/authActions';
-import CSSModules from 'react-css-modules';
 import styles, {active} from './Header.css';
 import HeaderCenterNav from './HeaderCenterNav';
 import HeaderUserName from './HeaderUserName';
 import HeaderLogin from './HeaderLogin';
 import * as Auth from '../../auth_utils/auth';
-import {Row, Col} from 'react-bootstrap';
-import LoadingDots from '../Common/LoadingDots';
+import {Navbar} from 'react-bootstrap';
+//import LoadingDots from '../Common/LoadingDots';
 
 class HeaderContainer extends React.Component {
 
@@ -21,7 +19,8 @@ class HeaderContainer extends React.Component {
             profile: props.profile,
             isLoggedIn: (props.isLoggedIn && Auth.isLoggedIn()),  // add extra check to make sure login has not expired
             isAdmin: Auth.isAdmin(),
-            isBuyer: Auth.isBuyer()
+            isBuyer: Auth.isBuyer(),
+            path: this.props.currentPath
         };
 
         this.onLogout = this.onLogout.bind(this);
@@ -47,7 +46,6 @@ class HeaderContainer extends React.Component {
     onLogout() {
         // Called when user clicks the Logout button.
         Auth.logout();
-        //this.props.profileActions.updateProfile(Auth.getProfile());
         this.props.authActions.logout();
         browserHistory.push('/');
     }
@@ -58,34 +56,29 @@ class HeaderContainer extends React.Component {
         let user_name = profile.user_name || {};
         let email = profile.email || '';
         let isLoggedIn = Auth.isLoggedIn();
+        let isOnLoginPage = this.props.currentPath.startsWith("/login");
 
         return (
-            <header styleName="nav">
-                <nav>
-                    <Row>
-                        <Col md={4} mdOffset={1}>
-                            <HeaderCenterNav isLoggedIn={isLoggedIn} isAdmin={isAdmin} isBuyer={isBuyer}/>
-                        </Col>
-                        <Col md={2}>
-                            <HeaderUserName user_name={user_name} email={email} isLoggedIn={isLoggedIn}/>
-                        </Col>
-                        <Col md={5}>
-                            <HeaderLogin isLoggedIn={isLoggedIn} onLogout={this.onLogout} />
-                        </Col>
-                    </Row>
-                </nav>
-               {this.props.loading && <LoadingDots interval={100} dots={20}/>}
-            </header>
+            <Navbar>
+                <HeaderCenterNav isLoggedIn={isLoggedIn} isAdmin={isAdmin} isBuyer={isBuyer}/>
+
+                <HeaderUserName user_name={user_name} email={email} isLoggedIn={isLoggedIn}/>
+
+                <HeaderLogin isLoggedIn={isLoggedIn} isOnLoginPage={isOnLoginPage} onLogout={this.onLogout} />
+
+               {/*{this.props.loading && <LoadingDots interval={100} dots={20}/>}*/}
+            </Navbar>
+
         );
     }
 }
 
 HeaderContainer.propTypes = {
-    profile: PropTypes.object.isRequired,
-    isLoggedIn: PropTypes.bool.isRequired,
-    authActions: PropTypes.object.isRequired,
-    profileActions: PropTypes.object.isRequired,
-    loading: PropTypes.bool.isRequired
+    profile: PropTypes.object,
+    isLoggedIn: PropTypes.bool,
+    authActions: PropTypes.object,
+    loading: PropTypes.bool,
+    currentPath: PropTypes.string.isRequired
 };
 
 function mapStateToProps(state) {
@@ -98,10 +91,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        profileActions: bindActionCreators(profileActions, dispatch),
         authActions: bindActionCreators(authActions, dispatch)
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CSSModules(HeaderContainer, styles));
-//export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);

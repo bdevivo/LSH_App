@@ -70,7 +70,7 @@ LoginContainer.propTypes = {
     params: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
     return {
         profile: state.profile,
         loading: state.ajaxCallsInProgress > 0

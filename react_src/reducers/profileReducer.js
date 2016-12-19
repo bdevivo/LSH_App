@@ -4,14 +4,14 @@ import update from 'immutability-helper';
 
 function mapUserToProfile(user) {
 
-    let {user_name, app_metadata} = user;
+    let {user_name} = user;
 
     // Project data into the correct shape
     let profile = {
         auth0_id: user.user_id,
         email: user.email,
         avatarUrl: user.avatarUrl,
-        roles: app_metadata.roles
+        roles: user.roles
     };
 
     if (user_name) {

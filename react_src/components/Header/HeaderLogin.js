@@ -1,38 +1,43 @@
 import React, {PropTypes} from 'react';
-import {Link} from 'react-router';
+import {Nav} from 'react-bootstrap';
+import HeaderLinkButton from './HeaderLinkButton';
 import CSSModules from 'react-css-modules';
 import styles from './Header.css';
-import {Button, ButtonToolbar} from 'react-bootstrap';
 
-const HeaderLogin = ({isLoggedIn, onLogout}) => {
+const HeaderLogin = ({isLoggedIn, isOnLoginPage, onLogout}) => {
 
-   let loginDiv;
+    let login;
 
-   if (isLoggedIn) {
-      loginDiv = (<div className="hidden-sm hidden-xs" styleName="navRight">
-         <a styleName="link" onClick={onLogout}>Logout</a>
-      </div>);
-   }
-   else {
-      loginDiv = (<div className="hidden-sm hidden-xs" styleName="navRight">
-         <ButtonToolbar>
-            <Button type="button" className="btn btn-sm btn-success"><Link to="/login/default" styleName="buttonLink">Login</Link></Button>
+    if (isOnLoginPage) {
+        login = <span></span>;
+    }
+    else if (isLoggedIn) {
+        login = (
+            <div className="hidden-sm hidden-xs" styleName="navLogin">
+               <a styleName="link" onClick={onLogout}>Logout</a>
+            </div>
+        );
+    }
+    else {
+        login = (
+         <Nav className="hidden-sm hidden-xs" styleName="navLogin">
+            <HeaderLinkButton to="/login/default" type="success">Login</HeaderLinkButton>
+            <HeaderLinkButton to="/login/hire" type="primary">Sign up to hire resources</HeaderLinkButton>
+            <HeaderLinkButton to="/login/work" type="primary">Sign up to find work</HeaderLinkButton>
+         </Nav>);
+    }
 
-            <Button type="button" className="btn btn-sm btn-primary"><Link to="/login/hire" styleName="buttonLink">Sign
-               up to hire resources</Link></Button>
+    return login;
 
-            <Button type="button" className="btn btn-sm btn-primary"><Link to="/login/work" styleName="buttonLink">Sign
-               up to find work</Link></Button>
-         </ButtonToolbar>
-      </div>);
-   }
 
-   return loginDiv;
 };
 
+
+
 HeaderLogin.propTypes = {
-   isLoggedIn: PropTypes.bool.isRequired,
-   onLogout: PropTypes.func.isRequired
+    isLoggedIn: PropTypes.bool.isRequired,
+    isOnLoginPage: PropTypes.bool.isRequired,
+    onLogout: PropTypes.func.isRequired
 };
 
 export default CSSModules(HeaderLogin, styles);

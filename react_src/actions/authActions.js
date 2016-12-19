@@ -59,7 +59,7 @@ export function signup(email, password, userType) {
                     dispatch(profileActions.setProfile(user));
                     dispatch(endAjaxCall());
                     // TODO: re-direct to a dashboard page instead of to home
-                    browserHistory.push('/profile.account');
+                    browserHistory.push('/profile/account');
                 }
             )
             .catch(

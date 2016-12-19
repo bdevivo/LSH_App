@@ -51,10 +51,10 @@ router.get("/auth0/:userId", function (req, res) {
 
 // Create a new user
 router.post("/", function (req, res) {
-    let auth0_id = req.body;
+    let auth0_id = req.body.auth0_id;
 
     let uModel = new User({
-        auth0_id: auth0_id
+        'auth0_id': auth0_id
     });
 
     uModel.save(function (err, uModel) {

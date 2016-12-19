@@ -10,24 +10,28 @@ export default class UserApi {
                 'Content-Type': 'application/json'
             };
 
-            // let user_data = {
-            //     user_id: profile.user_id
-            //     // add the rest here
-            // };
+            let user_data = {
+               auth0_id: auth0_id
+                // add the rest here
+            };
 
-            //const body = JSON.stringify(user_data);
+            const body = JSON.stringify(user_data);
 
             return fetch('/api/users', {
                 method: 'POST',
                 headers: headers,
-                body: auth0_id
+                body: body
                 })
                 .then(response => {
-                    response.json();
+                    return response.json();
                 })
                 .then(user => {
                     resolve(user);
-                });
+                })
+                 .catch(err => {
+                    alert("Error getting user by auth id: " + err);
+                    reject();
+                 });
         });
     }
 
@@ -50,7 +54,11 @@ export default class UserApi {
                 })
                 .then(user => {
                     resolve(user);
-                });
+                })
+               .catch(err => {
+                  alert("Error getting user by auth id: " + err);
+                  reject();
+               });
         });
     }
 

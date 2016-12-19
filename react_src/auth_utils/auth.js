@@ -112,7 +112,7 @@ export const signup = (email, password, userType) => {
                     let dbUserString = JSON.stringify(db_user);
                     localStorage.setItem(CONSTANTS.DB_USER_ID_KEY, db_user._id);
                     localStorage.setItem(CONSTANTS.DB_USER_KEY, dbUserString);
-                    return db_user.user;
+                    return db_user;
                 })
             .then(
                 (db_user) => {

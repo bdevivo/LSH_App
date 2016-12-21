@@ -22,6 +22,7 @@ class LoginContainer extends React.Component {
 
         this.updateLoginField = this.updateLoginField.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleGoogleLogin = this.handleGoogleLogin.bind(this);
     }
 
     // Called when any form field is updated
@@ -50,6 +51,11 @@ class LoginContainer extends React.Component {
         }
     }
 
+    handleGoogleLogin() {
+       this.props.authActions.login_google();
+    }
+
+
     render()
     {
         return (
@@ -57,6 +63,7 @@ class LoginContainer extends React.Component {
                 loginType={this.state.loginType}
                 isLoading={this.props.loading}
                 handleSubmit={this.handleSubmit}
+                handleGoogleLogin={this.handleGoogleLogin}
                 updateLoginField={this.updateLoginField} />
         );
     }

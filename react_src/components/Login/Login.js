@@ -7,7 +7,7 @@ import styles from './Login.css';
 
 const classNames = require('classnames');
 
-const Login = ({loginType, handleSubmit, updateLoginField, isLoading}) => {
+const Login = ({loginType, handleSubmit, handleGoogleLogin, updateLoginField, isLoading}) => {
 
     function createLoginButtonStyleName() {
         return classNames({
@@ -46,6 +46,12 @@ const Login = ({loginType, handleSubmit, updateLoginField, isLoading}) => {
     return (
         <div className={styles.root}>
             <h2>{headerText}</h2>
+
+           <div>
+              <p><a onClick={handleGoogleLogin}>Login with Google</a></p>
+           </div>
+
+
             <Form onSubmit={handleSubmit}>
                 <FormGroup controlId="email">
                     <ControlLabel>E-mail</ControlLabel>
@@ -69,6 +75,7 @@ const Login = ({loginType, handleSubmit, updateLoginField, isLoading}) => {
 Login.propTypes = {
     loginType: T.string.isRequired,
     handleSubmit: T.func.isRequired,
+      handleGoogleLogin: T.func.isRequired,
     updateLoginField: T.func.isRequired,
     isLoading: T.bool.isRequired,
 };

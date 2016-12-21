@@ -48,6 +48,13 @@ export function login(email, password) {
     };
 }
 
+export function login_google() {
+   return function (dispatch) {
+
+      Auth.login_google(); // nothing to dispatch, because user will be re-directed to Google, then to callback page
+   };
+}
+
 export function signup(email, password, userType) {
     return function (dispatch) {
         dispatch(beginAjaxCall());

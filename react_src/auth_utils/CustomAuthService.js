@@ -8,7 +8,7 @@ export default class CustomAuthService extends EventEmitter {
     constructor(clientId, domain) {
         super();
 
-        // Configure Auth0
+        // Configure username-password Auth0 instance
         this.auth0 = new Auth0({
             clientID: clientId,
             domain: domain,
@@ -16,6 +16,16 @@ export default class CustomAuthService extends EventEmitter {
             callbackURL: window.location.href,
             responseType: 'token',
         });
+
+       // Configure Google Auth0 instance
+       this.auth0_google = new Auth0({
+          clientID: clientId,
+          domain: domain,
+          callbackURL:  'http://localhost:3000/login',
+          //callbackURL: window.location.href,
+          responseType: 'token',
+       });
+
 
         this.signup = this.signup.bind(this);
     }
@@ -34,6 +44,13 @@ export default class CustomAuthService extends EventEmitter {
        });
 
       //this.auth0.signup(params, this.onSignupComplete);
+   }
+
+   login_google()
+   {  // re-directs to callback url (specified at https://console.developers.google.com) after logging in
+      this.auth0_google.login({
+         connection: 'google-oauth2'
+      });
    }
 
     login(params) {
@@ -56,8 +73,7 @@ export default class CustomAuthService extends EventEmitter {
         // uses auth0 parseHash method to extract data from url hash
         const authResult = this.auth0.parseHash(hash);
         if (authResult && authResult.idToken) {
-            this.setToken(authResult.idToken);
-            return true;
+            return authResult.idToken;
         }
 
         return false;

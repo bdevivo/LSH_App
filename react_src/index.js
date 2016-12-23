@@ -11,7 +11,6 @@ import {getAllQuestions} from './actions/questionWizardActions';
 import initialState from './store/initialState';
 
 const store = configureStore(initialState);
-store.dispatch(getAllQuestions());
 
 render(
     <Provider store={store}>

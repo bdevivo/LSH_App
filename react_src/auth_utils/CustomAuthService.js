@@ -17,56 +17,52 @@ export default class CustomAuthService extends EventEmitter {
             responseType: 'token',
         });
 
-       // Configure Google Auth0 instance
-       this.auth0_google = new Auth0({
-          clientID: clientId,
-          domain: domain,
-          callbackURL:  'http://localhost:3000/login',
-          //callbackURL: window.location.href,
-          responseType: 'token',
-       });
+        // Configure Google Auth0 instance
+        this.auth0_google = new Auth0({
+            clientID: clientId,
+            domain: domain,
+            callbackURL: 'http://localhost:3000/login',
+            //callbackURL: window.location.href,
+            responseType: 'token',
+        });
 
 
         this.signup = this.signup.bind(this);
     }
 
-   signup(params) {
-       let auth0 = this.auth0;
-       return new Promise(function(resolve, reject) {
-           auth0.signup(params, function(err, result) {
-               if (err) {
-                   reject(err);
-               }
-               else {
-                   resolve(result.idToken);
-               }
-           });
-       });
-
-      //this.auth0.signup(params, this.onSignupComplete);
-   }
-
-   login_google()
-   {  // re-directs to callback url (specified at https://console.developers.google.com) after logging in
-      this.auth0_google.login({
-         connection: 'google-oauth2'
-      });
-   }
-
-    login(params) {
-       let auth0 = this.auth0;
-       return new Promise(function(resolve, reject) {
-          auth0.login(params, function(err, result) {
-             if (err) {
-                reject(err);
-             }
-             else {
-                resolve(result.idToken);
-             }
-          });
-       });
+    signup(params) {
+        let auth0 = this.auth0;
+        return new Promise(function (resolve, reject) {
+            auth0.signup(params, function (err, result) {
+                if (err) {
+                    reject(err);
+                }
+                else {
+                    resolve(result.idToken);
+                }
+            });
+        });
     }
 
+    login_google() {  // re-directs to callback url (specified at https://console.developers.google.com) after logging in
+        this.auth0_google.login({
+            connection: 'google-oauth2',
+        });
+    }
+
+    login(params) {
+        let auth0 = this.auth0;
+        return new Promise(function (resolve, reject) {
+            auth0.login(params, function (err, result) {
+                if (err) {
+                    reject(err);
+                }
+                else {
+                    resolve(result.idToken);
+                }
+            });
+        });
+    }
 
 
     parseHash(hash) {
@@ -116,8 +112,8 @@ export default class CustomAuthService extends EventEmitter {
                 if (error) {
                     reject('Error loading the Profile', error);
                 } else {
-                   // this.setProfile(profile);
-                   // resolve(profile.user_id);
+                    // this.setProfile(profile);
+                    // resolve(profile.user_id);
                     resolve(profile);
                 }
             });

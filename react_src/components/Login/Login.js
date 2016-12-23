@@ -1,6 +1,6 @@
-import React, { PropTypes as T } from 'react';
-import { browserHistory } from 'react-router';
-import {Form, FormGroup, FormControl, ControlLabel, Button, ButtonToolbar} from 'react-bootstrap';
+import React, {PropTypes as T} from 'react';
+import {browserHistory} from 'react-router';
+import {Form, FormGroup, FormControl, ControlLabel, Button, ButtonGroup, ButtonToolbar} from 'react-bootstrap';
 import CSSModules from 'react-css-modules';
 import styles from './Login.css';
 
@@ -16,8 +16,7 @@ const Login = ({loginType, handleSubmit, handleGoogleLogin, updateLoginField, is
     }
 
     let headerText, buttonText;
-    switch(loginType)
-    {
+    switch (loginType) {
         case "default":
             headerText = "Login";
             buttonText = "Login";
@@ -44,30 +43,42 @@ const Login = ({loginType, handleSubmit, handleGoogleLogin, updateLoginField, is
     }
 
     return (
-        <div className={styles.root}>
+        <div className={styles.root} styleName="main">
             <h2>{headerText}</h2>
 
-           <div>
-              <p><a onClick={handleGoogleLogin}>Login with Google</a></p>
-           </div>
-
-
-            <Form onSubmit={handleSubmit}>
-                <FormGroup controlId="email">
-                    <ControlLabel>E-mail</ControlLabel>
-                    <FormControl type="email" name="email" placeholder="yours@example.com" required onChange={updateLoginField} />
-                </FormGroup>
-
-                <FormGroup controlId="password">
-                    <ControlLabel>Password</ControlLabel>
-                    <FormControl type="password" name="pwd" placeholder="Password" required onChange={updateLoginField} />
-                </FormGroup>
-
+            <div styleName="socialSignup">
                 <ButtonToolbar>
-                    <Button type="submit" bsStyle="primary" className={createLoginButtonStyleName()}>{buttonText}</Button>
-                    <Button type="button" bsStyle="primary" onClick={browserHistory.goBack}>Cancel</Button>
+                    <Button type="button" bsStyle="success" className="btn-sm" onClick={handleGoogleLogin}>Login with
+                        Google</Button>
+                    <Button type="button" bsStyle="success" className="btn-sm" onClick={handleGoogleLogin}>Login with
+                        Facebook</Button>
+                    <Button type="button" bsStyle="success" className="btn-sm" onClick={handleGoogleLogin}>Login with
+                        LinkedIn</Button>
                 </ButtonToolbar>
-            </Form>
+            </div>
+
+
+            <div styleName="fields">
+                <Form onSubmit={handleSubmit}>
+                    <FormGroup controlId="email">
+                        <ControlLabel>E-mail</ControlLabel>
+                        <FormControl type="email" name="email" placeholder="yours@example.com" required
+                                     onChange={updateLoginField}/>
+                    </FormGroup>
+
+                    <FormGroup controlId="password">
+                        <ControlLabel>Password</ControlLabel>
+                        <FormControl type="password" name="pwd" placeholder="Password" required
+                                     onChange={updateLoginField}/>
+                    </FormGroup>
+
+                    <ButtonToolbar styleName="bottomButtons">
+                        <Button type="submit" bsStyle="primary"
+                                className={createLoginButtonStyleName()}>{buttonText}</Button>
+                        <Button type="button" bsStyle="primary" onClick={browserHistory.goBack}>Cancel</Button>
+                    </ButtonToolbar>
+                </Form>
+            </div>
         </div>
     );
 };
@@ -75,7 +86,7 @@ const Login = ({loginType, handleSubmit, handleGoogleLogin, updateLoginField, is
 Login.propTypes = {
     loginType: T.string.isRequired,
     handleSubmit: T.func.isRequired,
-      handleGoogleLogin: T.func.isRequired,
+    handleGoogleLogin: T.func.isRequired,
     updateLoginField: T.func.isRequired,
     isLoading: T.bool.isRequired,
 };

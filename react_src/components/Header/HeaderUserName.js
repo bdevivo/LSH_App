@@ -17,7 +17,7 @@ const HeaderUserName = ({user_name, email, isLoggedIn}) => {
         }
 
         userDiv = (
-        <HeaderLink to="/profile/account" key="postJob" className="navItem">{userName}</HeaderLink>
+        <HeaderLink to="/profile/account" className="navItem">{userName}</HeaderLink>
             // <Nav className="hidden-sm hidden-xs" styleName="navUserName">
             //     <NavItem><Link to="/profile/account">{userName}</Link></NavItem>
             // </Nav>

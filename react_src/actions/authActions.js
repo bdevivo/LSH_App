@@ -49,10 +49,25 @@ export function login(email, password) {
 }
 
 export function login_google() {
-   return function (dispatch) {
+    return function (dispatch) {
+        dispatch(beginAjaxCall());
+        Auth.login_google()
+            .catch( // we'll only get here if the callback is never invoked
+                () => {
+                    dispatch(endAjaxCall());
+                }
+            );
+    };
+}
 
-      Auth.login_google(); // nothing to dispatch, because user will be re-directed to Google, then to callback page
-   };
+export function post_oauth_login(user) {
+    return function (dispatch) {
+        dispatch(endAjaxCall());
+        dispatch(loginSuccess());
+        dispatch(profileActions.setProfile(user));
+        // TODO: re-direct to a dashboard page?
+        browserHistory.push('/profile/account');
+    };
 }
 
 export function signup(email, password, userType) {
@@ -65,7 +80,7 @@ export function signup(email, password, userType) {
                     dispatch(loginSuccess());
                     dispatch(profileActions.setProfile(user));
                     dispatch(endAjaxCall());
-                    // TODO: re-direct to a dashboard page instead of to home
+                    // TODO: re-direct to a dashboard page?
                     browserHistory.push('/profile/account');
                 }
             )

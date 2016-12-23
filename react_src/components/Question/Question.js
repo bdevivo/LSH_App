@@ -1,41 +1,67 @@
-import React, { Component, PropTypes } from 'react';
+import React, {Component, PropTypes} from 'react';
+import {Row, Col, Button, ButtonGroup, Modal} from 'react-bootstrap';
+import QuestionEditContainer from './QuestionEditContainer';
 
-const Question = ({question, handleToggle}) => {
+const Question = ({question, isExpanded, handleToggle}) => {
 
     let questionDivStyle = {
         paddingTop: 10,
         borderTop: 'solid 1px blue'
     };
 
-    function onToggle(){
-        handleToggle(question.id);
-    }
-
     let question_body;
-    if (question.visible)
-    {
+    let questionDetails;
+    if (isExpanded) {
+
+        if (question.answerType && question.answerType.contains("Select")) {
+            let questionOptions = question.selectOptions.map((opt, i) =>
+                <li key={i}>opt</li>
+            );
+
+            questionDetails = (
+                <div>
+                    <label>Options</label>
+                    <ul>{questionOptions}</ul>
+                </div>);
+        }
+        else if (question.answerType === "boolean") {
+            questionDetails = (
+                <div>
+                    <p>
+                        <label>Text for "yes":</label>
+                        {question.booleanOptions.yesText}
+                    </p>
+                    <p>
+                        <label>Text for "no":</label>
+                        {question.booleanOptions.noText}
+                    </p>
+                </div>);
+        }
+
         question_body =
             (<div>
-                <p>name: {question.name}</p>
-                <p>id: {question.id}</p>
-                <p>other question info</p>
+                <p>text: {question.text}</p>
+                <p>type: {question.answerType}</p>
+                {questionDetails}
             </div>);
     }
-    else
-    {
+    else {
         question_body =
             (<div>
-                <p>name: {question.name}</p>
+                <p>text: {question.text}</p>
             </div>);
     }
 
-    let buttonSymbol = question.visible ? "-" : "+";
+    let buttonSymbol = isExpanded ? "-" : "+";
 
-    return(
+    return (
 
         <div style={questionDivStyle}>
-            <button onClick={onToggle}>{buttonSymbol}</button>
+            <button onClick={handleToggle}>{buttonSymbol}</button>
             { question_body }
+
+            <QuestionEditContainer question={question} />
+
         </div>
     );
 };
@@ -43,7 +69,8 @@ const Question = ({question, handleToggle}) => {
 
 Question.propTypes = {
     question: PropTypes.object.isRequired,
-    handleToggle: PropTypes.func.isRequired
+    handleToggle: PropTypes.func.isRequired,
+    isExpanded: PropTypes.bool.isRequired
 };
 
 export default Question;

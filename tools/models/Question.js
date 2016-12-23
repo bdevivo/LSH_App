@@ -16,7 +16,7 @@ questionSchema = new Schema(
         displayType: { type: String },
         topLevel: {type: Boolean },
         answerType: { type: String },
-        selectionOptions: [String],
+        selectOptions: [String],
         textOptions: {
             width: { type: Number },
             multiLine: { type: Boolean },

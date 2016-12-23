@@ -1,0 +1,20 @@
+.socialSignup {
+    position: absolute;
+    right: 0;
+    top: 70px;
+}
+
+.fields {
+    position: absolute;
+    top: 150px;
+    width: 475px;
+}
+
+.main {
+    width: 475px;
+    position: relative;
+}
+
+.bottomButtons {
+    margin-top: 35px;
+}

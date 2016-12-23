@@ -5,10 +5,12 @@
       <w>dotenv</w>
       <w>funcs</w>
       <w>localstorage</w>
+      <w>mongo</w>
       <w>multiline</w>
       <w>polyfills</w>
       <w>questionwizard</w>
       <w>rehydrated</w>
+      <w>signup</w>
       <w>unmount</w>
       <w>yesno</w>
     </words>

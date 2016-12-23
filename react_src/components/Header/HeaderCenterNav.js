@@ -18,7 +18,7 @@ const HeaderCenterNav = ({isLoggedIn, isAdmin, isBuyer}) => {
         if (isAdmin) {
 
             adminNavItems = [
-                <HeaderLink to="admin" key="admin" className="navItemWithSep">Admin</HeaderLink>,
+                <HeaderLink to="questionList" key="admin" className="navItemWithSep">Admin</HeaderLink>,
             ];
 
             // admin users get all center nav links

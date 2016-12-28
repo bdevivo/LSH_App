@@ -6,6 +6,8 @@ import QuestionAddEdit from './QuestionAddEdit';
 import update from 'immutability-helper';
 import * as questionActions from '../../actions/questionWizardActions';
 
+const uuidV1 = require('uuid/v1');
+
 class QuestionEditContainer extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -43,7 +45,6 @@ class QuestionEditContainer extends React.Component {
         this.props.questionActions.removeQuestion(this.state.question.id);
     }
 
-
     handleCancel() {
         this.closeModal();
     }
@@ -56,9 +57,51 @@ class QuestionEditContainer extends React.Component {
         this.setState({modalVisible: false});
     }
 
+    onQuestionTextChanged(event) {
+       this.setState(
+          {question:
+            {text: event.target.value}});
+    }
+
     onQuestionTypeSelectionChanged(event) {
         this.setState({selectedQuestionOption: event.target.value});
     }
+
+   onAddSelectionOption(itemText) {
+
+       let question = this.state.question;
+
+      let newId = uuidV1();
+      let newIndex = question.optionItems.length;    // 0-based index
+      let newItem = {
+         text: itemText,
+         id: newId,
+         index: newIndex
+      };
+
+      this.setState(update(question, {
+         options: {$push: newItem}
+      }));
+   }
+
+   onDeleteSelectionOption(itemId) {
+      let question = this.state.question;
+
+      let delItem = question.optionItems.filter(item => item.id === itemId)[0];
+      this.setState(update(question.optionItems, {$splice: [[delItem.index, 1]]}));
+
+      //re-index to keep index numbers contiguous
+      for(let i = 0; i < question.optionItems.length; i++) {
+         question.optionItems[i].index = i;
+      }
+   }
+
+   onEditSelectionOptionSave(editedItem) {
+      let question = this.state.question;
+      let editItem = question.optionItems.filter(item => item.id === editedItem.id)[0];
+      this.setState(update(editItem, {$set: editedItem.text}));
+   }
+
 
     render() {
 
@@ -74,8 +117,12 @@ class QuestionEditContainer extends React.Component {
                         pageTitle={pageTitle}
                         handleSubmit={this.handleSubmit}
                         handleCancel={this.handleCancel}
+                        onQuestionTextChanged={this.onQuestionTextChanged}
                         selectedQuestionOption={this.state.selectedQuestionOption}
                         onQuestionTypeSelectionChanged={this.onQuestionTypeSelectionChanged}
+                        onAddSelectOption={this.onAddSelectionOption}
+                        onDeleteSelectionOption={this.onDeleteSelectionOption}
+                        onEditSelectionOptionSave={this.onEditSelectionOptionSave}
                     />
                 </Modal>
 

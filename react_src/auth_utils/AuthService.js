@@ -24,7 +24,7 @@ export default class AuthService extends EventEmitter {
             //     type: 'select',
             //     name: 'account_type',
             //     placeholder: 'Account Type',
-            //     options: [
+            //     optionItems: [
             //         {value: 'buyer', label: 'Employer'},
             //         {value: 'talent', label: 'Freelancer'}
             //     ]

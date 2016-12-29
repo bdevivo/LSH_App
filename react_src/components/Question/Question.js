@@ -13,7 +13,7 @@ const Question = ({question, isExpanded, handleToggle}) => {
     let questionDetails;
     if (isExpanded) {
 
-        if (question.answerType && question.answerType.contains("Select")) {
+        if (question.answerType && question.answerType.includes("Select")) {
             let questionOptions = question.selectOptions.map((opt, i) =>
                 <li key={i}>opt</li>
             );

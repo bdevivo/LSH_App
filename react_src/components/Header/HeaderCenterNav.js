@@ -1,5 +1,4 @@
 import React, {PropTypes} from 'react';
-import {Link} from 'react-router';
 import {Nav, NavItem} from 'react-bootstrap';
 import HeaderLink from './HeaderLink';
 import CSSModules from 'react-css-modules';

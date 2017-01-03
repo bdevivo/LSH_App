@@ -20,7 +20,7 @@ class QuestionListContainer extends React.Component {
         this.onAddQuestionClose = this.onAddQuestionClose.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.questionActions.getAllQuestions();
     }
 

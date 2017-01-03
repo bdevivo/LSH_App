@@ -1,5 +1,6 @@
 import React, {PropTypes as T} from 'react';
 import {Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
+import {LinkContainer} from 'react-router-bootstrap';
 
 
 const AdminContainer = ({children}) => {
@@ -8,7 +9,11 @@ const AdminContainer = ({children}) => {
     return (
         <div>
             <Nav bsStyle="tabs">
-                <NavItem eventKey="1" href="/admin/questionList">Buyer Questions</NavItem>
+
+               <LinkContainer to="/admin/questionList">
+                  <NavItem eventKey="1">Buyer Questions</NavItem>
+               </LinkContainer>
+
                 <NavItem eventKey="2" title="Item">Talent Questions</NavItem>
                 <NavItem eventKey="3" disabled>NavItem 3 content</NavItem>
                 <NavDropdown eventKey="4" title="Dropdown" id="nav-dropdown">

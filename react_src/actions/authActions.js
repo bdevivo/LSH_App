@@ -42,6 +42,7 @@ export function login(email, password) {
             .catch(
                 (err) => {
                     dispatch(endAjaxCall());
+                    alert("Login error: " + err);
                     dispatch(loginFailure(err));
                 }
             );

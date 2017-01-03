@@ -108,6 +108,9 @@ export const login = (email, password) => {
                 })
             .then(
                 (db_user) => {
+                   if (db_user === null || db_user.user === null) {
+                      throw new Error("No user found in the database for this Auth0 user ID");
+                   }
                     let dbUserString = JSON.stringify(db_user);
                     localStorage.setItem(CONSTANTS.DB_USER_ID_KEY, db_user._id);
                     localStorage.setItem(CONSTANTS.DB_USER_KEY, dbUserString);

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import Question from './Question';
-
+import QuestionEditContainer from './QuestionEditContainer';
 
 class QuestionContainer extends React.Component {
     constructor(props) {
@@ -24,12 +24,27 @@ class QuestionContainer extends React.Component {
     }
 
     render() {
-        return <Question question={this.state.question} handleToggle={this.toggleQuestion} isExpanded={this.state.isExpanded} />;
+        let question = this.state.question;
+        let questionComponent = (question._id !== 0 // this is an existing question
+            ? <Question
+                question={this.state.question}
+                handleToggle={this.toggleQuestion}
+                isExpanded={this.state.isExpanded}
+                modalVisible={this.props.modalVisible}   // if we are editing an existing question, show the Edit Question modal
+                onAddQuestionClose={this.props.onAddQuestionClose} />
+            : <QuestionEditContainer  // this is a new question
+                question={question}
+                modalVisible={true}   // if we are adding a new question, show the Add Question modal
+                onAddQuestionClose={this.props.onAddQuestionClose} />);
+
+        return <div>{questionComponent}</div>;
     }
 }
 
 QuestionContainer.propTypes = {
-    question: PropTypes.object.isRequired
+    question: PropTypes.object.isRequired,
+    modalVisible: PropTypes.bool.isRequired,
+    onAddQuestionClose: PropTypes.func.isRequired
 };
 
 

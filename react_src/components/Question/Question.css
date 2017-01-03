@@ -1,0 +1,39 @@
+.addQuestionDiv {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.questionDiv {
+    padding-top: 10px;
+}
+
+.questionBodyDiv {
+    padding-top: 5px;
+}
+
+.toggleButtonCol {
+    width: 15px;
+}
+
+.answerTypeDetails {
+    margin-top: 20px;
+}
+
+.editForm {
+    padding: 20px 20px 10px 20px;
+}
+
+.conditionalToggle {
+    display: inline-block;
+    float: right;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.showResourcesTextField {
+    display: block;
+}
+
+.hideResourcesTextField {
+    display: none;
+}

@@ -1,102 +1,139 @@
 import React, {PropTypes as T} from 'react';
 import {Row, Col, Form, FormGroup, FormControl, ControlLabel, Button, Radio, Modal} from 'react-bootstrap';
-import SelectOptionContainer from "./SelectOptions/SelectOptionsContainer";
+import SelectOptionContainer from "./AnswerTypeSelect/SelectOptionsContainer";
+import BooleanForm from './AnswerTypeBoolean/BooleanForm';
 import styles from './Question.css';
 import CSSModules from 'react-css-modules';
 
+const classNames = require('classnames');
+
 
 const QuestionAddEdit = ({
-   question, pageTitle, handleSubmit, handleCancel, selectedQuestionOption, onQuestionTextChanged, onQuestionTypeSelectionChanged,
-   onAddSelectOption, onDeleteSelectionOption, onEditSelectionOptionSave
-}) => {
+    question, pageTitle, questionFunctions, selectionOptionFunctions, onEditBooleanOptionSave,
+    onToggleConditionalQuestionText, isQuestionTextConditional}) => {
 
-   let answerTypeDetails = [];
-   switch (selectedQuestionOption) {
-      case "singleSelect":
-      case "multiSelect": {
-         answerTypeDetails = (<SelectOptionContainer
-                                 optionItems={question.optionItems}
-                                 onAddItem={onAddSelectOption}
-                                 onDeleteItem={onDeleteSelectionOption}
-                                 onEditItemSave={onEditSelectionOptionSave} />);
-         break;
-      }
+    const createResourcesTextStyleName = () => {
+        return classNames({
+            'showResourcesTextField': isQuestionTextConditional,
+            'hideResourcesTextField': !isQuestionTextConditional
+        });
+    };
 
-      case "boolean": {
-         answerTypeDetails = "boolean";
-         break;
-      }
+    let answerTypeDetails = [];
+    let answerType = question.answerType;
 
-      case "text": {
-         answerTypeDetails = "text";
-         break;
-      }
+    switch (answerType) {
+        case "singleSelect":
+        case "multiSelect": {
 
-      default:
-      // do nothing
-   }
+            answerTypeDetails = (<SelectOptionContainer
+                optionItems={question.selectOptionItems}
+                selectionOptionFunctions={selectionOptionFunctions}
+            />);
+            break;
+        }
 
-   return (
-      <div>
-         <Modal.Header closeButton>
-            <Modal.Title>{pageTitle}</Modal.Title>
-         </Modal.Header>
-         <Modal.Body>
+        case "boolean": {
+            answerTypeDetails = (<BooleanForm
+                    question={question}
+                    onSave={onEditBooleanOptionSave}/>
+            );
+            break;
+        }
 
-            <Form horizontal>
+        case "text": {
+            answerTypeDetails = "text";
+            break;
+        }
 
-               <FormGroup controlId="formControlsQuestionText">
-                  <ControlLabel>Question Text</ControlLabel>
-                  <FormControl className="textarea" placeholder="add question text" value={question.text} onChange={onQuestionTextChanged}/>
-               </FormGroup>
+        default:
+        // do nothing
+    }
 
-               <FormGroup controlId="formControlsQuestionType">
-                  <Radio value="singleSelect" checked={selectedQuestionOption === "singleSelect"}
-                         onChange={onQuestionTypeSelectionChanged}>Single Select</Radio>
-                  <Radio value="multiSelect" checked={selectedQuestionOption === "multiSelect"}
-                         onChange={onQuestionTypeSelectionChanged}>Multiple Select</Radio>
-                  <Radio value="boolean" checked={selectedQuestionOption === "boolean"}
-                         onChange={onQuestionTypeSelectionChanged}>Boolean</Radio>
-                  <Radio value="text" checked={selectedQuestionOption === "text"}
-                         onChange={onQuestionTypeSelectionChanged}>Text</Radio>
-               </FormGroup>
+    let {onQuestionTextChanged, onQuestionTextForResourcesChanged} = questionFunctions;
+    let onAnswerTypeChanged = questionFunctions.onQuestionTypeSelectionChanged;
 
-               <div>
-                  <label>Answer Type: </label>
-                  <p>{answerTypeDetails}</p>
-               </div>
+    let conditionalToggleText = (
+        isQuestionTextConditional ? <span className="glyphicon glyphicon-minus"></span> : <span className="glyphicon glyphicon-plus"></span>
+    );
+
+    let toggleToolTip = (
+        isQuestionTextConditional ? "Click to restore common text for Employers and Resources" : "Click to add alternate text for Resources"
+    );
+
+    let labelForFirstTextField = (
+        isQuestionTextConditional ? "Question Text for Employers" : "Question Text"
+    );
+
+    return (
+        <div>
+            <Modal.Header closeButton>
+                <Modal.Title>{pageTitle}</Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>
+
+                <Form horizontal styleName="editForm">
+
+                    <FormGroup controlId="formControlsQuestionText">
+                        <ControlLabel>{labelForFirstTextField}</ControlLabel>
+                        <div styleName="conditionalToggle">
+                            <a onClick={onToggleConditionalQuestionText} title={toggleToolTip}>{conditionalToggleText}</a>
+                        </div>
+                        <FormControl componentClass="textarea" placeholder="add text" value={question.text}
+                                required onChange={onQuestionTextChanged}/>
+                    </FormGroup>
+
+                    <FormGroup controlId="formControlsQuestionText" styleName={createResourcesTextStyleName()}>
+                        <ControlLabel>Alternate Text for Resources</ControlLabel>
+
+                        <FormControl componentClass="textarea" placeholder="add text" value={question.textForResources}
+                                     onChange={onQuestionTextForResourcesChanged}/>
+                    </FormGroup>
+
+                    <FormGroup controlId="formControlsQuestionType">
+                        <Radio value="singleSelect" checked={answerType === "singleSelect"}
+                               onChange={onAnswerTypeChanged}>Single Select</Radio>
+                        <Radio value="multiSelect" checked={answerType === "multiSelect"}
+                               onChange={onAnswerTypeChanged}>Multiple Select</Radio>
+                        <Radio value="boolean" checked={answerType === "boolean"}
+                               onChange={onAnswerTypeChanged}>Boolean</Radio>
+                        <Radio value="text" checked={answerType === "text"}
+                               onChange={onAnswerTypeChanged}>Text</Radio>
+                    </FormGroup>
+
+                    <div styleName="answerTypeDetails">
+                        {answerTypeDetails}
+                    </div>
 
 
-            </Form>
+                </Form>
 
-         </Modal.Body>
-         <Modal.Footer>
-            <Row>
-               <Col md={3} mdOffset={2}>
-                  <Button onClick={handleCancel}>Cancel</Button>
-               </Col>
-               <Col md={3}>
-                  <Button onClick={handleSubmit}>Save</Button>
-               </Col>
-            </Row>
-         </Modal.Footer>
-      </div>
-   );
+            </Modal.Body>
+            <Modal.Footer>
+                <Row>
+                    <Col md={3} mdOffset={2}>
+                        <Button onClick={questionFunctions.handleCancel}>Cancel</Button>
+                    </Col>
+                    <Col md={3}>
+                        <Button onClick={questionFunctions.handleSubmit}>Save</Button>
+                    </Col>
+                </Row>
+            </Modal.Footer>
+        </div>
+    );
 
 
 };
 
 QuestionAddEdit.propTypes = {
-   question: T.object.isRequired,
-   pageTitle: T.string.isRequired,
-   handleSubmit: T.func.isRequired,
-   handleCancel: T.func.isRequired,
-   onQuestionTextChanged: T.func.isRequired,
-   selectedQuestionOption: T.string.isRequired,
-   onQuestionTypeSelectionChanged: T.func.isRequired,
-   onAddSelectOption: T.func.isRequired,
-   onDeleteSelectionOption: T.func.isRequired,
-   onEditSelectionOptionSave: T.func.isRequired
+    question: T.object.isRequired,
+    pageTitle: T.string.isRequired,
+    questionFunctions: T.object.isRequired,
+    selectionOptionFunctions: T.object.isRequired,
+    onEditBooleanOptionSave: T.func.isRequired,
+    onToggleConditionalQuestionText: T.func.isRequired,
+    isQuestionTextConditional: T.bool.isRequired
 };
 
 export default CSSModules(QuestionAddEdit, styles);

@@ -7,6 +7,7 @@ import update from 'immutability-helper';
 import * as questionActions from '../../actions/questionWizardActions';
 
 const uuidV1 = require('uuid/v1');
+const cloneDeep = require('lodash/cloneDeep');
 
 class QuestionEditContainer extends React.Component {
     constructor(props, context) {
@@ -14,8 +15,11 @@ class QuestionEditContainer extends React.Component {
 
         this.state = {
             question: this.props.question,
-            modalVisible: false,
-            selectedQuestionOption: "none"
+            reOrderedOptionItems: this.props.question.selectOptionItems,
+            areOptionsReordered: false,
+            modalVisible: this.props.modalVisible,
+            selectedQuestionOption: "none",
+            isQuestionTextConditional: this.props.question.textForResources.length > 0
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,30 +27,88 @@ class QuestionEditContainer extends React.Component {
         this.handleCancel = this.handleCancel.bind(this);
         this.showModal = this.showModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+
+        this.onQuestionTextChanged = this.onQuestionTextChanged.bind(this);
+        this.onQuestionTextForResourcesChanged = this.onQuestionTextForResourcesChanged.bind(this);
         this.onQuestionTypeSelectionChanged = this.onQuestionTypeSelectionChanged.bind(this);
+        this.onAddSelectionOption = this.onAddSelectionOption.bind(this);
+        this.onDeleteSelectionOption = this.onDeleteSelectionOption.bind(this);
+        this.onEditSelectionOptionSave = this.onEditSelectionOptionSave.bind(this);
+        this.reOrderOptionItems = this.reOrderOptionItems.bind(this);
+        this.onEditBooleanOptionSave = this.onEditBooleanOptionSave.bind(this);
+        this.clearOtherAnswerTypes = this.clearOtherAnswerTypes.bind(this);
+        this.onToggleConditionalQuestionText = this.onToggleConditionalQuestionText.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.question !== this.state.question) {
+            this.setState(
+                {
+                    question: nextProps.question,
+                    reOrderedOptionItems: nextProps.question.selectOptionItems,
+                    areOptionsReordered: false,
+                });
+        }
     }
 
     handleSubmit(e) {
         e.preventDefault();
 
+        let saveQuestion = cloneDeep(this.state.question);
+        this.clearOtherAnswerTypes(saveQuestion);
+        if (!this.state.isQuestionTextConditional) {
+            // remove question text for Resources
+            saveQuestion.textForResources = "";
+        }
 
-        if (this.state.question.id == 0) {
-            this.props.questionActions.addQuestion(this.state.question);
+        let optionItemsCopy = cloneDeep(this.state.reOrderedOptionItems);
+        if (this.state.areOptionsReordered) {
+            //re-index to keep index numbers in sync with array order (in case items were re-ordered by dragging)
+            for (let i = 0; i < optionItemsCopy.length; i++) {
+                optionItemsCopy[i].index = i;
+            }
+            saveQuestion.selectOptionItems = optionItemsCopy;
+        }
+
+        if (this.state.question._id == 0) {
+            this.props.questionActions.addQuestion(saveQuestion);
         }
         else {
-            this.props.questionActions.updateQuestion(this.state.question);
+            this.props.questionActions.updateQuestion(saveQuestion);
         }
 
+        this.props.onAddQuestionClose();
+        this.closeModal();
+    }
+
+    clearOtherAnswerTypes(question) {
+        if (!question.answerType.includes("Select")) {
+            question.selectOptionItems = [];
+        }
+        else if (!question.answerType.includes("boolean")) {
+            question.booleanOptions = {
+                yesText: "",
+                noText: ""
+            };
+        }
+    }
+
+    handleCancel() {
+
+        // restore original question
+        let newState = update(this.state, {
+            question: {$set: this.props.question}
+        });
+
+        this.setState(newState);
+
+        this.props.onAddQuestionClose();
         this.closeModal();
     }
 
     removeQuestion() {
 
-        this.props.questionActions.removeQuestion(this.state.question.id);
-    }
-
-    handleCancel() {
-        this.closeModal();
+        this.props.questionActions.removeQuestion(this.state.question._id);
     }
 
     showModal() {
@@ -58,97 +120,194 @@ class QuestionEditContainer extends React.Component {
     }
 
     onQuestionTextChanged(event) {
-       this.setState(
-          {question:
-            {text: event.target.value}});
+        let newState = update(this.state, {
+            question: {
+                text: {$set: event.target.value}
+            }
+        });
+
+        this.setState(newState);
+    }
+
+    onQuestionTextForResourcesChanged(event) {
+        let newState = update(this.state, {
+            question: {
+                textForResources: {$set: event.target.value}
+            }
+        });
+
+        this.setState(newState);
     }
 
     onQuestionTypeSelectionChanged(event) {
-        this.setState({selectedQuestionOption: event.target.value});
+        let newState = update(this.state, {
+            question: {
+                answerType: {$set: event.target.value}
+            }
+        });
+
+        this.setState(newState);
     }
 
-   onAddSelectionOption(itemText) {
+    onAddSelectionOption(itemText) {
 
-       let question = this.state.question;
+        let question = this.state.question;
 
-      let newId = uuidV1();
-      let newIndex = question.optionItems.length;    // 0-based index
-      let newItem = {
-         text: itemText,
-         id: newId,
-         index: newIndex
-      };
+        let newId = uuidV1();
+        let newIndex = question.selectOptionItems.length;    // 0-based index
+        let newItem = {
+            text: itemText,
+            id: newId,
+            index: newIndex
+        };
 
-      this.setState(update(question, {
-         options: {$push: newItem}
-      }));
-   }
+        let newState = update(this.state, {
+            question: {
+                selectOptionItems: {$push: [newItem]}
+            }
+        });
 
-   onDeleteSelectionOption(itemId) {
-      let question = this.state.question;
+        this.setState(newState);
+    }
 
-      let delItem = question.optionItems.filter(item => item.id === itemId)[0];
-      this.setState(update(question.optionItems, {$splice: [[delItem.index, 1]]}));
+    onDeleteSelectionOption(itemId) {
+        let question = this.state.question;
 
-      //re-index to keep index numbers contiguous
-      for(let i = 0; i < question.optionItems.length; i++) {
-         question.optionItems[i].index = i;
-      }
-   }
+        let index = question.selectOptionItems.findIndex(item => item.id === itemId);
+        if (index > -1) {
+            let newState = update(this.state, {
+                question: {selectOptionItems: {$splice: [[index, 1]]}}
+            });
 
-   onEditSelectionOptionSave(editedItem) {
-      let question = this.state.question;
-      let editItem = question.optionItems.filter(item => item.id === editedItem.id)[0];
-      this.setState(update(editItem, {$set: editedItem.text}));
-   }
+            //re-index to keep index numbers contiguous (but don't apply until save)
+            let orderedItems = [];
+            let oldItems = newState.question.selectOptionItems;
+            for (let i = 0; i < oldItems.length; i++) {
+                orderedItems.push({
+                    index: i,
+                    id: oldItems[i].id,
+                    text: oldItems[i].text
+                });
+            }
 
+            newState.reOrderedOptionItems = orderedItems;
+            newState.areOptionsReordered = true;
+
+            this.setState(newState);
+        }
+
+
+    }
+
+    onEditSelectionOptionSave(editedItem) {
+
+        let newState = update(this.state, {
+                question: {
+                    selectOptionItems: {$splice: [[editedItem.index, 1, editedItem]]}
+                }
+            }
+        );
+
+        this.setState(newState);
+    }
+
+    reOrderOptionItems(orderedItems) {
+        let newState = update(this.state, {
+            reOrderedOptionItems: {$set: orderedItems},
+            areOptionsReordered: {$set: true}
+        });
+
+        this.setState(newState);
+    }
+
+    onEditBooleanOptionSave(editedItem) {
+
+        let propName = (editedItem.name === "yes" ? "yesText" : "noText");
+
+        let newState = update(this.state, {
+                question: {
+                    booleanOptions: {
+                        [propName]: {$set: editedItem.text}
+                    }
+                }
+            }
+        );
+
+        this.setState(newState);
+    }
+
+    onToggleConditionalQuestionText() {
+
+        this.setState(update(this.state, {
+                isQuestionTextConditional: {$set: !this.state.isQuestionTextConditional}
+            }
+        ));
+    }
 
     render() {
 
         let question = this.state.question;
-        let pageTitle = (question.id === 0 ? "Add Question" : "Edit Question");
+        let pageTitle = (question._id === 0 ? "Add Question" : "Edit Question");
 
-        return (
-            <div>
+        let questionFunctions = {
+            handleSubmit: this.handleSubmit,
+            handleCancel: this.handleCancel,
+            onQuestionTextChanged: this.onQuestionTextChanged,
+            onQuestionTextForResourcesChanged: this.onQuestionTextForResourcesChanged,
+            onQuestionTypeSelectionChanged: this.onQuestionTypeSelectionChanged
+        };
 
-                <Modal dialogClassName="questionModal" show={this.state.modalVisible} onHide={this.closeModal}>
-                    <QuestionAddEdit
-                        question={question}
-                        pageTitle={pageTitle}
-                        handleSubmit={this.handleSubmit}
-                        handleCancel={this.handleCancel}
-                        onQuestionTextChanged={this.onQuestionTextChanged}
-                        selectedQuestionOption={this.state.selectedQuestionOption}
-                        onQuestionTypeSelectionChanged={this.onQuestionTypeSelectionChanged}
-                        onAddSelectOption={this.onAddSelectionOption}
-                        onDeleteSelectionOption={this.onDeleteSelectionOption}
-                        onEditSelectionOptionSave={this.onEditSelectionOptionSave}
-                    />
-                </Modal>
+        let selectionOptionFunctions = {
+            onAddSelectOption: this.onAddSelectionOption,
+            onDeleteSelectionOption: this.onDeleteSelectionOption,
+            onEditSelectionOptionSave: this.onEditSelectionOptionSave,
+            reOrderOptionItems: this.reOrderOptionItems
+        };
 
-                <ButtonGroup>
-
-                    <Button type="button" className="btn btn-sm btn-default" aria-label="Edit" onClick={this.showModal}>
+        let buttonGroup = (
+            this.state.modalVisible
+                ? null
+                : <div>
+                    <Button type="button" className="btn btn-xs btn-default" aria-label="Edit" onClick={this.showModal}>
                         <span className="glyphicon glyphicon-pencil"></span>
                     </Button>
 
-                    <Button type="button" className="btn btn-sm btn-default" aria-label="Remove"
+                    {' '}
+
+                    <Button type="button" className="btn btn-xs btn-default" aria-label="Remove"
                             onClick={this.removeQuestion}>
                         <span className="glyphicon glyphicon-remove"></span>
                     </Button>
-                </ButtonGroup>
+                </div>
+        );
 
+        return (
+            <div>
+                <Modal dialogClassName="questionModal" show={this.state.modalVisible} onHide={this.handleCancel}>
+                    <QuestionAddEdit
+                        question={question}
+                        pageTitle={pageTitle}
+                        selectedQuestionOption={this.state.selectedQuestionOption}
+                        questionFunctions={questionFunctions}
+                        selectionOptionFunctions={selectionOptionFunctions}
+                        onEditBooleanOptionSave={this.onEditBooleanOptionSave}
+                        onToggleConditionalQuestionText={this.onToggleConditionalQuestionText}
+                        isQuestionTextConditional={this.state.isQuestionTextConditional}
+                    />
+                </Modal>
+
+                {buttonGroup}
 
             </div>
-
-
         );
     }
 }
 
 QuestionEditContainer.propTypes = {
     question: PropTypes.object.isRequired,
-    questionActions: PropTypes.object
+    questionActions: PropTypes.object,
+    modalVisible: PropTypes.bool.isRequired,
+    onAddQuestionClose: PropTypes.func.isRequired
 };
 
 function mapDispatchToProps(dispatch) {

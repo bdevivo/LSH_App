@@ -11,6 +11,7 @@ import EducationContainer from './components/Profile/Education/EducationContaine
 import SkillsContainer from './components/Profile/Skills/SkillsContainer';
 import LoginContainer from './components/Login/LoginContainer';
 import LoginCallbackContainer from './components/Login/LoginCallbackContainer';
+import AdminContainer from './components/Admin/AdminContainer';
 import {requireAuth} from './auth_utils/auth';
 
 //noinspection JSUnresolvedVariable
@@ -27,6 +28,9 @@ export default (
         </Route>
         <Route path="login" component={LoginCallbackContainer}/>
         <Route path="login/:type" component={LoginContainer}/>
-        <Route path="questionList" component={QuestionListContainer}/>
+
+        <Route path="admin" component={AdminContainer}>
+            <Route path="questionList" component={QuestionListContainer}/>
+        </Route>
     </Route>
 );

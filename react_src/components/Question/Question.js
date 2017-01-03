@@ -1,21 +1,20 @@
 import React, {Component, PropTypes} from 'react';
 import {Row, Col, Button, ButtonGroup, Modal} from 'react-bootstrap';
 import QuestionEditContainer from './QuestionEditContainer';
+import CSSModules from 'react-css-modules';
+import styles from './Question.css';
 
-const Question = ({question, isExpanded, handleToggle}) => {
-
-    let questionDivStyle = {
-        paddingTop: 10,
-        borderTop: 'solid 1px blue'
-    };
+const Question = ({question, isExpanded, handleToggle, modalVisible, onAddQuestionClose}) => {
 
     let question_body;
     let questionDetails;
     if (isExpanded) {
 
         if (question.answerType && question.answerType.includes("Select")) {
-            let questionOptions = question.selectOptions.map((opt, i) =>
-                <li key={i}>opt</li>
+
+            let sortedOptions = question.selectOptionItems.sort((a, b) => { return a.index - b.index; });
+            let questionOptions = sortedOptions.map((opt, i) =>
+                <li key={i}>{opt.text}</li>
             );
 
             questionDetails = (
@@ -28,27 +27,32 @@ const Question = ({question, isExpanded, handleToggle}) => {
             questionDetails = (
                 <div>
                     <p>
-                        <label>Text for "yes":</label>
+                        <label>Text for "yes" option: </label>
+                        {' '}
                         {question.booleanOptions.yesText}
                     </p>
                     <p>
-                        <label>Text for "no":</label>
+                        <label>Text for "no" option: </label>
+                        {' '}
                         {question.booleanOptions.noText}
                     </p>
                 </div>);
         }
 
+        let altText = (<p><b>Alternate text for resources: </b> {question.textForResources}</p>);
+
         question_body =
             (<div>
-                <p>text: {question.text}</p>
-                <p>type: {question.answerType}</p>
+                <p><b>{question.index}: </b> {question.text}</p>
+                {question.textForResources.length > 0 && altText}
+                <p><b>type:</b> {question.answerType}</p>
                 {questionDetails}
             </div>);
     }
     else {
         question_body =
             (<div>
-                <p>text: {question.text}</p>
+                <p><b>{question.index}: </b> {question.text}</p>
             </div>);
     }
 
@@ -56,13 +60,20 @@ const Question = ({question, isExpanded, handleToggle}) => {
 
     return (
 
-        <div style={questionDivStyle}>
-            <button onClick={handleToggle}>{buttonSymbol}</button>
-            { question_body }
+        <Row styleName="questionDiv">
+            <Col md={1} styleName="toggleButtonCol">
+                <Button className="btn btn-xs btn-default" onClick={handleToggle}>{buttonSymbol}</Button>
+            </Col>
 
-            <QuestionEditContainer question={question} />
+            <Col md={6} styleName="questionBodyDiv">
+                { question_body }
+            </Col>
 
-        </div>
+            <Col md={2}>
+                <QuestionEditContainer question={question} modalVisible={modalVisible} onAddQuestionClose={onAddQuestionClose} />
+            </Col>
+
+        </Row>
     );
 };
 
@@ -70,9 +81,11 @@ const Question = ({question, isExpanded, handleToggle}) => {
 Question.propTypes = {
     question: PropTypes.object.isRequired,
     handleToggle: PropTypes.func.isRequired,
-    isExpanded: PropTypes.bool.isRequired
+    isExpanded: PropTypes.bool.isRequired,
+    modalVisible: PropTypes.bool.isRequired,
+    onAddQuestionClose: PropTypes.func.isRequired
 };
 
-export default Question;
+export default CSSModules(Question, styles);
 
 

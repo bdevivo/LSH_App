@@ -11,12 +11,17 @@ let db = mongoose.connection;
 
 questionSchema = new Schema(
     {
-        name: { type: String, required: true, unique: true},
+        name: { type: String },
         text: { type: String, required: true },
+        textForResources: { type: String },
+        index: { type: Number },
         displayType: { type: String },
-        topLevel: {type: Boolean },
         answerType: { type: String },
-        selectOptions: [String],
+        selectOptionItems: [{
+            text: { type: String },
+            id: { type: String },
+            index: { type: Number }
+        }],
         textOptions: {
             width: { type: Number },
             multiLine: { type: Boolean },

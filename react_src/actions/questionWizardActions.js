@@ -40,7 +40,7 @@ export function getAllQuestions() {
 export function addQuestion(question) {
     return function(dispatch) {
         // TODO: call question API to add new question
-        question.id = Math.floor((Math.random() * 1000) + 1);  // for now, just assign random int btw 1 and 1000
+        question._id = Math.floor((Math.random() * 1000) + 1);  // for now, just assign random int btw 1 and 1000
         dispatch(addQuestionSuccess((question)));
     };
 }

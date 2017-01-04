@@ -64,6 +64,59 @@ class QuestionApi {
         });
     }
 
+   static deleteQuestion(question_id) {
+
+      return new Promise((resolve, reject) => {
+         const headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+         };
+
+         return fetch(`/api/questions/${question_id}`, {
+            method: 'DELETE',
+            headers: headers
+         })
+            .then(response => {
+               return response.json();
+            })
+            .then(response => {
+               resolve(response);
+            })
+            .catch(err => {
+               alert("Error deleting question: " + err);
+               reject();
+            });
+      });
+   }
+
+   static updateQuestion(question) {
+
+      return new Promise((resolve, reject) => {
+         const headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+         };
+
+         const body = JSON.stringify(question);
+
+         return fetch(`/api/questions/${question._id}`, {
+            method: 'PATCH',
+            headers: headers,
+            body: body
+         })
+            .then(response => {
+               return response.json();
+            })
+            .then(response => {
+               resolve(response);
+            })
+            .catch(err => {
+               alert("Error updating question: " + err);
+               reject();
+            });
+      });
+   }
+
 
 }
 

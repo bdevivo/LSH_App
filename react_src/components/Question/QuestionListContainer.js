@@ -45,7 +45,6 @@ class QuestionListContainer extends React.Component {
             index: nextIndex,
             text: "",
             textForResources: "",
-            selectOptionItems: [],
             answerType: "none"
         };
 

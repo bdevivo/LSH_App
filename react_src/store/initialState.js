@@ -32,13 +32,6 @@ export default
    ui: {
       profile_section: 'account',
       profile_section_name: 'Account',
-      alertProps: {
-         header: "Save Error",
-         message: "",
-         okButtonText: "OK",
-         className: "alertError",
-         visible: false
-      }
    },
    ajaxCallsInProgress: 0
 };

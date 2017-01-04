@@ -39,7 +39,6 @@ app.get('/api/private', authenticate, function(req, res) {
    res.json({ message: "Hello from a private endpoint! You DO need to be authenticated to see this." });
 });
 
-//app.use(express.static('styles'));
 app.use('/styles', express.static(path.join(__dirname, '../styles')));  // TODO: change this to a real Public directory to serve all static files
 
 app.get('*', function(req, res) {

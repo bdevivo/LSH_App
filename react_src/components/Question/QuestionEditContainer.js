@@ -5,7 +5,7 @@ import {Button, Modal} from 'react-bootstrap';
 import QuestionAddEdit from './QuestionAddEdit';
 import update from 'immutability-helper';
 import * as questionActions from '../../actions/questionActions';
-import * as uiActions from '../../actions/uiActions';
+import {alertError, confirm} from '../../utils/confirm';
 
 const uuidV1 = require('uuid/v1');
 const cloneDeep = require('lodash/cloneDeep');
@@ -20,14 +20,6 @@ class QuestionEditContainer extends React.Component {
          areOptionsReordered: false,
          modalVisible: this.props.modalVisible,
          isQuestionTextConditional: this.props.question.textForResources.length > 0,
-         alertProps: {
-            header: "Save Error",
-            message: "",
-            okButtonText: "OK",
-            className: "alertError",
-            visible: false
-         }
-
       };
 
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -47,7 +39,7 @@ class QuestionEditContainer extends React.Component {
       this.clearOtherAnswerTypes = this.clearOtherAnswerTypes.bind(this);
       this.onToggleConditionalQuestionText = this.onToggleConditionalQuestionText.bind(this);
       this.onToggleConditionalQuestionText = this.onToggleConditionalQuestionText.bind(this);
-      this.showAlert = this.showAlert.bind(this);
+      this.saveQuestion = this.saveQuestion.bind(this);
    }
 
    componentWillReceiveProps(nextProps) {
@@ -66,10 +58,14 @@ class QuestionEditContainer extends React.Component {
 
       let valResult = this.validateNewQuestion();
       if (!valResult.isValid) {
-         this.showAlert(valResult.message);
-         return;
+         alertError("Save Error", valResult.message);
       }
+      else {
+         this.saveQuestion();
+      }
+   }
 
+   saveQuestion() {
       let saveQuestion = cloneDeep(this.state.question);
       this.clearOtherAnswerTypes(saveQuestion);
       if (!this.state.isQuestionTextConditional) {
@@ -146,18 +142,6 @@ class QuestionEditContainer extends React.Component {
 
    }
 
-   showAlert(message) {
-      let alertProps = {
-         header: "Save Error",
-         message: message,
-         okButtonText: "OK",
-         className: "alertError",
-         visible: true
-      };
-
-      this.props.uiActions.showAlert(alertProps);
-   }
-
    clearOtherAnswerTypes(question) {
       if (!question.answerType.includes("Select")) {
          delete question.selectOptionItems;
@@ -181,8 +165,11 @@ class QuestionEditContainer extends React.Component {
    }
 
    removeQuestion() {
-
-      this.props.questionActions.removeQuestion(this.state.question._id);
+      confirm("Delete question?").then(() => {
+         this.props.questionActions.removeQuestion(this.state.question._id);
+      }, () => {
+         // user clicked Cancel -- do nothing
+      });
    }
 
    showModal() {
@@ -214,11 +201,24 @@ class QuestionEditContainer extends React.Component {
    }
 
    onQuestionTypeSelectionChanged(event) {
+      let newAnswerType = event.target.value;
+
       let newState = update(this.state, {
          question: {
-            answerType: {$set: event.target.value}
+            answerType: {$set: newAnswerType}
          }
       });
+
+      // initialize answer-type options
+      if (newAnswerType.includes("Select") && typeof(newState.question.selectOptionItems)  == 'undefined') {
+         newState.question.selectOptionItems = [];
+      }
+      else if (newAnswerType == "boolean" && typeof(newState.question.booleanOptions) == 'undefined') {
+         newState.question.booleanOptions = {
+            yesText: "",
+            noText: ""
+         };
+      }
 
       this.setState(newState);
    }
@@ -380,15 +380,13 @@ class QuestionEditContainer extends React.Component {
 QuestionEditContainer.propTypes = {
    question: PropTypes.object.isRequired,
    questionActions: PropTypes.object,
-   uiActions: PropTypes.object,
    modalVisible: PropTypes.bool.isRequired,
    onAddQuestionClose: PropTypes.func.isRequired
 };
 
 function mapDispatchToProps(dispatch) {
    return {
-      questionActions: bindActionCreators(questionActions, dispatch),
-      uiActions: bindActionCreators(uiActions, dispatch)
+      questionActions: bindActionCreators(questionActions, dispatch)
    };
 }
 

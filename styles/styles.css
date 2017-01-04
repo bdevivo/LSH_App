@@ -258,10 +258,18 @@ nav > div.container {
 
 .alertError .modal-header {
    background-color: #ffbaba;
-
    padding: 10px; 15px 10px; 15px;
 }
 
 .alertError .modal-header h4 {
    font-size: 14px;
+}
+
+.confirmDialog {
+   width: 30%;
+   margin-top: 0;
+   position: absolute;
+   top: 25%;
+   left: 50%;
+   transform: translate(-50%, -50%) !important;
 }

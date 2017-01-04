@@ -14,9 +14,9 @@ const AdminContainer = ({children}) => {
                   <NavItem eventKey="1">Buyer Questions</NavItem>
                </LinkContainer>
 
-                <NavItem eventKey="2" title="Item">Talent Questions</NavItem>
-                <NavItem eventKey="3" disabled>NavItem 3 content</NavItem>
-                <NavDropdown eventKey="4" title="Dropdown" id="nav-dropdown">
+                <NavItem eventKey="2" title="Item">Future Use</NavItem>
+                <NavItem eventKey="3" disabled>Future Use</NavItem>
+                <NavDropdown eventKey="4" title="Future Use" id="nav-dropdown">
                     <MenuItem eventKey="4.1">Action</MenuItem>
                     <MenuItem eventKey="4.2">Another action</MenuItem>
                     <MenuItem eventKey="4.3">Something else here</MenuItem>

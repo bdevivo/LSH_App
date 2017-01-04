@@ -17,7 +17,7 @@
     "build:html": "babel-node tools/buildHtml.js",
     "prebuild": "npm-run-all clean-dist  lint build:html",
     "build": "babel-node tools/build.js",
-    "postbuild": "node tools/prodServer.js",
+    "postbuild": "babel-node tools/prodServer.js",
     "mongo": "mongod --dbpath e:/Data"
   },
   "author": "Bob De Vivo",
@@ -62,6 +62,7 @@
     "react-addons-update": "15.2.1",
     "react-bootstrap": "^0.30.3",
     "react-bootstrap-validation": "^0.1.11",
+    "react-confirm": "^0.1.14",
     "react-css-modules": "^3.7.10",
     "react-dnd": "^2.1.4",
     "react-dnd-html5-backend": "^2.1.2",

@@ -16,8 +16,10 @@ app.use(express.static('dist'));
 
 mongoose.connect('mongodb://bob:poivcx@ds047166.mlab.com:47166/heroku_fgvsh90k/qgrid');  // connect to mLab Mongo DB in db "qgrid"
 
-const routes = require("./routes/questions");
-app.use('/api', routes);
+// Establish routes
+app.use('/api', require("./routes"));
+
+app.use('/styles', express.static(path.join(__dirname, '../styles')));  // TODO: change this to a real Public directory to serve all static files
 
 app.get('*', function(req, res) {
    res.sendFile(path.join(__dirname, '../dist/index.html'));

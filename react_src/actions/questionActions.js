@@ -46,14 +46,20 @@ export function addQuestion(question) {
 
 export function updateQuestion(question) {
     return function(dispatch) {
-        // TODO: call question API
-        dispatch(updateQuestionSuccess(question));
+       questionApi.updateQuestion(question)
+          .then(response => {
+             console.log(response.message);
+             dispatch(updateQuestionSuccess(question));
+          });
     };
 }
 
 export function removeQuestion(questionId) {
     return function(dispatch) {
-        // TODO: call question API
-        dispatch(removeQuestionSuccess(questionId));
+       questionApi.deleteQuestion(questionId)
+          .then(response => {
+             console.log(response.message);
+             dispatch(removeQuestionSuccess(questionId));
+          });
     };
 }

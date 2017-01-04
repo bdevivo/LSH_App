@@ -12,23 +12,6 @@ export default function uiReducer(ui = initialState.ui, action) {
             });
         }
 
-       case types.SHOW_ALERT: {
-          return Object.assign({}, ui, {
-             alertProps: {...action.alertProps}
-          });
-       }
-
-       case types.HIDE_ALERT: {
-          return Object.assign({}, ui, {
-             alertProps: {
-                header: "",
-                message: "",
-                okButtonText: "",
-                className: "",
-                visible: false
-             }
-          });
-       }
 
         default:
             return ui;

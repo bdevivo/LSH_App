@@ -3,31 +3,7 @@
   <component name="ChangeListManager">
     <list id="23724d5d-f374-4c1f-8907-1c5c6ffa7959" name="Default" comment="" />
     <list default="true" id="db9cce2d-2ebf-4e24-9d2e-9ec417bf0e97" name="Add all changelist" comment="Added validation for saving Questions">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/Common/AlertError.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/Common/Confirmation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/utils/confirm.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/react_src/components/Common/AlertModal.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/bundle.js" afterPath="$PROJECT_DIR$/dist/bundle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/bundle.js.map" afterPath="$PROJECT_DIR$/dist/bundle.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/index.html" afterPath="$PROJECT_DIR$/dist/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/styles.css" afterPath="$PROJECT_DIR$/dist/styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/styles.css.map" afterPath="$PROJECT_DIR$/dist/styles.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/actions/actionTypes.js" afterPath="$PROJECT_DIR$/react_src/actions/actionTypes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/actions/questionActions.js" afterPath="$PROJECT_DIR$/react_src/actions/questionActions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/actions/uiActions.js" afterPath="$PROJECT_DIR$/react_src/actions/uiActions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/api/questionApi.js" afterPath="$PROJECT_DIR$/react_src/api/questionApi.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Admin/AdminContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Admin/AdminContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/App/App.js" afterPath="$PROJECT_DIR$/react_src/components/App/App.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Question/QuestionEditContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Question/QuestionEditContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Question/QuestionListContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Question/QuestionListContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/reducers/uiReducer.js" afterPath="$PROJECT_DIR$/react_src/reducers/uiReducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/store/configureStore.js" afterPath="$PROJECT_DIR$/react_src/store/configureStore.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/store/initialState.js" afterPath="$PROJECT_DIR$/react_src/store/initialState.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/styles.css" afterPath="$PROJECT_DIR$/styles/styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tools/prodServer.js" afterPath="$PROJECT_DIR$/tools/prodServer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tools/routes/questions.js" afterPath="$PROJECT_DIR$/tools/routes/questions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tools/srcServer.js" afterPath="$PROJECT_DIR$/tools/srcServer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="QuestionGrid.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -2006,7 +1982,7 @@
       <workItem from="1482359224238" duration="72000" />
       <workItem from="1482948389697" duration="13606000" />
       <workItem from="1483463836891" duration="13613000" />
-      <workItem from="1483538465431" duration="15891000" />
+      <workItem from="1483538465431" duration="16595000" />
     </task>
     <task id="LOCAL-00001" summary="Update from NJ">
       <created>1469553603490</created>
@@ -2264,7 +2240,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="995975000" />
+    <option name="totallyTimeSpent" value="996679000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">

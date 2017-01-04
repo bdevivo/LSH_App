@@ -45,31 +45,28 @@ router.get("/", nocache, function(req, res) {
 router.post("/", function(req, res) {
     let newQuestion = req.body;
     console.log("req.body: " + newQuestion);
-    console.log("id: " + newQuestion.id + "  name: " + newQuestion.name);
-    let qModel = new Question({
-        name: newQuestion.name,
-        text: newQuestion.text,
-        displayType: newQuestion.displayType,
-        answerType: newQuestion.answerType,
-        selectionOptions: newQuestion.selectionOptions,
-        textOptions: newQuestion.textOptions,
-        topLevel: newQuestion.topLevel,
-        required: newQuestion.required
-    });
+
+    let qModel = new Question({...newQuestion});
     qModel.save(function (err, qModel) {
         if (err)
             return console.error(err);
         else
             res.json(qModel);
     });
+});
 
-    // ()
-    //     .exec(function(err) {
-    //         if (err) {
-    //             res.status(400);
-    //             res.json({error: "Bad request." });
-    //         }
-    //     });
+// delete a question
+router.delete("/:questionId", function(req, res) {
+    let qid = parseInt(req.params.questionId);
+    Question.findOne({'_id': qid}).remove(function(err) {
+            if (err) {
+                res.status(400);
+                res.json({error: "Bad request." });
+                return;
+            }
+
+            res.status(200);
+        });
 });
 
 

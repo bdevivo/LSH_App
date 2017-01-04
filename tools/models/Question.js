@@ -11,7 +11,6 @@ let db = mongoose.connection;
 
 questionSchema = new Schema(
     {
-        name: { type: String },
         text: { type: String, required: true },
         textForResources: { type: String },
         index: { type: Number },

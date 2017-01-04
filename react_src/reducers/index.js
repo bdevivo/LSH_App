@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import questions from './questionWizardReducer';
+import questions from './questionReducer';
 import profile from './profileReducer';
 import auth from './authReducer';
 import ui from './uiReducer';

@@ -42,7 +42,7 @@ const QuestionAddEdit = ({
         }
 
         case "text": {
-            answerTypeDetails = "text";
+            answerTypeDetails = null;
             break;
         }
 

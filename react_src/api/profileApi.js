@@ -1,4 +1,3 @@
-//import {auth} from '../auth_utils/auth';
 import * as Auth from '../auth_utils/auth';
 import AWS from 'aws-sdk';
 const pathParse = require('path-parse');

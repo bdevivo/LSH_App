@@ -41,11 +41,35 @@ const Question = ({question, isExpanded, handleToggle, modalVisible, onAddQuesti
 
         let altText = (<p><b>Alternate text for resources: </b> {question.textForResources}</p>);
 
+        let questionType;
+        switch(question.answerType) {
+            case "singleSelect":
+                questionType = "single select";
+                break;
+
+            case "multiSelect":
+                questionType = "multiple select";
+                break;
+
+            case "boolean":
+                questionType = "boolean";
+                break;
+
+            case "text":
+                questionType = "text";
+                break;
+
+            default:
+                questionType = "none";
+                break;
+        }
+
+
         question_body =
             (<div>
                 <p><b>{question.index}: </b> {question.text}</p>
                 {question.textForResources.length > 0 && altText}
-                <p><b>type:</b> {question.answerType}</p>
+                <p><b>type:</b> {questionType}</p>
                 {questionDetails}
             </div>);
     }

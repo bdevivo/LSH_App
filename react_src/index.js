@@ -7,7 +7,7 @@ import {Provider} from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import {syncHistoryWithStore} from 'react-router-redux';
 import routes from './routes';
-import {getAllQuestions} from './actions/questionWizardActions';
+import {getAllQuestions} from './actions/questionActions';
 import initialState from './store/initialState';
 
 const store = configureStore(initialState);

@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import {Button} from 'react-bootstrap';
 import update from 'immutability-helper';
 import QuestionContainer from './QuestionContainer';
-import * as questionActions from '../../actions/questionWizardActions';
+import * as questionActions from '../../actions/questionActions';
 import CSSModules from 'react-css-modules';
 import styles from './Question.css';
 

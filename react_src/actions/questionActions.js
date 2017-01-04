@@ -1,8 +1,6 @@
 import * as types from './actionTypes';
-import questionApi from '../api/mockQuestionApi';
+import questionApi from '../api/questionApi';
 import {beginAjaxCall, endAjaxCall} from './ajaxStatusActions';
-
-
 
 export function loadQuestionsSuccess(questions) {
     return { type: types.LOAD_QUESTIONS_SUCCESS, questions};
@@ -39,9 +37,10 @@ export function getAllQuestions() {
 
 export function addQuestion(question) {
     return function(dispatch) {
-        // TODO: call question API to add new question
-        question._id = Math.floor((Math.random() * 1000) + 1);  // for now, just assign random int btw 1 and 1000
-        dispatch(addQuestionSuccess((question)));
+        questionApi.addQuestion(question)
+            .then(q => {
+                dispatch(addQuestionSuccess((q)));
+            });
     };
 }
 

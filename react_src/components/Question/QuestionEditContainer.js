@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import {Button, Modal} from 'react-bootstrap';
 import QuestionAddEdit from './QuestionAddEdit';
 import update from 'immutability-helper';
-import * as questionActions from '../../actions/questionWizardActions';
+import * as questionActions from '../../actions/questionActions';
 import * as uiActions from '../../actions/uiActions';
 
 const uuidV1 = require('uuid/v1');
@@ -160,13 +160,10 @@ class QuestionEditContainer extends React.Component {
 
    clearOtherAnswerTypes(question) {
       if (!question.answerType.includes("Select")) {
-         question.selectOptionItems = [];
+         delete question.selectOptionItems;
       }
       else if (!question.answerType.includes("boolean")) {
-         question.booleanOptions = {
-            yesText: "",
-            noText: ""
-         };
+          delete question.booleanOptions;
       }
    }
 

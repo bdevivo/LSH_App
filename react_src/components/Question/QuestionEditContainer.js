@@ -165,7 +165,7 @@ class QuestionEditContainer extends React.Component {
    }
 
    removeQuestion() {
-      confirm("Delete question?").then(() => {
+      confirm(`Delete question ${this.state.question.index}?`).then(() => {
          this.props.questionActions.removeQuestion(this.state.question._id);
       }, () => {
          // user clicked Cancel -- do nothing
@@ -321,7 +321,7 @@ class QuestionEditContainer extends React.Component {
    render() {
 
       let question = this.state.question;
-      let pageTitle = (question._id === 0 ? "Add Question" : "Edit Question");
+      let pageTitle = (question._id === 0 ? "Add Question" : "Edit Question " + question.index);
 
       let questionFunctions = {
          handleSubmit: this.handleSubmit,

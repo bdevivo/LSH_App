@@ -2,37 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list id="23724d5d-f374-4c1f-8907-1c5c6ffa7959" name="Default" comment="" />
-    <list default="true" id="db9cce2d-2ebf-4e24-9d2e-9ec417bf0e97" name="Add all changelist" comment="Question API">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.env.default" afterPath="$PROJECT_DIR$/.env.default" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/bob.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/bob.xml" />
+    <list default="true" id="db9cce2d-2ebf-4e24-9d2e-9ec417bf0e97" name="Add all changelist" comment="Fixed name and avatar update, and added audit fields for questions">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/bundle.js" afterPath="$PROJECT_DIR$/dist/bundle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/actions/actionTypes.js" afterPath="$PROJECT_DIR$/react_src/actions/actionTypes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/actions/profileActions.js" afterPath="$PROJECT_DIR$/react_src/actions/profileActions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/actions/userActions.js" afterPath="$PROJECT_DIR$/react_src/actions/userActions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/api/profileApi.js" afterPath="$PROJECT_DIR$/react_src/api/profileApi.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/api/questionApi.js" afterPath="$PROJECT_DIR$/react_src/api/questionApi.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/api/userApi.js" afterPath="$PROJECT_DIR$/react_src/api/userApi.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/auth_utils/auth.js" afterPath="$PROJECT_DIR$/react_src/auth_utils/auth.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/auth_utils/constants.js" afterPath="$PROJECT_DIR$/react_src/auth_utils/constants.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Admin/AdminContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Admin/AdminContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Profile/Account/AccountContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Profile/Account/AccountContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Profile/ProfileContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Profile/ProfileContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Profile/ProfilePage.js" afterPath="$PROJECT_DIR$/react_src/components/Profile/ProfilePage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Question/AnswerTypeSelect/OptionItem.js" afterPath="$PROJECT_DIR$/react_src/components/Question/AnswerTypeSelect/OptionItem.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Question/AnswerTypeSelect/OptionItemContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Question/AnswerTypeSelect/OptionItemContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Question/AnswerTypeSelect/SelectOptionsForm.js" afterPath="$PROJECT_DIR$/react_src/components/Question/AnswerTypeSelect/SelectOptionsForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Question/Question.css" afterPath="$PROJECT_DIR$/react_src/components/Question/Question.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Question/Question.js" afterPath="$PROJECT_DIR$/react_src/components/Question/Question.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Question/QuestionAddEdit.js" afterPath="$PROJECT_DIR$/react_src/components/Question/QuestionAddEdit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Question/QuestionEditContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Question/QuestionEditContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Question/QuestionListContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Question/QuestionListContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/reducers/profileReducer.js" afterPath="$PROJECT_DIR$/react_src/reducers/profileReducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/store/initialState.js" afterPath="$PROJECT_DIR$/react_src/store/initialState.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tools/models/Question.js" afterPath="$PROJECT_DIR$/tools/models/Question.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tools/models/User.js" afterPath="$PROJECT_DIR$/tools/models/User.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tools/routes/users.js" afterPath="$PROJECT_DIR$/tools/routes/users.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/bundle.js.map" afterPath="$PROJECT_DIR$/dist/bundle.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/styles.css" afterPath="$PROJECT_DIR$/dist/styles.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/styles.css.map" afterPath="$PROJECT_DIR$/dist/styles.css.map" />
     </list>
     <ignored path="QuestionGrid.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,8 +33,8 @@
       <file leaf-file-name="QuestionEditContainer.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/react_src/components/Question/QuestionEditContainer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="546">
-              <caret line="96" column="9" lean-forward="true" selection-start-line="96" selection-start-column="9" selection-end-line="96" selection-end-column="9" />
+            <state relative-caret-position="648">
+              <caret line="149" column="5" lean-forward="true" selection-start-line="149" selection-start-column="5" selection-end-line="149" selection-end-column="5" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
                 <element signature="n#!!block;n#componentWillReceiveProps#0;n#QuestionEditContainer#0" expanded="false" />
@@ -2113,11 +2088,18 @@
       <option name="project" value="LOCAL" />
       <updated>1483502830482</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Fixed name and avatar update, and added audit fields for questions">
+      <created>1483826459816</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1483826459816</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1113896000" />
+    <option name="totallyTimeSpent" value="1114684000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2130,7 +2112,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16965227" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32940018" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2141,7 +2123,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32940018" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2861357" sideWeight="0.49683878" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2861357" sideWeight="0.49683878" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3480826" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2177,7 +2159,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="More Persistence for Questions" />
     <MESSAGE value="Some adds -- not sure if these are necessary" />
     <MESSAGE value="Add all changelist" />
     <MESSAGE value="Add initial actions and reducers for Redux" />
@@ -2202,7 +2183,8 @@
     <MESSAGE value="Removing workspace.xml" />
     <MESSAGE value="Boolean options for Questions" />
     <MESSAGE value="Question API" />
-    <option name="LAST_COMMIT_MESSAGE" value="Question API" />
+    <MESSAGE value="Fixed name and avatar update, and added audit fields for questions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed name and avatar update, and added audit fields for questions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2706,8 +2688,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/react_src/components/Question/QuestionEditContainer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="96" column="9" lean-forward="true" selection-start-line="96" selection-start-column="9" selection-end-line="96" selection-end-column="9" />
+        <state relative-caret-position="648">
+          <caret line="149" column="5" lean-forward="true" selection-start-line="149" selection-start-column="5" selection-end-line="149" selection-end-column="5" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
             <element signature="n#!!block;n#componentWillReceiveProps#0;n#QuestionEditContainer#0" expanded="false" />

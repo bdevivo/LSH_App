@@ -20,9 +20,10 @@ class SelectOptionsForm extends React.Component {
     }
 
     render() {
-        let optionItemList = this.props.options.map(item => <OptionItemContainer
+        let optionItemList = this.props.options.map((item, i) => <OptionItemContainer
                 optionItem={item}
-                key={item.index}
+                visualIndex={i}
+                key={item.id}
                 onDeleteItem={this.props.onDeleteItem}
                 onEditItemSave={this.props.onEditItemSave}
                 moveItem={this.props.moveItem}
@@ -39,9 +40,6 @@ class SelectOptionsForm extends React.Component {
                                      placeholder="add option text and press Enter"
                                      onChange={this.props.onAddOptionTextChange} onKeyPress={this.handleKeyPress}/>
                     </Col>
-                    {/*<Col md={2}>*/}
-                    {/*<Button onClick={onAddItem}>Add</Button>*/}
-                    {/*</Col>*/}
                 </Row>
 
                 <div styleName="optionItemList">

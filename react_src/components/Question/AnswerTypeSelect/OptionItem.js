@@ -12,15 +12,15 @@ const optionItemSource = {
     beginDrag(props) {
         return {
             id: props.item.id,
-            index: props.item.index
+            visualIndex: props.visualIndex
         };
     }
 };
 
 const optionItemTarget = {
     hover(props, monitor, component) {
-        const dragIndex = monitor.getItem().index;
-        const hoverIndex = props.item.index;
+        const dragIndex = monitor.getItem().visualIndex;
+        const hoverIndex = props.visualIndex;
 
         // Don't replace items with themselves
         if (dragIndex === hoverIndex) {
@@ -60,7 +60,8 @@ const optionItemTarget = {
         // Generally it's better to avoid mutations,
         // but it's good here for the sake of performance
         // to avoid expensive index searches.
-        monitor.getItem().index = hoverIndex;
+        //console.log(`changing dragged item index from ${monitor.getItem().index} to ${hoverIndex}`);
+        monitor.getItem().visualIndex = hoverIndex;
     }
 };
 
@@ -95,7 +96,7 @@ function collectTarget(connect, monitor) {
 
 
 // The last 3 props are injected by the collectSource and collectTarget functions below
-const OptionItem = ({item, onEditItem, onDeleteItem, moveItem, isDragging, connectDragSource, connectDragPreview, connectDropTarget}) => {
+const OptionItem = ({item, onEditItem, onDeleteItem, isDragging, connectDragSource, connectDragPreview, connectDropTarget}) => {
 
     const style = {
         width: '90%',
@@ -144,6 +145,7 @@ const OptionItem = ({item, onEditItem, onDeleteItem, moveItem, isDragging, conne
 
 OptionItem.propTypes = {
     item: T.object.isRequired,
+    visualIndex: T.number.isRequired,
     onEditItem: T.func.isRequired,
     onDeleteItem: T.func.isRequired,
     moveItem: T.func.isRequired,

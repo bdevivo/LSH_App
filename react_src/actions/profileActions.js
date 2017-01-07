@@ -3,7 +3,7 @@ import profileApi from '../api/profileApi';
 import userApi from '../api/userApi';
 
 export function setProfile(user) {
-    return { type: types.GET_AUTH0_USER_SUCCESS, user};
+    return { type: types.SET_PROFILE, user};
 }
 
 export function removeProfile() {

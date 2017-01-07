@@ -11,6 +11,7 @@ let db = mongoose.connection;
 
 questionSchema = new Schema(
     {
+        name: { type: String, unique: true },
         text: { type: String, required: true },
         textForResources: { type: String },
         index: { type: Number },
@@ -30,7 +31,11 @@ questionSchema = new Schema(
             yesText: { type: String },
             noText: { type: String }
         },
-        dateType: { type: String }
+        dateType: { type: String },
+        addedBy: { type: String },
+        addedDate: {type: Date },
+        modifiedBy: { type: String },
+        modifiedDate: {type: Date },
     }
 );
 

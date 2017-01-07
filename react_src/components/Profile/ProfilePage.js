@@ -7,7 +7,7 @@ import styles from './ProfilePage.css';
 const classNames = require('classnames');
 
 
-const ProfilePage = ({profile, profileActions, ui, uiActions, addUser, children}) => {
+const ProfilePage = ({profile, profileActions, ui, uiActions, userActions, children}) => {
 
     function createStyleName(path) {
         return classNames({
@@ -22,7 +22,8 @@ const ProfilePage = ({profile, profileActions, ui, uiActions, addUser, children}
                 profile: profile,
                 profileActions: profileActions,
                 ui: ui,
-                uiActions: uiActions
+                uiActions: uiActions,
+                userActions: userActions
             });
 
     return (
@@ -65,6 +66,7 @@ ProfilePage.propTypes = {
     addUser: PropTypes.func.isRequired,
     ui: PropTypes.object.isRequired,
     uiActions: PropTypes.object.isRequired,
+    userActions: PropTypes.object.isRequired,
     children: PropTypes.object.isRequired
 };
 

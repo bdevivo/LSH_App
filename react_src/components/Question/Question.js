@@ -67,16 +67,17 @@ const Question = ({question, isExpanded, handleToggle, modalVisible, onAddQuesti
 
         question_body =
             (<div>
-                <p><b>{question.index}: </b> {question.text}</p>
+                <p><b>{question.index}: </b> {question.name}</p>
+                <p><b>Text: </b> {question.text}</p>
                 {question.textForResources.length > 0 && altText}
-                <p><b>type:</b> {questionType}</p>
+                <p><b>Type:</b> {questionType}</p>
                 {questionDetails}
             </div>);
     }
-    else {
+    else { // question is collapsed
         question_body =
             (<div>
-                <p><b>{question.index}: </b> {question.text}</p>
+                <p><b>{question.index}: </b> {question.name}</p>
             </div>);
     }
 

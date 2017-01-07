@@ -37,3 +37,15 @@
 .hideResourcesTextField {
     display: none;
 }
+
+.inlineLabel {
+    padding-left: 0;
+}
+
+.inlineTextCol {
+    padding-right: 0;
+}
+
+.inlineTextControl {
+    font-size: 13px;
+}

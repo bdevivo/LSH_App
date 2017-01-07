@@ -61,6 +61,7 @@ export const onEnterLoginCallback = (locationHash) => {
                                         first: auth0_user.given_name,
                                         last: auth0_user.family_name
                                     },
+                                    short_user_name: auth0_user.given_name
                                 };
 
                             user.avatarUrl = auth0_user.picture || db_user_info.avatarUrl || StringUtils.getDefaultAvatarUrl();
@@ -133,6 +134,10 @@ export const login = (email, password) => {
                             first: db_user.name.first,
                             last: db_user.name.last
                         };
+                        user.short_user_name = db_user.name.first;
+                    }
+                    else {
+                        user.short_user_name = auth0_user.email;
                     }
 
                     user.avatarUrl = db_user.avatarUrl || StringUtils.getDefaultAvatarUrl();
@@ -197,6 +202,7 @@ export const signup = (email, password, userType) => {
                         roles: auth0_user.app_metadata.roles
                     };
 
+                    user.short_user_name = auth0_user.email;
                     user.avatarUrl = StringUtils.getDefaultAvatarUrl();
                     resolve(user);
                 }

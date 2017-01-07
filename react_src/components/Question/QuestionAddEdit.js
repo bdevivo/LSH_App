@@ -50,7 +50,7 @@ const QuestionAddEdit = ({
         // do nothing
     }
 
-    let {onQuestionTextChanged, onQuestionTextForResourcesChanged} = questionFunctions;
+    let {onTextFieldChanged} = questionFunctions;
     let onAnswerTypeChanged = questionFunctions.onQuestionTypeSelectionChanged;
 
     let conditionalToggleText = (
@@ -62,7 +62,7 @@ const QuestionAddEdit = ({
     );
 
     let labelForFirstTextField = (
-        isQuestionTextConditional ? "Question Text for Employers" : "Question Text"
+        isQuestionTextConditional ? "Text for Employers" : "Text"
     );
 
     return (
@@ -75,20 +75,28 @@ const QuestionAddEdit = ({
 
                 <Form horizontal styleName="editForm">
 
+                    <FormGroup controlId="formControlsQuestionName">
+                        <Col componentClass={ControlLabel} styleName="inlineLabel" sm={1}>Name</Col>
+                        <Col sm={11} styleName="inlineTextCol">
+                            <FormControl name="name" type="text" placeholder="add name" value={question.name}
+                                     onChange={onTextFieldChanged} styleName="inlineTextControl"/>
+                        </Col>
+                    </FormGroup>
+
                     <FormGroup controlId="formControlsQuestionText">
                         <ControlLabel>{labelForFirstTextField}</ControlLabel>
                         <div styleName="conditionalToggle">
                             <a onClick={onToggleConditionalQuestionText} title={toggleToolTip}>{conditionalToggleText}</a>
                         </div>
-                        <FormControl componentClass="textarea" placeholder="add text" value={question.text}
-                                required onChange={onQuestionTextChanged}/>
+                        <FormControl name="text" componentClass="textarea" placeholder="add text" value={question.text}
+                                required onChange={onTextFieldChanged}/>
                     </FormGroup>
 
-                    <FormGroup controlId="formControlsQuestionText" styleName={createResourcesTextStyleName()}>
+                    <FormGroup controlId="formControlsQuestionAlternateText" styleName={createResourcesTextStyleName()}>
                         <ControlLabel>Alternate Text for Resources</ControlLabel>
 
-                        <FormControl componentClass="textarea" placeholder="add text" value={question.textForResources}
-                                     onChange={onQuestionTextForResourcesChanged}/>
+                        <FormControl name="textForResources" componentClass="textarea" placeholder="add text" value={question.textForResources}
+                                     onChange={onTextFieldChanged}/>
                     </FormGroup>
 
                     <FormGroup controlId="formControlsQuestionType">

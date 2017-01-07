@@ -67,6 +67,48 @@ router.post("/", function (req, res) {
 
 });
 
+// Add or update user name
+router.put("/name", function (req, res) {
+    let user = req.body;
+
+    let {_id, name} = user;
+
+    if (!_id) throw new Error("Update name: missing user id");
+
+    // use blank fields for default
+    name = name || {
+            first: '',
+            middle: '',
+            last: ''
+        };
+
+    User.update({_id: _id}, {user_name: name}, function (err, raw) {
+        if (err)
+            return handleError(err);
+        else {
+            console.log('Update user name response ', raw);
+            res.json({message: `Updated user name to ${name.first} ${name.last}`});
+        }
+
+    });
+});
+
+// Add or update avatar
+router.put("/avatar", function (req, res) {
+    let {_id, avatarUrl} = req.body;
+
+    if (!_id) throw new Error("Update name: missing user id");
+
+    User.update({_id: _id}, {avatarUrl: avatarUrl}, function (err, raw) {
+        if (err)
+            return handleError(err, res);
+        else {
+            console.log('Update avatar response ', raw);
+            res.json({message: `Updated avatar for user ${_id}`});
+        }
+    });
+});
+
 // Add or update address
 router.put("/address", function (req, res) {
     let profile = req.body;
@@ -163,9 +205,10 @@ router.put("/employment", function (req, res) {
 });
 
 
-function handleError(err) {
-    // throw error here?
+function handleError(err, res) {
     console.error(err);
+    res.status(400);
+    res.json({error: "Bad request: " + err});
 }
 
 

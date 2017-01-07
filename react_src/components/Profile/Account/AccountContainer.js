@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import {Modal} from 'react-bootstrap';
-import ProfileApi from '../../../api/profileApi';
+import * as userActions from '../../../actions/userActions';
 import AccountDetails from './AccountDetails';
 import AccountEdit from './AccountEdit';
 import update from 'immutability-helper';
@@ -39,17 +39,18 @@ class AccountContainer extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        let userActions = this.props.userActions;
 
         const {profile, avatarLocalFileName, localAvatarFile} = this.state;
         let {user_id, user_name} = profile;
         let {first, middle, last} = user_name;
 
         if (avatarLocalFileName) {
-            ProfileApi.updateProfileAvatar(user_id, avatarLocalFileName, localAvatarFile);
+            userActions.updateAvatar(user_id, avatarLocalFileName, localAvatarFile);
             localStorage.removeItem('avatarTempData');
         }
 
-        ProfileApi.updateProfileUserName(first, middle, last);
+        userActions.updateUserName(user_id, first, middle, last);
         this.closeModal();
     }
 
@@ -138,7 +139,7 @@ AccountContainer.propTypes = {
     ui: PropTypes.object,
     profileActions: PropTypes.object,
     uiActions: PropTypes.object,
-    profileEditFuncs: PropTypes.object,
+    userActions: PropTypes.object,
     route: PropTypes.object
 };
 

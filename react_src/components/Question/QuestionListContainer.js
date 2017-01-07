@@ -43,6 +43,7 @@ class QuestionListContainer extends React.Component {
         let newQuestion = {
             _id: 0,
             index: nextIndex,
+            name: "",
             text: "",
             textForResources: "",
             answerType: "none"
@@ -73,12 +74,13 @@ class QuestionListContainer extends React.Component {
 
     render() {
 
-        let questions = this.state.questions;
+        //let questions = this.state.questions;
+        let sortedQuestions = this.state.questions.sort((a, b) => { return a.index - b.index; });
         let newQuestion = this.state.newQuestion;
 
         let questionList = (
-            questions.length > 0
-                ? questions.map((q, index) => <QuestionContainer key={index} question={q} modalVisible={false}
+            sortedQuestions.length > 0
+                ? sortedQuestions.map(q => <QuestionContainer key={q.index} question={q} modalVisible={false}
                                                                  onAddQuestionClose={this.onAddQuestionClose}/>)
                 : <p>No items to display</p>
         );

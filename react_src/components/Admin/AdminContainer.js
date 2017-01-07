@@ -33,7 +33,7 @@ const AdminContainer = ({children}) => {
 
 
 AdminContainer.propTypes = {
-    children: T.object.isRequired
+    children: T.object
 };
 
 export default AdminContainer;

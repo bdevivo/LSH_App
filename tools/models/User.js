@@ -6,6 +6,12 @@ mongoose.Promise = require('es6-promise').Promise;
 let userSchema = new Schema(
     {
         auth0_id: { type: String},
+        avatarUrl: { type: String},
+        user_name: {
+            first: '',
+            middle: '',
+            last: ''
+        },
         address: {
             street1: { type: String},
             street2: { type: String},

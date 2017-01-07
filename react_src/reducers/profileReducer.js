@@ -8,7 +8,8 @@ function mapUserToProfile(user) {
 
     // Project data into the correct shape
     let profile = {
-        auth0_id: user.user_id,
+        user_id: user.user_id,
+        auth0_id: user.auth0_id,
         email: user.email,
         avatarUrl: user.avatarUrl,
         roles: user.roles
@@ -18,9 +19,14 @@ function mapUserToProfile(user) {
         profile.user_name = {
                 first: user_name.first,
                 middle: user_name.middle,
-                last: user_name.last
+                last: user_name.last,
             };
     }
+    else {
+        profile.user_name = {};
+    }
+
+    profile.user_name.short = user.short_user_name;
 
     return profile;
 }
@@ -29,18 +35,21 @@ export default function profileReducer(profile = initialState.profile, action) {
 
     switch (action.type) {
 
-        case types.GET_AUTH0_USER_SUCCESS: {
+        case types.SET_PROFILE: {
             return mapUserToProfile(action.user);
-        }
-
-        case types.GET_AUTH0_USER_FAILURE: {
-            //return "Profile could not be retrieved";
-            break;
         }
 
         case types.REMOVE_PROFILE: {
             //return new Immutable.Map({});  // set empty profile
             return {};
+        }
+
+        case types.UPDATE_USERNAME_SUCCESS: {
+            return update(profile, {user_name: {$set: action.user_name}});
+        }
+
+        case types.UPDATE_AVATAR_SUCCESS: {
+            return update(profile, {avatarUrl: {$set: action.avatarUrl}});
         }
 
         case types.UPDATE_PROFILE_ADDRESS_SUCCESS: {

@@ -76,6 +76,7 @@ class OptionItemContainer extends React.Component {
 
         let optionItem = (<OptionItem
             item={this.state.optionItem}
+            visualIndex={this.props.visualIndex}
             onEditItem={this.onEditItem}
             onDeleteItem={this.props.onDeleteItem}
             moveItem={this.props.moveItem}
@@ -97,6 +98,7 @@ class OptionItemContainer extends React.Component {
 
 OptionItemContainer.propTypes = {
     optionItem: T.object.isRequired,
+    visualIndex: T.number.isRequired,
     onDeleteItem: T.func.isRequired,
     onEditItemSave: T.func.isRequired,
     moveItem: T.func.isRequired

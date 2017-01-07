@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as Auth from '../../auth_utils/auth';
 import * as profileActions from '../../actions/profileActions';
 import * as uiActions from '../../actions/uiActions';
 import * as userActions from '../../actions/userActions';
@@ -53,7 +52,7 @@ class ProfileContainer extends React.Component {
     render()
     {
         const {profile, ui} = this.state;
-        const {profileActions, uiActions} = this.props;
+        const {profileActions, uiActions, userActions} = this.props;
 
         return (
             <ProfilePage
@@ -62,6 +61,7 @@ class ProfileContainer extends React.Component {
                 addUser={this.addUser}
                 ui={ui}
                 uiActions={uiActions}
+                userActions={userActions}
                 children={this.props.children}/>
         );
     }

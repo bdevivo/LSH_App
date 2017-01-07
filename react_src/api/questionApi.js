@@ -34,6 +34,34 @@ class QuestionApi {
         });
     }
 
+    static updateQuestion(question) {
+
+        return new Promise((resolve, reject) => {
+            const headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            };
+
+            const body = JSON.stringify(question);
+
+            return fetch(`/api/questions/${question._id}`, {
+                method: 'PATCH',
+                headers: headers,
+                body: body
+            })
+                .then(response => {
+                    return response.json();
+                })
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(err => {
+                    alert("Error updating question: " + err);
+                    reject();
+                });
+        });
+    }
+
     static getAllQuestions() {
 
         return new Promise((resolve, reject) => {
@@ -89,33 +117,7 @@ class QuestionApi {
       });
    }
 
-   static updateQuestion(question) {
 
-      return new Promise((resolve, reject) => {
-         const headers = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-         };
-
-         const body = JSON.stringify(question);
-
-         return fetch(`/api/questions/${question._id}`, {
-            method: 'PATCH',
-            headers: headers,
-            body: body
-         })
-            .then(response => {
-               return response.json();
-            })
-            .then(response => {
-               resolve(response);
-            })
-            .catch(err => {
-               alert("Error updating question: " + err);
-               reject();
-            });
-      });
-   }
 
 
 }

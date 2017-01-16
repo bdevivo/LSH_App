@@ -4,8 +4,8 @@ import {bindActionCreators} from 'redux';
 import {Button, Modal} from 'react-bootstrap';
 import QuestionAddEdit from './QuestionAddEdit';
 import update from 'immutability-helper';
-import * as questionActions from '../../actions/questionActions';
-import {alertError, confirm} from '../../utils/confirm';
+import * as questionActions from '../../../actions/questionActions';
+import {alertError, confirm} from '../../../utils/confirm';
 
 const uuidV1 = require('uuid/v1');
 const cloneDeep = require('lodash/cloneDeep');

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, IndexRoute} from 'react-router';
 import App from './components/App/App';
-import QuestionListContainer from './components/Question/QuestionListContainer';
+import QuestionListContainer from './components/Admin/Question/QuestionListContainer';
 import HomePage from './components/Home/HomePage';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import AccountContainer from './components/Profile/Account/AccountContainer';
@@ -12,6 +12,7 @@ import SkillsContainer from './components/Profile/Skills/SkillsContainer';
 import LoginContainer from './components/Login/LoginContainer';
 import LoginCallbackContainer from './components/Login/LoginCallbackContainer';
 import AdminContainer from './components/Admin/AdminContainer';
+import QuestionForm from './components/Common/QuestionForm/FormContainer';
 import {requireAuth} from './auth_utils/auth';
 
 //noinspection JSUnresolvedVariable
@@ -32,5 +33,8 @@ export default (
         <Route path="admin" component={AdminContainer}>
             <Route path="questionList" component={QuestionListContainer}/>
         </Route>
+
+        <Route path="qform" component={QuestionForm}/>
+
     </Route>
 );

@@ -22,7 +22,7 @@ const HeaderCenterNav = ({isLoggedIn, isAdmin, isBuyer}) => {
 
             // admin users get all center nav links
             rootNavItems = [
-                <HeaderLink to="post" key="postJob" className="navItemWithSep">Post a Job</HeaderLink>,
+                <HeaderLink to="qform" key="postJob" className="navItemWithSep">Post a Job</HeaderLink>,
                 <HeaderLink to="browseJobs" key="browseJobs" className="navItemWithSep">Browse Jobs</HeaderLink>,
                 <HeaderLink to="browseTalent" key="browseTalent" className="navItem">Browse Talent</HeaderLink>
             ];

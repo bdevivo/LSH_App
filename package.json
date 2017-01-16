@@ -55,6 +55,7 @@
     "jquery": "2.2.3",
     "json-loader": "^0.5.4",
     "jwt-decode": "^2.1.0",
+    "keycodez": "^1.0.0",
     "mongodb": "^2.2.5",
     "mongoose": "^4.5.8",
     "open": "0.0.5",

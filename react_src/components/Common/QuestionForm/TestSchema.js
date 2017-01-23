@@ -248,7 +248,7 @@ const schema = {
                             }, {
                                 "text" : "Other",
                                 "value" : "other",
-                                "conditionalQuestions" : [{
+                                "conditionalQuestions" : [ {
                                     "questionId" : "laptop-os-other-text",
                                     "question" : "Please name the other OS",
                                     "input" : {

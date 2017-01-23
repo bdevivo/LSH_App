@@ -13,7 +13,7 @@ class QuestionListContainer extends React.Component {
         super(props);
         this.state = {
             questions: [...props.questions],
-            newQuestion: {_id: -1}    // -1 is code for "there is no new question in the current state"
+            newQuestion: {_id: -1}    // -1 is code for "there is no new question in the current state" (new question would have _id == 0)
         };
 
         this.onAddQuestion = this.onAddQuestion.bind(this);
@@ -74,7 +74,6 @@ class QuestionListContainer extends React.Component {
 
     render() {
 
-        //let questions = this.state.questions;
         let sortedQuestions = this.state.questions.sort((a, b) => { return a.index - b.index; });
         let newQuestion = this.state.newQuestion;
 

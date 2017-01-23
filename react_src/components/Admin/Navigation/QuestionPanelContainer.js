@@ -1,58 +1,42 @@
-import React, {PropTypes as T} from 'react';
-import
-import * as questionActions from '../../../actions/questionActions';
-import CSSModules from 'react-css-modules';
-import styles from './QuestionPanel.css';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import React, { PropTypes } from 'react';
+import Question from './Question';
+import QuestionEditContainer from './QuestionEditContainer';
 
 class QuestionPanelContainer extends React.Component {
+   constructor(props) {
+      super(props);
+      this.state = {
+         qPanel: this.props.qPanel
+      };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            qPanelId: this.props.params.panelId,
-            qPanel: this.props.qPanel
-        };
-    }
+      this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
+   }
 
-    render() {
+   componentWillReceiveProps(nextProps) {
+      this.setState({qPanel: nextProps.qPanel});
+   }
 
-        let question = this.state.question;
-        let questionComponent = (question._id !== 0 // this is an existing question
-            ? <Question
-                question={this.state.question}
-                handleToggle={this.toggleQuestion}
-                isExpanded={this.state.isExpanded}
-                modalVisible={this.props.modalVisible}   // if we are editing an existing question, show the Edit Question modal
-                onAddQuestionClose={this.props.onAddQuestionClose}/>
-            : <QuestionEditContainer  // this is a new question
-                question={question}
-                modalVisible={true}   // if we are adding a new question, show the Add Question modal
-                onAddQuestionClose={this.props.onAddQuestionClose}/>);
+   render() {
+      let qPanel = this.state.qPanel;
+      let questionComponent = (qPanel._id !== 0 // this is an existing question
+         ? <QuestionPanel
+            question={this.state.question}
+            modalVisible={this.props.modalVisible}   // if we are editing an existing question, show the Edit Question modal
+            onAddQuestionClose={this.props.onAddQuestionClose} />
+         : <QuestionPanelContainer  // this is a new question
+            question={question}
+            modalVisible={true}   // if we are adding a new question, show the Add Question modal
+            onAddPanelClose={this.props.onAddQuestionClose} />);
 
-
-        return <div>{questionComponent}</div>;
-    }
+      return <div>{questionComponent}</div>;
+   }
 }
-
-
 
 QuestionPanelContainer.propTypes = {
-    qPanel: T.object,
-    params: T.object.isRequired
+   qPanel: PropTypes.object.isRequired,
+   modalVisible: PropTypes.bool.isRequired,
+   onAddPanelClose: PropTypes.func.isRequired
 };
 
-function mapStateToProps(state, ownProps) {
-    return {
-        qPanel: state.questionPanels.find(x => x.panelId === ownProps.params.panelId)
-    };
-}
 
-function mapDispatchToProps(dispatch) {
-    return {
-        questionActions: bindActionCreators(questionActions, dispatch)
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CSSModules(QuestionPanelContainer, styles));
+export default QuestionPanelContainer;

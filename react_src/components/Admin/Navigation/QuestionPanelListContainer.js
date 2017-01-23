@@ -1,12 +1,14 @@
 import React, {PropTypes as T} from 'react';
 import {Nav, NavItem} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
+import QuestionPanelContainer from './QuestionPanelContainer';
 
 class QuestionPanelListContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            qPanels: this.props.qPanels
+            qPanels: [...props.qPanels],
+            newPanel: {_id: -1}    // -1 is code for "there is no new panel in the current state" (new panel would have _id == 0)
         };
     }
 
@@ -18,7 +20,7 @@ class QuestionPanelListContainer extends React.Component {
         this.setState({qPanels: [...nextProps.qPanels]});
     }
 
-    onAddQuestion() {
+    onAddPanel() {
 
         // Calculate the index number for the panel to be added
         let nextIndex;
@@ -47,7 +49,7 @@ class QuestionPanelListContainer extends React.Component {
         this.setState(newState);
     }
 
-    onAddQuestionClose() {
+    onAddPanelClose() {
 
         let newQuestion = {
             _id: -1
@@ -64,14 +66,39 @@ class QuestionPanelListContainer extends React.Component {
 
 
     render() {
-        let panelNav = this.state.qPanels.map((panel, index) =>
+
+       let sortedPanels = this.state.qPanels.sort((a, b) => { return a.index - b.index; });
+        let panelNav = sortedPanels.map((panel, index) =>
             <LinkContainer to="/admin/questionPanel/panelId" key="index">
                 <NavItem eventKey={index}>{panel.name}</NavItem>
             </LinkContainer>
         );
 
+       let newPanel = this.state.newPanel;
+
+       let questionList = (
+          sortedQuestions.length > 0
+             ? sortedQuestions.map(q => <QuestionContainer key={q.index} question={q} modalVisible={false}
+                                                           onAddQuestionClose={this.onAddQuestionClose}/>)
+             : <p>No items to display</p>
+       );
+
+       let newPanelForm = (
+          newQuestion._id === 0
+             ? <QuestionPanelContainer question={newQuestion} modalVisible={true}
+                                  onAddQuestionClose={this.onAddQuestionClose}/>
+             : null
+       );
+
         return (
             <div>
+
+               <h3>Question Panels</h3>
+
+               <div styleName="addPanelDiv">
+                  <Button type="button" className="btn btn-sm btn-default" onClick={this.onAddPanel}>Add
+                     Question Panel</Button>
+               </div>
 
                 <Nav bsStyle="pills" stacked activeKey={1}>
                     {panelNav}

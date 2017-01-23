@@ -1,68 +1,47 @@
-import React, {PropTypes as T} from 'react';
-import {Form, FormGroup, FormControl, ControlLabel, Radio, Col} from 'react-bootstrap';
-import PanelTextItemContainer from './PanelTextItemContainer';
-import styles from './QuestionPanel.css';
+import React, {Component, PropTypes} from 'react';
+import {Row, Col, Button, ButtonGroup, Modal} from 'react-bootstrap';
+import QuestionPanelEditContainer from './QuestionPanelEditContainer';
 import CSSModules from 'react-css-modules';
+import styles from './QuestionPanel.css';
 
-const QuestionPanel = ({qPanel, onPanelItemSave}) => {
+const QuestionPanel = ({qPanel, modalVisible, onAddPanelClose}) => {
 
-    let panelNameItem = {
-        name: "name",
-        text: qPanel.name,
-        placeholder: "add panel name"
-    };
+   let subHeader = <p><b>Header: </b> {qPanel.subHeader}</p>;
 
-
-    return (
-        <Form horizontal styleName="editForm">
-
-            <FormGroup controlId="formControlsPanelName">
-                <Col componentClass={ControlLabel} styleName="inlineLabel" sm={1}>Name</Col>
-                <Col sm={11} styleName="inlineTextCol">
-                    <PanelTextItemContainer onPanelItemSave={onPanelItemSave} panelTextItem={panelNameItem} />
-                </Col>
-            </FormGroup>
-
-            <FormGroup controlId="formControlsQuestionText">
-                <ControlLabel>{labelForFirstTextField}</ControlLabel>
-                <div styleName="conditionalToggle">
-                    <a onClick={onToggleConditionalQuestionText} title={toggleToolTip}>{conditionalToggleText}</a>
-                </div>
-                <FormControl name="text" componentClass="textarea" placeholder="add text" value={question.text}
-                             required onChange={onTextFieldChanged}/>
-            </FormGroup>
-
-            <FormGroup controlId="formControlsQuestionAlternateText" styleName={createResourcesTextStyleName()}>
-                <ControlLabel>Alternate Text for Resources</ControlLabel>
-
-                <FormControl name="textForResources" componentClass="textarea" placeholder="add text"
-                             value={question.textForResources}
-                             onChange={onTextFieldChanged}/>
-            </FormGroup>
-
-            <FormGroup controlId="formControlsQuestionType">
-                <Radio value="singleSelect" checked={answerType === "singleSelect"}
-                       onChange={onAnswerTypeChanged}>Single Select</Radio>
-                <Radio value="multiSelect" checked={answerType === "multiSelect"}
-                       onChange={onAnswerTypeChanged}>Multiple Select</Radio>
-                <Radio value="boolean" checked={answerType === "boolean"}
-                       onChange={onAnswerTypeChanged}>Boolean</Radio>
-                <Radio value="text" checked={answerType === "text"}
-                       onChange={onAnswerTypeChanged}>Text</Radio>
-            </FormGroup>
-
-            <div styleName="answerTypeDetails">
-                {answerTypeDetails}
-            </div>
+   let panel_body =
+      (<div>
+         <p><b>{qPanel.index}: </b> {qPanel.name}</p>
+         <p><b>Header: </b> {qPanel.header}</p>
+         {qPanel.subHeader.length > 0 && subHeader}
+         <p><b>"Next" button text:</b> {qPanel.nextButtonText}</p>
+         // TODO: add the rest of the fields here
+      </div>);
 
 
-        </Form>
-    );
-    };
 
-    QuestionPanel.propTypes = {
-        qPanel: T.object.isRequired,
-        onEditItemSave: T.func.isRequired
-    };
+   return (
 
-    export default CSSModules(QuestionPanel, styles);
+      <Row styleName="questionPanelDiv">
+
+         <Col md={6} styleName="questionPanelBodyDiv">
+            { panel_body }
+         </Col>
+
+         <Col md={2}>
+            <QuestionPanelEditContainer qPanel={qPanel} modalVisible={modalVisible} onAddPanelClose={onAddPanelClose} />
+         </Col>
+
+      </Row>
+   );
+};
+
+
+QuestionPanel.propTypes = {
+   qPanel: PropTypes.object.isRequired,
+   modalVisible: PropTypes.bool.isRequired,
+   onAddPanelClose: PropTypes.func.isRequired
+};
+
+export default CSSModules(QuestionPanel, styles);
+
+

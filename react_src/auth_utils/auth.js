@@ -129,12 +129,13 @@ export const login = (email, password) => {
                         roles: auth0_user.app_metadata.roles
                     };
 
-                    if (db_user.name) {
+                    if (db_user.user_name) {
+                        let name = db_user.user_name;
                         user.user_name = {
-                            first: db_user.name.first,
-                            last: db_user.name.last
+                            first: name.first,
+                            last: name.last
                         };
-                        user.short_user_name = db_user.name.first;
+                        user.short_user_name = name.first;
                     }
                     else {
                         user.short_user_name = auth0_user.email;

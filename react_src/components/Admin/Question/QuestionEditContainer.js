@@ -381,7 +381,7 @@ QuestionEditContainer.propTypes = {
     questionActions: PropTypes.object,
     modalVisible: PropTypes.bool.isRequired,
     onAddQuestionClose: PropTypes.func.isRequired,
-    userName: PropTypes.string.isRequired
+    userName: PropTypes.string
 };
 
 function mapStateToProps(state) {

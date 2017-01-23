@@ -1,9 +1,23 @@
 import React, {PropTypes} from 'react';
+//import {ReactDOM} from 'react-dom';
+let ReactDOM = require('react-dom');
+
+import {Overlay, Tooltip} from 'react-bootstrap';
 let _ = require('lodash').noConflict();
 
 let InputTypes = require('./inputTypes');
 
 class Question extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            showValidationError: false
+        };
+
+        //this.onAddQuestion = this.onAddQuestion.bind(this);
+        //this.onAddQuestionClose = this.onAddQuestionClose.bind(this);
+    }
 
     componentDidMount() {
         if (typeof this.props.input.default === 'undefined'
@@ -96,10 +110,20 @@ class Question extends React.Component {
                     return typeof this.props.renderError === 'function'
                         ? this.props.renderError(error, this.props.questionId)
                         : (
-                            <div key={this.props.questionId + 'Error' + error.type}
-                                 className={this.props.classes.errorMessage}>
-                                {error.message}
-                            </div>
+
+                        <Overlay show={true}
+                                 key={this.props.questionId + 'Error' + error.type}
+                                 container={() => ReactDOM.findDOMNode(this.questionInputContainer)}
+                                 target={() => ReactDOM.findDOMNode(this.questionInputContainer)}
+                                 placement="left">
+                            <Tooltip id="overload-left">{error.message}</Tooltip>
+                        </Overlay>
+
+
+                            // <div key={this.props.questionId + 'Error' + error.type}
+                            //      className={this.props.classes.errorMessage}>
+                            //     {error.message}
+                            // </div>
                         );
                 })
             : [];
@@ -111,6 +135,10 @@ class Question extends React.Component {
         }
 
         let labelId = `${this.props.questionId}-label`;
+
+        const inputContainerStyle = {
+            position: 'relative',
+        };
 
         return (
             <div className={this.props.classes.question}>
@@ -135,20 +163,22 @@ class Question extends React.Component {
                     )
                     : undefined}
                 {validationErrors}
-                <Input name={this.props.questionId}
-                       id={this.props.questionId}
-                       labelId={labelId}
-                       value={value}
-                       text={this.props.input.text}
-                       options={this.props.input.options}
-                       placeholder={this.props.input.placeholder}
-                       required={this.props.input.required}
-                       classes={this.props.classes}
-                       onChange={this.handleInputChange.bind(this, this.props.questionId)}
-                       onBlur={this.handleInputBlur.bind(this, this.props.questionId)}
-                       onKeyDown={this.props.onKeyDown}
-                       {...extraprops}
-                />
+                <div ref={input => this.questionInputContainer = input} style={inputContainerStyle}>
+                    <Input name={this.props.questionId}
+                           id={this.props.questionId}
+                           labelId={labelId}
+                           value={value}
+                           text={this.props.input.text}
+                           options={this.props.input.options}
+                           placeholder={this.props.input.placeholder}
+                           required={this.props.input.required}
+                           classes={this.props.classes}
+                           onChange={this.handleInputChange.bind(this, this.props.questionId)}
+                           onBlur={this.handleInputBlur.bind(this, this.props.questionId)}
+                           onKeyDown={this.props.onKeyDown}
+                           {...extraprops}
+                    />
+                </div>
                 {this.props.postText
                     ? (
                         <p className={this.props.classes.questionPostText}>

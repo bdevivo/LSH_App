@@ -10,11 +10,11 @@ const BuyerNavContainer = ({children}) => {
         <div>
 
             <Nav bsStyle="pills" activeKey={1}>
-                <LinkContainer to="/admin/questionPanelListContainer">
+                <LinkContainer to="/admin/questionPanelList">
                     <NavItem eventKey="1">Question Panels</NavItem>
                 </LinkContainer>
 
-                <LinkContainer to="/admin/conditionalQuestionListContainer">
+                <LinkContainer to="/admin/conditionalQuestionList">
                     <NavItem eventKey="1">Conditional Questions</NavItem>
                 </LinkContainer>
             </Nav>

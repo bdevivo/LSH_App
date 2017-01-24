@@ -5,10 +5,17 @@ import CSSModules from 'react-css-modules';
 
 const classNames = require('classnames');
 
+/**
+ * The Modal form for adding or editing a Question Panel.
+ * @param qPanel
+ * @param pageTitle
+ * @param questionPanelFunctions
+ * @returns {XML}
+ * @constructor
+ */
+const QuestionPanelAddEdit = ({qPanel, pageTitle, questionPanelFunctions}) => {
 
-const QuestionPanelAddEdit = ({qPanel, pageTitle, panelFunctions}) => {
-
-   let {onTextFieldChanged} = panelFunctions;
+   let {onTextFieldChanged} = questionPanelFunctions;
 
    return (
       <div>
@@ -64,10 +71,10 @@ const QuestionPanelAddEdit = ({qPanel, pageTitle, panelFunctions}) => {
          <Modal.Footer>
             <Row>
                <Col md={3} mdOffset={2}>
-                  <Button onClick={panelFunctions.handleCancel}>Cancel</Button>
+                  <Button onClick={questionPanelFunctions.handleCancel}>Cancel</Button>
                </Col>
                <Col md={3}>
-                  <Button onClick={panelFunctions.handleSubmit}>Save</Button>
+                  <Button onClick={questionPanelFunctions.handleSubmit}>Save</Button>
                </Col>
             </Row>
          </Modal.Footer>
@@ -80,7 +87,7 @@ const QuestionPanelAddEdit = ({qPanel, pageTitle, panelFunctions}) => {
 QuestionPanelAddEdit.propTypes = {
    qPanel: T.object.isRequired,
    pageTitle: T.string.isRequired,
-   panelFunctions: T.object.isRequired
+   questionPanelFunctions: T.object.isRequired
 };
 
 export default CSSModules(QuestionPanelAddEdit, styles);

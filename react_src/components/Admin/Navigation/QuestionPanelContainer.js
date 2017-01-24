@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react';
-import Question from './Question';
-import QuestionEditContainer from './QuestionEditContainer';
+import QuestionPanel from './QuestionPanel';
+import QuestionPanelEditContainer from './QuestionPanelEditContainer';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as questionPanelActions from '../../../actions/questionPanelActions';
 
 class QuestionPanelContainer extends React.Component {
    constructor(props) {
@@ -20,12 +23,12 @@ class QuestionPanelContainer extends React.Component {
       let qPanel = this.state.qPanel;
       let questionComponent = (qPanel._id !== 0 // this is an existing question
          ? <QuestionPanel
-            question={this.state.question}
-            modalVisible={this.props.modalVisible}   // if we are editing an existing question, show the Edit Question modal
+            qPanel={this.state.qPanel}
+            modalVisible={this.props.modalVisible}   // if we are editing an existing panel, show the Edit Question modal
             onAddQuestionClose={this.props.onAddQuestionClose} />
-         : <QuestionPanelContainer  // this is a new question
+         : <QuestionPanelEditContainer  // this is a new question
             question={question}
-            modalVisible={true}   // if we are adding a new question, show the Add Question modal
+            modalVisible={true}   // if we are adding a new panel, show the Add Panel modal
             onAddPanelClose={this.props.onAddQuestionClose} />);
 
       return <div>{questionComponent}</div>;
@@ -39,4 +42,16 @@ QuestionPanelContainer.propTypes = {
 };
 
 
-export default QuestionPanelContainer;
+function mapStateToProps(state, ownProps) {
+   return {
+      qPanels: [...state.questionPanels]
+   };
+}
+
+function mapDispatchToProps(dispatch) {
+   return {
+      questionPanelActions: bindActionCreators(questionPanelActions, dispatch)
+   };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionPanelContainer);

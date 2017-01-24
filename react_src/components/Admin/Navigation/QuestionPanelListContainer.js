@@ -1,7 +1,11 @@
 import React, {PropTypes as T} from 'react';
-import {Nav, NavItem} from 'react-bootstrap';
+import {Button, Nav, NavItem} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import QuestionPanelContainer from './QuestionPanelContainer';
+import CSSModules from 'react-css-modules';
+import styles from './QuestionPanel.css';
 
 class QuestionPanelListContainer extends React.Component {
     constructor(props) {
@@ -13,7 +17,7 @@ class QuestionPanelListContainer extends React.Component {
     }
 
     componentDidMount() {
-        this.props.questionActions.getAllQuestionPanels();
+        this.props.questionPanelActions.getAllQuestionPanels();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -38,11 +42,11 @@ class QuestionPanelListContainer extends React.Component {
             name: "",
             header: "",
             subheader: "",
-            answerType: "none"
+           nextButtonText: ""
         };
 
         let newState = update(this.state, {
-                newQuestion: {$set: newQuestion}
+           newPanel: {$set: newPanel}
             }
         );
 
@@ -51,12 +55,12 @@ class QuestionPanelListContainer extends React.Component {
 
     onAddPanelClose() {
 
-        let newQuestion = {
+        let newPanel = {
             _id: -1
         };
 
         let newState = update(this.state, {
-                newQuestion: {$set: newQuestion}
+           newPanel: {$set: newPanel}
             }
         );
 
@@ -76,17 +80,17 @@ class QuestionPanelListContainer extends React.Component {
 
        let newPanel = this.state.newPanel;
 
-       let questionList = (
-          sortedQuestions.length > 0
-             ? sortedQuestions.map(q => <QuestionContainer key={q.index} question={q} modalVisible={false}
-                                                           onAddQuestionClose={this.onAddQuestionClose}/>)
-             : <p>No items to display</p>
-       );
+       // let panelList = (
+       //    sortedPanels.length > 0
+       //       ? sortedPanels.map(q => <QuestionContainer key={q.index} question={q} modalVisible={false}
+       //                                                     onAddQuestionClose={this.onAddQuestionClose}/>)
+       //       : <p>No items to display</p>
+       // );
 
        let newPanelForm = (
-          newQuestion._id === 0
-             ? <QuestionPanelContainer question={newQuestion} modalVisible={true}
-                                  onAddQuestionClose={this.onAddQuestionClose}/>
+          newPanel._id === 0
+             ? <QuestionPanelContainer qPanel={newPanel} modalVisible={true}
+                                  onAddPanelClose={this.onAddPanelClose}/>
              : null
        );
 
@@ -104,6 +108,8 @@ class QuestionPanelListContainer extends React.Component {
                     {panelNav}
                 </Nav>
 
+               {newPanelForm}
+
             </div>
         );
     }
@@ -111,11 +117,21 @@ class QuestionPanelListContainer extends React.Component {
 }
 
 
-
-
 QuestionPanelListContainer.propTypes = {
     qPanels: T.array.isRequired,
-    questionActions: T.object.isRequired
+    questionPanelActions: T.object.isRequired
 };
 
-export default QuestionPanelListContainer;
+function mapStateToProps(state, ownProps) {
+   return {
+      qPanels: [...state.questionPanels]
+   };
+}
+
+function mapDispatchToProps(dispatch) {
+   return {
+      questionPanelActions: bindActionCreators(questionPanelActions, dispatch)
+   };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CSSModules(QuestionPanelListContainer, styles));

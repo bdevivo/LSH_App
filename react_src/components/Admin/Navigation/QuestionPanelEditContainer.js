@@ -2,9 +2,9 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Button, Modal} from 'react-bootstrap';
-import QuestionAddEdit from './QuestionAddEdit';
+import QuestionPanelAddEdit from './QuestionPanelAddEdit';
 import update from 'immutability-helper';
-import * as questionActions from '../../../actions/questionActions';
+import * as questionPanelActions from '../../../actions/questionPanelActions';
 import {alertError, confirm} from '../../../utils/confirm';
 
 const uuidV1 = require('uuid/v1');
@@ -16,7 +16,7 @@ class QuestionPanelEditContainer extends React.Component {
       super(props, context);
 
       this.state = {
-         qPanel: this.props.question,
+         qPanel: this.props.qPanel,
          modalVisible: this.props.modalVisible,
       };
 
@@ -55,12 +55,12 @@ class QuestionPanelEditContainer extends React.Component {
       if (this.state.qPanel._id == 0) {
          savePanel.addedBy = userName;
          savePanel.addedDate = timestamp;
-         this.props.questionActions.addQuestionPanel(savePanel);
+         this.props.questionPanelActions.addQuestionPanel(savePanel);
       }
       else {
          savePanel.modifiedBy = userName;
          savePanel.modifiedDate = timestamp;
-         this.props.questionActions.updateQuestionPanel(savePanel);
+         this.props.questionPanelActions.updateQuestionPanel(savePanel);
       }
 
       this.props.onAddPanelClose();
@@ -107,9 +107,9 @@ class QuestionPanelEditContainer extends React.Component {
       this.closeModal();
    }
 
-   removeQuestion() {
+   removePanel() {
       confirm(`Delete panel ${this.state.question.index}?`).then(() => {
-         this.props.questionActions.removeQuestionPanel(this.state.qPanel._id);
+         this.props.questionPanelActions.removeQuestionPanel(this.state.qPanel._id);
       }, () => {
          // user clicked Cancel -- do nothing
       });
@@ -136,23 +136,13 @@ class QuestionPanelEditContainer extends React.Component {
 
    render() {
 
-      let question = this.state.question;
-      let pageTitle = (question._id === 0 ? "Add Question" : "Edit Question " + question.index);
+      let qPanel = this.state.qPanel;
+      let pageTitle = (question._id === 0 ? "Add Panel" : "Edit Panel " + qPanel.index);
 
-      let questionFunctions = {
+      let questionqPanelFunctions = {
          handleSubmit: this.handleSubmit,
          handleCancel: this.handleCancel,
-         onTextFieldChanged: this.onTextFieldChanged,
-         onQuestionTextChanged: this.onQuestionTextChanged,
-         onQuestionTextForResourcesChanged: this.onQuestionTextForResourcesChanged,
-         onQuestionTypeSelectionChanged: this.onQuestionTypeSelectionChanged
-      };
-
-      let selectionOptionFunctions = {
-         onAddSelectOption: this.onAddSelectionOption,
-         onDeleteSelectionOption: this.onDeleteSelectionOption,
-         onEditSelectionOptionSave: this.onEditSelectionOptionSave,
-         reOrderOptionItems: this.reOrderOptionItems
+         onTextFieldChanged: this.onTextFieldChanged
       };
 
       let buttonGroup = (
@@ -166,7 +156,7 @@ class QuestionPanelEditContainer extends React.Component {
                {' '}
 
                <Button type="button" className="btn btn-xs btn-default" aria-label="Remove"
-                       onClick={this.removeQuestion}>
+                       onClick={this.removePanel}>
                   <span className="glyphicon glyphicon-remove"></span>
                </Button>
             </div>
@@ -174,16 +164,12 @@ class QuestionPanelEditContainer extends React.Component {
 
       return (
          <div>
-            <Modal backdrop="static" dialogClassName="questionModal" show={this.state.modalVisible}
+            <Modal backdrop="static" dialogClassName="questionPanelModal" show={this.state.modalVisible}
                    onHide={this.handleCancel}>
-               <QuestionAddEdit
-                  question={question}
+               <QuestionPanelAddEdit
+                  qPanel={qPanel}
                   pageTitle={pageTitle}
-                  questionFunctions={questionFunctions}
-                  selectionOptionFunctions={selectionOptionFunctions}
-                  onEditBooleanOptionSave={this.onEditBooleanOptionSave}
-                  onToggleConditionalQuestionText={this.onToggleConditionalQuestionText}
-                  isQuestionTextConditional={this.state.isQuestionTextConditional}
+                  questionPanelFunctions={questionPanelFunctions}
                />
             </Modal>
 
@@ -195,10 +181,10 @@ class QuestionPanelEditContainer extends React.Component {
 }
 
 QuestionPanelEditContainer.propTypes = {
-   question: PropTypes.object.isRequired,
-   questionActions: PropTypes.object,
+   qPanel: PropTypes.object.isRequired,
+   questionPanelActions: PropTypes.object,
    modalVisible: PropTypes.bool.isRequired,
-   onAddQuestionClose: PropTypes.func.isRequired,
+   onAddPanelClose: PropTypes.func.isRequired,
    userName: PropTypes.string
 };
 
@@ -210,7 +196,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
    return {
-      questionActions: bindActionCreators(questionActions, dispatch)
+      questionPanelActions: bindActionCreators(questionPanelActions, dispatch)
    };
 }
 

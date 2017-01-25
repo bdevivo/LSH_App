@@ -1,10 +1,9 @@
 import React, {Component, PropTypes} from 'react';
-import {Row, Col, Button, ButtonGroup, Modal} from 'react-bootstrap';
-import QuestionPanelEditContainer from './QuestionPanelEditContainer';
+import {Row, Col} from 'react-bootstrap';
 import CSSModules from 'react-css-modules';
 import styles from './QuestionPanel.css';
 
-const QuestionPanel = ({qPanel, modalVisible, onAddPanelClose}) => {
+const QuestionPanel = ({qPanel}) => {
 
    let subHeader = <p><b>Header: </b> {qPanel.subHeader}</p>;
 
@@ -27,19 +26,13 @@ const QuestionPanel = ({qPanel, modalVisible, onAddPanelClose}) => {
             { panel_body }
          </Col>
 
-         <Col md={2}>
-            <QuestionPanelEditContainer qPanel={qPanel} modalVisible={modalVisible} onAddPanelClose={onAddPanelClose} />
-         </Col>
-
       </Row>
    );
 };
 
 
 QuestionPanel.propTypes = {
-   qPanel: PropTypes.object.isRequired,
-   modalVisible: PropTypes.bool.isRequired,
-   onAddPanelClose: PropTypes.func.isRequired
+   qPanel: PropTypes.object.isRequired
 };
 
 export default CSSModules(QuestionPanel, styles);

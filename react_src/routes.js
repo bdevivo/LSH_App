@@ -13,6 +13,7 @@ import LoginCallbackContainer from './components/Login/LoginCallbackContainer';
 import AdminContainer from './components/Admin/AdminContainer';
 import QuestionListContainer from './components/Admin/Question/QuestionListContainer';
 import QuestionPanelListContainer from './components/Admin/Navigation/QuestionPanelListContainer';
+import QuestionPanel from './components/Admin/Navigation/QuestionPanelContainer';
 import QuestionForm from './components/Common/QuestionForm/FormContainer';
 import {requireAuth} from './auth_utils/auth';
 
@@ -33,7 +34,9 @@ export default (
 
         <Route path="admin" component={AdminContainer}>
             <Route path="questionList" component={QuestionListContainer}/>
-            <Route path="questionPanelList" component={QuestionPanelListContainer}/>
+            <Route path="panels" component={QuestionPanelListContainer}>
+               <Route path="panel/:id" component={QuestionPanel} />
+            </Route>
         </Route>
 
         <Route path="qform" component={QuestionForm}/>

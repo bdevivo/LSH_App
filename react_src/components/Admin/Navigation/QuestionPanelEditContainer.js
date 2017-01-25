@@ -16,15 +16,12 @@ class QuestionPanelEditContainer extends React.Component {
       super(props, context);
 
       this.state = {
-         qPanel: this.props.qPanel,
-         modalVisible: this.props.modalVisible,
+         qPanel: this.props.qPanel
       };
 
       this.handleSubmit = this.handleSubmit.bind(this);
       this.removePanel = this.removePanel.bind(this);
       this.handleCancel = this.handleCancel.bind(this);
-      this.showModal = this.showModal.bind(this);
-      this.closeModal = this.closeModal.bind(this);
       this.onTextFieldChanged = this.onTextFieldChanged.bind(this);
       this.savePanel = this.savePanel.bind(this);
    }
@@ -115,14 +112,6 @@ class QuestionPanelEditContainer extends React.Component {
       });
    }
 
-   showModal() {
-      this.setState({modalVisible: true});
-   }
-
-   closeModal() {
-      this.setState({modalVisible: false});
-   }
-
    onTextFieldChanged(event) {
       let field = event.target.name;
       let newState = update(this.state, {
@@ -137,30 +126,13 @@ class QuestionPanelEditContainer extends React.Component {
    render() {
 
       let qPanel = this.state.qPanel;
-      let pageTitle = (question._id === 0 ? "Add Panel" : "Edit Panel " + qPanel.index);
+      let pageTitle = (qPanel._id === 0 ? "Add Panel" : "Edit Panel " + qPanel.index);
 
-      let questionqPanelFunctions = {
+      let questionPanelFunctions = {
          handleSubmit: this.handleSubmit,
          handleCancel: this.handleCancel,
          onTextFieldChanged: this.onTextFieldChanged
       };
-
-      let buttonGroup = (
-         this.state.modalVisible
-            ? null
-            : <div>
-               <Button type="button" className="btn btn-xs btn-default" aria-label="Edit" onClick={this.showModal}>
-                  <span className="glyphicon glyphicon-pencil"></span>
-               </Button>
-
-               {' '}
-
-               <Button type="button" className="btn btn-xs btn-default" aria-label="Remove"
-                       onClick={this.removePanel}>
-                  <span className="glyphicon glyphicon-remove"></span>
-               </Button>
-            </div>
-      );
 
       return (
          <div>
@@ -173,7 +145,7 @@ class QuestionPanelEditContainer extends React.Component {
                />
             </Modal>
 
-            {buttonGroup}
+
 
          </div>
       );
@@ -182,22 +154,11 @@ class QuestionPanelEditContainer extends React.Component {
 
 QuestionPanelEditContainer.propTypes = {
    qPanel: PropTypes.object.isRequired,
-   questionPanelActions: PropTypes.object,
+   questionPanelActions: PropTypes.object.isRequired,
    modalVisible: PropTypes.bool.isRequired,
    onAddPanelClose: PropTypes.func.isRequired,
-   userName: PropTypes.string
+   userName: PropTypes.string.isRequired
 };
 
-function mapStateToProps(state) {
-   return {
-      userName: state.profile.user_name.short
-   };
-}
 
-function mapDispatchToProps(dispatch) {
-   return {
-      questionPanelActions: bindActionCreators(questionPanelActions, dispatch)
-   };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionPanelEditContainer);
+export default QuestionPanelEditContainer;

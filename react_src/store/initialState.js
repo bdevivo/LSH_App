@@ -3,6 +3,7 @@
 export default
 {
     questions: [],
+    questionPanels: [],
     auth: {
         isLoggedIn: false
     },

@@ -136,7 +136,7 @@ class QuestionPanelEditContainer extends React.Component {
 
       return (
          <div>
-            <Modal backdrop="static" dialogClassName="questionPanelModal" show={this.state.modalVisible}
+            <Modal backdrop="static" dialogClassName="questionPanelModal" show={this.props.modalVisible}
                    onHide={this.handleCancel}>
                <QuestionPanelAddEdit
                   qPanel={qPanel}

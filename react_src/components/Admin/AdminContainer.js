@@ -14,12 +14,12 @@ const AdminContainer = ({children}) => {
                     <NavItem eventKey="1">Questions</NavItem>
                 </LinkContainer>
 
-                <NavDropdown eventKey="2" title="Question Navigation" id="nav-dropdown">
-                    <LinkContainer to="/admin/qListBuyerNav">
-                        <MenuItem eventKey="2.1">Buyer</MenuItem>
+                <NavDropdown eventKey="2" title="Question Navigation: Buyer" id="nav-dropdown">
+                    <LinkContainer to="/admin/panels/panel/0">
+                        <MenuItem eventKey="2.1">Question Panels</MenuItem>
                     </LinkContainer>
                     <LinkContainer to="/admin/qListTalentNav">
-                        <MenuItem eventKey="2.2">Talent</MenuItem>
+                        <MenuItem eventKey="2.2">Question Sets</MenuItem>
                     </LinkContainer>
                 </NavDropdown>
 

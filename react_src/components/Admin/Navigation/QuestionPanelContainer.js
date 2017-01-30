@@ -9,141 +9,161 @@ import styles from './QuestionPanel.css';
 const cloneDeep = require('lodash/cloneDeep');
 
 class QuestionPanelContainer extends React.Component {
-   constructor(props) {
-      super(props);
+    constructor(props) {
+        super(props);
 
-      let qPanels = [...props.qPanels];
-      let panelId = this.props.params.id;
-      let currentPanel = qPanels.find(x => x._id === panelId);
+        let qPanels = [...props.qPanels];
+        let panelId = parseInt(this.props.params.id);
+        let currentPanel;
 
-      this.state = {
-         qPanels: qPanels,
-         panelId: panelId,
-         currentPanel: currentPanel,
-         editPanel: {},
-         showModal: false
-      };
+        if (qPanels.length === 0) {
+            currentPanel = {};
+        }
+        else if (panelId === 0) {
+            currentPanel = qPanels.find(x => x.index === 1);
+        }
+        else {
+            currentPanel = qPanels.find(x => x._id === panelId);
+        }
 
-      this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
-      this.onAddPanel = this.onAddPanel.bind(this);
-      this.onAddPanelClose = this.onAddPanelClose.bind(this);
-   }
-
-   componentWillReceiveProps(nextProps) {
-      this.setState({qPanel: nextProps.qPanel});
-   }
-
-   onAddPanel() {
-
-      // Calculate the index number for the panel to be added
-      let nextIndex;
-      if (this.state.qPanels.length === 0) {
-         nextIndex = 1;
-      }
-      else {
-         let panelIds = this.state.qPanels.map(q => q.index);
-         nextIndex = Math.max(...panelIds) + 1;
-      }
-
-      let editPanel = {
-         _id: 0,
-         index: nextIndex,
-         name: "",
-         header: "",
-         subheader: "",
-         nextButtonText: ""
-      };
-
-      let newState = update(this.state, {
-            editPanel: {$set: editPanel},
-            showModal: true
-         }
-      );
-
-      this.setState(newState);
-   }
-
-   onAddPanelClose() {
-
-      let newPanel = {};
-
-      let newState = update(this.state, {
-            newPanel: {$set: newPanel},
+        this.state = {
+            qPanels: qPanels,
+            panelId: panelId,
+            currentPanel: currentPanel,
+            editPanel: {},
             showModal: false
-         }
-      );
+        };
 
-      this.setState(newState);
-   }
+        this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
+        this.onAddPanel = this.onAddPanel.bind(this);
+        this.onAddPanelClose = this.onAddPanelClose.bind(this);
+        this.onRemovePanel = this.onRemovePanel.bind(this);
+        this.onEditPanel = this.onEditPanel.bind(this);
+    }
 
-   removePanel() {
-      confirm(`Delete question ${this.state.question.index}?`).then(() => {
-         this.props.questionPanelActions.removePanel(this.state.panelId);
-      }, () => {
-         // user clicked Cancel -- do nothing
-      });
-   }
+    componentWillReceiveProps(nextProps) {
+        this.setState({qPanel: nextProps.qPanel});
+    }
 
-   onEditPanel() {
-      let editPanel = cloneDeep(this.state.currentPanel);
+    onAddPanel() {
 
-      let newState = update(this.state, {
-            editPanel: {$set: editPanel},
-            showModal: true
-         }
-      );
+        // Calculate the index number for the panel to be added
+        let nextIndex;
+        if (this.state.qPanels.length === 0) {
+            nextIndex = 1;
+        }
+        else {
+            let panelIds = this.state.qPanels.map(q => q.index);
+            nextIndex = Math.max(...panelIds) + 1;
+        }
 
-      this.setState(newState);
-   }
+        let editPanel = {
+            _id: 0,
+            index: nextIndex,
+            name: "",
+            header: "",
+            subheader: "",
+            nextButtonText: "",
+            backButtonText: "",
+            defaultAction: {
+                action: "",
+                target: ""
+            }
+        };
+
+        let newState = update(this.state, {
+                editPanel: {$set: editPanel},
+                showModal: {$set: true}
+            }
+        );
+
+        this.setState(newState);
+    }
+
+    onAddPanelClose() {
+
+        let newPanel = {};
+
+        let newState = update(this.state, {
+                newPanel: {$set: newPanel},
+                showModal: {$set: false}
+            }
+        );
+
+        this.setState(newState);
+    }
+
+    onRemovePanel() {
+        confirm(`Delete question ${this.state.question.index}?`).then(() => {
+            this.props.questionPanelActions.removePanel(this.state.panelId);
+        }, () => {
+            // user clicked Cancel -- do nothing
+        });
+    }
+
+    onEditPanel() {
+        let editPanel = cloneDeep(this.state.currentPanel);
+
+        let newState = update(this.state, {
+                editPanel: {$set: editPanel},
+                showModal: {$set: true}
+            }
+        );
+
+        this.setState(newState);
+    }
 
 
-   render() {
+    render() {
 
+        let hasPanels = this.state.qPanels.length > 0;
 
-      return (
-         <div>
+        let staticPanelInfo = <QuestionPanel qPanel={this.state.currentPanel}/>;
 
-            {/* ADD PANEL BUTTONS */}
-            <div styleName="addPanelDiv">
-               <Button type="button" className="btn btn-sm btn-default" onClick={this.onAddPanel}>Add Question Panel</Button>
-            </div>
+        let addEditButtons = (<div>
+            <Button type="button" className="btn btn-xs btn-default" aria-label="Edit"
+                    onClick={this.onEditPanel}>
+                <span className="glyphicon glyphicon-pencil"></span>
+            </Button>
 
-            {/* STATIC PANEL INFO */}
-            <QuestionPanel
-               qPanel={this.state.currentPanel}/>
+            {' '}
 
-            {/* EDIT/REMOVE PANEL BUTTONS */}
+            <Button type="button" className="btn btn-xs btn-default" aria-label="Remove"
+                    onClick={this.onRemovePanel}>
+                <span className="glyphicon glyphicon-remove"></span>
+            </Button>
+        </div>);
+
+        return (
             <div>
-               <Button type="button" className="btn btn-xs btn-default" aria-label="Edit" onClick={this.editPanel}>
-                  <span className="glyphicon glyphicon-pencil"></span>
-               </Button>
 
-               {' '}
+                {/* ADD PANEL BUTTONS */}
+                <div styleName="addPanelDiv">
+                    <Button type="button" className="btn btn-sm btn-default" onClick={this.onAddPanel}>Add Question
+                        Panel</Button>
+                </div>
 
-               <Button type="button" className="btn btn-xs btn-default" aria-label="Remove"
-                       onClick={this.removePanel}>
-                  <span className="glyphicon glyphicon-remove"></span>
-               </Button>
-            </div>
+                {hasPanels && staticPanelInfo}
 
+                {hasPanels && addEditButtons}
 
-            {/* EDIT MODAL -- ONLY SHOWN WHEN ADDING OR EDITING A PANEL */}
-            <QuestionPanelEditContainer  // this is a new question
-               qPanel={this.state.editPanel}
-               userName={this.props.userName}
-               questionPanelActions={this.props.questionPanelActions}
-               modalVisible={this.state.showModal}   // if we are adding a new panel, show the Add Panel modal
-               onAddPanelClose={this.onAddPanelClose}/>);
+                {/* EDIT MODAL -- ONLY SHOWN WHEN ADDING OR EDITING A PANEL */}
+                <QuestionPanelEditContainer  // this is a new question
+                    qPanel={this.state.editPanel}
+                    userName={this.props.userName}
+                    questionPanelActions={this.props.questionPanelActions}
+                    modalVisible={this.state.showModal}   // if we are adding a new panel, show the Add Panel modal
+                    onAddPanelClose={this.onAddPanelClose}/>
 
-         </div>);
-   }
+            </div>);
+    }
 }
 
 QuestionPanelContainer.propTypes = {
-   qPanels: PropTypes.array.isRequired,
-   questionPanelActions: PropTypes.object,
-   userName: PropTypes.string,
-   params: PropTypes.object.isRequired
+    qPanels: PropTypes.array,
+    questionPanelActions: PropTypes.object,
+    userName: PropTypes.string,
+    params: PropTypes.object.isRequired
 };
 
 export default CSSModules(QuestionPanelContainer, styles);

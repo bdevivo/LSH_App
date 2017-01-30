@@ -17,28 +17,28 @@ const HeaderCenterNav = ({isLoggedIn, isAdmin, isBuyer}) => {
         if (isAdmin) {
 
             adminNavItems = [
-                <HeaderLink to="admin" key="admin" className="navItemWithSep">Admin</HeaderLink>,
+                <HeaderLink to="/admin" key="admin" className="navItemWithSep">Admin</HeaderLink>,
             ];
 
             // admin users get all center nav links
             rootNavItems = [
-                <HeaderLink to="qform" key="postJob" className="navItemWithSep">Post a Job</HeaderLink>,
-                <HeaderLink to="browseJobs" key="browseJobs" className="navItemWithSep">Browse Jobs</HeaderLink>,
-                <HeaderLink to="browseTalent" key="browseTalent" className="navItem">Browse Talent</HeaderLink>
+                <HeaderLink to="/qform" key="postJob" className="navItemWithSep">Post a Job</HeaderLink>,
+                <HeaderLink to="/browseJobs" key="browseJobs" className="navItemWithSep">Browse Jobs</HeaderLink>,
+                <HeaderLink to="/browseTalent" key="browseTalent" className="navItem">Browse Talent</HeaderLink>
             ];
         }
         else {
             if (isBuyer) {
 
                 rootNavItems = [
-                    <HeaderLink key="postJob" to="/postJob" className="navItemWithSep">Post a Job</HeaderLink>,
-                    <HeaderLink key="browseTalent" to="/browseTalent" className="navItem">Browse Talent</HeaderLink>
+                    <HeaderLink key="/postJob" to="/postJob" className="navItemWithSep">Post a Job</HeaderLink>,
+                    <HeaderLink key="/browseTalent" to="/browseTalent" className="navItem">Browse Talent</HeaderLink>
                 ];
             }
             else    // assumption: only other role is Talent
             {
                 rootNavItems = [
-                    <HeaderLink key="browseTalent" to="/browseTalent" className="navItem">Browse Talent</HeaderLink>
+                    <HeaderLink key="/browseTalent" to="/browseTalent" className="navItem">Browse Talent</HeaderLink>
                 ];
             }
         }
@@ -55,8 +55,8 @@ const HeaderCenterNav = ({isLoggedIn, isAdmin, isBuyer}) => {
     {
         centerNav = (
             <Nav>
-                <HeaderLink key="browseTalent" to="/browseTalent" className="navItemWithSep">Browse Talent (not logged in)</HeaderLink>
-                <HeaderLink key="learnMore" to="/learnMore" className="navItem">Learn More</HeaderLink>
+                <HeaderLink key="/browseTalent" to="/browseTalent" className="navItemWithSep">Browse Talent (not logged in)</HeaderLink>
+                <HeaderLink key="/learnMore" to="/learnMore" className="navItem">Learn More</HeaderLink>
             </Nav>
         );
     }

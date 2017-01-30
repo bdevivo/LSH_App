@@ -23,10 +23,10 @@ export function removePanelSuccess(panelId) {
 export function getAllPanels() {
    return function(dispatch) {
       dispatch(beginAjaxCall());
-      return questionPanelApi.getAllPanels()
-         .then(questions => {
+      return questionPanelApi.getAllQuestionPanels()
+         .then(qPanels => {
             dispatch(endAjaxCall());
-            dispatch(loadPanelsSuccess(questions.questions));
+            dispatch(loadPanelsSuccess(qPanels));
          })
          .catch(error => {
             dispatch(endAjaxCall());
@@ -35,21 +35,21 @@ export function getAllPanels() {
    };
 }
 
-export function addPanel(question) {
+export function addPanel(qPanel) {
    return function(dispatch) {
-      questionPanelApi.addPanel(question)
+      questionPanelApi.addPanel(qPanel)
          .then(q => {
             dispatch(addPanelSuccess((q)));
          });
    };
 }
 
-export function updatePanel(question) {
+export function updatePanel(qPanel) {
    return function(dispatch) {
-      questionPanelApi.updatePanel(question)
+      questionPanelApi.updatePanel(qPanel)
          .then(response => {
             console.log(response.message);
-            dispatch(updatePanelSuccess(question));
+            dispatch(updatePanelSuccess(qPanel));
          });
    };
 }

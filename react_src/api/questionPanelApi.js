@@ -61,32 +61,36 @@ class QuestionPanelApi {
 
    static getAllQuestionPanels() {
 
-      return new Promise((resolve, reject) => {
+       return new Promise((resolve, reject) => {
+          resolve([]);
 
-         const headers = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Cache-control': 'no-cache'
-         };
-
-         return fetch('/api/questionPanels', {
-            method: 'GET',
-            headers: headers
-         })
-            .then((response) => {
-               return response.json();
-               //resolve(response);
-            })
-            .then(panels => {
-               resolve(panels);
-            })
-            .catch(
-               (err) => {
-                  alert("Error getting question panels: " + err);
-                  reject();
-               }
-            );
-      });
+       });
+      // return new Promise((resolve, reject) => {
+      //
+      //    const headers = {
+      //       'Accept': 'application/json',
+      //       'Content-Type': 'application/json',
+      //       'Cache-control': 'no-cache'
+      //    };
+      //
+      //    return fetch('/api/questionPanels', {
+      //       method: 'GET',
+      //       headers: headers
+      //    })
+      //       .then((response) => {
+      //          return response.json();
+      //          //resolve(response);
+      //       })
+      //       .then(panels => {
+      //          resolve(panels);
+      //       })
+      //       .catch(
+      //          (err) => {
+      //             alert("Error getting question panels: " + err);
+      //             reject();
+      //          }
+      //       );
+      // });
    }
 
    static deleteQuestionPanel(questionPanel_id) {

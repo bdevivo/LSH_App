@@ -4,8 +4,6 @@ import {LinkContainer} from 'react-router-bootstrap';
 import * as questionPanelActions from '../../../actions/questionPanelActions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import CSSModules from 'react-css-modules';
-import styles from './QuestionPanel.css';
 
 class QuestionPanelListContainer extends React.Component {
    constructor(props) {
@@ -16,7 +14,7 @@ class QuestionPanelListContainer extends React.Component {
    }
 
    componentDidMount() {
-      this.props.questionPanelActions.getAllQuestionPanels();
+      this.props.questionPanelActions.getAllPanels();
    }
 
    componentWillReceiveProps(nextProps) {
@@ -83,4 +81,4 @@ function mapDispatchToProps(dispatch) {
    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CSSModules(QuestionPanelListContainer, styles));
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionPanelListContainer);

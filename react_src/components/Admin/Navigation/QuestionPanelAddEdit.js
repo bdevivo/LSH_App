@@ -15,7 +15,9 @@ const classNames = require('classnames');
  */
 const QuestionPanelAddEdit = ({qPanel, pageTitle, questionPanelFunctions}) => {
 
-   let {onTextFieldChanged} = questionPanelFunctions;
+   let {onTextFieldChanged, onUpdateAction} = questionPanelFunctions;
+   let labelColSize = 3;
+   let inputColSize = 9;
 
    return (
       <div>
@@ -28,42 +30,76 @@ const QuestionPanelAddEdit = ({qPanel, pageTitle, questionPanelFunctions}) => {
             <Form horizontal styleName="editForm">
 
                {/* PANEL NAME*/}
-               <FormGroup controlId="formControlsQuestionName">
-                  <Col componentClass={ControlLabel} styleName="inlineLabel" sm={1}>Name</Col>
-                  <Col sm={11} styleName="inlineTextCol">
-                     <FormControl name="name" type="text" placeholder="add panel name" value={qPanel.name}
+               <FormGroup controlId="formControlsQuestionPanelName">
+                  <Col componentClass={ControlLabel} styleName="inlineLabel" sm={labelColSize}>Panel Name:</Col>
+                  <Col sm={inputColSize} styleName="inlineTextCol">
+                     <FormControl name="name" type="text" placeholder="add text" value={qPanel.name}
                                   onChange={onTextFieldChanged} styleName="inlineTextControl"/>
                   </Col>
                </FormGroup>
 
                {/* PANEL HEADER TEXT*/}
-               <FormGroup controlId="formControlsQuestionName">
-                  <Col componentClass={ControlLabel} styleName="inlineLabel" sm={1}>Name</Col>
-                  <Col sm={11} styleName="inlineTextCol">
-                     <FormControl name="header" type="text" placeholder="add panel header" value={qPanel.header}
+               <FormGroup controlId="formControlsQuestionPanelHeader">
+                  <Col componentClass={ControlLabel} styleName="inlineLabel" sm={labelColSize}>Panel Header:</Col>
+                  <Col sm={inputColSize} styleName="inlineTextCol">
+                     <FormControl name="header" type="text" placeholder="add text" value={qPanel.header}
                                   onChange={onTextFieldChanged} styleName="inlineTextControl"/>
                   </Col>
                </FormGroup>
 
                {/* PANEL SUBHEADER TEXT*/}
-               <FormGroup controlId="formControlsQuestionName">
-                  <Col componentClass={ControlLabel} styleName="inlineLabel" sm={1}>Name</Col>
-                  <Col sm={11} styleName="inlineTextCol">
-                     <FormControl name="subHeader" type="text" placeholder="add panel subheader (optional)" value={qPanel.subHeader}
+               <FormGroup controlId="formControlsQuestionPanelSubheader">
+                  <Col componentClass={ControlLabel} styleName="inlineLabel" sm={labelColSize}>Panel Sub-Header:</Col>
+                  <Col sm={inputColSize} styleName="inlineTextCol">
+                     <FormControl name="subHeader" type="text" placeholder="add text" value={qPanel.subHeader}
                                   onChange={onTextFieldChanged} styleName="inlineTextControl"/>
                   </Col>
                </FormGroup>
+
+                {/* DEFAULT ACTION */}
+                <FormGroup controlId="formControlsSelectDefaultAction">
+                    <h3>Default Action</h3>
+                    <ControlLabel>Action</ControlLabel>
+                    <FormControl styleName="formInputSelect"
+                                 componentClass="select"
+                                 placeholder="select"
+                                 name="defaultAction"
+                                 defaultValue={qPanel.defaultAction.action}
+                                 onChange={onUpdateAction}>
+
+                    </FormControl>
+
+                    <ControlLabel>Target</ControlLabel>
+                    <FormControl styleName="formInputSelect"
+                                 componentClass="select"
+                                 placeholder="select"
+                                 name="defaultActionTarget"
+                                 defaultValue={qPanel.defaultAction.target}
+                                 onChange={onUpdateAction}>
+
+                    </FormControl>
+                </FormGroup>
+
+
 
                {/* "NEXT" BUTTON TEXT*/}
-               <FormGroup controlId="formControlsQuestionName">
-                  <Col componentClass={ControlLabel} styleName="inlineLabel" sm={1}>Name</Col>
-                  <Col sm={11} styleName="inlineTextCol">
-                     <FormControl name="nextButtonText" type="text" placeholder='add text for "Next" button' value={qPanel.nextButtonText}
+               <FormGroup controlId="formControlsQuestionPanelNextButton">
+                  <Col componentClass={ControlLabel} styleName="inlineLabel" sm={labelColSize}>"Next" Button Text:</Col>
+                  <Col sm={inputColSize} styleName="inlineTextCol">
+                     <FormControl name="nextButtonText" type="text" placeholder="add text" value={qPanel.nextButtonText}
                                   onChange={onTextFieldChanged} styleName="inlineTextControl"/>
                   </Col>
                </FormGroup>
 
-             // TODO: add the rest of the form fields
+                {/* "BACK" BUTTON TEXT*/}
+                <FormGroup controlId="formControlsQuestionPanelBackButton">
+                    <Col componentClass={ControlLabel} styleName="inlineLabel" sm={labelColSize}>"Back" Button Text:</Col>
+                    <Col sm={inputColSize} styleName="inlineTextCol">
+                        <FormControl name="backButtonText" type="text" placeholder="add text" value={qPanel.backButtonText}
+                                     onChange={onTextFieldChanged} styleName="inlineTextControl"/>
+                    </Col>
+                </FormGroup>
+
 
             </Form>
 

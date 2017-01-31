@@ -27,3 +27,12 @@
 .inlineTextControl {
     font-size: 13px;
 }
+
+.formInput {
+    border-color: #ccc !important;
+}
+
+.formInputSelect {
+    composes: formInput;
+    width: 110px !important;
+}

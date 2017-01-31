@@ -2,21 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list id="23724d5d-f374-4c1f-8907-1c5c6ffa7959" name="Default" comment="" />
-    <list default="true" id="db9cce2d-2ebf-4e24-9d2e-9ec417bf0e97" name="Add all changelist" comment="Beginning to add Admin -&gt; Question Panels">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/reducers/questionPanelReducer.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/react_src/components/Admin/Navigation/BuyerNavContainer.js" afterPath="" />
+    <list default="true" id="db9cce2d-2ebf-4e24-9d2e-9ec417bf0e97" name="Add all changelist" comment="Question Panels - part 3">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/actions/questionPanelActions.js" afterPath="$PROJECT_DIR$/react_src/actions/questionPanelActions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/api/questionPanelApi.js" afterPath="$PROJECT_DIR$/react_src/api/questionPanelApi.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Admin/AdminContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Admin/AdminContainer.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanel.css" afterPath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanel.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelAddEdit.js" afterPath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelAddEdit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelEditContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelEditContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelListContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelListContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Header/HeaderCenterNav.js" afterPath="$PROJECT_DIR$/react_src/components/Header/HeaderCenterNav.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/reducers/index.js" afterPath="$PROJECT_DIR$/react_src/reducers/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/store/initialState.js" afterPath="$PROJECT_DIR$/react_src/store/initialState.js" />
     </list>
     <ignored path="QuestionGrid.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,7 +40,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QuestionPanelContainer.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="QuestionPanelContainer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelContainer.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="352">
@@ -67,7 +56,7 @@
       <file leaf-file-name="QuestionPanelEditContainer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelEditContainer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="855">
+            <state relative-caret-position="651">
               <caret line="131" column="41" lean-forward="true" selection-start-line="131" selection-start-column="41" selection-end-line="131" selection-end-column="41" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
@@ -78,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QuestionPanelAddEdit.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="QuestionPanelAddEdit.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelAddEdit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="66" column="67" lean-forward="false" selection-start-line="66" selection-start-column="54" selection-end-line="66" selection-end-column="67" />
+            <state relative-caret-position="36">
+              <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
@@ -93,8 +82,8 @@
       <file leaf-file-name="EducationEdit.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react_src/components/Profile/Education/EducationEdit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="117" column="46" lean-forward="true" selection-start-line="110" selection-start-column="32" selection-end-line="117" selection-end-column="46" />
+            <state relative-caret-position="-1282">
+              <caret line="19" column="82" lean-forward="true" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="82" />
               <folding />
             </state>
           </provider>
@@ -115,8 +104,28 @@
       <file leaf-file-name="QuestionPanel.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanel.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="20" lean-forward="false" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+            <state relative-caret-position="532">
+              <caret line="37" column="1" lean-forward="false" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Question.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react_src/components/Admin/Question/Question.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Employment.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/react_src/components/Profile/Employment/Employment.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="129">
+              <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="53" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -169,8 +178,8 @@
       <file leaf-file-name="TestSchema.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react_src/components/Common/QuestionForm/TestSchema.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="27" column="16" lean-forward="false" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="16" />
+            <state relative-caret-position="255">
+              <caret line="34" column="33" lean-forward="true" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="33" />
               <folding>
                 <element signature="e#33#564#0" expanded="false" />
                 <element signature="e#1715#1881#0" expanded="false" />
@@ -190,40 +199,6 @@
                 <element signature="e#5758#6212#0" expanded="false" />
                 <element signature="e#6083#6180#0" expanded="false" />
                 <element signature="e#6279#7083#0" expanded="false" />
-                <marker date="1485447241641" expanded="true" signature="15:11173" ph="{...}" />
-                <marker date="1485447241641" expanded="true" signature="2754:11171" ph="[...]" />
-                <marker date="1485447241641" expanded="true" signature="6214:11170" ph="{&quot;questionSetId&quot;: &quot;survey-set&quot;...}" />
-                <marker date="1485447241641" expanded="true" signature="6278:11164" ph="[...]" />
-                <marker date="1485447241641" expanded="true" signature="7085:11163" ph="{&quot;questionId&quot;: &quot;survey-devices-owned&quot;...}" />
-                <marker date="1485447241641" expanded="false" signature="7306:10778" ph="{&quot;type&quot;: &quot;checkboxOptionsInput&quot;...}" />
-                <marker date="1485447241641" expanded="true" signature="7385:10764" ph="[...]" />
-                <marker date="1485447241641" expanded="true" signature="7386:9880" ph="{&quot;text&quot;: &quot;Laptop&quot;...}" />
-                <marker date="1485447241641" expanded="true" signature="7512:9862" ph="[...]" />
-                <marker date="1485447241641" expanded="true" signature="7513:9861" ph="{&quot;questionId&quot;: &quot;laptop-os&quot;...}" />
-                <marker date="1485447241641" expanded="true" signature="7829:9839" ph="{&quot;type&quot;: &quot;radioOptionsInput&quot;...}" />
-                <marker date="1485447241641" expanded="true" signature="7929:9813" ph="[...]" />
-                <marker date="1485447241641" expanded="true" signature="8341:9812" ph="{&quot;text&quot;: &quot;Other&quot;...}" />
-                <marker date="1485447241641" expanded="true" signature="8501:9782" ph="[...]" />
-                <marker date="1485447241641" expanded="true" signature="8502:9130" ph="{&quot;questionId&quot;: &quot;laptop-os-other-text&quot;...}" />
-                <marker date="1485447241641" expanded="true" signature="8703:8885" ph="{&quot;type&quot;: &quot;textInput&quot;...}" />
-                <marker date="1485447241641" expanded="true" signature="8939:9096" ph="[...]" />
-                <marker date="1485447241641" expanded="true" signature="8940:9095" ph="{&quot;type&quot;: &quot;isLength&quot;...}" />
-                <marker date="1485447241641" expanded="true" signature="9132:9781" ph="{&quot;questionId&quot;: &quot;laptop-os-other-reason&quot;...}" />
-                <marker date="1485447241641" expanded="true" signature="9341:9536" ph="{&quot;type&quot;: &quot;textareaInput&quot;...}" />
-                <marker date="1485447241641" expanded="true" signature="9590:9747" ph="[...]" />
-                <marker date="1485447241641" expanded="true" signature="9591:9746" ph="{&quot;type&quot;: &quot;isLength&quot;...}" />
-                <marker date="1485447241641" expanded="true" signature="9882:9990" ph="{&quot;text&quot;: &quot;Desktop Computer&quot;...}" />
-                <marker date="1485447241641" expanded="true" signature="9992:10089" ph="{&quot;text&quot;: &quot;Tablet&quot;...}" />
-                <marker date="1485447241641" expanded="true" signature="10091:10188" ph="{&quot;text&quot;: &quot;Mobile&quot;...}" />
-                <marker date="1485447241641" expanded="true" signature="10190:10291" ph="{&quot;text&quot;: &quot;Smart Watch&quot;...}" />
-                <marker date="1485447241641" expanded="true" signature="10293:10763" ph="{&quot;text&quot;: &quot;None&quot;...}" />
-                <marker date="1485447241641" expanded="true" signature="10415:10745" ph="[...]" />
-                <marker date="1485447241641" expanded="true" signature="10416:10744" ph="{&quot;questionId&quot;: &quot;no-devices-how&quot;...}" />
-                <marker date="1485447241641" expanded="true" signature="10587:10722" ph="{&quot;type&quot;: &quot;textInput&quot;...}" />
-                <marker date="1485447241641" expanded="true" signature="10808:11153" ph="[...]" />
-                <marker date="1485447241641" expanded="false" signature="10809:11152" ph="{&quot;type&quot;: &quot;isAllIn&quot;...}" />
-                <marker date="1485447241641" expanded="true" signature="10874:11138" ph="[...]" />
-                <marker date="1485447241641" expanded="true" signature="10896:11120" ph="[...]" />
               </folding>
             </state>
           </provider>
@@ -241,9 +216,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>pathParse</find>
-      <find>babel-node</find>
-      <find>ReactDOM</find>
       <find>renderRequiredAsterisk</find>
       <find>panelId</find>
       <find>rendererror</find>
@@ -269,8 +241,11 @@
       <find>to</find>
       <find>to=</find>
       <find>select</find>
-      <find>stylename</find>
       <find>componentClass=&quot;select&quot;</find>
+      <find>stylename</find>
+      <find>formInputSelect</find>
+      <find>&quot;action&quot;</find>
+      <find>offset</find>
     </findStrings>
     <replaceStrings>
       <replace>booleanItem</replace>
@@ -297,7 +272,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/react_src/api/userApi.js" />
         <option value="$PROJECT_DIR$/react_src/api/questionApi.js" />
         <option value="$PROJECT_DIR$/react_src/components/Question/QuestionEditContainer.js" />
         <option value="$PROJECT_DIR$/react_src/components/Admin/Question/QuestionListContainer.js" />
@@ -345,9 +319,10 @@
         <option value="$PROJECT_DIR$/react_src/api/questionPanelApi.js" />
         <option value="$PROJECT_DIR$/react_src/actions/questionPanelActions.js" />
         <option value="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelEditContainer.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelContainer.js" />
+        <option value="$PROJECT_DIR$/react_src/components/Admin/Question/Question.css" />
         <option value="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanel.css" />
         <option value="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelAddEdit.js" />
-        <option value="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelContainer.js" />
       </list>
     </option>
   </component>
@@ -1924,7 +1899,7 @@
       <workItem from="1481934375275" duration="49519000" />
       <workItem from="1484334635642" duration="13610000" />
       <workItem from="1484848744500" duration="24814000" />
-      <workItem from="1485124973229" duration="14911000" />
+      <workItem from="1485124973229" duration="17459000" />
     </task>
     <task id="LOCAL-00001" summary="Update from NJ">
       <created>1469553603490</created>
@@ -2192,11 +2167,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485145607598</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Question Panels - part 3">
+      <created>1485747495806</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1485747495806</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1183653000" />
+    <option name="totallyTimeSpent" value="1186201000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -2209,16 +2191,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20073763" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32940018" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26745328" sideWeight="0.50316125" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28711897" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37069812" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33923304" sideWeight="0.49758744" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32940018" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2723697" sideWeight="0.49683878" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2723697" sideWeight="0.49683878" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3480826" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2259,7 +2241,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Add initial actions and reducers for Redux" />
     <MESSAGE value="Add Auth0 login" />
     <MESSAGE value="Fixes for avatar upload" />
     <MESSAGE value="Fixes for onProfileUpdate" />
@@ -2284,7 +2265,8 @@
     <MESSAGE value="Fixed name and avatar update, and added audit fields for questions" />
     <MESSAGE value="Added Winterfell" />
     <MESSAGE value="Beginning to add Admin -&gt; Question Panels" />
-    <option name="LAST_COMMIT_MESSAGE" value="Beginning to add Admin -&gt; Question Panels" />
+    <MESSAGE value="Question Panels - part 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Question Panels - part 3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2331,20 +2313,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/react_src/api/userApi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2691">
-          <caret line="29" column="42" lean-forward="false" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Common/Winterfell/inputTypes/textInput.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="1" lean-forward="true" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/react_src/components/Common/Winterfell/lib/errors.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1530">
@@ -2388,67 +2356,6 @@
             <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Common/QuestionForm/TestSchema.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="27" column="16" lean-forward="false" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="16" />
-          <folding>
-            <element signature="e#33#564#0" expanded="false" />
-            <element signature="e#1715#1881#0" expanded="false" />
-            <element signature="e#1902#1946#0" expanded="false" />
-            <element signature="e#1971#2012#0" expanded="false" />
-            <element signature="e#2040#2121#0" expanded="false" />
-            <element signature="e#2565#2642#0" expanded="false" />
-            <element signature="e#4096#5756#0" expanded="false" />
-            <element signature="e#4163#4584#0" expanded="false" />
-            <element signature="e#4692#4789#0" expanded="false" />
-            <element signature="e#4820#4903#0" expanded="false" />
-            <element signature="e#4916#5323#0" expanded="false" />
-            <element signature="e#5129#5231#0" expanded="false" />
-            <element signature="e#5262#5312#0" expanded="false" />
-            <element signature="e#5419#5578#0" expanded="false" />
-            <element signature="e#5609#5738#0" expanded="false" />
-            <element signature="e#5758#6212#0" expanded="false" />
-            <element signature="e#6083#6180#0" expanded="false" />
-            <element signature="e#6279#7083#0" expanded="false" />
-            <marker date="1485447241641" expanded="true" signature="15:11173" ph="{...}" />
-            <marker date="1485447241641" expanded="true" signature="2754:11171" ph="[...]" />
-            <marker date="1485447241641" expanded="true" signature="6214:11170" ph="{&quot;questionSetId&quot;: &quot;survey-set&quot;...}" />
-            <marker date="1485447241641" expanded="true" signature="6278:11164" ph="[...]" />
-            <marker date="1485447241641" expanded="true" signature="7085:11163" ph="{&quot;questionId&quot;: &quot;survey-devices-owned&quot;...}" />
-            <marker date="1485447241641" expanded="false" signature="7306:10778" ph="{&quot;type&quot;: &quot;checkboxOptionsInput&quot;...}" />
-            <marker date="1485447241641" expanded="true" signature="7385:10764" ph="[...]" />
-            <marker date="1485447241641" expanded="true" signature="7386:9880" ph="{&quot;text&quot;: &quot;Laptop&quot;...}" />
-            <marker date="1485447241641" expanded="true" signature="7512:9862" ph="[...]" />
-            <marker date="1485447241641" expanded="true" signature="7513:9861" ph="{&quot;questionId&quot;: &quot;laptop-os&quot;...}" />
-            <marker date="1485447241641" expanded="true" signature="7829:9839" ph="{&quot;type&quot;: &quot;radioOptionsInput&quot;...}" />
-            <marker date="1485447241641" expanded="true" signature="7929:9813" ph="[...]" />
-            <marker date="1485447241641" expanded="true" signature="8341:9812" ph="{&quot;text&quot;: &quot;Other&quot;...}" />
-            <marker date="1485447241641" expanded="true" signature="8501:9782" ph="[...]" />
-            <marker date="1485447241641" expanded="true" signature="8502:9130" ph="{&quot;questionId&quot;: &quot;laptop-os-other-text&quot;...}" />
-            <marker date="1485447241641" expanded="true" signature="8703:8885" ph="{&quot;type&quot;: &quot;textInput&quot;...}" />
-            <marker date="1485447241641" expanded="true" signature="8939:9096" ph="[...]" />
-            <marker date="1485447241641" expanded="true" signature="8940:9095" ph="{&quot;type&quot;: &quot;isLength&quot;...}" />
-            <marker date="1485447241641" expanded="true" signature="9132:9781" ph="{&quot;questionId&quot;: &quot;laptop-os-other-reason&quot;...}" />
-            <marker date="1485447241641" expanded="true" signature="9341:9536" ph="{&quot;type&quot;: &quot;textareaInput&quot;...}" />
-            <marker date="1485447241641" expanded="true" signature="9590:9747" ph="[...]" />
-            <marker date="1485447241641" expanded="true" signature="9591:9746" ph="{&quot;type&quot;: &quot;isLength&quot;...}" />
-            <marker date="1485447241641" expanded="true" signature="9882:9990" ph="{&quot;text&quot;: &quot;Desktop Computer&quot;...}" />
-            <marker date="1485447241641" expanded="true" signature="9992:10089" ph="{&quot;text&quot;: &quot;Tablet&quot;...}" />
-            <marker date="1485447241641" expanded="true" signature="10091:10188" ph="{&quot;text&quot;: &quot;Mobile&quot;...}" />
-            <marker date="1485447241641" expanded="true" signature="10190:10291" ph="{&quot;text&quot;: &quot;Smart Watch&quot;...}" />
-            <marker date="1485447241641" expanded="true" signature="10293:10763" ph="{&quot;text&quot;: &quot;None&quot;...}" />
-            <marker date="1485447241641" expanded="true" signature="10415:10745" ph="[...]" />
-            <marker date="1485447241641" expanded="true" signature="10416:10744" ph="{&quot;questionId&quot;: &quot;no-devices-how&quot;...}" />
-            <marker date="1485447241641" expanded="true" signature="10587:10722" ph="{&quot;type&quot;: &quot;textInput&quot;...}" />
-            <marker date="1485447241641" expanded="true" signature="10808:11153" ph="[...]" />
-            <marker date="1485447241641" expanded="false" signature="10809:11152" ph="{&quot;type&quot;: &quot;isAllIn&quot;...}" />
-            <marker date="1485447241641" expanded="true" signature="10874:11138" ph="[...]" />
-            <marker date="1485447241641" expanded="true" signature="10896:11120" ph="[...]" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2506,6 +2413,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="249" column="29" lean-forward="false" selection-start-line="249" selection-start-column="29" selection-end-line="249" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2533,6 +2441,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-119">
           <caret line="20" column="38" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#44#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2593,26 +2504,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/react_src/components/Admin/Navigation/BuyerNavContainer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="23" lean-forward="false" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Admin/Question/Question.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -2715,14 +2610,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanel.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="20" lean-forward="false" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/react_src/components/Admin/Question/QuestionListContainer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-374">
@@ -2759,18 +2646,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelEditContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="131" column="41" lean-forward="true" selection-start-line="131" selection-start-column="41" selection-end-line="131" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-            <element signature="n#!!block;n#validateNewPanel#0;n#QuestionPanelEditContainer#0" expanded="false" />
-            <element signature="n#!!block;n#handleCancel#0;n#QuestionPanelEditContainer#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/react_src/components/Admin/Question/QuestionAddEdit.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="850">
@@ -2799,24 +2674,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/Education/EducationEdit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="117" column="46" lean-forward="true" selection-start-line="110" selection-start-column="32" selection-end-line="117" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelAddEdit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="66" column="67" lean-forward="false" selection-start-line="66" selection-start-column="54" selection-end-line="66" selection-end-column="67" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelContainer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
@@ -2824,6 +2681,103 @@
           <folding>
             <element signature="e#0#39#0" expanded="true" />
             <element signature="n#!!block;n#onRemovePanel#0;n#QuestionPanelContainer#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelEditContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="131" column="41" lean-forward="true" selection-start-line="131" selection-start-column="41" selection-end-line="131" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <element signature="n#!!block;n#validateNewPanel#0;n#QuestionPanelEditContainer#0" expanded="false" />
+            <element signature="n#!!block;n#handleCancel#0;n#QuestionPanelEditContainer#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Admin/Question/AnswerTypeSelect/SelectOptions.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Admin/Question/Question.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanel.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="37" column="1" lean-forward="false" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/Employment/Employment.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="53" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Profile/Education/EducationEdit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1282">
+          <caret line="19" column="82" lean-forward="true" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Common/QuestionForm/TestSchema.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="34" column="33" lean-forward="true" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="33" />
+          <folding>
+            <element signature="e#33#564#0" expanded="false" />
+            <element signature="e#1715#1881#0" expanded="false" />
+            <element signature="e#1902#1946#0" expanded="false" />
+            <element signature="e#1971#2012#0" expanded="false" />
+            <element signature="e#2040#2121#0" expanded="false" />
+            <element signature="e#2565#2642#0" expanded="false" />
+            <element signature="e#4096#5756#0" expanded="false" />
+            <element signature="e#4163#4584#0" expanded="false" />
+            <element signature="e#4692#4789#0" expanded="false" />
+            <element signature="e#4820#4903#0" expanded="false" />
+            <element signature="e#4916#5323#0" expanded="false" />
+            <element signature="e#5129#5231#0" expanded="false" />
+            <element signature="e#5262#5312#0" expanded="false" />
+            <element signature="e#5419#5578#0" expanded="false" />
+            <element signature="e#5609#5738#0" expanded="false" />
+            <element signature="e#5758#6212#0" expanded="false" />
+            <element signature="e#6083#6180#0" expanded="false" />
+            <element signature="e#6279#7083#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelAddEdit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
           </folding>
         </state>
       </provider>

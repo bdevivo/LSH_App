@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list id="23724d5d-f374-4c1f-8907-1c5c6ffa7959" name="Default" comment="" />
-    <list default="true" id="db9cce2d-2ebf-4e24-9d2e-9ec417bf0e97" name="Add all changelist" comment="Question Panels - part 3">
+    <list default="true" id="db9cce2d-2ebf-4e24-9d2e-9ec417bf0e97" name="Add all changelist" comment="Question Panels - part 4">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanel.css" afterPath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanel.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelAddEdit.js" afterPath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelAddEdit.js" />
     </list>
     <ignored path="QuestionGrid.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1899,7 +1897,7 @@
       <workItem from="1481934375275" duration="49519000" />
       <workItem from="1484334635642" duration="13610000" />
       <workItem from="1484848744500" duration="24814000" />
-      <workItem from="1485124973229" duration="17459000" />
+      <workItem from="1485124973229" duration="18071000" />
     </task>
     <task id="LOCAL-00001" summary="Update from NJ">
       <created>1469553603490</created>
@@ -2174,11 +2172,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485747495806</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Question Panels - part 4">
+      <created>1485834527880</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1485834527880</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1186201000" />
+    <option name="totallyTimeSpent" value="1186813000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -2241,7 +2246,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Add Auth0 login" />
     <MESSAGE value="Fixes for avatar upload" />
     <MESSAGE value="Fixes for onProfileUpdate" />
     <MESSAGE value="Moving profile stuff to redux (part 1)" />
@@ -2266,7 +2270,8 @@
     <MESSAGE value="Added Winterfell" />
     <MESSAGE value="Beginning to add Admin -&gt; Question Panels" />
     <MESSAGE value="Question Panels - part 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="Question Panels - part 3" />
+    <MESSAGE value="Question Panels - part 4" />
+    <option name="LAST_COMMIT_MESSAGE" value="Question Panels - part 4" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

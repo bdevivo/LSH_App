@@ -13,11 +13,15 @@ const classNames = require('classnames');
  * @returns {XML}
  * @constructor
  */
-const QuestionPanelAddEdit = ({qPanel, pageTitle, questionPanelFunctions}) => {
+const QuestionPanelAddEdit = ({qPanel, pageTitle, questionPanelFunctions, panelTargets}) => {
 
     let {onTextFieldChanged, onUpdateAction} = questionPanelFunctions;
     let labelColSize = 3;
     let inputColSize = 9;
+
+    let panelTargetOptions = panelTargets.map((panel, i) =>
+       <option key={i} value={panel.id}>{panel.name}</option>
+    );
 
     return (
         <div>
@@ -85,7 +89,7 @@ const QuestionPanelAddEdit = ({qPanel, pageTitle, questionPanelFunctions}) => {
                                          name="defaultActionTarget"
                                          defaultValue={qPanel.defaultAction.target}
                                          onChange={onUpdateAction}>
-
+                               {panelTargetOptions}
                             </FormControl>
                         </Col>
                     </FormGroup>
@@ -140,7 +144,8 @@ const QuestionPanelAddEdit = ({qPanel, pageTitle, questionPanelFunctions}) => {
 QuestionPanelAddEdit.propTypes = {
     qPanel: T.object.isRequired,
     pageTitle: T.string.isRequired,
-    questionPanelFunctions: T.object.isRequired
+    questionPanelFunctions: T.object.isRequired,
+      panelTargets: T.array.isRequired
 };
 
 export default CSSModules(QuestionPanelAddEdit, styles);

@@ -142,6 +142,7 @@ class QuestionPanelEditContainer extends React.Component {
                   qPanel={qPanel}
                   pageTitle={pageTitle}
                   questionPanelFunctions={questionPanelFunctions}
+                  panelTargets={this.props.panelTargets}
                />
             </Modal>
 
@@ -157,7 +158,8 @@ QuestionPanelEditContainer.propTypes = {
    questionPanelActions: PropTypes.object.isRequired,
    modalVisible: PropTypes.bool.isRequired,
    onAddPanelClose: PropTypes.func.isRequired,
-   userName: PropTypes.string.isRequired
+   userName: PropTypes.string.isRequired,
+   panelTargets: PropTypes.array.isRequired
 };
 
 

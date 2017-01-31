@@ -120,6 +120,14 @@ class QuestionPanelContainer extends React.Component {
 
         let staticPanelInfo = <QuestionPanel qPanel={this.state.currentPanel}/>;
 
+        let panelTargets = this.state.qPanels.map(panel => {
+
+              return{
+                 id: panel._id,
+                 name: panel.name
+              };
+        });
+
         let addEditButtons = (<div>
             <Button type="button" className="btn btn-xs btn-default" aria-label="Edit"
                     onClick={this.onEditPanel}>
@@ -153,7 +161,8 @@ class QuestionPanelContainer extends React.Component {
                     userName={this.props.userName}
                     questionPanelActions={this.props.questionPanelActions}
                     modalVisible={this.state.showModal}   // if we are adding a new panel, show the Add Panel modal
-                    onAddPanelClose={this.onAddPanelClose}/>
+                    onAddPanelClose={this.onAddPanelClose}
+                     panelTargets={panelTargets} />
 
             </div>);
     }

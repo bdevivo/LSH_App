@@ -230,14 +230,6 @@ nav > div.container {
     position: relative;
 }
 
-.nav > li > a {
-    padding-left: 5px;
-    padding-right: 5px;
-    background-image: none !important;
-    background-color: transparent !important;
-    -webkit-box-shadow: none !important;
-}
-
 .nav > li.navItemWithSep > a:after {
     content: "|";
     display: inline-block;
@@ -258,7 +250,7 @@ nav > div.container {
 
 .alertError .modal-header {
    background-color: #ffbaba;
-   padding: 10px; 15px 10px; 15px;
+   padding: 10px 15px 10px 15px;
 }
 
 .alertError .modal-header h4 {
@@ -272,4 +264,8 @@ nav > div.container {
    top: 25%;
    left: 50%;
    transform: translate(-50%, -50%) !important;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+
 }

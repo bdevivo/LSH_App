@@ -5,15 +5,18 @@ import styles from './QuestionPanel.css';
 
 const QuestionPanel = ({qPanel}) => {
 
-   let subHeader = <p><b>Header: </b> {qPanel.subHeader}</p>;
+   let subHeader = <p><b>Sub-header: </b> {qPanel.subHeader}</p>;
+   let defaultAction = qPanel.defaultAction.action === "GOTO"
+      ? "GOTO " + qPanel.defaultAction.target
+      : "SUBMIT";
 
    let panel_body =
       (<div>
-         <p><b>{qPanel.index}: </b> {qPanel.name}</p>
          <p><b>Header: </b> {qPanel.header}</p>
          {qPanel.subHeader.length > 0 && subHeader}
+         <p><b>Default Action: </b> {defaultAction}</p>
          <p><b>"Next" button text:</b> {qPanel.nextButtonText}</p>
-         // TODO: add the rest of the fields here
+         <p><b>"Back" button text:</b> {qPanel.backButtonText}</p>
       </div>);
 
 

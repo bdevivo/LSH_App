@@ -2,64 +2,78 @@ import 'whatwg-fetch';
 
 class QuestionPanelApi {
 
-   static addQuestionPanel(questionPanel) {
+   static addPanel(qPanel) {
 
+      // FOR TESTING ONLY
       return new Promise((resolve, reject) => {
-         const headers = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-         };
+         qPanel._id = Math.floor(Math.random() * 1000);
+         resolve(qPanel);
 
-         delete questionPanel._id;    // strip off the temporary id
-         const body = JSON.stringify(questionPanel);
-
-         return fetch('/api/questionPanels', {
-            method: 'POST',
-            headers: headers,
-            body: body
-         })
-            .then(response => {
-               return response.json();
-            })
-            .then(q => {
-               resolve(q);
-            })
-            .catch(err => {
-               alert("Error creating new question panel: " + err);
-               reject();
-            });
       });
+
+
+      // return new Promise((resolve, reject) => {
+      //    const headers = {
+      //       'Accept': 'application/json',
+      //       'Content-Type': 'application/json'
+      //    };
+      //
+      //    delete questionPanel._id;    // strip off the temporary id
+      //    const body = JSON.stringify(questionPanel);
+      //
+      //    return fetch('/api/questionPanels', {
+      //       method: 'POST',
+      //       headers: headers,
+      //       body: body
+      //    })
+      //       .then(response => {
+      //          return response.json();
+      //       })
+      //       .then(q => {
+      //          resolve(q);
+      //       })
+      //       .catch(err => {
+      //          alert("Error creating new question panel: " + err);
+      //          reject();
+      //       });
+      // });
    }
 
-   static updateQuestionPanel(questionPanel) {
+   static updatePanel(qPanel) {
 
+      // FOR TESTING ONLY
       return new Promise((resolve, reject) => {
-         const headers = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-         };
+         resolve(qPanel);
 
-         const body = JSON.stringify(questionPanel);
-
-         return fetch(`/api/questionPanels/${questionPanel._id}`, {
-            method: 'PATCH',
-            headers: headers,
-            body: body
-         })
-            .then(response => {
-               return response.json();
-            })
-            .then(response => {
-               resolve(response);
-            })
-            .catch(err => {
-               alert("Error updating question panel: " + err);
-               reject();
-            });
       });
+
+      // return new Promise((resolve, reject) => {
+      //    const headers = {
+      //       'Accept': 'application/json',
+      //       'Content-Type': 'application/json'
+      //    };
+      //
+      //    const body = JSON.stringify(questionPanel);
+      //
+      //    return fetch(`/api/questionPanels/${questionPanel._id}`, {
+      //       method: 'PATCH',
+      //       headers: headers,
+      //       body: body
+      //    })
+      //       .then(response => {
+      //          return response.json();
+      //       })
+      //       .then(response => {
+      //          resolve(response);
+      //       })
+      //       .catch(err => {
+      //          alert("Error updating question panel: " + err);
+      //          reject();
+      //       });
+      // });
    }
 
-   static getAllQuestionPanels() {
+   static getAllPanels() {
 
        return new Promise((resolve, reject) => {
           resolve([]);

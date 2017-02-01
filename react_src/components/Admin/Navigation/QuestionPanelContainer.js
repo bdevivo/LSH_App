@@ -12,27 +12,25 @@ class QuestionPanelContainer extends React.Component {
     constructor(props) {
         super(props);
 
-        let qPanels = [...props.qPanels];
-        let panelId = parseInt(this.props.params.id);
-        let currentPanel;
+        // let qPanels = [...props.qPanels];
+        // let panelId = parseInt(this.props.params.id);
+        // let currentPanel;
+        //
+        // if (qPanels.length === 0) {
+        //     currentPanel = {};
+        // }
+        // else if (panelId === 0) {
+        //     currentPanel = qPanels.find(x => x.index === 1);
+        // }
+        // else {
+        //     currentPanel = qPanels.find(x => x._id === panelId);
+        // }
 
-        if (qPanels.length === 0) {
-            currentPanel = {};
-        }
-        else if (panelId === 0) {
-            currentPanel = qPanels.find(x => x.index === 1);
-        }
-        else {
-            currentPanel = qPanels.find(x => x._id === panelId);
-        }
+       let initialState = this.getPanelState(this.props);
+       initialState.editPanel = {};
+       initialState.showModal = false;
 
-        this.state = {
-            qPanels: qPanels,
-            panelId: panelId,
-            currentPanel: currentPanel,
-            editPanel: {},
-            showModal: false
-        };
+        this.state = initialState;
 
         this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
         this.onAddPanel = this.onAddPanel.bind(this);
@@ -42,7 +40,29 @@ class QuestionPanelContainer extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({qPanel: nextProps.qPanel});
+        this.setState(this.getPanelState(nextProps));
+    }
+
+    getPanelState(props) {
+       let panelId = parseInt(props.params.id);
+       let qPanels = [...props.qPanels];
+       let currentPanel;
+
+       if (qPanels.length === 0) {
+          currentPanel = {};
+       }
+       else if (panelId === 0) {
+          currentPanel = qPanels.find(x => x.index === 1);
+       }
+       else {
+          currentPanel = qPanels.find(x => x._id === panelId);
+       }
+
+       return {
+          qPanels: qPanels,
+          panelId: panelId,
+          currentPanel: currentPanel
+       };
     }
 
     onAddPanel() {
@@ -128,7 +148,7 @@ class QuestionPanelContainer extends React.Component {
               };
         });
 
-        let addEditButtons = (<div>
+        let addEditButtons = (<div styleName="addEditButtonsDiv">
             <Button type="button" className="btn btn-xs btn-default" aria-label="Edit"
                     onClick={this.onEditPanel}>
                 <span className="glyphicon glyphicon-pencil"></span>
@@ -145,10 +165,9 @@ class QuestionPanelContainer extends React.Component {
         return (
             <div>
 
-                {/* ADD PANEL BUTTONS */}
+                {/* ADD PANEL BUTTON */}
                 <div styleName="addPanelDiv">
-                    <Button type="button" className="btn btn-sm btn-default" onClick={this.onAddPanel}>Add Question
-                        Panel</Button>
+                    <Button type="button" className="btn btn-sm btn-default" onClick={this.onAddPanel}>Add New</Button>
                 </div>
 
                 {hasPanels && staticPanelInfo}

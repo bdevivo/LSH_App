@@ -23,6 +23,7 @@ class QuestionPanelEditContainer extends React.Component {
       this.removePanel = this.removePanel.bind(this);
       this.handleCancel = this.handleCancel.bind(this);
       this.onTextFieldChanged = this.onTextFieldChanged.bind(this);
+      this.onUpdateDefaultAction = this.onUpdateDefaultAction.bind(this);
       this.savePanel = this.savePanel.bind(this);
    }
 
@@ -52,16 +53,16 @@ class QuestionPanelEditContainer extends React.Component {
       if (this.state.qPanel._id == 0) {
          savePanel.addedBy = userName;
          savePanel.addedDate = timestamp;
-         this.props.questionPanelActions.addQuestionPanel(savePanel);
+         this.props.questionPanelActions.addPanel(savePanel);
       }
       else {
          savePanel.modifiedBy = userName;
          savePanel.modifiedDate = timestamp;
-         this.props.questionPanelActions.updateQuestionPanel(savePanel);
+         this.props.questionPanelActions.updatePanel(savePanel);
       }
 
       this.props.onAddPanelClose();
-      this.closeModal();
+      //this.closeModal();
    }
 
    validateNewPanel() {
@@ -101,7 +102,7 @@ class QuestionPanelEditContainer extends React.Component {
       this.setState(newState);
 
       this.props.onAddPanelClose();
-      this.closeModal();
+      //this.closeModal();
    }
 
    removePanel() {
@@ -110,6 +111,19 @@ class QuestionPanelEditContainer extends React.Component {
       }, () => {
          // user clicked Cancel -- do nothing
       });
+   }
+
+   onUpdateDefaultAction(event) {
+      let field = event.target.name;
+      let newState = update(this.state, {
+         qPanel: {
+            defaultAction: {
+               [field]: {$set: event.target.value}
+            }
+         }
+      });
+
+      this.setState(newState);
    }
 
    onTextFieldChanged(event) {
@@ -131,7 +145,8 @@ class QuestionPanelEditContainer extends React.Component {
       let questionPanelFunctions = {
          handleSubmit: this.handleSubmit,
          handleCancel: this.handleCancel,
-         onTextFieldChanged: this.onTextFieldChanged
+         onTextFieldChanged: this.onTextFieldChanged,
+         onUpdateDefaultAction: this.onUpdateDefaultAction
       };
 
       return (

@@ -44,7 +44,7 @@ const HeaderCenterNav = ({isLoggedIn, isAdmin, isBuyer}) => {
         }
 
         centerNav = (
-            <Nav>
+            <Nav styleName="centerNav">
                 {adminNavItems}
                 {rootNavItems}
             </Nav>
@@ -54,7 +54,7 @@ const HeaderCenterNav = ({isLoggedIn, isAdmin, isBuyer}) => {
     else // not logged in
     {
         centerNav = (
-            <Nav>
+            <Nav styleName="centerNav">
                 <HeaderLink key="/browseTalent" to="/browseTalent" className="navItemWithSep">Browse Talent (not logged in)</HeaderLink>
                 <HeaderLink key="/learnMore" to="/learnMore" className="navItem">Learn More</HeaderLink>
             </Nav>

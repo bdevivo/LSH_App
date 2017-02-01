@@ -6,7 +6,7 @@ import CSSModules from 'react-css-modules';
 const classNames = require('classnames');
 
 /**
- * The Modal form for adding or editing a Question Panel.
+ * The modal form for adding or editing a Question Panel.
  * @param qPanel
  * @param pageTitle
  * @param questionPanelFunctions
@@ -15,7 +15,7 @@ const classNames = require('classnames');
  */
 const QuestionPanelAddEdit = ({qPanel, pageTitle, questionPanelFunctions, panelTargets}) => {
 
-    let {onTextFieldChanged, onUpdateAction} = questionPanelFunctions;
+    let {onTextFieldChanged, onUpdateDefaultAction} = questionPanelFunctions;
     let labelColSize = 3;
     let inputColSize = 9;
 
@@ -68,27 +68,27 @@ const QuestionPanelAddEdit = ({qPanel, pageTitle, questionPanelFunctions, panelT
                     {/* DEFAULT ACTION */}
                     <FormGroup controlId="formControlsSelectDefaultAction">
                         <h4>Default Action</h4>
-                        <Col sm={5} smOffset={2}>
+                        <Col sm={3} smOffset={1}>
                             <ControlLabel>Action</ControlLabel>
                             <FormControl styleName="formInputSelect"
                                          componentClass="select"
                                          placeholder="select"
-                                         name="defaultAction"
+                                         name="action"
                                          defaultValue={qPanel.defaultAction.action}
-                                         onChange={onUpdateAction}>
+                                         onChange={onUpdateDefaultAction}>
                                 <option key="placeholder" value="0">Select...</option>
-                                <option key="goto" value="GOTO">GO TO</option>
+                                <option key="goto" value="GOTO">GOTO</option>
                                 <option key="submit" value="SUBMIT">SUBMIT</option>
                             </FormControl>
                         </Col>
-                        <Col sm={5}>
+                        <Col sm={8}>
                             <ControlLabel>Target</ControlLabel>
-                            <FormControl styleName="formInputSelect"
+                            <FormControl styleName="formInputSelectWide"
                                          componentClass="select"
                                          placeholder="select"
-                                         name="defaultActionTarget"
+                                         name="target"
                                          defaultValue={qPanel.defaultAction.target}
-                                         onChange={onUpdateAction}>
+                                         onChange={onUpdateDefaultAction}>
                                {panelTargetOptions}
                             </FormControl>
                         </Col>
@@ -98,29 +98,25 @@ const QuestionPanelAddEdit = ({qPanel, pageTitle, questionPanelFunctions, panelT
                         <hr/>
                     </Row>
 
-
-                    {/* "NEXT" BUTTON TEXT*/}
+                   {/* "NEXT" and "BACK" BUTTON TEXT*/}
                     <FormGroup controlId="formControlsQuestionPanelNextButton">
-                        <Col componentClass={ControlLabel} styleName="inlineLabel" sm={labelColSize}>"Next" Button
-                            Text:</Col>
-                        <Col sm={inputColSize} styleName="inlineTextCol">
+                       <h4>Button Text</h4>
+                       {/* "NEXT" BUTTON */}
+                        <Col componentClass={ControlLabel} styleName="inlineLabel" sm={1} smOffset={1}>"Next":</Col>
+                        <Col sm={3} styleName="inlineTextCol">
                             <FormControl name="nextButtonText" type="text" placeholder="add text"
                                          value={qPanel.nextButtonText}
                                          onChange={onTextFieldChanged} styleName="inlineTextControl"/>
                         </Col>
-                    </FormGroup>
 
-                    {/* "BACK" BUTTON TEXT*/}
-                    <FormGroup controlId="formControlsQuestionPanelBackButton">
-                        <Col componentClass={ControlLabel} styleName="inlineLabel" sm={labelColSize}>"Back" Button
-                            Text:</Col>
-                        <Col sm={inputColSize} styleName="inlineTextCol">
-                            <FormControl name="backButtonText" type="text" placeholder="add text"
-                                         value={qPanel.backButtonText}
-                                         onChange={onTextFieldChanged} styleName="inlineTextControl"/>
-                        </Col>
+                       {/* "BACK" BUTTON */}
+                       <Col componentClass={ControlLabel} styleName="inlineLabel" sm={1} smOffset={1}>"Back":</Col>
+                       <Col sm={3} styleName="inlineTextCol">
+                          <FormControl name="backButtonText" type="text" placeholder="add text"
+                                       value={qPanel.backButtonText}
+                                       onChange={onTextFieldChanged} styleName="inlineTextControl"/>
+                       </Col>
                     </FormGroup>
-
 
                 </Form>
 

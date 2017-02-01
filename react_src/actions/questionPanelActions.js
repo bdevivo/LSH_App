@@ -23,7 +23,7 @@ export function removePanelSuccess(panelId) {
 export function getAllPanels() {
    return function(dispatch) {
       dispatch(beginAjaxCall());
-      return questionPanelApi.getAllQuestionPanels()
+      return questionPanelApi.getAllPanels()
          .then(qPanels => {
             dispatch(endAjaxCall());
             dispatch(loadPanelsSuccess(qPanels));

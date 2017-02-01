@@ -1,5 +1,5 @@
 import React, {PropTypes as T} from 'react';
-import {Nav, NavItem} from 'react-bootstrap';
+import {Nav, NavItem, Row, Col} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 import * as questionPanelActions from '../../../actions/questionPanelActions';
 import {connect} from 'react-redux';
@@ -35,24 +35,33 @@ class QuestionPanelListContainer extends React.Component {
       let sortedPanels = this.state.qPanels.sort((a, b) => {
          return a.index - b.index;
       });
-      let panelNav = sortedPanels.map((panel, index) =>
-         <LinkContainer to="/admin/questionPanel/panelId" key="index">
-            <NavItem eventKey={index}>{panel.name}</NavItem>
-         </LinkContainer>
-      );
+      let panelNav = sortedPanels.map((panel, index) => {
+         let path = "/admin/panels/panel/" + panel._id;
+
+          return  (<LinkContainer to={path} key={index}>
+                     <NavItem eventKey={index}>{panel.name}</NavItem>
+                  </LinkContainer>);
+      });
 
 
       return (
          <div>
 
+
             <h3>Question Panels</h3>
 
+            <Row>
 
-            <Nav bsStyle="pills" stacked activeKey={1}>
-               {panelNav}
-            </Nav>
+               <Col md={3}>
+                  <Nav bsStyle="pills" stacked activeKey={1}>
+                     {panelNav}
+                  </Nav>
+               </Col>
 
-            {currentPanel}
+               <Col md={9}>
+                  {currentPanel}
+               </Col>
+            </Row>
 
          </div>
       );

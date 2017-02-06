@@ -4,6 +4,7 @@ export default
 {
     questions: [],
     questionPanels: [],
+   questionSets: [],
     auth: {
         isLoggedIn: false
     },
@@ -34,7 +35,8 @@ export default
     ui: {
         profile_section: 'account',
         profile_section_name: 'Account',
-        admin_active_panel_id: '0'
+        admin_active_panel_id: '0',
+       admin_active_qset_id: '0'
     },
     loadedData: {
         questions: false,

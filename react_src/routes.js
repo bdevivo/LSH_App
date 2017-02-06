@@ -12,8 +12,8 @@ import LoginContainer from './components/Login/LoginContainer';
 import LoginCallbackContainer from './components/Login/LoginCallbackContainer';
 import AdminContainer from './components/Admin/AdminContainer';
 import QuestionListContainer from './components/Admin/Question/QuestionListContainer';
-import QuestionPanelListContainer from './components/Admin/Navigation/QuestionPanelListContainer';
-import QuestionPanel from './components/Admin/Navigation/QuestionPanelContainer';
+import QuestionPanelListContainer from './components/Admin/QuestionPanel/QuestionPanelListContainer';
+import QuestionPanel from './components/Admin/QuestionPanel/QuestionPanelContainer';
 import QuestionForm from './components/Common/QuestionForm/FormContainer';
 import {requireAuth} from './auth_utils/auth';
 

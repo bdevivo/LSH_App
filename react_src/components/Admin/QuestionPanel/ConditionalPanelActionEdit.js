@@ -13,14 +13,14 @@ const ConditionalPanelActionEdit = ({conditionalAction, conditionalActionsFuncti
     );
     questionOptions.unshift(<option key="select" value="0">select question...</option>);
 
-    // Each response is a selectOptionItem member of a Question
+    // Each response is a selectOptionItem or booleanOption member of a Question
     let responseOptions = potentialResponses.map((response, i) =>
         <option key={i} value={response.id}>{response.text}</option>
     );
     responseOptions.unshift(<option key="select" value="0">select answer...</option>);
 
     let panelTargetOptions = panelTargets.map((panel, i) =>
-        <option key={i} value={panel._id}>{panel.name}</option>
+        <option key={i} value={panel.id}>{panel.name}</option>
     );
     panelTargetOptions.unshift(<option key="select" value="0">select panel...</option>);
 

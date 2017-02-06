@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import ConditionalPanelActionEdit from './ConditionalPanelActionEdit';
+import * as optionHelpers from '../../../utils/questionHelpers';
 import update from 'immutability-helper';
 
 class ConditionalPanelActionEditContainer extends React.Component {
@@ -10,7 +11,9 @@ class ConditionalPanelActionEditContainer extends React.Component {
         let potentialResponses = [];
         if (conditionalAction.id != 0) {
             let conditionalQuestion = questions.find(x => x._id === conditionalAction.questionId);
-            potentialResponses = conditionalQuestion.selectOptionItems;
+            if(conditionalQuestion){
+               potentialResponses = optionHelpers.getPotentialResponses(conditionalQuestion);
+            }
         }
 
         this.state = {
@@ -43,8 +46,8 @@ class ConditionalPanelActionEditContainer extends React.Component {
         });
 
         let selectedQuestion = this.state.questions.find(x => x._id == selectedQuestionId);
-        if (selectedQuestion && selectedQuestion.answerType.includes("Select")) {
-            newState.potentialResponses = selectedQuestion.selectOptionItems;
+        if (selectedQuestion) {
+            newState.potentialResponses = optionHelpers.getPotentialResponses(selectedQuestion);
         }
         else {
             newState.potentialResponses = [];
@@ -114,8 +117,8 @@ class ConditionalPanelActionEditContainer extends React.Component {
             // re-set the potential responses
             let originalAction = this.props.conditionalAction;
             let selectedQuestion = this.state.questions.find(x => x._id == originalAction.questionId);
-            if (selectedQuestion && selectedQuestion.answerType.includes("Select")) {
-                newState.potentialResponses = selectedQuestion.selectOptionItems;
+            if (selectedQuestion) {
+                newState.potentialResponses = optionHelpers.getPotentialResponses(selectedQuestion);
             }
             else {
                 newState.potentialResponses = [];

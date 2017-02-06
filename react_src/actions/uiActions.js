@@ -13,3 +13,8 @@ export function loginPageEntered(section, sectionName) {
 export function adminQuestionPanelSelected(panelId) {
     return {type: types.ADMIN_QUESTION_PANEL_SELECTED, panelId};
 }
+
+export function adminQuestionSetSelected(qSetId) {
+   return {type: types.ADMIN_QUESTION_SET_SELECTED, qSetId};
+}
+

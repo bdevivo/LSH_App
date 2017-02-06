@@ -92,7 +92,7 @@ class QuestionPanelContainer extends React.Component {
             index: nextIndex,
             name: "",
             header: "",
-            subheader: "",
+            subHeader: "",
             nextButtonText: "",
             backButtonText: "",
             defaultAction: {
@@ -165,7 +165,9 @@ class QuestionPanelContainer extends React.Component {
             };
         });
 
-        let staticPanelInfo = hasPanels ? <QuestionPanel qPanel={this.state.currentPanel} panelTargets={panelTargets}/> : null;
+        let staticPanelInfo = hasPanels
+           ? <QuestionPanel qPanel={this.state.currentPanel} panelTargets={panelTargets} questions={this.state.questions}/>
+           : null;
 
         let addEditButtons = (<div styleName="addEditButtonsDiv">
             <Button type="button" className="btn btn-xs btn-default" aria-label="Edit"

@@ -57,7 +57,7 @@ class QuestionPanelEditContainer extends React.Component {
         let now = new Date();
         let timestamp = dateFormat(now, "mm.dd.yyyy HH:MM:ss");
 
-        if (this.state.qPanel._id == 0) {
+        if (this.state.qPanel._id == '0') {
             savePanel.addedBy = userName;
             savePanel.addedDate = timestamp;
             this.props.questionPanelActions.addPanel(savePanel);
@@ -69,7 +69,6 @@ class QuestionPanelEditContainer extends React.Component {
         }
 
         this.props.onAddPanelClose();
-        //this.closeModal();
     }
 
     validateNewPanel() {
@@ -92,8 +91,23 @@ class QuestionPanelEditContainer extends React.Component {
             return createErrorResult("Panel Name is empty.");
         }
 
-        // Rule #2: if there is conditional text, the alternate text must be non-blank
-        // etc.
+        // Rule #2: must have non-blank header field
+       if (qPanel.header.length === 0) {
+          return createErrorResult("Panel Header is empty.");
+       }
+
+       // Rule #3: must have valid Default Action
+       if (qPanel.defaultAction.action === "goto" && !qPanel.defaultAction.target) {
+          return createErrorResult("GO TO action must have a target.");
+       }
+
+       // Rule #4: Each conditional action must be saved
+       for (let i = 0; i < qPanel.conditionalActions.length; i++) {
+           if (qPanel.conditionalActions[i].questionId == 0) {
+              return createErrorResult("Condition Actions must be saved or canceled.");
+           }
+       }
+
 
         return validationResult;
 

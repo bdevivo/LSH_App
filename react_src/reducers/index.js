@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
 import questions from './questionReducer';
 import questionPanels from './questionPanelReducer';
+import questionSets from './questionSetReducer';
 import profile from './profileReducer';
 import auth from './authReducer';
 import ui from './uiReducer';
@@ -11,6 +12,7 @@ const rootReducer = combineReducers( {
     // using shorthand property names
     questions,
     questionPanels,
+    questionSets,
     profile,
     auth,
     ui,

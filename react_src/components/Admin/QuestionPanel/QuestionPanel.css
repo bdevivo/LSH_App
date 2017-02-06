@@ -7,10 +7,12 @@
 
 .addEditButtonsDiv {
     margin-top: 25px;
+   margin-left: 75px;
 }
 
 .questionPanelDiv {
     padding-top: 10px;
+   margin-left: 50px;
 }
 
 .questionPanelBodyDiv {
@@ -92,6 +94,15 @@
 
 .conditionalActionFormGroup {
     margin-bottom: 45px;
+}
+
+.conditionActionList {
+   margin-top: 12px;
+   margin-bottom: 15px;
+}
+
+.conditionActionListItem {
+   margin-bottom: 10px;
 }
 
 .selectColLeft {

@@ -2,33 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list id="23724d5d-f374-4c1f-8907-1c5c6ffa7959" name="Default" comment="" />
-    <list default="true" id="db9cce2d-2ebf-4e24-9d2e-9ec417bf0e97" name="Add all changelist" comment="Question Panels - part 4">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/Admin/Navigation/ConditionalPanelActionEdit.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/Admin/Navigation/ConditionalPanelActionEditContainer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/reducers/loadedDataReducer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/models/QuestionPanel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/routes/questionPanels.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+    <list default="true" id="db9cce2d-2ebf-4e24-9d2e-9ec417bf0e97" name="Add all changelist" comment="Question Panels - part 7">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/actions/actionTypes.js" afterPath="$PROJECT_DIR$/react_src/actions/actionTypes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/actions/questionActions.js" afterPath="$PROJECT_DIR$/react_src/actions/questionActions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/actions/questionPanelActions.js" afterPath="$PROJECT_DIR$/react_src/actions/questionPanelActions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/actions/uiActions.js" afterPath="$PROJECT_DIR$/react_src/actions/uiActions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/api/questionPanelApi.js" afterPath="$PROJECT_DIR$/react_src/api/questionPanelApi.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanel.css" afterPath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanel.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanel.js" afterPath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelAddEdit.js" afterPath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelAddEdit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelEditContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelEditContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelListContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Admin/Navigation/QuestionPanelListContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Admin/Question/QuestionAddEdit.js" afterPath="$PROJECT_DIR$/react_src/components/Admin/Question/QuestionAddEdit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Admin/Question/QuestionListContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Admin/Question/QuestionListContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/reducers/index.js" afterPath="$PROJECT_DIR$/react_src/reducers/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/reducers/uiReducer.js" afterPath="$PROJECT_DIR$/react_src/reducers/uiReducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/store/configureStore.js" afterPath="$PROJECT_DIR$/react_src/store/configureStore.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/store/initialState.js" afterPath="$PROJECT_DIR$/react_src/store/initialState.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/styles.css" afterPath="$PROJECT_DIR$/styles/styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tools/routes/index.js" afterPath="$PROJECT_DIR$/tools/routes/index.js" />
     </list>
     <ignored path="QuestionGrid.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1803,7 +1778,7 @@
       <workItem from="1484848744500" duration="24814000" />
       <workItem from="1485124973229" duration="20293000" />
       <workItem from="1486045953468" duration="45289000" />
-      <workItem from="1486172408408" duration="29258000" />
+      <workItem from="1486172408408" duration="29869000" />
     </task>
     <task id="LOCAL-00001" summary="Update from NJ">
       <created>1469553603490</created>
@@ -2092,11 +2067,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485865623484</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Question Panels - part 7">
+      <created>1486343463905</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1486343463905</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1263582000" />
+    <option name="totallyTimeSpent" value="1264193000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -2159,7 +2141,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Fixes for avatar upload" />
     <MESSAGE value="Fixes for onProfileUpdate" />
     <MESSAGE value="Moving profile stuff to redux (part 1)" />
     <MESSAGE value="More work on reduxifying the Header" />
@@ -2184,7 +2165,8 @@
     <MESSAGE value="Beginning to add Admin -&gt; Question Panels" />
     <MESSAGE value="Question Panels - part 3" />
     <MESSAGE value="Question Panels - part 4" />
-    <option name="LAST_COMMIT_MESSAGE" value="Question Panels - part 4" />
+    <MESSAGE value="Question Panels - part 7" />
+    <option name="LAST_COMMIT_MESSAGE" value="Question Panels - part 7" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2337,6 +2319,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="62" lean-forward="false" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="62" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2344,6 +2327,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="75" lean-forward="false" selection-start-line="16" selection-start-column="75" selection-end-line="16" selection-end-column="75" />
+          <folding>
+            <element signature="e#0#49#0" expanded="false" />
+            <marker date="1486064536031" expanded="true" signature="206:649" ph="{...}" />
+            <marker date="1486064536031" expanded="true" signature="234:647" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2394,6 +2382,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="9" column="65" lean-forward="true" selection-start-line="9" selection-start-column="65" selection-end-line="9" selection-end-column="65" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2409,6 +2398,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="39" lean-forward="false" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#62#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

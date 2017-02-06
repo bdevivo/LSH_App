@@ -34,6 +34,11 @@ export default
     ui: {
         profile_section: 'account',
         profile_section_name: 'Account',
+        admin_active_panel_id: '0'
+    },
+    loadedData: {
+        questions: false,
+        questionPanels: false
     },
     ajaxCallsInProgress: 0
 };

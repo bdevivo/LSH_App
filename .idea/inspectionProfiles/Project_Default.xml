@@ -4,7 +4,7 @@
     <inspection_tool class="CheckTagEmptyBody" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="Eslint" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="RequiredAttributes" enabled="true" level="WARNING" enabled_by_default="true">
-      <option name="myAdditionalRequiredHtmlAttributes" value="onValidSubmit,onValidSubmit" />
+      <option name="myAdditionalRequiredHtmlAttributes" value="onValidSubmit,onValidSubmit,onValidSubmit,onValidSubmit" />
     </inspection_tool>
   </profile>
 </component>

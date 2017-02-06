@@ -7,7 +7,6 @@ import CSSModules from 'react-css-modules';
 
 const classNames = require('classnames');
 
-
 const QuestionAddEdit = ({
     question, pageTitle, questionFunctions, selectionOptionFunctions, onEditBooleanOptionSave,
     onToggleConditionalQuestionText, isQuestionTextConditional}) => {

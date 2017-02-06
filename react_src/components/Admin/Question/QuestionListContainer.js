@@ -21,7 +21,9 @@ class QuestionListContainer extends React.Component {
     }
 
     componentDidMount() {
-        this.props.questionActions.getAllQuestions();
+        if (!this.props.areQuestionsLoaded) {
+            this.props.questionActions.getAllQuestions();
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -111,12 +113,14 @@ class QuestionListContainer extends React.Component {
 
 QuestionListContainer.propTypes = {
     questions: PropTypes.array.isRequired,
-    questionActions: PropTypes.object.isRequired
+    questionActions: PropTypes.object.isRequired,
+    areQuestionsLoaded: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
     return {
-        questions: [...state.questions]
+        questions: [...state.questions],
+        areQuestionsLoaded: state.loadedData.questions
     };
 }
 

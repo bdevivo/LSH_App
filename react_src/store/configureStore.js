@@ -12,7 +12,7 @@ export default function configureStore(initialState) {
    )(createStore)(rootReducer);
 
    const config = {
-       blacklist: ['ui', 'ajaxCallsInProgress', 'questions']
+       blacklist: ['ui', 'loadedData', 'ajaxCallsInProgress', 'questions']
    };
 
    persistStore(store, config);

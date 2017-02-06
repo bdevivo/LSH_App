@@ -24,9 +24,9 @@ export function getAllQuestions() {
     return function(dispatch) {
         dispatch(beginAjaxCall());
         return questionApi.getAllQuestions()
-            .then(questions => {
+            .then(response => {
                 dispatch(endAjaxCall());
-                dispatch(loadQuestionsSuccess(questions.questions));
+                dispatch(loadQuestionsSuccess(response.questions));
             })
             .catch(error => {
                 dispatch(endAjaxCall());

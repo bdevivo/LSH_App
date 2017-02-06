@@ -1,11 +1,12 @@
+
 .addPanelDiv {
     margin-top: -35px;
     margin-bottom: 40px;
-   margin-left: 275px;
+    margin-left: 275px;
 }
 
 .addEditButtonsDiv {
-   margin-top: 25px;
+    margin-top: 25px;
 }
 
 .questionPanelDiv {
@@ -22,7 +23,7 @@
 
 .inlineLabel {
     padding-left: 0;
-    font-size: 13px;
+    font-size: 8pt;
 }
 
 .inlineTextCol {
@@ -30,11 +31,20 @@
 }
 
 .inlineTextControl {
-    font-size: 13px;
+    font-size: 8pt;
+    height: 28px !important;
+}
+
+.subHeaderLeftCol {
+    padding-left: 0;
 }
 
 .formInput {
     border-color: #ccc !important;
+}
+
+.formInputActionText {
+    font-size: 10pt;
 }
 
 .formInputSelect {
@@ -43,6 +53,64 @@
 }
 
 .formInputSelectWide {
-   composes: formInput;
-   width: 300px !important;
+    composes: formInput;
+    width: 300px !important;
+}
+
+.formInputActionDiv {
+    font-size: 8pt;
+    margin-top: 25px;
+    padding: 18px 15px 2px 15px;
+    border: solid 1px #c2e0ff;
+    width: 800px;
+}
+
+.formInputActionSelect {
+    composes: formInput;
+    display: inline;
+    width: 300px !important;
+    height: 28px !important;
+    margin-left: 5px;
+    margin-right: 10px;
+    font-size: 8pt;
+}
+
+.formInputActionSelectWide {
+    composes: formInputActionSelect;
+    width: 340px !important;
+}
+
+.formInputActionSelectSmall {
+    composes: formInputActionSelect;
+    width: 90px !important;
+}
+
+.conditionalActionButton {
+    margin-top: -35px;
+    margin-left: 250px;
+}
+
+.conditionalActionFormGroup {
+    margin-bottom: 45px;
+}
+
+.selectColLeft {
+    padding-right: 0;
+}
+
+.selectColRight {
+
+}
+
+.buttonDiv {
+    display: inline;
+    float: right;
+}
+
+.showTargetDiv {
+    display: inline
+}
+
+.hideTargetDiv {
+    display: none
 }

@@ -1,5 +1,6 @@
 import initialState from '../store/initialState';
 import * as types from '../actions/actionTypes';
+import update from 'immutability-helper';
 
 export default function uiReducer(ui = initialState.ui, action) {
 
@@ -12,6 +13,9 @@ export default function uiReducer(ui = initialState.ui, action) {
             });
         }
 
+        case types.ADMIN_QUESTION_PANEL_SELECTED: {
+            return update(ui, {admin_active_panel_id: {$set: action.panelId}});
+        }
 
         default:
             return ui;

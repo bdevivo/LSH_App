@@ -5,9 +5,9 @@ import styles from './QuestionSet.css';
 import CSSModules from 'react-css-modules';
 const classNames = require('classnames');
 
-const QuestionSetAddEdit = ({qPanel, questions, pageTitle, questionSetFunctions, canAddConditionalQuestion}) => {
+const QuestionSetAddEdit = ({questionSet, questions, pageTitle, questionSetFunctions, canAddConditionalQuestion}) => {
 
-    let {onTextFieldChanged, onUpdateDefaultAction} = questionSetFunctions;
+    let { onUpdateDefaultAction} = questionSetFunctions;
     let labelColSize = 2;
     let inputColSize = 8;
 
@@ -18,12 +18,12 @@ const QuestionSetAddEdit = ({qPanel, questions, pageTitle, questionSetFunctions,
 
     const createDefaultTargetDivStyleName = () => {
         return classNames({
-            'showTargetDiv': qPanel.defaultAction.action === "goto",
-            'hideTargetDiv': qPanel.defaultAction.action === "submit"
+            'showTargetDiv': questionSet.defaultAction.action === "goto",
+            'hideTargetDiv': questionSet.defaultAction.action === "submit"
         });
     };
 
-    let conditionalActionList = qPanel.conditionalActions.map((action, i) =>
+    let conditionalActionList = questionSet.conditionalActions.map((action, i) =>
         <ConditionalPanelActionEditContainer
             key={i}
             conditionalAction={action}
@@ -46,7 +46,7 @@ const QuestionSetAddEdit = ({qPanel, questions, pageTitle, questionSetFunctions,
                     <FormGroup controlId="formControlsQuestionSetName">
                         <Col componentClass={ControlLabel} styleName="inlineLabel" sm={labelColSize}>Panel Name:</Col>
                         <Col sm={inputColSize} styleName="inlineTextCol">
-                            <FormControl name="name" type="text" placeholder="add text" value={qPanel.name}
+                            <FormControl name="name" type="text" placeholder="add text" value={questionSet.name}
                                          onChange={onTextFieldChanged} styleName="inlineTextControl"/>
                         </Col>
                     </FormGroup>
@@ -55,7 +55,7 @@ const QuestionSetAddEdit = ({qPanel, questions, pageTitle, questionSetFunctions,
                     <FormGroup controlId="formControlsQuestionSetHeader">
                         <Col componentClass={ControlLabel} styleName="inlineLabel" sm={labelColSize}>Panel Header:</Col>
                         <Col sm={inputColSize} styleName="inlineTextCol">
-                            <FormControl name="header" type="text" placeholder="add text" value={qPanel.header}
+                            <FormControl name="header" type="text" placeholder="add text" value={questionSet.header}
                                          onChange={onTextFieldChanged} styleName="inlineTextControl"/>
                         </Col>
                     </FormGroup>
@@ -65,7 +65,7 @@ const QuestionSetAddEdit = ({qPanel, questions, pageTitle, questionSetFunctions,
                         <Col componentClass={ControlLabel} styleName="inlineLabel" sm={labelColSize}>Panel
                             Sub-Header:</Col>
                         <Col sm={inputColSize} styleName="inlineTextCol">
-                            <FormControl name="subHeader" type="text" placeholder="add text" value={qPanel.subHeader}
+                            <FormControl name="subHeader" type="text" placeholder="add text" value={questionSet.subHeader}
                                          onChange={onTextFieldChanged} styleName="inlineTextControl"/>
                         </Col>
                     </FormGroup>
@@ -102,7 +102,7 @@ const QuestionSetAddEdit = ({qPanel, questions, pageTitle, questionSetFunctions,
                                          componentClass="select"
                                          placeholder="select"
                                          name="action"
-                                         defaultValue={qPanel.defaultAction.action}
+                                         defaultValue={questionSet.defaultAction.action}
                                          onChange={onUpdateDefaultAction}>
                                 <option key="goto" value="goto">GO TO</option>
                                 <option key="submit" value="submit">SUBMIT</option>
@@ -116,7 +116,7 @@ const QuestionSetAddEdit = ({qPanel, questions, pageTitle, questionSetFunctions,
                                              componentClass="select"
                                              placeholder="select"
                                              name="target"
-                                             defaultValue={qPanel.defaultAction.target}
+                                             defaultValue={questionSet.defaultAction.target}
                                              onChange={onUpdateDefaultAction}>
                                     {panelTargetOptions}
                                 </FormControl>
@@ -136,7 +136,7 @@ const QuestionSetAddEdit = ({qPanel, questions, pageTitle, questionSetFunctions,
                         <Col componentClass={ControlLabel} styleName="inlineLabel" sm={1} smOffset={1}>"Next":</Col>
                         <Col sm={3} styleName="inlineTextCol">
                             <FormControl name="nextButtonText" type="text" placeholder="add text"
-                                         value={qPanel.nextButtonText}
+                                         value={questionSet.nextButtonText}
                                          onChange={onTextFieldChanged} styleName="inlineTextControl"/>
                         </Col>
 
@@ -144,7 +144,7 @@ const QuestionSetAddEdit = ({qPanel, questions, pageTitle, questionSetFunctions,
                         <Col componentClass={ControlLabel} styleName="inlineLabel" sm={1} smOffset={1}>"Back":</Col>
                         <Col sm={3} styleName="inlineTextCol">
                             <FormControl name="backButtonText" type="text" placeholder="add text"
-                                         value={qPanel.backButtonText}
+                                         value={questionSet.backButtonText}
                                          onChange={onTextFieldChanged} styleName="inlineTextControl"/>
                         </Col>
                     </FormGroup>
@@ -169,7 +169,7 @@ const QuestionSetAddEdit = ({qPanel, questions, pageTitle, questionSetFunctions,
 };
 
 QuestionSetAddEdit.propTypes = {
-    qPanel: T.object.isRequired,
+    questionSet: T.object.isRequired,
     questions: T.array.isRequired,
     pageTitle: T.string.isRequired,
     questionSetFunctions: T.object.isRequired,

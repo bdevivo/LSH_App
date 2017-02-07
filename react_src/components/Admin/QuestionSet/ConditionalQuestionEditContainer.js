@@ -68,6 +68,8 @@ class ConditionalQuestionEditContainer extends React.Component {
         );
 
         this.setState(newState);
+   
+       qSetQuestionFunctions.
     }
 
     onCancel() {
@@ -85,7 +87,7 @@ class ConditionalQuestionEditContainer extends React.Component {
     }
 
     onRemove() {
-        this.props.qSetQuestionFunctions.removeConditionalQuestion(this.state.conditionalQuestion.id);
+        this.removeConditionalQuestion(this.state.conditionalQuestion.id);
     }
 
     removeConditionalQuestion(cQuestionId) {
@@ -138,7 +140,7 @@ ConditionalQuestionEditContainer.propTypes = {
     qSetQuestion: PropTypes.object.isRequired,
     conditionalQuestion: PropTypes.object.isRequired,
     questions: PropTypes.array.isRequired,
-    qSetQuestionFunctions: PropTypes.object.isRequired
+   qSetQuestionFunctions: T.object.isRequired
 };
 
 

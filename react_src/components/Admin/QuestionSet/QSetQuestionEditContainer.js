@@ -16,7 +16,7 @@ class QSetQuestionEditContainer extends React.Component {
 
         this.state = {
             qSetQuestion: this.props.qSetQuestion,
-            questions: this.props.questions,
+            allQuestions: this.props.questions,
             canAddConditionalQuestion: true
         };
 
@@ -31,71 +31,15 @@ class QSetQuestionEditContainer extends React.Component {
     componentWillReceiveProps(nextProps) {
         this.setState({
             qSetQuestion: nextProps.qSetQuestion,
-            questions: nextProps.questions
+           allQuestions: nextProps.questions
         });
-    }
-
-    addQSetQuestion() {
-        let newConditionalQuestion = {
-            id: 0,
-            questionId: 0,
-            questionResponseId: 0,
-            question: "goto",
-            targetQuestionSetId: 0
-        };
-
-        let newState = update(this.state, {
-            qSetQuestion: {
-                conditionalQuestions: {$push: [newConditionalQuestion]}
-            },
-            canAddConditionalQuestion: {$set: false}  // disable addition of new Conditional Questions until this one is saved or canceled
-        });
-
-        this.setState(newState);
-    }
-
-    saveNewQSetQuestion(newQuestion) {
-        let questionIndex = this.state.qSetQuestion.conditionalQuestions.findIndex(x => x.id == 0);  // the new Question will be the only one with id == 0
-        let saveQuestion = cloneDeep(newQuestion);
-        saveQuestion.id = uuidV1();    // assign real ID
-
-        let newState = update(this.state, {
-                qSetQuestion: {
-                    conditionalQuestions: {$splice: [[questionIndex, 1, saveQuestion]]}
-                },
-                canAddConditionalQuestion: {$set: true}     // restore ability to add new Conditional Questions
-            }
-        );
-
-        this.setState(newState);
-    }
-
-    cancelNewQSetQuestion() {
-        // find and remove the ConditionalQuestion whose id == 0
-        this.removeConditionalQuestion(0);
-    }
-
-    removeQSetQuestion(questionId) {
-        let indexToRemove = this.state.qSetQuestion.conditionalQuestions.findIndex(x => x.id === questionId);
-        if (indexToRemove > -1) {
-            let newState = update(this.state, {
-                qSetQuestion: {
-                    conditionalQuestions: {$splice: [[indexToRemove, 1]]}
-                },
-                canAddConditionalQuestion: {$set: true}      // restore ability to add new Conditional Questions
-            });
-
-            this.setState(newState);
-        }
     }
 
     addConditionalQuestion() {
         let newConditionalQuestion = {
-            id: 0,
-            questionId: 0,
-            questionResponseId: 0,
-            question: "goto",
-            targetQuestionSetId: 0
+            id: '0',
+            responseId: '0',
+            targetQuestionId: '0'
         };
 
         let newState = update(this.state, {
@@ -107,6 +51,7 @@ class QSetQuestionEditContainer extends React.Component {
 
         this.setState(newState);
     }
+   
 
     setCanAddConditionalQuestion(canAdd) {
         this.setState(update(this.state, {canAddConditionalQuestion: {$set: canAdd}}));
@@ -116,13 +61,9 @@ class QSetQuestionEditContainer extends React.Component {
     render() {
 
         let qSetQuestion = this.state.qSetQuestion;
-        let pageTitle = (qSetQuestion._id === 0 ? "Add QuestionSet" : "Edit QuestionSet " + qSetQuestion.index);
+        let pageTitle = (qSetQuestion._id === '0' ? "Add Question Set" : "Edit Question Set ");
 
         let qSetQuestionFunctions = {
-            addQSetQuestion: this.addQSetQuestion,
-            saveNewQSetQuestion: this.saveNewQSetQuestion,
-            cancelNewQSetQuestion: this.cancelNewQSetQuestion,
-            removeQSetQuestion: this.removeQSetQuestion,
             addConditionalQuestion: this.addConditionalQuestion,
             setCanAddConditionalQuestion: this.setCanAddConditionalQuestion
         };

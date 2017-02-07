@@ -18,7 +18,7 @@ const QSetQuestionAddEdit = ({qSetQuestion, questions, qSetQuestionFunctions, ca
             qSetQuestion={qSetQuestion}
             conditionalQuestion={cq}
             questions={questions}
-            questionSetFunctions={qSetQuestionFunctions}/>
+            qSetQuestionFunctions={qSetQuestionFunctions} />
     );
 
     let questionOptions = questions.map((q, i) =>

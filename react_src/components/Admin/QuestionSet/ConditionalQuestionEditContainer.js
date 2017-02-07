@@ -2,6 +2,8 @@ import React, {PropTypes} from 'react';
 import ConditionalQuestionEdit from './ConditionalQuestionEdit';
 import * as optionHelpers from '../../../utils/questionHelpers';
 import update from 'immutability-helper';
+const cloneDeep = require('lodash/cloneDeep');
+const uuidV1 = require('uuid/v1');
 
 class ConditionalQuestionEditContainer extends React.Component {
     constructor(props, context) {
@@ -10,6 +12,7 @@ class ConditionalQuestionEditContainer extends React.Component {
         let {conditionalQuestion, questions} = this.props;
 
         this.state = {
+            qSetQuestion: this.props.qSetQuestion,
             conditionalQuestion: conditionalQuestion,
             questions: questions,
             isFormDataChanged: false
@@ -37,7 +40,6 @@ class ConditionalQuestionEditContainer extends React.Component {
         this.setState(newState);
     }
 
-
     onUpdateConditionalTarget(event) {
         let newState = update(this.state, {
             conditionalQuestion: {
@@ -49,19 +51,28 @@ class ConditionalQuestionEditContainer extends React.Component {
         this.setState(newState);
     }
 
+
     onSave() {
-        this.props.questionSetFunctions.saveNewConditionalAction(this.state.conditionalQuestion);
-        this.setState(update(this.state, {
-            isFormDataChanged: {$set: false}
-        }));
+        let newConditionalQuestion = this.state.conditionalQuestion;
+        let questionIndex = this.state.qSetQuestion.conditionalQuestions.findIndex(x => x.id == newConditionalQuestion.id);  // the new Question will be the only one with id == 0
+        let saveQuestion = cloneDeep(newConditionalQuestion);
+        saveQuestion.id = uuidV1();    // assign real ID
+
+        let newState = update(this.state, {
+                qSetQuestion: {
+                    conditionalQuestions: {$splice: [[questionIndex, 1, saveQuestion]]}
+                },
+                canAddConditionalQuestion: {$set: true},     // restore ability to add new Conditional Questions
+                isFormDataChanged: {$set: false}
+            }
+        );
+
+        this.setState(newState);
     }
 
     onCancel() {
         if (this.state.conditionalQuestion.id == '0') {  // this is a new CQ that hasn't been saved yet
-            this.props.questionSetFunctions.cancelNewConditionalAction();
-            this.setState(update(this.state, {
-                isFormDataChanged: {$set: false}
-            }));
+            this.removeConditionalQuestion('0');
         }
         else {  // this is an existing question that was edited, but the edit was canceled
             let newState = update(this.state, {
@@ -70,14 +81,26 @@ class ConditionalQuestionEditContainer extends React.Component {
             });
 
             this.setState(newState);
+        }
     }
-}
 
     onRemove() {
-        this.props.questionSetFunctions.removeConditionalAction(this.state.conditionalQuestion.id);
-        this.setState(update(this.state, {
-            isFormDataChanged: {$set: false}
-        }));
+        this.props.qSetQuestionFunctions.removeConditionalQuestion(this.state.conditionalQuestion.id);
+    }
+
+    removeConditionalQuestion(cQuestionId) {
+        let indexToRemove = this.state.qSetQuestion.conditionalQuestions.findIndex(x => x.id === cQuestionId);
+        if (indexToRemove > -1) {
+            let newState = update(this.state, {
+                qSetQuestion: {
+                    conditionalQuestions: {$splice: [[indexToRemove, 1]]}
+                },
+                canAddConditionalQuestion: {$set: true},      // restore ability to add new Conditional Questions
+                isFormDataChanged: {$set: false}
+            });
+
+            this.setState(newState);
+        }
     }
 
     render() {
@@ -94,9 +117,9 @@ class ConditionalQuestionEditContainer extends React.Component {
         let isAddMode = (conditionalQuestion.id == '0' || this.state.isFormDataChanged);
 
         // Don't enable Save button unless form is valid
-        let isSaveEnabled =  (this.state.isFormDataChanged
-            && conditionalQuestion.responseId != 0
-            && conditionalQuestion.targetQuestionId != 0);
+        let isSaveEnabled = (this.state.isFormDataChanged
+        && conditionalQuestion.responseId != 0
+        && conditionalQuestion.targetQuestionId != 0);
 
         return (
             <div>
@@ -112,9 +135,10 @@ class ConditionalQuestionEditContainer extends React.Component {
 }
 
 ConditionalQuestionEditContainer.propTypes = {
+    qSetQuestion: PropTypes.object.isRequired,
     conditionalQuestion: PropTypes.object.isRequired,
     questions: PropTypes.array.isRequired,
-    questionSetFunctions: PropTypes.object.isRequired
+    qSetQuestionFunctions: PropTypes.object.isRequired
 };
 
 

@@ -1,13 +1,13 @@
 import React, {PropTypes as T} from 'react';
 import {Row, Col, Form, FormGroup, FormControl, ControlLabel, Button, Modal} from 'react-bootstrap';
-import ConditionalPanelActionEditContainer from './ConditionalQuestionEditContainer';
+import QSetQuestionEditContainer from './QSetQuestionEditContainer';
 import styles from './QuestionSet.css';
 import CSSModules from 'react-css-modules';
 const classNames = require('classnames');
 
-const QuestionPanelAddEdit = ({qPanel, questions, pageTitle, questionPanelFunctions, panelTargets, canAddConditionalQuestion}) => {
+const QuestionSetAddEdit = ({qPanel, questions, pageTitle, questionSetFunctions, canAddConditionalQuestion}) => {
 
-    let {onTextFieldChanged, onUpdateDefaultAction} = questionPanelFunctions;
+    let {onTextFieldChanged, onUpdateDefaultAction} = questionSetFunctions;
     let labelColSize = 2;
     let inputColSize = 8;
 
@@ -28,7 +28,7 @@ const QuestionPanelAddEdit = ({qPanel, questions, pageTitle, questionPanelFuncti
             key={i}
             conditionalAction={action}
             questions={questions}
-            questionPanelFunctions={questionPanelFunctions}
+            questionSetFunctions={questionSetFunctions}
             panelTargets={panelTargets}/>
     );
 
@@ -43,7 +43,7 @@ const QuestionPanelAddEdit = ({qPanel, questions, pageTitle, questionPanelFuncti
                 <Form horizontal styleName="editForm">
 
                     {/* PANEL NAME*/}
-                    <FormGroup controlId="formControlsQuestionPanelName">
+                    <FormGroup controlId="formControlsQuestionSetName">
                         <Col componentClass={ControlLabel} styleName="inlineLabel" sm={labelColSize}>Panel Name:</Col>
                         <Col sm={inputColSize} styleName="inlineTextCol">
                             <FormControl name="name" type="text" placeholder="add text" value={qPanel.name}
@@ -52,7 +52,7 @@ const QuestionPanelAddEdit = ({qPanel, questions, pageTitle, questionPanelFuncti
                     </FormGroup>
 
                     {/* PANEL HEADER TEXT*/}
-                    <FormGroup controlId="formControlsQuestionPanelHeader">
+                    <FormGroup controlId="formControlsQuestionSetHeader">
                         <Col componentClass={ControlLabel} styleName="inlineLabel" sm={labelColSize}>Panel Header:</Col>
                         <Col sm={inputColSize} styleName="inlineTextCol">
                             <FormControl name="header" type="text" placeholder="add text" value={qPanel.header}
@@ -61,7 +61,7 @@ const QuestionPanelAddEdit = ({qPanel, questions, pageTitle, questionPanelFuncti
                     </FormGroup>
 
                     {/* PANEL SUBHEADER TEXT*/}
-                    <FormGroup controlId="formControlsQuestionPanelSubheader">
+                    <FormGroup controlId="formControlsQuestionSetSubheader">
                         <Col componentClass={ControlLabel} styleName="inlineLabel" sm={labelColSize}>Panel
                             Sub-Header:</Col>
                         <Col sm={inputColSize} styleName="inlineTextCol">
@@ -83,7 +83,7 @@ const QuestionPanelAddEdit = ({qPanel, questions, pageTitle, questionPanelFuncti
                         <Col sm={6}>
                             <Button type="button" className="btn btn-sm btn-default"
                                     disabled={!canAddConditionalQuestion}
-                                    onClick={questionPanelFunctions.addConditionalAction}>Add New</Button>
+                                    onClick={questionSetFunctions.addConditionalAction}>Add New</Button>
                         </Col>
                     </FormGroup>
 
@@ -130,7 +130,7 @@ const QuestionPanelAddEdit = ({qPanel, questions, pageTitle, questionPanelFuncti
                     </Row>
 
                     {/* "NEXT" and "BACK" BUTTON TEXT*/}
-                    <FormGroup controlId="formControlsQuestionPanelNextButton">
+                    <FormGroup controlId="formControlsQuestionSetNextButton">
                         <h4>Button Text</h4>
                         {/* "NEXT" BUTTON */}
                         <Col componentClass={ControlLabel} styleName="inlineLabel" sm={1} smOffset={1}>"Next":</Col>
@@ -155,10 +155,10 @@ const QuestionPanelAddEdit = ({qPanel, questions, pageTitle, questionPanelFuncti
             <Modal.Footer>
                 <Row>
                     <Col md={3} mdOffset={2}>
-                        <Button onClick={questionPanelFunctions.handleCancel}>Cancel</Button>
+                        <Button onClick={questionSetFunctions.handleCancel}>Cancel</Button>
                     </Col>
                     <Col md={3}>
-                        <Button onClick={questionPanelFunctions.handleSubmit}>Save</Button>
+                        <Button onClick={questionSetFunctions.handleSubmit}>Save</Button>
                     </Col>
                 </Row>
             </Modal.Footer>
@@ -168,13 +168,13 @@ const QuestionPanelAddEdit = ({qPanel, questions, pageTitle, questionPanelFuncti
 
 };
 
-QuestionPanelAddEdit.propTypes = {
+QuestionSetAddEdit.propTypes = {
     qPanel: T.object.isRequired,
     questions: T.array.isRequired,
     pageTitle: T.string.isRequired,
-    questionPanelFunctions: T.object.isRequired,
+    questionSetFunctions: T.object.isRequired,
     panelTargets: T.array.isRequired,
     canAddConditionalQuestion: T.bool.isRequired
 };
 
-export default CSSModules(QuestionPanelAddEdit, styles);
+export default CSSModules(QuestionSetAddEdit, styles);

@@ -5,9 +5,9 @@ import styles from './QuestionSet.css';
 import CSSModules from 'react-css-modules';
 const classNames = require('classnames');
 
-const QuestionSetAddEdit = ({questionSet, questions, pageTitle, questionSetFunctions, canAddConditionalQuestion}) => {
+const QuestionSetAddEdit = ({questionSet, questions, pageTitle, questionSetFunctions, panelTargets, canAddQSetQuestion}) => {
 
-    let { onUpdateDefaultAction} = questionSetFunctions;
+    let { onUpdateQuestionPanel, handleCancel, handleSubmit } = questionSetFunctions;
     let labelColSize = 2;
     let inputColSize = 8;
 
@@ -16,21 +16,14 @@ const QuestionSetAddEdit = ({questionSet, questions, pageTitle, questionSetFunct
     );
     panelTargetOptions.unshift(<option key="select" value="0">select panel...</option>);
 
-    const createDefaultTargetDivStyleName = () => {
-        return classNames({
-            'showTargetDiv': questionSet.defaultAction.action === "goto",
-            'hideTargetDiv': questionSet.defaultAction.action === "submit"
-        });
-    };
-
-    let conditionalActionList = questionSet.conditionalActions.map((action, i) =>
-        <ConditionalPanelActionEditContainer
+    let qSetQuestionList = questionSet.questions.map((q, i) =>
+        <QSetQuestionEditContainer
             key={i}
-            conditionalAction={action}
+            qSetQuestion={q}
             questions={questions}
-            questionSetFunctions={questionSetFunctions}
-            panelTargets={panelTargets}/>
+            panelTargets={panelTargets} />
     );
+
 
     return (
         <div>
@@ -42,112 +35,34 @@ const QuestionSetAddEdit = ({questionSet, questions, pageTitle, questionSetFunct
 
                 <Form horizontal styleName="editForm">
 
-                    {/* PANEL NAME*/}
+                    {/* QUESTION PANEL (to which this Question Set will be mapped) */}
                     <FormGroup controlId="formControlsQuestionSetName">
-                        <Col componentClass={ControlLabel} styleName="inlineLabel" sm={labelColSize}>Panel Name:</Col>
+                        <Col componentClass={ControlLabel} styleName="inlineLabel" sm={labelColSize}>Question Panel:</Col>
                         <Col sm={inputColSize} styleName="inlineTextCol">
-                            <FormControl name="name" type="text" placeholder="add text" value={questionSet.name}
-                                         onChange={onTextFieldChanged} styleName="inlineTextControl"/>
+                            <FormControl styleName="formInputActionSelectWide"
+                                         componentClass="select"
+                                         name="action"
+                                         defaultValue={questionSet.questionPanelId}
+                                         onChange={onUpdateQuestionPanel}>
+                                {panelTargetOptions}
+                            </FormControl>
                         </Col>
                     </FormGroup>
 
-                    {/* PANEL HEADER TEXT*/}
-                    <FormGroup controlId="formControlsQuestionSetHeader">
-                        <Col componentClass={ControlLabel} styleName="inlineLabel" sm={labelColSize}>Panel Header:</Col>
-                        <Col sm={inputColSize} styleName="inlineTextCol">
-                            <FormControl name="header" type="text" placeholder="add text" value={questionSet.header}
-                                         onChange={onTextFieldChanged} styleName="inlineTextControl"/>
-                        </Col>
-                    </FormGroup>
-
-                    {/* PANEL SUBHEADER TEXT*/}
-                    <FormGroup controlId="formControlsQuestionSetSubheader">
-                        <Col componentClass={ControlLabel} styleName="inlineLabel" sm={labelColSize}>Panel
-                            Sub-Header:</Col>
-                        <Col sm={inputColSize} styleName="inlineTextCol">
-                            <FormControl name="subHeader" type="text" placeholder="add text" value={questionSet.subHeader}
-                                         onChange={onTextFieldChanged} styleName="inlineTextControl"/>
-                        </Col>
-                    </FormGroup>
-
-                    <Row>
-                        <hr/>
-                    </Row>
-
-
-                    {/* CONDITIONAL ACTION */}
-                    <FormGroup styleName="conditionalActionFormGroup">
+                    {/* QUESTION-SET QUESTIONS */}
+                    <FormGroup styleName="conditionalQuestionFormGroup">
                         <Col sm={3} styleName="subHeaderLeftCol">
-                            <h4>Conditional Actions</h4>
+                            <h4>Questions</h4>
                         </Col>
                         <Col sm={6}>
                             <Button type="button" className="btn btn-sm btn-default"
-                                    disabled={!canAddConditionalQuestion}
-                                    onClick={questionSetFunctions.addConditionalAction}>Add New</Button>
+                                    disabled={!canAddQSetQuestion}
+                                    onClick={canAddQSetQuestion}>Add New</Button>
                         </Col>
                     </FormGroup>
 
-                    {conditionalActionList}
+                    {qSetQuestionList}
 
-                    <hr/>
-
-                    {/* DEFAULT ACTION */}
-                    <FormGroup controlId="formControlsSelectDefaultAction">
-                        <h4>Default Action</h4>
-
-
-                        <Col componentClass={ControlLabel} styleName="inlineLabel" sm={1} smOffset={1}>Action:</Col>
-                        <Col sm={2}>
-                            <FormControl styleName="formInputActionSelectSmall"
-                                         componentClass="select"
-                                         placeholder="select"
-                                         name="action"
-                                         defaultValue={questionSet.defaultAction.action}
-                                         onChange={onUpdateDefaultAction}>
-                                <option key="goto" value="goto">GO TO</option>
-                                <option key="submit" value="submit">SUBMIT</option>
-                            </FormControl>
-                        </Col>
-
-                        <div styleName={createDefaultTargetDivStyleName()}>
-                            <Col componentClass={ControlLabel} styleName="inlineLabel" sm={1}>Target:</Col>
-                            <Col sm={6}>
-                                <FormControl styleName="formInputActionSelectWide"
-                                             componentClass="select"
-                                             placeholder="select"
-                                             name="target"
-                                             defaultValue={questionSet.defaultAction.target}
-                                             onChange={onUpdateDefaultAction}>
-                                    {panelTargetOptions}
-                                </FormControl>
-                            </Col>
-                        </div>
-
-                    </FormGroup>
-
-                    <Row>
-                        <hr/>
-                    </Row>
-
-                    {/* "NEXT" and "BACK" BUTTON TEXT*/}
-                    <FormGroup controlId="formControlsQuestionSetNextButton">
-                        <h4>Button Text</h4>
-                        {/* "NEXT" BUTTON */}
-                        <Col componentClass={ControlLabel} styleName="inlineLabel" sm={1} smOffset={1}>"Next":</Col>
-                        <Col sm={3} styleName="inlineTextCol">
-                            <FormControl name="nextButtonText" type="text" placeholder="add text"
-                                         value={questionSet.nextButtonText}
-                                         onChange={onTextFieldChanged} styleName="inlineTextControl"/>
-                        </Col>
-
-                        {/* "BACK" BUTTON */}
-                        <Col componentClass={ControlLabel} styleName="inlineLabel" sm={1} smOffset={1}>"Back":</Col>
-                        <Col sm={3} styleName="inlineTextCol">
-                            <FormControl name="backButtonText" type="text" placeholder="add text"
-                                         value={questionSet.backButtonText}
-                                         onChange={onTextFieldChanged} styleName="inlineTextControl"/>
-                        </Col>
-                    </FormGroup>
 
                 </Form>
 
@@ -155,10 +70,10 @@ const QuestionSetAddEdit = ({questionSet, questions, pageTitle, questionSetFunct
             <Modal.Footer>
                 <Row>
                     <Col md={3} mdOffset={2}>
-                        <Button onClick={questionSetFunctions.handleCancel}>Cancel</Button>
+                        <Button onClick={handleCancel}>Cancel</Button>
                     </Col>
                     <Col md={3}>
-                        <Button onClick={questionSetFunctions.handleSubmit}>Save</Button>
+                        <Button onClick={handleSubmit}>Save</Button>
                     </Col>
                 </Row>
             </Modal.Footer>
@@ -174,7 +89,7 @@ QuestionSetAddEdit.propTypes = {
     pageTitle: T.string.isRequired,
     questionSetFunctions: T.object.isRequired,
     panelTargets: T.array.isRequired,
-    canAddConditionalQuestion: T.bool.isRequired
+    canAddQSetQuestion: T.bool.isRequired
 };
 
 export default CSSModules(QuestionSetAddEdit, styles);

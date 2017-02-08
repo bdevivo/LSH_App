@@ -1,8 +1,8 @@
 import React, {PropTypes} from 'react';
 import {Button} from 'react-bootstrap';
 import update from 'immutability-helper';
-import QuestionPanel from './QuestionSet';
-import QuestionPanelEditContainer from './QuestionSetEditContainer';
+import QuestionQuestionSet from './QuestionSet';
+import QuestionSetAddEdit from './QuestionSetAddEdit';
 import {browserHistory} from 'react-router';
 import {alertError, confirm} from '../../../utils/confirm';
 import CSSModules from 'react-css-modules';
@@ -10,100 +10,91 @@ import styles from './QuestionSet.css';
 
 const cloneDeep = require('lodash/cloneDeep');
 
-class QuestionPanelContainer extends React.Component {
+class QuestionSetContainer extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            qPanels: [],
+            questionSets: [],
             questions: this.props.questions,
-            editPanel: {},
+            editQuestionSet: {},
             showModal: false
         };
 
         this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
-        this.onAddPanel = this.onAddPanel.bind(this);
-        this.onAddPanelClose = this.onAddPanelClose.bind(this);
-        this.onRemovePanel = this.onRemovePanel.bind(this);
-        this.onEditPanel = this.onEditPanel.bind(this);
+        this.onAddQuestionSet = this.onAddQuestionSet.bind(this);
+        this.onAddQuestionSetClose = this.onAddQuestionSetClose.bind(this);
+        this.onRemoveQuestionSet = this.onRemoveQuestionSet.bind(this);
+        this.onEditQuestionSet = this.onEditQuestionSet.bind(this);
     }
 
     componentDidMount() {
 
-        if (this.props.params.id == '0' && this.props.selectedPanelId != '0') {
-            browserHistory.push("/admin/panels/panel/" + this.props.selectedPanelId);
+        if (this.props.params.id == '0' && this.props.selectedQuestionSetId != '0') {
+            browserHistory.push("/admin/qSets/qSet/" + this.props.selectedQuestionSetId);
         }
-        else {   // initial mount (no panel selected)
-            let panelState = this.getPanelState(this.props);
-            browserHistory.push("/admin/panels/panel/" + panelState.panelId);
+        else {   // initial mount (no qSet selected)
+            let qSetState = this.getQuestionSetState(this.props);
+            browserHistory.push("/admin/qsets/qset/" + qSetState.qSetId);
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        let panelState = this.getPanelState(nextProps);
-        this.setState(panelState);
-        if (nextProps.selectedPanelId != '0'
-            && nextProps.selectedPanelId != panelState.panelId
-            && nextProps.userClickedPanelId != nextProps.selectedPanelId)
+        let qSetState = this.getQuestionSetState(nextProps);
+        this.setState(qSetState);
+        if (nextProps.selectedQuestionSetId != '0'
+            && nextProps.selectedQuestionSetId != qSetState.qSetId
+            && nextProps.userClickedQuestionSetId != nextProps.selectedQuestionSetId)
         {
-            browserHistory.push("/admin/panels/panel/" + nextProps.selectedPanelId);
+            browserHistory.push("/admin/qSets/qSet/" + nextProps.selectedQuestionSetId);
         }
     }
 
-    getPanelState(props) {
-        let panelId = props.params.id;
-        let qPanels = [...props.qPanels];
-        let currentPanel;
+    getQuestionSetState(props) {
+        let qSetId = props.params.id;
+        let questionSets = [...props.questionSets];
+        let currentQuestionSet;
 
-        if (qPanels && qPanels.length === 0) {
-            currentPanel = {};
+        if (questionSets && questionSets.length === 0) {
+            currentQuestionSet = {};
         }
-        else if (panelId === '0') {
-            currentPanel = qPanels[0];
-            panelId = currentPanel._id;
+        else if (qSetId === '0') {
+            currentQuestionSet = questionSets[0];
+            qSetId = currentQuestionSet._id;
         }
         else {
-            currentPanel = qPanels.find(x => x._id === panelId);
-            currentPanel = currentPanel || qPanels[0];
+            currentQuestionSet = questionSets.find(x => x._id === qSetId);
+            currentQuestionSet = currentQuestionSet || questionSets[0];
         }
 
         return {
-            qPanels: qPanels,
+            questionSets: questionSets,
             questions: props.questions,
-            panelId: panelId,
-            currentPanel: currentPanel
+            qSetId: qSetId,
+            currentQuestionSet: currentQuestionSet
         };
     }
 
-    onAddPanel() {
-
-        // Calculate the index number for the panel to be added
+    onAddQuestionSet() {
+        // Calculate the index number for the qSet to be added
         let nextIndex;
-        if (this.state.qPanels.length === 0) {
+        if (this.state.questionSets.length === 0) {
             nextIndex = 1;
         }
         else {
-            let panelIds = this.state.qPanels.map(q => q.index);
-            nextIndex = Math.max(...panelIds) + 1;
+            let qSetIds = this.state.questionSets.map(q => q.index);
+            nextIndex = Math.max(...qSetIds) + 1;
         }
 
-        let editPanel = {
+        let editQuestionSet = {
             _id: '0',
             index: nextIndex,
-            name: "",
-            header: "",
-            subHeader: "",
-            nextButtonText: "",
-            backButtonText: "",
-            defaultAction: {
-                action: "goto",
-                target: ""
-            },
-            conditionalActions: []
+            questionPanelId: '0',
+            questions: []
         };
 
         let newState = update(this.state, {
-                editPanel: {$set: editPanel},
+                editQuestionSet: {$set: editQuestionSet},
                 showModal: {$set: true}
             }
         );
@@ -111,12 +102,12 @@ class QuestionPanelContainer extends React.Component {
         this.setState(newState);
     }
 
-    onAddPanelClose() {
+    onAddQuestionSetClose() {
 
-        let newPanel = {};
+        let newQuestionSet = {};
 
         let newState = update(this.state, {
-                newPanel: {$set: newPanel},
+                newQuestionSet: {$set: newQuestionSet},
                 showModal: {$set: false}
             }
         );
@@ -124,28 +115,28 @@ class QuestionPanelContainer extends React.Component {
         this.setState(newState);
     }
 
-    onRemovePanel() {
-        confirm(`Delete panel?`).then(() => {
+    onRemoveQuestionSet() {
+        confirm(`Delete Question Set?`).then(() => {
 
-            // find the index of the previous panel in the list -- this will be the next active panel
-            let panels = this.state.qPanels;
-            let removeIndex = panels.findIndex(x => x._id == this.state.panelId);
+            // find the index of the previous qSet in the list -- this will be the next active qSet
+            let qSets = this.state.questionSets;
+            let removeIndex = qSets.findIndex(x => x._id == this.state.qSetId);
             let nextSelectedId = '0';
-            if (panels.length > 1) {
-                nextSelectedId = (removeIndex == 0 ? panels[1]._id : panels[removeIndex - 1]._id);
+            if (qSets.length > 1) {
+                nextSelectedId = (removeIndex == 0 ? qSets[1]._id : qSets[removeIndex - 1]._id);
             }
 
-            this.props.questionPanelActions.removePanel(this.state.panelId, nextSelectedId);
+            this.props.questionSetActions.removeQuestionSet(this.state.qSetId, nextSelectedId);
         }, () => {
             // user clicked Cancel -- do nothing
         });
     }
 
-    onEditPanel() {
-        let editPanel = cloneDeep(this.state.currentPanel);
+    onEditQuestionSet() {
+        let editQuestionSet = cloneDeep(this.state.currentQuestionSet);
 
         let newState = update(this.state, {
-                editPanel: {$set: editPanel},
+                editQuestionSet: {$set: editQuestionSet},
                 showModal: {$set: true}
             }
         );
@@ -156,29 +147,22 @@ class QuestionPanelContainer extends React.Component {
 
     render() {
 
-        let hasPanels = this.state.qPanels && this.state.qPanels.length > 0;
+        let hasQuestionSets = this.state.questionSets && this.state.questionSets.length > 0;
 
-        let panelTargets = this.state.qPanels.map(panel => {
-            return {
-                id: panel._id,
-                name: panel.name
-            };
-        });
-
-        let staticPanelInfo = hasPanels
-           ? <QuestionPanel qPanel={this.state.currentPanel} panelTargets={panelTargets} questions={this.state.questions}/>
+        let staticQuestionSetInfo = hasQuestionSets
+           ? <QuestionSet qQuestionSet={this.state.currentQuestionSet} qSetTargets={qSetTargets} questions={this.state.questions}/>
            : null;
 
         let addEditButtons = (<div styleName="addEditButtonsDiv">
             <Button type="button" className="btn btn-xs btn-default" aria-label="Edit"
-                    onClick={this.onEditPanel}>
+                    onClick={this.onEditQuestionSet}>
                 <span className="glyphicon glyphicon-pencil"></span>
             </Button>
 
             {' '}
 
             <Button type="button" className="btn btn-xs btn-default" aria-label="Remove"
-                    onClick={this.onRemovePanel}>
+                    onClick={this.onRemoveQuestionSet}>
                 <span className="glyphicon glyphicon-remove"></span>
             </Button>
         </div>);
@@ -187,36 +171,36 @@ class QuestionPanelContainer extends React.Component {
             <div>
 
                 {/* ADD PANEL BUTTON */}
-                <div styleName="addPanelDiv">
-                    <Button type="button" className="btn btn-sm btn-default" onClick={this.onAddPanel}>Add New</Button>
+                <div styleName="addQuestionSetDiv">
+                    <Button type="button" className="btn btn-sm btn-default" onClick={this.onAddQuestionSet}>Add New</Button>
                 </div>
 
-                {hasPanels && staticPanelInfo}
+                {hasQuestionSets && staticQuestionSetInfo}
 
-                {hasPanels && addEditButtons}
+                {hasQuestionSets && addEditButtons}
 
                 {/* EDIT MODAL -- ONLY SHOWN WHEN ADDING OR EDITING A PANEL */}
-                <QuestionPanelEditContainer  // this is a new question
-                    qPanel={this.state.editPanel}
+                <QuestionQuestionSetEditContainer  // this is a new question
+                    qQuestionSet={this.state.editQuestionSet}
                     questions={this.state.questions}
                     userName={this.props.userName}
-                    questionPanelActions={this.props.questionPanelActions}
-                    modalVisible={this.state.showModal}   // if we are adding a new panel, show the Add Panel modal
-                    onAddPanelClose={this.onAddPanelClose}
-                    panelTargets={panelTargets}/>
+                    questionQuestionSetActions={this.props.questionQuestionSetActions}
+                    modalVisible={this.state.showModal}   // if we are adding a new qSet, show the Add QuestionSet modal
+                    onAddQuestionSetClose={this.onAddQuestionSetClose}
+                    qSetTargets={qSetTargets}/>
 
             </div>);
     }
 }
 
-QuestionPanelContainer.propTypes = {
-    qPanels: PropTypes.array,
+QuestionSetContainer.propTypes = {
+    questionSets: PropTypes.array,
     questions: PropTypes.array,
-    questionPanelActions: PropTypes.object,
-    selectedPanelId: PropTypes.string,
-    userClickedPanelId: PropTypes.string,
+    questionSetActions: PropTypes.object,
+    selectedQuestionSetId: PropTypes.string,
+    userClickedQuestionSetId: PropTypes.string,
     userName: PropTypes.string,
     params: PropTypes.object.isRequired
 };
 
-export default CSSModules(QuestionPanelContainer, styles);
+export default CSSModules(QuestionSetContainer, styles);

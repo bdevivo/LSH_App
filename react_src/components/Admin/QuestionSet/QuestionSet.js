@@ -4,18 +4,11 @@ import * as questionHelpers from '../../../utils/questionHelpers';
 import CSSModules from 'react-css-modules';
 import styles from './QuestionSet.css';
 
-const QuestionPanel = ({qPanel, panelTargets, questions}) => {
+const QuestionSet = ({qSet, panelTargets, questions}) => {
 
-   let subHeader = <p><b>Sub-header: </b> {qPanel.subHeader}</p>;
-   let defaultAction;
-   if (qPanel.defaultAction.action === "goto") {
-      defaultAction = "GO TO " + questionHelpers.getTargetPanelName(qPanel.defaultAction.target, panelTargets);
-   }
-   else {
-      defaultAction = "SUBMIT";
-   }
 
-   let conditionalActionListItems = qPanel.conditionalActions.map((ca, i) => {
+
+   let conditionalActionListItems = qSet.conditionalActions.map((ca, i) => {
       let question = questions.find(q => q._id === ca.questionId);
       let response;
       if (question) {
@@ -32,7 +25,7 @@ const QuestionPanel = ({qPanel, panelTargets, questions}) => {
    });
 
    let conditionalActionsDiv = null;
-   if (qPanel.conditionalActions.length > 0) {
+   if (qSet.conditionalActions.length > 0) {
       conditionalActionsDiv = (
          <div>
             <b>Conditional Actions: </b>
@@ -47,11 +40,11 @@ const QuestionPanel = ({qPanel, panelTargets, questions}) => {
 
    let panel_body =
       (<div>
-         <p><b>Header: </b> {qPanel.header}</p>
-         {qPanel.subHeader && qPanel.subHeader.length > 0 && subHeader}
+         <p><b>Header: </b> {qSet.header}</p>
+         {qSet.subHeader && qSet.subHeader.length > 0 && subHeader}
          {conditionalActionsDiv}
          <p><b>Default Action: </b> {defaultAction}</p>
-         <p><b>Buttons:</b> {qPanel.backButtonText}, {qPanel.nextButtonText}</p>
+         <p><b>Buttons:</b> {qSet.backButtonText}, {qSet.nextButtonText}</p>
       </div>);
 
 
@@ -68,12 +61,12 @@ const QuestionPanel = ({qPanel, panelTargets, questions}) => {
 };
 
 
-QuestionPanel.propTypes = {
-   qPanel: PropTypes.object.isRequired,
+QuestionSet.propTypes = {
+   qSet: PropTypes.object.isRequired,
    panelTargets: PropTypes.array.isRequired,
    questions: PropTypes.array.isRequired
 };
 
-export default CSSModules(QuestionPanel, styles);
+export default CSSModules(QuestionSet, styles);
 
 

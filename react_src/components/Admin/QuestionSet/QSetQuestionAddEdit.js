@@ -8,9 +8,6 @@ const classNames = require('classnames');
 const QSetQuestionAddEdit = ({qSetQuestion, questions, qSetQuestionFunctions, canAddConditionalQuestion}) => {
 
     let {onQuestionChanged, addConditionalQuestion} = qSetQuestionFunctions;
-    let labelColSize = 2;
-    let inputColSize = 8;
-
 
     let conditionalQuestionList = qSetQuestion.conditionalQuestions.map((cq, i) =>
         <ConditionalQuestionEditContainer

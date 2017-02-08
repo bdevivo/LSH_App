@@ -62,14 +62,12 @@ class ConditionalQuestionEditContainer extends React.Component {
                 qSetQuestion: {
                     conditionalQuestions: {$splice: [[questionIndex, 1, saveQuestion]]}
                 },
-                canAddConditionalQuestion: {$set: true},     // restore ability to add new Conditional Questions
                 isFormDataChanged: {$set: false}
             }
         );
 
         this.setState(newState);
-   
-       qSetQuestionFunctions.
+        this.state.qSetQuestionFunctions.setCanAddConditionalQuestion(true);    // restore ability to add new Conditional Questions
     }
 
     onCancel() {
@@ -97,11 +95,11 @@ class ConditionalQuestionEditContainer extends React.Component {
                 qSetQuestion: {
                     conditionalQuestions: {$splice: [[indexToRemove, 1]]}
                 },
-                canAddConditionalQuestion: {$set: true},      // restore ability to add new Conditional Questions
                 isFormDataChanged: {$set: false}
             });
 
             this.setState(newState);
+            this.state.qSetQuestionFunctions.setCanAddConditionalQuestion(true);    // restore ability to add new Conditional Questions
         }
     }
 
@@ -140,7 +138,7 @@ ConditionalQuestionEditContainer.propTypes = {
     qSetQuestion: PropTypes.object.isRequired,
     conditionalQuestion: PropTypes.object.isRequired,
     questions: PropTypes.array.isRequired,
-   qSetQuestionFunctions: T.object.isRequired
+    qSetQuestionFunctions: PropTypes.object.isRequired
 };
 
 

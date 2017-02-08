@@ -7,8 +7,6 @@ import CSSModules from 'react-css-modules';
 import styles from './QuestionSet.css';
 
 const cloneDeep = require('lodash/cloneDeep');
-const dateFormat = require('dateformat');
-const uuidV1 = require('uuid/v1');
 
 class QSetQuestionEditContainer extends React.Component {
     constructor(props, context) {
@@ -86,10 +84,6 @@ class QSetQuestionEditContainer extends React.Component {
 QSetQuestionEditContainer.propTypes = {
     qSetQuestion: PropTypes.object.isRequired,
     questions: PropTypes.array.isRequired,
-    questionQuestionSetQuestions: PropTypes.object.isRequired,
-    modalVisible: PropTypes.bool.isRequired,
-    onAddQuestionSetClose: PropTypes.func.isRequired,
-    userName: PropTypes.string.isRequired,
     panelTargets: PropTypes.array.isRequired
 };
 

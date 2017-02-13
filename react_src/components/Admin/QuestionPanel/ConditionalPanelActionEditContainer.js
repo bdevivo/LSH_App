@@ -95,7 +95,13 @@ class ConditionalPanelActionEditContainer extends React.Component {
     }
 
     onSave() {
-        this.props.questionPanelFunctions.saveNewConditionalAction(this.state.conditionalAction);
+       if (this.state.conditionalAction.id == '0') {
+          this.props.questionPanelFunctions.saveNewConditionalAction(this.state.conditionalAction);
+       }
+       else {
+          this.props.questionPanelFunctions.updateConditionalAction(this.state.conditionalAction);
+       }
+        
         this.setState(update(this.state, {
             isActionChanged: {$set: false}
         }));

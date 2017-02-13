@@ -301,6 +301,24 @@ class FormContainer extends React.Component {
             };
         });
     }
+   
+   getClasses() {
+       return {
+          "input": "form-control",
+          "select": "form-control",
+          "question": "form-group",
+          "radioListItem": "radio",
+          "radioList": "clean-list",
+          "checkboxInput": "checkbox",
+          "checkboxListItem": "checkbox",
+          "checkboxList": "clean-list",
+          "controlButton": "btn btn-primary pull-right",
+          "backButton": "btn btn-default pull-left",
+          "errorMessage": "alert alert-danger",
+          "questionPostText": "push-top",
+          "buttonBar": "button-bar"
+       };
+   }
 
     render() {
 
@@ -313,6 +331,7 @@ class FormContainer extends React.Component {
         let mySchema;
         if (hasData) {
             mySchema = {
+               "classes": this.getClasses(),
                 "formPanels": this.getFormPanelsJson(),
                 "questionPanels": this.getQuestionPanelsJson(),
                 "questionSets": this.getQuestionSetsJson()

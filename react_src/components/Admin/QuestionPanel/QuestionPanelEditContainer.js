@@ -27,6 +27,7 @@ class QuestionPanelEditContainer extends React.Component {
         this.savePanel = this.savePanel.bind(this);
         this.addConditionalAction = this.addConditionalAction.bind(this);
         this.saveNewConditionalAction = this.saveNewConditionalAction.bind(this);
+        this.updateConditionalAction = this.updateConditionalAction.bind(this);
         this.cancelNewConditionalAction = this.cancelNewConditionalAction.bind(this);
         this.removeConditionalAction = this.removeConditionalAction.bind(this);
     }
@@ -184,6 +185,19 @@ class QuestionPanelEditContainer extends React.Component {
 
         this.setState(newState);
     }
+   
+   updateConditionalAction(updatedAction) {
+      let actionIndex = this.state.qPanel.conditionalActions.findIndex(x => x.id == updatedAction.id);
+      let newState = update(this.state, {
+            qPanel: {
+               conditionalActions: {$splice: [[actionIndex, 1, updatedAction]]}
+            },
+            canAddConditionalQuestion: {$set: true}     // restore ability to add new Conditional Questions
+         }
+      );
+      
+      this.setState(newState);
+   }
 
     cancelNewConditionalAction() {
         // find and remove the ConditionalAction whose id == 0
@@ -217,6 +231,7 @@ class QuestionPanelEditContainer extends React.Component {
             onUpdateDefaultAction: this.onUpdateDefaultAction,
             addConditionalAction: this.addConditionalAction,
             saveNewConditionalAction: this.saveNewConditionalAction,
+           updateConditionalAction: this.updateConditionalAction,
             cancelNewConditionalAction: this.cancelNewConditionalAction,
             removeConditionalAction: this.removeConditionalAction
         };

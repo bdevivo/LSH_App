@@ -64,7 +64,7 @@ CheckboxOptionsInput.propTypes = {
     name        : PropTypes.string,
     id          : PropTypes.string,
     labelId     : PropTypes.string,
-    value       : PropTypes.string,
+    value       : PropTypes.array,
     placeholder : PropTypes.string,
     onChange    : PropTypes.func,
     onBlur      : PropTypes.func,

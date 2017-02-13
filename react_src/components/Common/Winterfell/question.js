@@ -202,7 +202,7 @@ Question.propTypes = {
     validations: PropTypes.array,
     text: PropTypes.string,
     postText: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.node,
     input: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired,
     validationErrors: PropTypes.object,

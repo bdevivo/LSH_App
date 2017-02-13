@@ -2,26 +2,28 @@ import React, {PropTypes as T} from 'react';
 import {Nav, NavItem, Row, Col} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 import * as questionPanelActions from '../../../actions/questionPanelActions';
+import * as questionSetActions from '../../../actions/questionSetActions';
 import * as questionActions from '../../../actions/questionActions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-class QuestionPanelListContainer extends React.Component {
+class QuestionSetListContainer extends React.Component {
     constructor(props) {
         super(props);
 
-        let qPanels = this.props.qPanels;
-        let activePanelId = '0';
+        let qSets = this.props.qSets;
+        let activeQuestionSetId = '0';
 
-        if (qPanels.length > 0) {
-            activePanelId = qPanels[0]._id;
+        if (qSets.length > 0) {
+            activeQuestionSetId = qSets[0]._id;
         }
 
         this.state = {
-            qPanels: qPanels,
+            qSets: qSets,
             questions: this.props.questions,
-            activePanelId: activePanelId,
-            userClickedPanelId: "0"
+            qPanels: this.props.qPanels,
+            activeQuestionSetId: activeQuestionSetId,
+            userClickedQuestionSetId: "0"
         };
 
         this.onNavSelect = this.onNavSelect.bind(this);
@@ -35,50 +37,64 @@ class QuestionPanelListContainer extends React.Component {
         if (!this.props.areQuestionsLoaded) {
             this.props.questionActions.getAllQuestions();
         }
+
+        if (!this.props.areQuestionSetsLoaded) {
+            this.props.questionSetActions.getAllQuestionSets();
+        }
     }
 
     componentWillReceiveProps(nextProps) {
 
         this.setState({
-            qPanels: [...nextProps.qPanels],
+            qSets: [...nextProps.qSets],
             questions: [...nextProps.questions],
-            activePanelId: nextProps.params.id
+            qPanels: [...nextProps.qPanels],
+            activeQuestionSetId: nextProps.params.id
         });
     }
 
     onNavSelect(eventKey, event) {
         let href = event.target.href;
-        let panelId = href.substr(href.lastIndexOf('/') + 1);
+        let qSetId = href.substr(href.lastIndexOf('/') + 1);
         this.setState({
-            userClickedPanelId: panelId,
-            activePanelId: panelId
+            userClickedQuestionSetId: qSetId,
+            activeQuestionSetId: qSetId
         });
 
-        this.props.questionPanelActions.panelSelected(panelId);
+        this.props.questionSetActions.questionSetSelected(qSetId);
     }
 
     render() {
 
+        let panelTargets = this.state.qPanels.map((panel, i) => {
+            return {
+                id: panel._id,
+                name: panel.name
+            };
+        });
+
         let children = this.props.children;
-        let currentPanel = children && React.cloneElement(
+        let currentQuestionSet = children && React.cloneElement(
                 children,
                 {
-                    qPanels: this.state.qPanels,
+                    questionSets: this.state.qSets,
                     questions: this.state.questions,
-                    questionPanelActions: this.props.questionPanelActions,
-                    selectedPanelId: this.props.selectedPanelId,
-                    userClickedPanelId: this.state.userClickedPanelId,
+                    panelTargets: panelTargets,
+                    questionSetActions: this.props.questionSetActions,
+                    selectedQuestionSetId: this.props.selectedQuestionSetId,
+                    userClickedQuestionSetId: this.state.userClickedQuestionSetId,
                     userName: this.props.userName
                 });
 
-        let sortedPanels = this.state.qPanels.sort((a, b) => {
+        let sortedQuestionSets = this.state.qSets.sort((a, b) => {
             return a.index - b.index;
         });
 
-        let panelNav = sortedPanels.map((panel, index) => {
-            let path = "/admin/panels/panel/" + panel._id;
-            return (<LinkContainer to={path} key={index} active={this.state.activePanelId == panel._id} >
-                <NavItem>{panel.name}</NavItem>
+        let questionSetNav = sortedQuestionSets.map((qSet, index) => {
+            let path = "/admin/qsets/qset/" + qSet._id;
+            let panelName = this.state.qPanels.find(p => p._id == qSet.questionPanelId).name;
+            return (<LinkContainer to={path} key={index} active={this.state.activeQuestionSetId == qSet._id}>
+                <NavItem>{panelName}</NavItem>
             </LinkContainer>);
         });
 
@@ -86,18 +102,18 @@ class QuestionPanelListContainer extends React.Component {
         return (
             <div>
 
-                <h3>Question Panels</h3>
+                <h3>Question Sets</h3>
 
                 <Row>
 
                     <Col md={3}>
                         <Nav bsStyle="pills" stacked onSelect={this.onNavSelect}>
-                            {panelNav}
+                            {questionSetNav}
                         </Nav>
                     </Col>
 
                     <Col md={9}>
-                        {currentPanel}
+                        {currentQuestionSet}
                     </Col>
                 </Row>
 
@@ -108,25 +124,30 @@ class QuestionPanelListContainer extends React.Component {
 }
 
 
-QuestionPanelListContainer.propTypes = {
-    qPanels: T.array.isRequired,
+QuestionSetListContainer.propTypes = {
+    qSets: T.array.isRequired,
     questions: T.array.isRequired,
+    qPanels: T.array.isRequired,
     arePanelsLoaded: T.bool,
     areQuestionsLoaded: T.bool,
+    areQuestionSetsLoaded: T.bool,
     questionPanelActions: T.object,
+    questionSetActions: T.object,
     questionActions: T.object,
-    selectedPanelId: T.string,
+    selectedQuestionSetId: T.string,
     children: T.object.isRequired,
     userName: T.string
 };
 
 function mapStateToProps(state, ownProps) {
     return {
+        qSets: [...state.questionSets],
         qPanels: [...state.questionPanels],
         questions: [...state.questions],
-        arePanelsLoaded: state.loadedData.questionPanels,
+        arePanelsLoaded: state.loadedData.questionSets,
+        areQuestionSetsLoaded: state.loadedData.questionSets,
         areQuestionsLoaded: state.loadedData.questions,
-        selectedPanelId : state.ui.admin_active_panel_id,
+        selectedQuestionSetId: state.ui.admin_active_qSet_id,
         userName: state.profile.user_name.short
     };
 }
@@ -134,8 +155,9 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         questionPanelActions: bindActionCreators(questionPanelActions, dispatch),
+        questionSetActions: bindActionCreators(questionSetActions, dispatch),
         questionActions: bindActionCreators(questionActions, dispatch)
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionPanelListContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionSetListContainer);

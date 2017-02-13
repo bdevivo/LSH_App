@@ -5,28 +5,29 @@ import styles from './QuestionSet.css';
 import CSSModules from 'react-css-modules';
 const classNames = require('classnames');
 
-const ConditionalQuestionEdit = ({conditionalQuestion, conditionalQuestionFunctions, questions, isAddMode, isSaveEnabled}) => {
+const ConditionalQuestionEdit = ({conditionalQuestion, parentQuestion, conditionalQuestionFunctions, questions, isAddMode, isSaveEnabled}) => {
 
     let {onUpdateConditionalResponse, onUpdateConditionalTarget, onSave, onCancel, onRemove} = conditionalQuestionFunctions;
 
     // Each response is a selectOptionItem or booleanOption member of the question
-   let potentialResponses = optionHelpers.getPotentialResponses(conditionalQuestion);
-    let responseOptions = potentialResponses.map((response, i) =>
+    //let potentialResponses = optionHelpers.getPotentialResponses(parentQuestion);
+    let responseOptions = parentQuestion.potentialResponses.map((response, i) =>
         <option key={i} value={response.id}>{response.text}</option>
     );
     responseOptions.unshift(<option key="select" value="0">select answer...</option>);
 
 
-   let targetOptions = questions.map((q, i) =>
-      <option key={i} value={q._id}>{q.name}</option>
-   );
-   targetOptions.unshift(<option key="select" value="0">select question...</option>);
+    let targetOptions = questions.map((q, i) =>
+        <option key={i} value={q._id}>{q.name}</option>
+    );
+    targetOptions.unshift(<option key="select" value="0">select question...</option>);
 
 
     let buttonGroup = isAddMode
         ? (<div styleName="buttonDiv">
 
-            <Button type="button" className="btn btn-xs btn-default" onClick={onSave} disabled={!isSaveEnabled}>Save</Button>
+            <Button type="button" className="btn btn-xs btn-default" onClick={onSave}
+                    disabled={!isSaveEnabled}>Save</Button>
             {' '}
             <Button type="button" className="btn btn-xs btn-default" onClick={onCancel}>Cancel</Button>
 
@@ -39,12 +40,14 @@ const ConditionalQuestionEdit = ({conditionalQuestion, conditionalQuestionFuncti
         </div>);
 
     return (
-        <div styleName="formInputActionDiv">
+        <div styleName="conditionalQuestionDiv">
             <FormGroup controlId="formControlsSelectConditionalQuestion">
-               {/*SELECT RESPONSE*/}
-                <Col sm={12} styleName="selectColLeft">
-                    if answer is {' '}
-                    <FormControl styleName="formInputActionSelectWide"
+                {/*SELECT RESPONSE*/}
+                <Col sm={2} styleName="labelCol">
+                    if answer is
+                </Col>
+                <Col sm={10} styleName="selectColRight">
+                    <FormControl styleName="inputSelectQuestionSet"
                                  componentClass="select"
                                  placeholder="select answer"
                                  name="response"
@@ -56,24 +59,31 @@ const ConditionalQuestionEdit = ({conditionalQuestion, conditionalQuestionFuncti
 
             </FormGroup>
 
-           {/*SELECT TARGET*/}
+            {/*SELECT TARGET QUESTION*/}
             <FormGroup controlId="formControlsSelectConditionalQuestion2">
-                <Col sm={10} styleName="selectColLeft">
-                    then show question {' '}
-                    <FormControl styleName="formInputActionSelectWide"
+                <Col sm={2} styleName="labelCol">
+                    then show question
+                </Col>
+                <Col sm={10} styleName="selectColRight">
+                    <FormControl styleName="inputSelectQuestionSet"
                                  componentClass="select"
                                  name="target"
                                  value={conditionalQuestion.targetQuestionId}
                                  onChange={onUpdateConditionalTarget}>
-                       {targetOptions}
+                        {targetOptions}
                     </FormControl>
                 </Col>
 
-                <Col sm={2}>
+
+
+            </FormGroup>
+
+            <Row>
+                <Col sm={3} smOffset={9}>
                     {buttonGroup}
                 </Col>
 
-            </FormGroup>
+            </Row>
 
 
         </div>
@@ -84,6 +94,7 @@ const ConditionalQuestionEdit = ({conditionalQuestion, conditionalQuestionFuncti
 
 ConditionalQuestionEdit.propTypes = {
     conditionalQuestion: T.object.isRequired,
+    parentQuestion: T.object.isRequired,
     questions: T.array.isRequired,
     conditionalQuestionFunctions: T.object.isRequired,
     isAddMode: T.bool.isRequired,

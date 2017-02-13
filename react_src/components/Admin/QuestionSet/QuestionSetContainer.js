@@ -1,8 +1,9 @@
 import React, {PropTypes} from 'react';
-import {Button} from 'react-bootstrap';
+import {Button, Row, Col} from 'react-bootstrap';
 import update from 'immutability-helper';
-import QuestionQuestionSet from './QuestionSet';
-import QuestionSetAddEdit from './QuestionSetAddEdit';
+import QuestionSet from './QuestionSet';
+import QuestionSetEditContainer from './QuestionSetEditContainer';
+import * as questionHelpers from '../../../utils/questionHelpers';
 import {browserHistory} from 'react-router';
 import {alertError, confirm} from '../../../utils/confirm';
 import CSSModules from 'react-css-modules';
@@ -21,6 +22,8 @@ class QuestionSetContainer extends React.Component {
             showModal: false
         };
 
+        this.componentDidMount = this.componentDidMount.bind(this);
+        this.getQuestionSetState = this.getQuestionSetState.bind(this);
         this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
         this.onAddQuestionSet = this.onAddQuestionSet.bind(this);
         this.onAddQuestionSetClose = this.onAddQuestionSetClose.bind(this);
@@ -43,9 +46,8 @@ class QuestionSetContainer extends React.Component {
         let qSetState = this.getQuestionSetState(nextProps);
         this.setState(qSetState);
         if (nextProps.selectedQuestionSetId != '0'
-            && nextProps.selectedQuestionSetId != qSetState.qSetId
-            && nextProps.userClickedQuestionSetId != nextProps.selectedQuestionSetId)
-        {
+            && nextProps.selectedQuestionSetId != this.props.params.id
+            && nextProps.userClickedQuestionSetId != nextProps.selectedQuestionSetId) {
             browserHistory.push("/admin/qSets/qSet/" + nextProps.selectedQuestionSetId);
         }
     }
@@ -63,7 +65,7 @@ class QuestionSetContainer extends React.Component {
             qSetId = currentQuestionSet._id;
         }
         else {
-            currentQuestionSet = questionSets.find(x => x._id === qSetId);
+            currentQuestionSet = questionSets.find(x => x._id == qSetId);
             currentQuestionSet = currentQuestionSet || questionSets[0];
         }
 
@@ -90,7 +92,7 @@ class QuestionSetContainer extends React.Component {
             _id: '0',
             index: nextIndex,
             questionPanelId: '0',
-            questions: []
+            qSetQuestions: []
         };
 
         let newState = update(this.state, {
@@ -144,16 +146,38 @@ class QuestionSetContainer extends React.Component {
         this.setState(newState);
     }
 
-
     render() {
 
         let hasQuestionSets = this.state.questionSets && this.state.questionSets.length > 0;
+        let qSetQuestionData = null;
+
+        if (hasQuestionSets && this.state.questions.length > 0) {
+            qSetQuestionData = this.state.currentQuestionSet.qSetQuestions.map((qSetQuestion, i) => {
+                let fullQuestion = this.state.questions.find(x => x._id === qSetQuestion.questionId);
+                let conditionalQuestionData = qSetQuestion.conditionalQuestions.map(cq => {
+                    let targetQuestion = this.state.questions.find(y => y._id == cq.targetQuestionId);
+                    let response = questionHelpers.getSelectedResponse(fullQuestion, cq.responseId);
+                    return {
+                        response: response,
+                        targetQuestion: targetQuestion.name
+                    };
+
+                });
+
+
+                return {
+                    index: i,
+                    questionName: fullQuestion.name,
+                    conditionalQuestions: conditionalQuestionData
+                };
+            });
+        }
 
         let staticQuestionSetInfo = hasQuestionSets
-           ? <QuestionSet qQuestionSet={this.state.currentQuestionSet} qSetTargets={qSetTargets} questions={this.state.questions}/>
-           : null;
+            ? <QuestionSet qSetQuestionData={qSetQuestionData}/>
+            : null;
 
-        let addEditButtons = (<div styleName="addEditButtonsDiv">
+        let editAndRemoveButtons = (<div styleName="addEditButtonsDiv">
             <Button type="button" className="btn btn-xs btn-default" aria-label="Edit"
                     onClick={this.onEditQuestionSet}>
                 <span className="glyphicon glyphicon-pencil"></span>
@@ -170,24 +194,28 @@ class QuestionSetContainer extends React.Component {
         return (
             <div>
 
-                {/* ADD PANEL BUTTON */}
-                <div styleName="addQuestionSetDiv">
-                    <Button type="button" className="btn btn-sm btn-default" onClick={this.onAddQuestionSet}>Add New</Button>
-                </div>
+                {/* ADD QUESTION SET BUTTON */}
+                <Row styleName="addQuestionSetDiv">
+                    <Col md={6}><Button type="button" className="btn btn-sm btn-default" onClick={this.onAddQuestionSet}>Add
+                        New</Button></Col>
+                    <Col md={6}>{hasQuestionSets && editAndRemoveButtons}</Col>
 
-                {hasQuestionSets && staticQuestionSetInfo}
+                </Row>
+                <Row>
+                    <Col md={12}>{hasQuestionSets && staticQuestionSetInfo}</Col>
+                </Row>
 
-                {hasQuestionSets && addEditButtons}
 
-                {/* EDIT MODAL -- ONLY SHOWN WHEN ADDING OR EDITING A PANEL */}
-                <QuestionQuestionSetEditContainer  // this is a new question
-                    qQuestionSet={this.state.editQuestionSet}
+                {/* EDIT MODAL -- ONLY SHOWN WHEN ADDING OR EDITING A QUESTION SET */}
+                <QuestionSetEditContainer  // this is a new question
+                    qSet={this.state.editQuestionSet}
                     questions={this.state.questions}
                     userName={this.props.userName}
-                    questionQuestionSetActions={this.props.questionQuestionSetActions}
+                    questionSetActions={this.props.questionSetActions}
                     modalVisible={this.state.showModal}   // if we are adding a new qSet, show the Add QuestionSet modal
                     onAddQuestionSetClose={this.onAddQuestionSetClose}
-                    qSetTargets={qSetTargets}/>
+                    panelTargets={this.props.panelTargets}
+                    onAddSetClose={this.onAddQuestionSetClose}/>
 
             </div>);
     }
@@ -199,6 +227,7 @@ QuestionSetContainer.propTypes = {
     questionSetActions: PropTypes.object,
     selectedQuestionSetId: PropTypes.string,
     userClickedQuestionSetId: PropTypes.string,
+    panelTargets: PropTypes.array,
     userName: PropTypes.string,
     params: PropTypes.object.isRequired
 };

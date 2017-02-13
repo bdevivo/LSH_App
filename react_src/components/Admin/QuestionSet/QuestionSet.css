@@ -6,13 +6,23 @@
 }
 
 .addEditButtonsDiv {
-    margin-top: 25px;
-   margin-left: 75px;
+    margin-top: 5px;
 }
 
 .questionPanelDiv {
     padding-top: 10px;
-   margin-left: 50px;
+    margin-left: 50px;
+}
+
+.questionSetStaticDiv {
+    padding-top: 10px;
+    margin-left: 20px;
+}
+
+.addQuestionSetDiv {
+    margin-top: -35px;
+    margin-left: 50px;
+    margin-bottom: 30px;
 }
 
 .questionPanelBodyDiv {
@@ -26,6 +36,11 @@
 .inlineLabel {
     padding-left: 0;
     font-size: 8pt;
+}
+
+.inlineLabelNoPadding {
+    composes: inlineLabel;
+    padding-right: 0;
 }
 
 .inlineTextCol {
@@ -59,12 +74,59 @@
     width: 300px !important;
 }
 
+.inputSelectQuestionSet {
+    composes: formInput;
+    width: 450px !important;
+    height: 28px !important;
+    margin-left: 5px;
+    margin-right: 10px;
+    font-size: 8pt;
+}
+
+.inputSelectQuestion {
+    composes: formInput;
+    display: inline;
+    width: 350px !important;
+    height: 28px !important;
+    margin-left: 5px;
+    margin-right: 10px;
+    font-size: 8pt;
+}
+
 .formInputActionDiv {
     font-size: 8pt;
     margin-top: 25px;
     padding: 18px 15px 2px 15px;
     border: solid 1px #c2e0ff;
     width: 800px;
+}
+
+.questionSetQuestionDiv {
+    font-size: 8pt;
+    margin-top: 25px;
+    padding: 18px 15px 2px 15px;
+    border: solid 1px #c2e0ff;
+    /*width: 740px;*/
+}
+
+.conditionalQuestionDiv {
+    font-size: 8pt;
+    margin-top: 25px;
+    padding: 18px 15px 2px 15px;
+    border: solid 1px #c2e0ff;
+}
+
+.conditionalQuestionStaticDiv {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.conditionalQuestionList {
+    margin-top: 10px;
+}
+
+.questionStaticListItem {
+    margin-top: 10px;
 }
 
 .formInputActionSelect {
@@ -96,13 +158,22 @@
     margin-bottom: 45px;
 }
 
+.conditionalQuestionFormGroup {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
 .conditionActionList {
-   margin-top: 12px;
-   margin-bottom: 15px;
+    margin-top: 12px;
+    margin-bottom: 15px;
 }
 
 .conditionActionListItem {
-   margin-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.conditionalQuestionsRow {
+    margin-top:20px;
 }
 
 .selectColLeft {
@@ -118,10 +189,33 @@
     float: right;
 }
 
+.labelCol {
+    text-align: right;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top:6px;
+}
+
 .showTargetDiv {
     display: inline
 }
 
 .hideTargetDiv {
     display: none
+}
+
+.questionSetIndex {
+
+}
+
+.questionSetRightCol {
+
+}
+
+.qSetQuestionButtonRow {
+    margin-top: 25px;
+}
+
+.addQuestionButtonRow {
+    margin-top: 15px;
 }

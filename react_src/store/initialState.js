@@ -4,7 +4,7 @@ export default
 {
     questions: [],
     questionPanels: [],
-   questionSets: [],
+    questionSets: [],
     auth: {
         isLoggedIn: false
     },
@@ -36,11 +36,12 @@ export default
         profile_section: 'account',
         profile_section_name: 'Account',
         admin_active_panel_id: '0',
-       admin_active_qset_id: '0'
+        admin_active_qSet_id: '0'
     },
     loadedData: {
         questions: false,
-        questionPanels: false
+        questionPanels: false,
+        questionSets: false
     },
     ajaxCallsInProgress: 0
 };

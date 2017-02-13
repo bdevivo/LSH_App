@@ -7,21 +7,22 @@ const classNames = require('classnames');
 
 const QuestionSetAddEdit = ({questionSet, questions, pageTitle, questionSetFunctions, panelTargets, canAddQSetQuestion}) => {
 
-    let { onUpdateQuestionPanel, handleCancel, handleSubmit } = questionSetFunctions;
-    let labelColSize = 2;
-    let inputColSize = 8;
+    let { onUpdateQuestionPanel, addQSetQuestion, handleCancel, handleSubmit } = questionSetFunctions;
+    let labelColSize = 3;
+    let inputColSize = 9;
 
     let panelTargetOptions = panelTargets.map((panel, i) =>
         <option key={i} value={panel.id}>{panel.name}</option>
     );
     panelTargetOptions.unshift(<option key="select" value="0">select panel...</option>);
 
-    let qSetQuestionList = questionSet.questions.map((q, i) =>
+    let qSetQuestionList = questionSet.qSetQuestions.map((q, i) =>
         <QSetQuestionEditContainer
             key={i}
             qSetQuestion={q}
             questions={questions}
-            panelTargets={panelTargets} />
+            panelTargets={panelTargets}
+            questionSetFunctions={questionSetFunctions} />
     );
 
 
@@ -39,7 +40,7 @@ const QuestionSetAddEdit = ({questionSet, questions, pageTitle, questionSetFunct
                     <FormGroup controlId="formControlsQuestionSetName">
                         <Col componentClass={ControlLabel} styleName="inlineLabel" sm={labelColSize}>Question Panel:</Col>
                         <Col sm={inputColSize} styleName="inlineTextCol">
-                            <FormControl styleName="formInputActionSelectWide"
+                            <FormControl styleName="inputSelectQuestionSet"
                                          componentClass="select"
                                          name="action"
                                          defaultValue={questionSet.questionPanelId}
@@ -50,18 +51,16 @@ const QuestionSetAddEdit = ({questionSet, questions, pageTitle, questionSetFunct
                     </FormGroup>
 
                     {/* QUESTION-SET QUESTIONS */}
-                    <FormGroup styleName="conditionalQuestionFormGroup">
-                        <Col sm={3} styleName="subHeaderLeftCol">
-                            <h4>Questions</h4>
-                        </Col>
-                        <Col sm={6}>
+                    {qSetQuestionList}
+
+                    {/* ADD QUESTION BUTTON */}
+                    <Row styleName="addQuestionButtonRow">
+                        <Col sm={4}>
                             <Button type="button" className="btn btn-sm btn-default"
                                     disabled={!canAddQSetQuestion}
-                                    onClick={canAddQSetQuestion}>Add New</Button>
+                                    onClick={addQSetQuestion}>Add Question</Button>
                         </Col>
-                    </FormGroup>
-
-                    {qSetQuestionList}
+                    </Row>
 
 
                 </Form>

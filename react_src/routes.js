@@ -14,6 +14,8 @@ import AdminContainer from './components/Admin/AdminContainer';
 import QuestionListContainer from './components/Admin/Question/QuestionListContainer';
 import QuestionPanelListContainer from './components/Admin/QuestionPanel/QuestionPanelListContainer';
 import QuestionPanel from './components/Admin/QuestionPanel/QuestionPanelContainer';
+import QuestionSetListContainer from './components/Admin/QuestionSet/QuestionSetListContainer';
+import QuestionSet from './components/Admin/QuestionSet/QuestionSetContainer';
 import QuestionForm from './components/Common/QuestionForm/FormContainer';
 import {requireAuth} from './auth_utils/auth';
 
@@ -36,6 +38,9 @@ export default (
             <Route path="questionList" component={QuestionListContainer}/>
             <Route path="panels" component={QuestionPanelListContainer}>
                <Route path="panel/:id" component={QuestionPanel} />
+            </Route>
+            <Route path="qSets" component={QuestionSetListContainer}>
+                <Route path="qSet/:id" component={QuestionSet} />
             </Route>
         </Route>
 

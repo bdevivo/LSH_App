@@ -18,7 +18,7 @@ const AdminContainer = ({children}) => {
                     <LinkContainer to="/admin/panels/panel/0">
                         <MenuItem eventKey="2.1">Question Panels</MenuItem>
                     </LinkContainer>
-                    <LinkContainer to="/admin/qListTalentNav">
+                    <LinkContainer to="/admin/qSets/qSet/0">
                         <MenuItem eventKey="2.2">Question Sets</MenuItem>
                     </LinkContainer>
                 </NavDropdown>

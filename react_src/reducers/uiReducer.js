@@ -18,7 +18,7 @@ export default function uiReducer(ui = initialState.ui, action) {
         }
 
        case types.ADMIN_QUESTION_SET_SELECTED: {
-           return update(ui, {admin_active_qset_id: {$set: action.qSetId}});
+           return update(ui, {admin_active_qSet_id: {$set: action.qSetId.toString()}});
         }
 
         default:

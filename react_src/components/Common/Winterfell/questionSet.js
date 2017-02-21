@@ -1,5 +1,7 @@
 import React, {PropTypes} from 'react';
 import Question from './question';
+import styles from './Winterfell.css';
+import CSSModules from 'react-css-modules';
 
 let _     = require('lodash').noConflict();
 
@@ -36,7 +38,7 @@ class QuestionSet extends React.Component {
            ? (
                <div className={this.props.classes.questionSetHeaderContainer}>
                 {typeof this.props.questionSetHeader !== 'undefined'
-                  ? <h4 className={this.props.classes.questionSetHeader}>
+                  ? <h4 styleName="questionSetHeader">
                       {this.props.questionSetHeader}
                     </h4>
                   : undefined}
@@ -61,7 +63,7 @@ QuestionSet.propTypes = {
     questionSetHeader      : PropTypes.string.isRequired,
     questionSetText        : PropTypes.string.isRequired,
     questions              : PropTypes.array.isRequired,
-    questionAnswers        : PropTypes.array.isRequired,
+    questionAnswers        : PropTypes.object.isRequired,
     classes                : PropTypes.object.isRequired,
     validationErrors       : PropTypes.object.isRequired,
     renderError            : PropTypes.func,
@@ -87,4 +89,5 @@ QuestionSet.defaultProps = {
   onKeyDown              : () => {}
 };
 
-module.exports = QuestionSet;
+//module.exports = QuestionSet;
+export default CSSModules(QuestionSet, styles);

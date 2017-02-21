@@ -37,7 +37,6 @@ class QuestionSetEditContainer extends React.Component {
         this.saveConditionalQuestion = this.saveConditionalQuestion.bind(this);
         this.cancelConditionalQuestion = this.cancelConditionalQuestion.bind(this);
         this.removeConditionalQuestion = this.removeConditionalQuestion.bind(this);
-        this.setQSetQuestionDirty = this.setQSetQuestionDirty.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -230,7 +229,8 @@ class QuestionSetEditContainer extends React.Component {
                                 }
                             }
                         },
-                        canAddConditionalQuestion: {$set: true}     // restore ability to add new Conditional Questions
+                        canAddConditionalQuestion: {$set: true},     // restore ability to add new Conditional Questions
+                        canAddQSetQuestion: {$set: true}    // restore ability to add new Question Set Questions
                     }
                 );
 
@@ -257,7 +257,8 @@ class QuestionSetEditContainer extends React.Component {
                                     }
                                 }
                             },
-                            canAddConditionalQuestion: {$set: true}     // restore ability to add new Conditional Questions
+                            canAddConditionalQuestion: {$set: true},    // restore ability to add new Conditional Questions
+                            canAddQSetQuestion: {$set: true}    // restore ability to add new Question Set Questions
                         }
                     );
 
@@ -281,19 +282,14 @@ class QuestionSetEditContainer extends React.Component {
                                 }
                             }
                         },
-                        canAddConditionalQuestion: {$set: true}     // restore ability to add new Conditional Questions
+                        canAddConditionalQuestion: {$set: true},     // restore ability to add new Conditional Questions
+                        canAddQSetQuestion: {$set: true}    // restore ability to add new Question Set Questions
                     }
                 );
 
                 this.setState(newState);
             }
         }
-    }
-
-    setQSetQuestionDirty() {
-        this.setState(update(this.state, {
-            canAddQSetQuestion: {$set: true}     // restore ability to add new Conditional Questions
-        }));
     }
 
 
@@ -313,7 +309,6 @@ class QuestionSetEditContainer extends React.Component {
             saveConditionalQuestion: this.saveConditionalQuestion,
             cancelConditionalQuestion: this.cancelConditionalQuestion,
             removeConditionalQuestion: this.removeConditionalQuestion,
-            setQSetQuestionDirty: this.setQSetQuestionDirty
         };
 
         return (

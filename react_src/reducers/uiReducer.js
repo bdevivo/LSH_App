@@ -17,8 +17,40 @@ export default function uiReducer(ui = initialState.ui, action) {
             return update(ui, {admin_active_panel_id: {$set: action.panelId}});
         }
 
-       case types.ADMIN_QUESTION_SET_SELECTED: {
-           return update(ui, {admin_active_qSet_id: {$set: action.qSetId.toString()}});
+        case types.ADMIN_QUESTION_SET_SELECTED: {
+            return update(ui, {admin_active_qSet_id: {$set: action.qSetId.toString()}});
+        }
+
+        case types.SET_CURRENT_PANEL: {
+            return update(ui,
+                {
+                    [action.gridName]: {
+                        currentPanelId: {$set: action.panelId}
+                    }
+                });
+        }
+
+        case types.PUSH_PANEL_HISTORY: {
+            return update(ui,
+                {
+                    [action.gridName]: {
+                        panelHistory: {$push: [action.panelId]}
+                    }
+                });
+        }
+
+        case types.POP_PANEL_HISTORY: {
+            let length = ui[action.gridName].panelHistory.length;
+            return update(ui,
+                {
+                    [action.gridName]: {
+                        panelHistory: {$splice: [[length - 1, 1]]}
+                    }
+                });
+        }
+
+        case types.CLEAR_PANEL_HISTORY: {
+            return [];
         }
 
         default:

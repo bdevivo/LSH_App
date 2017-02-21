@@ -30,7 +30,8 @@ export function getAllQuestions() {
             })
             .catch(error => {
                 dispatch(endAjaxCall());
-                throw(error);   // TODO: add real error handler action
+                //throw(error);   // TODO: add real error handler action
+                console.log(error.stack);
             });
     };
 }

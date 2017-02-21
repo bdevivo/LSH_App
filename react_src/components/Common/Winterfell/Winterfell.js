@@ -1,5 +1,9 @@
 import React, {PropTypes} from 'react';
 import QuestionPanel from './questionPanel';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as uiActions from '../../../actions/uiActions';
+import * as questionGridActions from '../../../actions/questionGridActions';
 
 let _ = require('lodash').noConflict();
 
@@ -16,7 +20,8 @@ class Winterfell extends React.Component {
                 questionSets: [],
                 classes: {}
             },
-            questionAnswers: {},
+            questionAnswers: this.props.questionAnswers,
+            panelHistory: this.props.panelHistory,
             ref: 'form',
             encType: 'application/x-www-form-urlencoded',
             method: 'POST',
@@ -35,8 +40,6 @@ class Winterfell extends React.Component {
             }
         }, this.props);
 
-        this.panelHistory = [];
-
         let schema = _.extend({
             classes: {},
             formPanels: [],
@@ -45,20 +48,10 @@ class Winterfell extends React.Component {
         }, props.schema);
 
         schema.formPanels = schema.formPanels
-            .sort((a, b) => a.index > b.index);
+            .sort((a, b) => a.index - b.index);
 
-        let panelId = (typeof props.panelId !== 'undefined'
-            ? props.panelId
-            : schema.formPanels.length > 0
-                ? schema.formPanels[0].panelId
-                : undefined);
-
-        let currentPanel = typeof schema !== 'undefined'
-        && typeof schema.formPanels !== 'undefined'
-        && typeof panelId !== 'undefined'
-            ? _.find(schema.formPanels,
-                panel => panel.panelId == panelId)
-            : undefined;
+        let panelId = this.getPanelId(props.panelId, schema);
+        let currentPanel = this.getCurrentPanel(panelId, schema);
 
         if (!currentPanel) {
             throw new Error('Winterfell: Could not find initial panel and failed to render.');
@@ -68,31 +61,59 @@ class Winterfell extends React.Component {
             schema: schema,
             currentPanel: currentPanel,
             action: props.action,
-            questionAnswers: props.questionAnswers
+            questionAnswers: props.questionAnswers,
         };
+
+        this.pushPanel = this.pushPanel.bind(this);
     }
 
     componentDidMount() {
-        this.panelHistory.push(this.state.currentPanel.panelId);
+        //this.panelHistory.push(this.state.currentPanel.panelId);
         this.props.onRender();
     }
 
     componentWillReceiveProps(nextProps) {
+        let schema = nextProps.schema;
+        let panelId = this.getPanelId(nextProps.panelId, schema);
+        let newCurrentPanel = this.getCurrentPanel(panelId, schema);
+
         this.setState({
             action: nextProps.action,
-            schema: nextProps.schema,
-            questionAnswers: nextProps.questionAnswers
+            schema: schema,
+            questionAnswers: nextProps.questionAnswers,
+            panelHistory: nextProps.panelHistory,
+            panelId: panelId,
+            currentPanel: newCurrentPanel
         });
     }
 
-    handleAnswerChange(questionId, questionAnswer) {
-        let questionAnswers = _.chain(this.state.questionAnswers)
-            .set(questionId, questionAnswer)
-            .value();
+    getPanelId(panelId, schema) {
+        return (panelId !== '0'
+            ? panelId
+            : schema.formPanels.length > 0
+                ? schema.formPanels[0].panelId
+                : undefined);
+    }
 
-        this.setState({
-            questionAnswers: questionAnswers,
-        }, this.props.onUpdate.bind(null, questionAnswers));
+    getCurrentPanel(panelId, schema) {
+        return (typeof schema !== 'undefined'
+                && typeof schema.formPanels !== 'undefined'
+                && typeof panelId !== 'undefined'
+                ? _.find(schema.formPanels, panel => panel.panelId == panelId)
+                : undefined);
+    }
+
+    handleAnswerChange(questionId, questionAnswer) {
+
+        this.props.questionGridActions.setQuestionAnswer(questionId, questionAnswer, this.props.gridName);
+
+        // let questionAnswers = _.chain(this.state.questionAnswers)
+        //     .set(questionId, questionAnswer)
+        //     .value();
+        //
+        // this.setState({
+        //     questionAnswers: questionAnswers,
+        // }, this.props.onUpdate.bind(null, questionAnswers));
     }
 
     handleSwitchPanel(panelId, preventHistory) {
@@ -106,20 +127,29 @@ class Winterfell extends React.Component {
         }
 
         if (!preventHistory) {
-            this.panelHistory.push(panel.panelId);
+            this.pushPanel(this.state.panelId);
+
         }
 
-        this.setState({
-            currentPanel: panel
-        }, this.props.onSwitchPanel.bind(null, panel));
+        this.props.uiActions.setCurrentPanel(panel.panelId, this.props.gridName);
+
+        // this.setState({
+        //     currentPanel: panel
+        // }, this.props.onSwitchPanel.bind(null, panel));
     }
 
     handleBackButtonClick() {
-        this.panelHistory.pop();
+        //this.panelHistory.pop();
+        this.props.uiActions.popPanelHistory(this.props.gridName);
 
         this.handleSwitchPanel.call(
-            this, this.panelHistory[this.panelHistory.length - 1], true
+            this, this.state.panelHistory[this.state.panelHistory.length - 1], true
         );
+    }
+
+    pushPanel(panelId) {
+        //this.panelHistory.push(panelId);
+        this.props.uiActions.pushPanelHistory(panelId, this.props.gridName);
     }
 
     handleSubmit(action) {
@@ -161,7 +191,7 @@ class Winterfell extends React.Component {
                                    backButton={currentPanel.backButton}
                                    questionSets={currentPanel.questionSets}
                                    questionAnswers={this.state.questionAnswers}
-                                   panelHistory={this.panelHistory}
+                                   panelHistory={this.state.panelHistory}
                                    renderError={this.props.renderError}
                                    renderRequiredAsterisk={this.props.renderRequiredAsterisk}
                                    onAnswerChange={this.handleAnswerChange.bind(this)}
@@ -175,7 +205,7 @@ class Winterfell extends React.Component {
 }
 
 Winterfell.propTypes = {
-    questionAnswers: PropTypes.array,
+    questionAnswers: PropTypes.object,
     action: PropTypes.func,
     schema: PropTypes.object.isRequired,
     method: PropTypes.string,
@@ -188,6 +218,10 @@ Winterfell.propTypes = {
     onUpdate: PropTypes.func,
     onSwitchPanel: PropTypes.func,
     panelId: PropTypes.string,
+    gridName: PropTypes.string.isRequired,
+    panelHistory: PropTypes.array,
+    uiActions: PropTypes.object,
+    questionGridActions: PropTypes.object,
 };
 
 Winterfell.inputTypes = require('./inputTypes');
@@ -203,4 +237,22 @@ Winterfell.addErrorMessages = Winterfell.errorMessages.addErrorMessages;
 Winterfell.addValidationMethod = Winterfell.validation.addValidationMethod;
 Winterfell.addValidationMethods = Winterfell.validation.addValidationMethods;
 
-export default Winterfell;
+
+function mapStateToProps(state, ownProps) {
+
+    let gridState = state.ui[ownProps.gridName];
+
+    return {
+        panelId: gridState.currentPanelId,
+        panelHistory: gridState.panelHistory,
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        uiActions: bindActionCreators(uiActions, dispatch),
+        questionGridActions: bindActionCreators(questionGridActions, dispatch),
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Winterfell);

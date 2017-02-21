@@ -1,4 +1,8 @@
 import React, {PropTypes} from 'react';
+import styles from './Winterfell.css';
+import CSSModules from 'react-css-modules';
+import QuestionSet from './questionSet';
+
 let _        = require('lodash').noConflict();
 let KeyCodez = require('keycodez');
 
@@ -6,7 +10,6 @@ let Validation    = require('./lib/validation');
 let ErrorMessages = require('./lib/errors');
 
 let Button      = require('./button');
-let QuestionSet = require('./questionSet');
 
 class QuestionPanel extends React.Component {
 
@@ -188,21 +191,21 @@ class QuestionPanel extends React.Component {
     });
 
     return (
-      <div className={this.props.classes.questionPanel}>
+      <div styleName={this.props.classes.questionPanel}>
         {typeof this.props.panelHeader !== 'undefined'
           || typeof this.props.panelText !== 'undefined'
           ? (
               <div className={this.props.classes.questionPanelHeaderContainer}>
                 {typeof this.props.panelHeader !== 'undefined'
                   ? (
-                      <h3 className={this.props.classes.questionPanelHeaderText}>
+                      <h3 styleName="questionPanelHeaderText">
                         {this.props.panelHeader}
                       </h3>
                     )
                   : undefined}
                 {typeof this.props.panelText !== 'undefined'
                   ? (
-                      <p className={this.props.classes.questionPanelText}>
+                      <p styleName={this.props.classes.questionPanelText}>
                         {this.props.panelText}
                       </p>
                     )
@@ -210,11 +213,11 @@ class QuestionPanel extends React.Component {
               </div>
             )
           : undefined}
-        <div className={this.props.classes.questionSets}>
+        <div styleName={this.props.classes.questionSets}>
           {questionSets}
         </div>
-        <div className={this.props.classes.buttonBar}>
-          {this.props.panelHistory.length > 1
+        <div styleName={this.props.classes.buttonBar}>
+          { this.props.backButton.text        //this.props.panelHistory.length > 1
             && !this.props.backButton.disabled
             ? (
                 <Button text={this.props.backButton.text || 'Back'}
@@ -224,7 +227,7 @@ class QuestionPanel extends React.Component {
             : undefined}
           {!this.props.button.disabled
             ? (
-                <Button text={this.props.button.text}
+                <Button text={this.props.button.text || 'Next'}
                         onClick={this.handleMainButtonClick.bind(this)}
                         className={this.props.classes.controlButton} />
               )
@@ -237,7 +240,7 @@ class QuestionPanel extends React.Component {
 }
 
 QuestionPanel.propTypes = {
-    questionAnswers: PropTypes.array.isRequired,
+    questionAnswers: PropTypes.object.isRequired,
     questionSets: PropTypes.array.isRequired,
     onSwitchPanel: PropTypes.func,
     onAnswerChange: PropTypes.func,
@@ -286,4 +289,4 @@ QuestionPanel.defaultProps = {
   panelHistory           : [],
 };
 
-export default QuestionPanel;
+export default CSSModules(QuestionPanel, styles);

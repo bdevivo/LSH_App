@@ -5,6 +5,14 @@ export default
     questions: [],
     questionPanels: [],
     questionSets: [],
+    questionGrids: {
+        question_grid_job_posting: {
+            questionAnswers:{}
+        },
+        question_grid_user_profile: {
+            questionAnswers:{}
+        }
+    },
     auth: {
         isLoggedIn: false
     },
@@ -36,12 +44,17 @@ export default
         profile_section: 'account',
         profile_section_name: 'Account',
         admin_active_panel_id: '0',
-        admin_active_qSet_id: '0'
+        admin_active_qSet_id: '0',
+        question_grid_job_posting: {
+            panelHistory: [],
+            currentPanelId: '0'
+        }
     },
     loadedData: {
         questions: false,
         questionPanels: false,
-        questionSets: false
+        questionSets: false,
+        questionAnswers: false
     },
     ajaxCallsInProgress: 0
 };

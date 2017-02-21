@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
-//import {ReactDOM} from 'react-dom';
+import styles from './Winterfell.css';
+import CSSModules from 'react-css-modules';
 let ReactDOM = require('react-dom');
 
 import {Overlay, Tooltip} from 'react-bootstrap';
@@ -62,6 +63,9 @@ class Question extends React.Component {
          * Conditional Questions
          */
         let conditionalItems = [];
+        let classes = {...this.props.classes};
+        classes.question = "conditionalQuestion";
+
         if (typeof this.props.input.options !== 'undefined') {
             this.props.input.options
                 .filter(option => {
@@ -86,7 +90,7 @@ class Question extends React.Component {
                                           validations={conditionalQuestion.validations}
                                           value={this.props.questionAnswers[conditionalQuestion.questionId]}
                                           input={conditionalQuestion.input}
-                                          classes={this.props.classes}
+                                          classes={classes}
                                           renderError={this.props.renderError}
                                           questionAnswers={this.props.questionAnswers}
                                           validationErrors={this.props.validationErrors}
@@ -194,7 +198,7 @@ class Question extends React.Component {
 }
 
 Question.propTypes = {
-    questionAnswers: PropTypes.array,
+    questionAnswers: PropTypes.object,
     questionSetId: PropTypes.string,
     questionId: PropTypes.string,
     question: PropTypes.string,
@@ -241,4 +245,4 @@ Question.defaultProps = {
     renderRequiredAsterisk: undefined
 };
 
-export default Question;
+export default CSSModules(Question, styles);

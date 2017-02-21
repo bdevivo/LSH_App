@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {Row, Col, Button, ButtonGroup, Modal} from 'react-bootstrap';
 import QuestionEditContainer from './QuestionEditContainer';
+import * as questionHelpers from '../../../utils/questionHelpers';
 import CSSModules from 'react-css-modules';
 import styles from './Question.css';
 
@@ -10,8 +11,7 @@ const Question = ({question, isExpanded, handleToggle, modalVisible, onAddQuesti
     let questionDetails;
     if (isExpanded) {
 
-        if (question.answerType && question.answerType.includes("Select")) {
-
+        if (questionHelpers.questionHasSelectOptions(question)) {
             let sortedOptions = question.selectOptionItems.sort((a, b) => { return a.index - b.index; });
             let questionOptions = sortedOptions.map((opt, i) =>
                 <li key={i}>{opt.text}</li>
@@ -40,30 +40,7 @@ const Question = ({question, isExpanded, handleToggle, modalVisible, onAddQuesti
         }
 
         let altText = (<p><b>Alternate text for resources: </b> {question.textForResources}</p>);
-
-        let questionType;
-        switch(question.answerType) {
-            case "singleSelect":
-                questionType = "single select";
-                break;
-
-            case "multiSelect":
-                questionType = "multiple select";
-                break;
-
-            case "boolean":
-                questionType = "boolean";
-                break;
-
-            case "text":
-                questionType = "text";
-                break;
-
-            default:
-                questionType = "none";
-                break;
-        }
-
+        let questionType = questionHelpers.getAsnwerTypeDisplayString(question.answerType);
 
         question_body =
             (<div>

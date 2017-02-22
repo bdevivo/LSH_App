@@ -8,11 +8,13 @@ import * as questionGridActions from '../../../actions/questionGridActions';
 import * as questionHelpers from '../../../utils/questionHelpers';
 
 import ButtonGroupSingleChoice from '../../Common/Winterfell/inputTypes/buttonGroupSingleChoice';
+import ButtonGroupMultipleChoice from '../../Common/Winterfell/inputTypes/buttonGroupMultipleChoice';
 
 //import update from 'immutability-helper';
 
 import Winterfell from '../Winterfell/Winterfell';
 Winterfell.addInputType('buttonGroupSingleChoice', ButtonGroupSingleChoice);
+Winterfell.addInputType('buttonGroupMultipleChoice', ButtonGroupMultipleChoice);
 
 class FormContainer extends React.Component {
     constructor(props) {
@@ -247,7 +249,7 @@ class FormContainer extends React.Component {
                 break;
 
             case "multiSelect":
-                inputType = "checkboxOptionsInput";
+                inputType = "buttonGroupMultipleChoice";
                 break;
 
             case "boolean":

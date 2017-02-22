@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import {Button, ButtonGroup} from 'react-bootstrap';
 
 class ButtonGroupSingleChoice extends React.Component {
 
@@ -6,14 +7,16 @@ class ButtonGroupSingleChoice extends React.Component {
         super(props);
 
         this.state = {
-            value : this.props.value
+            value: this.props.value
         };
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(value) {
+    handleChange(event) {
         this.setState({
-            value : value
-        }, this.props.onChange.bind(null, value));
+            value: event.target.value
+        }, this.props.onChange.bind(null, event.target.value));
     }
 
     render() {
@@ -21,55 +24,48 @@ class ButtonGroupSingleChoice extends React.Component {
         let options = this.props.options.map(opt => {
             return (
 
-                <li key={opt.value}
-                    className={this.props.classes.radioListItem}>
-                    <label className="btn btn-success"
-                           id={this.props.labelId}>
-                        <input type="radio"
-                               name={this.props.name}
-                            // aria-labelledby={this.props.labelId}
-                               checked={this.state.value == opt.value}
-                               className={this.props.classes.radio}
-                               required={this.props.required
-                                   ? 'required'
-                                   : undefined}
-                               onChange={this.handleChange.bind(this, opt.value)}
-                               onBlur={this.props.onBlur.bind(null, this.state.value)} />
-                        {opt.text}
-                    </label>
-                </li>
+                <Button bsStyle="success"
+                        key={opt.value}
+                        value={opt.value}
+                        active={opt.value === this.state.value}
+                        required={this.props.required
+                            ? 'required'
+                            : undefined}
+                        onClick={this.handleChange}>{opt.text}</Button>
             );
         });
 
         return (
-            <div id="divProjectCategory" className="btn-group btn-group-lg categorySelectButtonGroup" data-toggle="buttons">
+            <ButtonGroup>
                 {options}
-            </div>
+            </ButtonGroup>
         );
     }
 
 }
 
 ButtonGroupSingleChoice.propTypes = {
-    classes     : PropTypes.object,
-    name        : PropTypes.string,
-    id          : PropTypes.string,
-    labelId     : PropTypes.string,
-    options     : PropTypes.array,
-    value       : PropTypes.string,
-    placeholder : PropTypes.string,
-    onChange    : PropTypes.func,
-    onBlur      : PropTypes.func,
-    required    : PropTypes.bool
+    classes: PropTypes.object,
+    name: PropTypes.string,
+    id: PropTypes.string,
+    labelId: PropTypes.string,
+    options: PropTypes.array,
+    value: PropTypes.string,
+    placeholder: PropTypes.string,
+    onChange: PropTypes.func,
+    onBlur: PropTypes.func,
+    required: PropTypes.bool
 };
 
 ButtonGroupSingleChoice.defaultProps = {
-    classes  : {},
-    name     : undefined,
-    value    : undefined,
-    options  : [],
-    onChange : () => {},
-    onBlur   : () => {}
+    classes: {},
+    name: undefined,
+    value: undefined,
+    options: [],
+    onChange: () => {
+    },
+    onBlur: () => {
+    }
 };
 
 module.exports = ButtonGroupSingleChoice;

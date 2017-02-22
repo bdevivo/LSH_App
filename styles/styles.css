@@ -270,6 +270,14 @@ nav > div.container {
 
 }
 
+.btn-success.active {
+    background-color: #337433;
+}
+
+div.question {
+    margin-bottom: 40px;
+}
+
 .questionPanelModal {
     width: 900px;
 }

@@ -2,16 +2,19 @@ import * as types from '../actions/actionTypes';
 import initialState from '../store/initialState';
 import update from 'immutability-helper';
 
+let cloneDeep = require('lodash/cloneDeep');
+
 export default function questionGridReducer(questionGrids = initialState.questionGrids, action) {
 
     switch (action.type) {
 
         case types.SET_QUESTION_ANSWER: {
+            let newAnswers = cloneDeep(action.questionAnswer);
             return update(questionGrids,
                 {
                     [action.gridName]: {
                         questionAnswers: {
-                            [action.questionId]: {$set: action.questionAnswer}
+                            [action.questionId]: {$set: newAnswers}
                         }
                     }
                 });

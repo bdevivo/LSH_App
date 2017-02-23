@@ -1,13 +1,20 @@
 import React, {PropTypes as T} from 'react';
 import {connect} from 'react-redux';
-import schema from './TestSchema';
 import {bindActionCreators} from 'redux';
 import * as questionPanelActions from '../../../actions/questionPanelActions';
 import * as questionSetActions from '../../../actions/questionSetActions';
 import * as questionActions from '../../../actions/questionActions';
-import update from 'immutability-helper';
+import * as questionGridActions from '../../../actions/questionGridActions';
+import * as questionHelpers from '../../../utils/questionHelpers';
+
+import ButtonGroupSingleChoice from '../../Common/Winterfell/inputTypes/buttonGroupSingleChoice';
+import ButtonGroupMultipleChoice from '../../Common/Winterfell/inputTypes/buttonGroupMultipleChoice';
+
+//import update from 'immutability-helper';
 
 import Winterfell from '../Winterfell/Winterfell';
+Winterfell.addInputType('buttonGroupSingleChoice', ButtonGroupSingleChoice);
+Winterfell.addInputType('buttonGroupMultipleChoice', ButtonGroupMultipleChoice);
 
 class FormContainer extends React.Component {
     constructor(props) {
@@ -16,6 +23,7 @@ class FormContainer extends React.Component {
             qSets: this.props.qSets,
             questions: this.props.questions,
             qPanels: this.props.qPanels,
+            questionAnswers: this.props.questionAnswers
         };
     }
 
@@ -31,13 +39,18 @@ class FormContainer extends React.Component {
         if (!this.props.areQuestionSetsLoaded) {
             this.props.questionSetActions.getAllQuestionSets();
         }
+
+        if (!this.props.areQuestionAnswersLoaded) {
+            this.props.questionGridActions.getAllQuestionAnswers();
+        }
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
             qSets: [...nextProps.qSets],
             questions: [...nextProps.questions],
-            qPanels: [...nextProps.qPanels]
+            qPanels: [...nextProps.qPanels],
+            questionAnswers: nextProps.questionAnswers || {}
         });
     }
 
@@ -213,9 +226,8 @@ class FormContainer extends React.Component {
     }
 
     getInputOptions(fullQuestion, qSetQuestion) {
-        switch (fullQuestion.answerType) {
-            case "singleSelect":
-            case "multiSelect":
+        switch (questionHelpers.getQuestionTypeGroup(fullQuestion)) {
+            case "select":
                 return this.getInputOptionsForSelect(fullQuestion, qSetQuestion);
 
             case "boolean":
@@ -233,11 +245,11 @@ class FormContainer extends React.Component {
         let inputType;
         switch (fullQuestion.answerType) {
             case "singleSelect":
-                inputType = "radioOptionsInput";
+                inputType = "buttonGroupSingleChoice";
                 break;
 
             case "multiSelect":
-                inputType = "checkboxOptionsInput";
+                inputType = "buttonGroupMultipleChoice";
                 break;
 
             case "boolean":
@@ -251,7 +263,7 @@ class FormContainer extends React.Component {
                 break;
 
             default:
-                inputType = "textInput";
+                inputType = fullQuestion.answerType;
         }
 
         let inputObj = {
@@ -293,45 +305,46 @@ class FormContainer extends React.Component {
         return this.state.qSets.map(qSet => {
             return {
                 "questionSetId": qSet._id,
-                "questionSetHeader" : "",
-                "questionSetText" : "",
+                "questionSetHeader": "",
+                "questionSetText": "",
                 "questions": this.getQSetQuestions(qSet),
 
 
             };
         });
     }
-   
-   getClasses() {
-       return {
-          "input": "form-control",
-          "select": "form-control",
-          "question": "form-group",
-          "radioListItem": "radio",
-          "radioList": "clean-list",
-          "checkboxInput": "checkbox",
-          "checkboxListItem": "checkbox",
-          "checkboxList": "clean-list",
-          "controlButton": "btn btn-primary pull-right",
-          "backButton": "btn btn-default pull-left",
-          "errorMessage": "alert alert-danger",
-          "questionPostText": "push-top",
-          "buttonBar": "button-bar"
-       };
-   }
+
+    getClasses() {
+        return {
+            "questionPanels": "questionPanels",
+            "questionPanelText": "questionPanelText",
+            "questionSets": "questionSets",
+            "input": "form-control",
+            "select": "form-control",
+            "question": "question",
+            "radioListItem": "radio",
+            "radioList": "clean-list",
+            "checkboxInput": "checkbox",
+            "checkboxListItem": "checkbox",
+            "checkboxList": "clean-list",
+            "controlButton": "btn btn-primary pull-right",
+            "backButton": "btn btn-default pull-left",
+            "errorMessage": "alert alert-danger",
+            "questionPostText": "push-top",
+            "buttonBar": "buttonBar"
+        };
+    }
 
     render() {
 
-        let questionAnswers = [];
-
         let hasData = (this.state.qPanels.length > 0
-                        && this.state.qSets.length > 0
-                        && this.state.questions.length > 0);
+        && this.state.qSets.length > 0
+        && this.state.questions.length > 0);
 
         let mySchema;
         if (hasData) {
             mySchema = {
-               "classes": this.getClasses(),
+                "classes": this.getClasses(),
                 "formPanels": this.getFormPanelsJson(),
                 "questionPanels": this.getQuestionPanelsJson(),
                 "questionSets": this.getQuestionSetsJson()
@@ -341,7 +354,8 @@ class FormContainer extends React.Component {
         return !hasData
             ? null
             : <Winterfell schema={mySchema}
-                          questionAnswers={questionAnswers}
+                          gridName={this.props.gridName}
+                          questionAnswers={this.state.questionAnswers}
                           disableSubmit={true}
                           onRender={this.onRender}
                           onUpdate={this.onUpdate}
@@ -351,25 +365,36 @@ class FormContainer extends React.Component {
 }
 
 FormContainer.propTypes = {
-    qSets: T.array.isRequired,
-    questions: T.array.isRequired,
-    qPanels: T.array.isRequired,
+    gridName: T.string.isRequired,
+    qSets: T.array,
+    questions: T.array,
+    qPanels: T.array,
+    questionAnswers: T.object,
     arePanelsLoaded: T.bool,
     areQuestionsLoaded: T.bool,
     areQuestionSetsLoaded: T.bool,
+    areQuestionAnswersLoaded: T.bool,
     questionPanelActions: T.object,
     questionSetActions: T.object,
+    questionGridActions: T.object,
     questionActions: T.object,
 };
 
 function mapStateToProps(state, ownProps) {
+
+    //let gridName = ownProps.params.gridId === "post" ? "question_grid_job_posting" : "question_grid_user_profile";
+    let questionAnswers = state.questionGrids[ownProps.gridName].questionAnswers;
+
     return {
+        //gridName: gridName,
         qSets: [...state.questionSets],
         qPanels: [...state.questionPanels],
         questions: [...state.questions],
+        questionAnswers: questionAnswers,
         arePanelsLoaded: state.loadedData.questionSets,
         areQuestionSetsLoaded: state.loadedData.questionSets,
-        areQuestionsLoaded: state.loadedData.questions
+        areQuestionsLoaded: state.loadedData.questions,
+        areQuestionAnswersLoaded: state.loadedData.questionAnswers,
     };
 }
 
@@ -378,6 +403,7 @@ function mapDispatchToProps(dispatch) {
         questionPanelActions: bindActionCreators(questionPanelActions, dispatch),
         questionSetActions: bindActionCreators(questionSetActions, dispatch),
         questionActions: bindActionCreators(questionActions, dispatch),
+        questionGridActions: bindActionCreators(questionGridActions, dispatch),
     };
 }
 

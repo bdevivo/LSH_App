@@ -18,6 +18,9 @@ class QSetQuestionEditContainer extends React.Component {
         // * enabled otherwise ((because for existing QSets, Question has already been specified)
         let canAddConditionalQuestion = this.props.qSetQuestion.id != '0';
 
+        let qSetQuestion = this.props.qSetQuestion;
+        qSetQuestion.potentialResponses = this.getPotentialResponses(qSetQuestion.questionId, this.props.questions);
+
         this.state = {
             qSetQuestion: this.props.qSetQuestion,
             questions: this.props.questions,
@@ -26,6 +29,7 @@ class QSetQuestionEditContainer extends React.Component {
         };
 
         this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
+        this.getPotentialResponses = this.getPotentialResponses.bind(this);
         this.onQuestionChanged = this.onQuestionChanged.bind(this);
         this.addConditionalQuestion = this.addConditionalQuestion.bind(this);
         this.saveConditionalQuestion = this.saveConditionalQuestion.bind(this);
@@ -40,9 +44,11 @@ class QSetQuestionEditContainer extends React.Component {
     componentWillReceiveProps(nextProps) {
 
         let nextQSetQuestion = nextProps.qSetQuestion;
-        // save the properties of the qSetQuestion that are stored in local state
-        nextQSetQuestion.potentialResponses = this.state.qSetQuestion.potentialResponses;
-        nextQSetQuestion.questionId = this.state.qSetQuestion.questionId;
+
+        // restore properties that are stored in local state
+        let questionId = this.state.qSetQuestion.questionId;
+        nextQSetQuestion.potentialResponses = this.getPotentialResponses(questionId, nextProps.questions);
+        nextQSetQuestion.questionId = questionId;
 
         this.setState({
             qSetQuestion: nextQSetQuestion,
@@ -53,8 +59,7 @@ class QSetQuestionEditContainer extends React.Component {
 
     onQuestionChanged(event) {
 
-        let selectedQuestion = this.state.questions.find(q => q._id == event.target.value);
-        let potentialResponses = questionHelpers.getPotentialResponses(selectedQuestion);
+        let potentialResponses = this.getPotentialResponses(event.target.value, this.state.questions);
 
         let newState = update(this.state, {
             qSetQuestion: {
@@ -68,6 +73,15 @@ class QSetQuestionEditContainer extends React.Component {
         this.setState(newState);
     }
 
+    getPotentialResponses(questionId, questions) {
+        if (questionId == '0') {
+            return [];
+        }
+
+        let fullQuestion = questions.find(q => q._id == questionId);
+        return questionHelpers.getPotentialResponses(fullQuestion);
+    }
+
     addConditionalQuestion() {
 
         let newState = update(this.state, {
@@ -77,7 +91,6 @@ class QSetQuestionEditContainer extends React.Component {
 
         this.setState(newState);
         this.props.questionSetFunctions.addConditionalQuestion(this.state.qSetQuestion.id);
-        //this.props.questionSetFunctions.setQSetQuestionDirty();
     }
 
     saveConditionalQuestion(conditionalQuestion) {
@@ -155,7 +168,6 @@ class QSetQuestionEditContainer extends React.Component {
             cancelConditionalQuestion: this.cancelConditionalQuestion,
             removeConditionalQuestion: this.removeConditionalQuestion,
             onQuestionChanged: this.onQuestionChanged,
-            setQSetQuestionDirty: this.props.questionSetFunctions.setQSetQuestionDirty
         };
 
         let isAddMode = (qSetQuestion.id == '0' || this.state.isQSetChanged);

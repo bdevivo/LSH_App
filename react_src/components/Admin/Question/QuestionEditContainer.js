@@ -6,6 +6,7 @@ import QuestionAddEdit from './QuestionAddEdit';
 import update from 'immutability-helper';
 import * as questionActions from '../../../actions/questionActions';
 import {alertError, confirm} from '../../../utils/confirm';
+import * as questionHelpers from '../../../utils/questionHelpers';
 
 const uuidV1 = require('uuid/v1');
 const cloneDeep = require('lodash/cloneDeep');
@@ -130,18 +131,18 @@ class QuestionEditContainer extends React.Component {
             return createErrorResult("Answer type is not specified.");
         }
 
-        // Rule #4: if answer type is Single Select or Multi Select, at least one option must be added
-        if (question.answerType.includes("Select") && question.selectOptionItems.length === 0) {
+        // Rule #4: if this is a Select question, at least one option must be added
+        if (questionHelpers.questionHasSelectOptions(question) && question.selectOptionItems.length === 0) {
             return createErrorResult("At least one select option must be specified");
         }
 
         // Rule #5: if answer type is Boolean, Yes text prompt mus tbe specified
-        if (question.answerType.includes("boolean") && question.booleanOptions.yesText.length === 0) {
+        if (questionHelpers.questionIsBoolean(question) && question.booleanOptions.yesText.length === 0) {
             return createErrorResult('Text for "Yes" option is empty.');
         }
 
         // Rule #6: if answer type is Boolean, No text prompt must tbe specified
-        if (question.answerType.includes("boolean") && question.booleanOptions.noText.length === 0) {
+        if (questionHelpers.questionIsBoolean(question) && question.booleanOptions.noText.length === 0) {
             return createErrorResult('Text for "No" option is empty.');
         }
 
@@ -150,7 +151,7 @@ class QuestionEditContainer extends React.Component {
     }
 
     clearOtherAnswerTypes(question) {
-        if (!question.answerType.includes("Select")) {
+        if (!questionHelpers.questionHasSelectOptions(question)) {
             delete question.selectOptionItems;
         }
         else if (!question.answerType.includes("boolean")) {
@@ -207,15 +208,25 @@ class QuestionEditContainer extends React.Component {
             }
         });
 
-        // initialize answer-type options
-        if (newAnswerType.includes("Select") && typeof(newState.question.selectOptionItems) == 'undefined') {
-            newState.question.selectOptionItems = [];
-        }
-        else if (newAnswerType == "boolean" && typeof(newState.question.booleanOptions) == 'undefined') {
-            newState.question.booleanOptions = {
-                yesText: "",
-                noText: ""
-            };
+        switch (questionHelpers.getAnswerTypeGroup(newAnswerType)) {
+            case "select":  {
+                // initialize answer options
+                if (typeof(newState.question.selectOptionItems) == 'undefined') {
+                    newState.question.selectOptionItems = [];
+                }
+                break;
+            }
+
+            case "boolean": {
+                if (typeof(newState.question.booleanOptions) == 'undefined') {
+                    newState.question.booleanOptions = {
+                        yesText: "",
+                        noText: ""
+                    };
+                }
+
+                break;
+            }
         }
 
         this.setState(newState);

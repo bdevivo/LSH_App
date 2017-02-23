@@ -40,7 +40,6 @@ class ConditionalQuestionEditContainer extends React.Component {
 
         newState.isFormDataChanged = true;
         this.setState(newState);
-        //this.props.qSetQuestionFunctions.setQSetQuestionDirty();
     }
 
     onUpdateConditionalTarget(event) {
@@ -52,7 +51,6 @@ class ConditionalQuestionEditContainer extends React.Component {
 
         newState.isFormDataChanged = true;
         this.setState(newState);
-        //this.props.qSetQuestionFunctions.setQSetQuestionDirty();
     }
 
     onSave() {

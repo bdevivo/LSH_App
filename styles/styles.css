@@ -270,10 +270,23 @@ nav > div.container {
 
 }
 
+.btn-success.active {
+    background-color: #337433;
+}
+
+div.question {
+    margin-bottom: 40px;
+}
+
 .questionPanelModal {
     width: 900px;
 }
 
 .questionSetModal {
     width: 900px;
+}
+
+.conditionalQuestion {
+    margin-top: 25px;
+    margin-left: 50px;
 }

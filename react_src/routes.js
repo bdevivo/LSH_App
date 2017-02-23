@@ -16,7 +16,7 @@ import QuestionPanelListContainer from './components/Admin/QuestionPanel/Questio
 import QuestionPanel from './components/Admin/QuestionPanel/QuestionPanelContainer';
 import QuestionSetListContainer from './components/Admin/QuestionSet/QuestionSetListContainer';
 import QuestionSet from './components/Admin/QuestionSet/QuestionSetContainer';
-import QuestionForm from './components/Common/QuestionForm/FormContainer';
+import PostJobQuestionGrid from './components/JobPosting/PostJobQuestionGrid';
 import {requireAuth} from './auth_utils/auth';
 
 //noinspection JSUnresolvedVariable
@@ -44,7 +44,7 @@ export default (
             </Route>
         </Route>
 
-        <Route path="qform" component={QuestionForm}/>
+        <Route path="postjobgrid/:gridId" component={PostJobQuestionGrid}/>
 
     </Route>
 );

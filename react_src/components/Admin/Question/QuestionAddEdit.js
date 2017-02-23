@@ -1,7 +1,8 @@
 import React, {PropTypes as T} from 'react';
 import {Row, Col, Form, FormGroup, FormControl, ControlLabel, Button, Radio, Modal} from 'react-bootstrap';
-import SelectOptionContainer from "./AnswerTypeSelect/SelectOptionsContainer";
+import SelectOptionsContainer from "./AnswerTypeSelect/SelectOptionsContainer";
 import BooleanForm from './AnswerTypeBoolean/BooleanForm';
+import * as questionHelpers from '../../../utils/questionHelpers';
 import styles from './Question.css';
 import CSSModules from 'react-css-modules';
 
@@ -21,11 +22,10 @@ const QuestionAddEdit = ({
     let answerTypeDetails = [];
     let answerType = question.answerType;
 
-    switch (answerType) {
-        case "singleSelect":
-        case "multiSelect": {
+    switch(questionHelpers.getQuestionTypeGroup(question)) {
 
-            answerTypeDetails = (<SelectOptionContainer
+        case "select": {
+            answerTypeDetails = (<SelectOptionsContainer
                 optionItems={question.selectOptionItems}
                 selectionOptionFunctions={selectionOptionFunctions}
             />);
@@ -40,14 +40,12 @@ const QuestionAddEdit = ({
             break;
         }
 
-        case "text": {
+        default: {
             answerTypeDetails = null;
             break;
         }
-
-        default:
-        // do nothing
     }
+
 
     let {onTextFieldChanged} = questionFunctions;
     let onAnswerTypeChanged = questionFunctions.onQuestionTypeSelectionChanged;
@@ -99,14 +97,35 @@ const QuestionAddEdit = ({
                     </FormGroup>
 
                     <FormGroup controlId="formControlsQuestionType">
-                        <Radio value="singleSelect" checked={answerType === "singleSelect"}
-                               onChange={onAnswerTypeChanged}>Single Select</Radio>
-                        <Radio value="multiSelect" checked={answerType === "multiSelect"}
-                               onChange={onAnswerTypeChanged}>Multiple Select</Radio>
+                        {/*<Radio value="radioOptionsInput" checked={answerType === "radioOptionsInput"}*/}
+                               {/*onChange={onAnswerTypeChanged}>Single Select</Radio>*/}
+                        {/*<Radio value="checkboxOptionsInput" checked={answerType === "checkboxOptionsInput"}*/}
+                               {/*onChange={onAnswerTypeChanged}>Multiple Select</Radio>*/}
                         <Radio value="boolean" checked={answerType === "boolean"}
                                onChange={onAnswerTypeChanged}>Boolean</Radio>
-                        <Radio value="text" checked={answerType === "text"}
+                        <Radio value="textInput" checked={answerType === "textInput"}
                                onChange={onAnswerTypeChanged}>Text</Radio>
+
+
+
+
+                        <Radio value="textareaInput" checked={answerType === "textareaInput"}
+                               onChange={onAnswerTypeChanged}>Text Area</Radio>
+                        <Radio value="emailInput" checked={answerType === "emailInput"}
+                               onChange={onAnswerTypeChanged}>Email</Radio>
+                        <Radio value="fileInput" checked={answerType === "fileInput"}
+                               onChange={onAnswerTypeChanged}>File Upload</Radio>
+                        <Radio value="selectInput" checked={answerType === "selectInput"}
+                               onChange={onAnswerTypeChanged}>Dropdown Select</Radio>
+                        <Radio value="checkboxInput" checked={answerType === "checkboxInput"}
+                               onChange={onAnswerTypeChanged}>Single Checkbox</Radio>
+                        <Radio value="checkboxOptionsInput" checked={answerType === "checkboxOptionsInput"}
+                               onChange={onAnswerTypeChanged}>Multiple Checkboxes</Radio>
+                        <Radio value="radioOptionsInput" checked={answerType === "radioOptionsInput"}
+                               onChange={onAnswerTypeChanged}>Radio Buttons</Radio>
+
+
+
                     </FormGroup>
 
                     <div styleName="answerTypeDetails">

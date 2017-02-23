@@ -18,8 +18,8 @@ export default function questionPanelReducer(questionPanels = initialState.quest
         case types.UPDATE_QUESTION_PANEL_SUCCESS: {
             let panelIndex = questionPanels.findIndex((x) => x._id == action.panel._id);
             if (panelIndex > -1) {
-                let newQuestionPanel = cloneDeep(action.panel);
-                return update(questionPanels, {$splice: [[panelIndex, 1, newQuestionPanel]]});
+                //let newQuestionPanel = cloneDeep(action.panel);
+                return update(questionPanels, {$splice: [[panelIndex, 1, action.panel]]});
             }
             else {
                 return questionPanels;

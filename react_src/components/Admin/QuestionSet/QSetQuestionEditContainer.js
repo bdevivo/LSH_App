@@ -7,8 +7,6 @@ import * as questionHelpers from '../../../utils/questionHelpers';
 import CSSModules from 'react-css-modules';
 import styles from './QuestionSet.css';
 
-const cloneDeep = require('lodash/cloneDeep');
-
 class QSetQuestionEditContainer extends React.Component {
     constructor(props, context) {
         super(props, context);

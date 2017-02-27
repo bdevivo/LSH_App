@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import ConditionalQuestionEdit from './ConditionalQuestionEdit';
 import * as optionHelpers from '../../../utils/questionHelpers';
 import update from 'immutability-helper';
-const cloneDeep = require('lodash/cloneDeep');
+let _ = require('lodash');
 const uuidV1 = require('uuid/v1');
 
 class ConditionalQuestionEditContainer extends React.Component {

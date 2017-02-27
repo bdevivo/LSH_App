@@ -6,7 +6,7 @@ import CSSModules from 'react-css-modules';
 import ItemTypes from './ItemTypes';
 import {DragSource, DropTarget} from 'react-dnd';
 
-let flow = require('lodash/flow');
+let _ = require('lodash');
 
 const optionItemSource = {
     beginDrag(props) {
@@ -157,7 +157,7 @@ OptionItem.propTypes = {
 };
 
 
-export default flow(
+export default _.flow(
     DragSource(ItemTypes.SELECTOPTION, optionItemSource, collectSource),
     DropTarget(ItemTypes.SELECTOPTION, optionItemTarget, collectTarget)
 )(CSSModules(OptionItem, styles));

@@ -17,6 +17,7 @@ import QuestionPanel from './components/Admin/QuestionPanel/QuestionPanelContain
 import QuestionSetListContainer from './components/Admin/QuestionSet/QuestionSetListContainer';
 import QuestionSet from './components/Admin/QuestionSet/QuestionSetContainer';
 import PostJobQuestionGrid from './components/JobPosting/PostJobQuestionGrid';
+import JobDashboard from './components/JobPosting/JobDashboardContainer';
 import {requireAuth} from './auth_utils/auth';
 
 //noinspection JSUnresolvedVariable
@@ -44,6 +45,7 @@ export default (
             </Route>
         </Route>
 
+        <Route path="jobdash" component={JobDashboard} />
         <Route path="postjobgrid/:gridId" component={PostJobQuestionGrid}/>
 
     </Route>

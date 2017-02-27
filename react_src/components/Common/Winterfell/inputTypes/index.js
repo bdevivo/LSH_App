@@ -25,7 +25,7 @@ inputTypes.addInputType = (name, instance) => {
                     + 'must be of type string');
   }
 
-  if (!React.Component instanceof instance.constructor) {
+  if (!(React.Component instanceof instance.constructor)) {
     throw new Error('Winterfell: Cannot not assign "' + name + '" as an inputType. '
                     + 'Second paramter expects a React component');
   }

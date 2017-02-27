@@ -9,7 +9,7 @@ import {alertError, confirm} from '../../../utils/confirm';
 import CSSModules from 'react-css-modules';
 import styles from './QuestionSet.css';
 
-const cloneDeep = require('lodash/cloneDeep');
+let _ = require('lodash');
 
 class QuestionSetContainer extends React.Component {
     constructor(props) {
@@ -135,7 +135,7 @@ class QuestionSetContainer extends React.Component {
     }
 
     onEditQuestionSet() {
-        let editQuestionSet = cloneDeep(this.state.currentQuestionSet);
+        let editQuestionSet = _.cloneDeep(this.state.currentQuestionSet);
 
         let newState = update(this.state, {
                 editQuestionSet: {$set: editQuestionSet},

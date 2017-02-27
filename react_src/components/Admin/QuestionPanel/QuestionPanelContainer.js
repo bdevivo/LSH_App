@@ -8,7 +8,7 @@ import {alertError, confirm} from '../../../utils/confirm';
 import CSSModules from 'react-css-modules';
 import styles from './QuestionPanel.css';
 
-const cloneDeep = require('lodash/cloneDeep');
+let _ = require('lodash');
 
 class QuestionPanelContainer extends React.Component {
     constructor(props) {
@@ -142,7 +142,7 @@ class QuestionPanelContainer extends React.Component {
     }
 
     onEditPanel() {
-        let editPanel = cloneDeep(this.state.currentPanel);
+        let editPanel = _.cloneDeep(this.state.currentPanel);
 
         let newState = update(this.state, {
                 editPanel: {$set: editPanel},

@@ -6,6 +6,7 @@ let jobPostingSchema;
 
 jobPostingSchema = new Schema(
     {
+        name: {type: String, required: true},
         questionAnswers:
             {
                 questionId: {type: String, required: true},

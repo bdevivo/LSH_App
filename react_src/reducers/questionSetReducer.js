@@ -2,7 +2,8 @@ import * as types from '../actions/actionTypes';
 import initialState from '../store/initialState';
 import update from 'immutability-helper';
 
-let cloneDeep = require('lodash/cloneDeep');
+//let cloneDeep = require('lodash.clonedeep');
+let _ = require('lodash');
 
 export default function questionSetReducer(questionSets = initialState.questionSets, action) {
 
@@ -17,7 +18,7 @@ export default function questionSetReducer(questionSets = initialState.questionS
         case types.UPDATE_QUESTION_SET_SUCCESS: {
             let qSetIndex = questionSets.findIndex((x) => x._id == action.qSet._id);
             if (qSetIndex > -1) {
-                let newQuestionSet = cloneDeep(action.qSet);
+                let newQuestionSet = _.cloneDeep(action.qSet);
                 return update(questionSets, {$splice: [[qSetIndex, 1, newQuestionSet]]});
             }
             else {

@@ -7,11 +7,11 @@
 }
 
 .centerNav > li > a {
-   padding-left: 5px;
-   padding-right: 5px;
-   background-image: none !important;
-   background-color: transparent !important;
-   -webkit-box-shadow: none !important;
+   /*padding-left: 5px;*/
+   /*padding-right: 5px;*/
+   /*background-image: none !important;*/
+   /*background-color: transparent !important;*/
+   /*-webkit-box-shadow: none !important;*/
 }{}
 
 .topNavbar {
@@ -44,7 +44,7 @@
 }
 
 .navItem {
-    display: inline-block;
+    /*display: inline-block;*/
 }
 
 .link {

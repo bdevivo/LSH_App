@@ -17,13 +17,14 @@ const HeaderCenterNav = ({isLoggedIn, isAdmin, isBuyer}) => {
         if (isAdmin) {
 
             adminNavItems = [
-                <HeaderLink to="/admin" key="admin" className="navItemWithSep">Admin</HeaderLink>,
+                <HeaderLink to="/admin" key="admin" className="navItem">Admin</HeaderLink>
             ];
 
             // admin users get all center nav links
             rootNavItems = [
-                <HeaderLink to="/postjobgrid/post" key="postJob" className="navItemWithSep">Post a Job</HeaderLink>,
-                <HeaderLink to="/browseJobs" key="browseJobs" className="navItemWithSep">Browse Jobs</HeaderLink>,
+               <HeaderLink to="/postjobgrid/post" key="postJob" className="navItem">Preview Job Post</HeaderLink>,
+                <HeaderLink to="/jobdash" key="jobdash" className="navItem">Job Dashboard</HeaderLink>,
+                <HeaderLink to="/browseJobs" key="browseJobs" className="navItem">Browse Jobs</HeaderLink>,
                 <HeaderLink to="/browseTalent" key="browseTalent" className="navItem">Browse Talent</HeaderLink>
             ];
         }
@@ -31,20 +32,20 @@ const HeaderCenterNav = ({isLoggedIn, isAdmin, isBuyer}) => {
             if (isBuyer) {
 
                 rootNavItems = [
-                    <HeaderLink key="/postJob" to="/postJob" className="navItemWithSep">Post a Job</HeaderLink>,
+                    <HeaderLink to="/jobdash" key="jobdash" className="navItemWithSep">Job Dashboard</HeaderLink>,
                     <HeaderLink key="/browseTalent" to="/browseTalent" className="navItem">Browse Talent</HeaderLink>
                 ];
             }
             else    // assumption: only other role is Talent
             {
                 rootNavItems = [
-                    <HeaderLink key="/browseTalent" to="/browseTalent" className="navItem">Browse Talent</HeaderLink>
+                    <HeaderLink key="/browseJobs" to="/browseJobs" className="navItem">Browse Jobs</HeaderLink>
                 ];
             }
         }
 
         centerNav = (
-            <Nav styleName="centerNav">
+            <Nav bsStyle="pills" styleName="centerNav">
                 {adminNavItems}
                 {rootNavItems}
             </Nav>

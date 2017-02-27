@@ -6,7 +6,8 @@ import {alertError, confirm} from '../../../utils/confirm';
 import CSSModules from 'react-css-modules';
 import styles from './QuestionSet.css';
 
-const cloneDeep = require('lodash/cloneDeep');
+//const cloneDeep = require('lodash.clonedeep');
+let _ = require('lodash');
 const dateFormat = require('dateformat');
 const uuidV1 = require('uuid/v1');
 
@@ -59,7 +60,7 @@ class QuestionSetEditContainer extends React.Component {
     }
 
     saveQuestionSet() {
-        let saveQuestionSet = cloneDeep(this.state.qSet);
+        let saveQuestionSet = _.cloneDeep(this.state.qSet);
 
         let {userName} = this.props;
         let now = new Date();

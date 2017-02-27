@@ -9,7 +9,7 @@ import {alertError, confirm} from '../../../utils/confirm';
 import * as questionHelpers from '../../../utils/questionHelpers';
 
 const uuidV1 = require('uuid/v1');
-const cloneDeep = require('lodash/cloneDeep');
+let _ = require('lodash');
 const dateFormat = require('dateformat');
 
 class QuestionEditContainer extends React.Component {
@@ -66,14 +66,14 @@ class QuestionEditContainer extends React.Component {
     }
 
     saveQuestion() {
-        let saveQuestion = cloneDeep(this.state.question);
+        let saveQuestion = _.cloneDeep(this.state.question);
         this.clearOtherAnswerTypes(saveQuestion);
         if (!this.state.isQuestionTextConditional) {
             // remove question text for Resources
             saveQuestion.textForResources = "";
         }
 
-        let optionItemsCopy = cloneDeep(this.state.reOrderedOptionItems);
+        let optionItemsCopy = _.cloneDeep(this.state.reOrderedOptionItems);
         if (this.state.areOptionsReordered) {
             //re-index to keep index numbers in sync with array order (in case items were re-ordered by dragging)
             for (let i = 0; i < optionItemsCopy.length; i++) {

@@ -6,7 +6,7 @@ import {alertError, confirm} from '../../../utils/confirm';
 import CSSModules from 'react-css-modules';
 import styles from './QuestionPanel.css';
 
-const cloneDeep = require('lodash/cloneDeep');
+let _ = require('lodash');
 const dateFormat = require('dateformat');
 const uuidV1 = require('uuid/v1');
 
@@ -52,7 +52,7 @@ class QuestionPanelEditContainer extends React.Component {
     }
 
     savePanel() {
-        let savePanel = cloneDeep(this.state.qPanel);
+        let savePanel = _.cloneDeep(this.state.qPanel);
 
         let {userName} = this.props;
         let now = new Date();
@@ -172,7 +172,7 @@ class QuestionPanelEditContainer extends React.Component {
 
     saveNewConditionalAction(newAction) {
         let actionIndex = this.state.qPanel.conditionalActions.findIndex(x => x.id == 0);  // the new Action will be the only one with id == 0
-        let saveAction = cloneDeep(newAction);
+        let saveAction = _.cloneDeep(newAction);
         saveAction.id = uuidV1();    // assign real ID
 
         let newState = update(this.state, {
@@ -185,7 +185,7 @@ class QuestionPanelEditContainer extends React.Component {
 
         this.setState(newState);
     }
-   
+
    updateConditionalAction(updatedAction) {
       let actionIndex = this.state.qPanel.conditionalActions.findIndex(x => x.id == updatedAction.id);
       let newState = update(this.state, {
@@ -195,7 +195,7 @@ class QuestionPanelEditContainer extends React.Component {
             canAddConditionalQuestion: {$set: true}     // restore ability to add new Conditional Questions
          }
       );
-      
+
       this.setState(newState);
    }
 

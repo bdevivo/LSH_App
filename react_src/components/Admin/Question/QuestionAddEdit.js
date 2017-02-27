@@ -97,12 +97,15 @@ const QuestionAddEdit = ({
                     </FormGroup>
 
                     <FormGroup controlId="formControlsQuestionType">
-                        {/*<Radio value="radioOptionsInput" checked={answerType === "radioOptionsInput"}*/}
-                               {/*onChange={onAnswerTypeChanged}>Single Select</Radio>*/}
-                        {/*<Radio value="checkboxOptionsInput" checked={answerType === "checkboxOptionsInput"}*/}
-                               {/*onChange={onAnswerTypeChanged}>Multiple Select</Radio>*/}
-                        <Radio value="boolean" checked={answerType === "boolean"}
-                               onChange={onAnswerTypeChanged}>Boolean</Radio>
+                        <Radio value="buttonGroupSingleChoice" checked={answerType === "buttonGroupSingleChoice"}
+                               onChange={onAnswerTypeChanged}>Single-Select Pushbutton</Radio>
+
+                        <Radio value="buttonGroupMultipleChoice" checked={answerType === "buttonGroupMultipleChoice"}
+                               onChange={onAnswerTypeChanged}>Multi-Select Pushbutton</Radio>
+
+                        {/*<Radio value="boolean" checked={answerType === "boolean"}*/}
+                               {/*onChange={onAnswerTypeChanged}>Boolean</Radio>*/}
+
                         <Radio value="textInput" checked={answerType === "textInput"}
                                onChange={onAnswerTypeChanged}>Text</Radio>
 

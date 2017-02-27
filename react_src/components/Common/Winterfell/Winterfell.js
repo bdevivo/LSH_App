@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as uiActions from '../../../actions/uiActions';
 import * as questionGridActions from '../../../actions/questionGridActions';
+import update from 'immutability-helper';
 
 let _ = require('lodash').noConflict();
 
@@ -97,23 +98,20 @@ class Winterfell extends React.Component {
 
     getCurrentPanel(panelId, schema) {
         return (typeof schema !== 'undefined'
-                && typeof schema.formPanels !== 'undefined'
-                && typeof panelId !== 'undefined'
-                ? _.find(schema.formPanels, panel => panel.panelId == panelId)
-                : undefined);
+        && typeof schema.formPanels !== 'undefined'
+        && typeof panelId !== 'undefined'
+            ? _.find(schema.formPanels, panel => panel.panelId == panelId)
+            : undefined);
     }
 
     handleAnswerChange(questionId, questionAnswer) {
+        let newState = update(this.state, {
+            questionAnswers: {
+                [questionId]: {$set: questionAnswer}
+            }
+        });
 
-        this.props.questionGridActions.setQuestionAnswer(questionId, questionAnswer, this.props.gridName);
-
-        // let questionAnswers = _.chain(this.state.questionAnswers)
-        //     .set(questionId, questionAnswer)
-        //     .value();
-        //
-        // this.setState({
-        //     questionAnswers: questionAnswers,
-        // }, this.props.onUpdate.bind(null, questionAnswers));
+        this.setState(newState, this.props.onUpdate.bind(null, newState.questionAnswers));
     }
 
     handleSwitchPanel(panelId, preventHistory) {
@@ -136,6 +134,21 @@ class Winterfell extends React.Component {
         // this.setState({
         //     currentPanel: panel
         // }, this.props.onSwitchPanel.bind(null, panel));
+    }
+
+    saveQuestionAnswers(activeQuestions, questionAnswers) {
+        let clonedAnswers = _.cloneDeep(questionAnswers);
+        // filter out any answers that are not in the activeQuestions array (these
+        // are questions that were answered at some point, but were not active (i.e.,
+        // visible) at the time the panel was switched)
+        let activeQuestionIds = activeQuestions.map(x => x.questionId);
+        Object.keys(clonedAnswers).forEach((key) => {
+            if (!activeQuestionIds.includes(key)) {
+                delete clonedAnswers[key];
+            }
+        });
+
+        this.props.questionGridActions.setQuestionAnswers(clonedAnswers, this.props.gridName);
     }
 
     handleBackButtonClick() {
@@ -195,6 +208,7 @@ class Winterfell extends React.Component {
                                    renderError={this.props.renderError}
                                    renderRequiredAsterisk={this.props.renderRequiredAsterisk}
                                    onAnswerChange={this.handleAnswerChange.bind(this)}
+                                   saveQuestionAnswers={this.saveQuestionAnswers.bind(this)}
                                    onPanelBack={this.handleBackButtonClick.bind(this)}
                                    onSwitchPanel={this.handleSwitchPanel.bind(this)}
                                    onSubmit={this.handleSubmit.bind(this)}/>

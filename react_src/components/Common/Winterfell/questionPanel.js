@@ -97,8 +97,13 @@ class QuestionPanel extends React.Component {
 
     /*
      * Panel is valid. So what do we do next?
-     * Check our conditions and act upon them, or the default.
+     * First, save the answers on this panel.
+     * Then check our conditions and act upon them, or the default.
      */
+
+    let activeQuestionsInPanel = Validation.getActiveQuestionsFromQuestionSets(questionSets, this.props.questionAnswers);
+    this.props.saveQuestionAnswers(activeQuestionsInPanel, this.props.questionAnswers);
+
     conditions
       .forEach(condition => {
         let answer = this.props.questionAnswers[condition.questionId];
@@ -244,6 +249,7 @@ QuestionPanel.propTypes = {
     questionSets: PropTypes.array.isRequired,
     onSwitchPanel: PropTypes.func,
     onAnswerChange: PropTypes.func,
+    saveQuestionAnswers: PropTypes.func,
     onSubmit: PropTypes.func,
     onPanelBack: PropTypes.func,
     backButton: PropTypes.object,

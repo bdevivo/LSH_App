@@ -63,6 +63,68 @@ export function getSelectedResponse(question, responseId) {
     }
 }
 
+export function getQuestionAnswer(question, answerObj) {
+
+    switch(getAnswerTypeSubGroup(question.answerType)) {
+        case "singleSelect": {
+            return getOptionText(question, answerObj);
+        }
+
+        case "multiSelect": {
+            let answers = answerObj.map(x => getOptionText(question, x));
+            return answers.join(", ");
+        }
+
+        case "text": {
+            return answerObj;
+        }
+
+        case "boolean": {
+            return (answerObj === "yes" ? question.booleanOptions.yesText : question.booleanOptions.noText);
+        }
+
+        case "checkbox": {
+            return (answerObj ? "true" : "false");
+        }
+
+        case "file": {
+            return (answerObj); // TODO: figure out how to display file name?
+        }
+
+        default:
+            return "";
+    }
+}
+
+function getAnswerTypeSubGroup(answerType) {
+    if (isSingleSelectAnswerType(answerType)) {
+        return "singleSelect";
+    }
+    else if (isMultiSelectAnswerType(answerType)) {
+        return "multiSelect";
+    }
+    else if (isTextAnswerType(answerType)) {
+        return "text";
+    }
+    else if (isBooleanAnswerType(answerType)) {
+        return "boolean";
+    }
+    else if (isSingleCheckboxAnswerType(answerType)) {
+        return "checkbox";
+    }
+    else if (isFileUploadAnswerType(answerType)) {
+        return "file";
+    }
+    else {
+        return "other";
+    }
+}
+
+function getOptionText(question, responseId) {
+    let response = question.selectOptionItems.find(x => x.id == responseId);
+    return (response ? response.text : "");
+}
+
 
 export function getTargetPanelName(targetId, panelTargets) {
    let targetPanel = panelTargets.find(x => x.id == targetId);
@@ -83,12 +145,34 @@ export function getQuestionTypeGroup(question) {
 
 
 export function isSelectAnswerType(answerType) {
-    return ["radioOptionsInput", "checkboxOptionsInput", "selectInput", "singleSelect", "multiSelect"].includes(answerType);
+    return ["radioOptionsInput", "checkboxOptionsInput", "selectInput", "singleSelect", "multiSelect", "buttonGroupSingleChoice", "buttonGroupMultipleChoice"].includes(answerType);
+}
+
+export function isSingleSelectAnswerType(answerType) {
+    return ["radioOptionsInput", "selectInput", "singleSelect", "buttonGroupSingleChoice"].includes(answerType);
+}
+
+export function isMultiSelectAnswerType(answerType) {
+    return ["checkboxOptionsInput", "multiSelect", "buttonGroupMultipleChoice"].includes(answerType);
+}
+
+export function isTextAnswerType(answerType) {
+    return ["emailInput", "textInput", "textareaInput"].includes(answerType);
 }
 
 export function isBooleanAnswerType(answerType) {
     return answerType == "boolean";
 }
+
+export function isSingleCheckboxAnswerType(answerType) {
+    return answerType == "checkboxInput";
+}
+
+export function isFileUploadAnswerType(answerType) {
+    return answerType == "fileInput";
+}
+
+
 
 export function getAnswerTypeGroup(answerType) {
     if (isSelectAnswerType(answerType)) {

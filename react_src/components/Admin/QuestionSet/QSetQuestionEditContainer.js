@@ -177,7 +177,7 @@ class QSetQuestionEditContainer extends React.Component {
         //let isSaveEnabled = this.state.isQSetChanged;
 
         // Save button is only enabled if
-        // * A QuestionSet Question has been selected
+        // * A JobPosting Question has been selected
         //  AND
         // * There are no Conditional Questions
         //  OR

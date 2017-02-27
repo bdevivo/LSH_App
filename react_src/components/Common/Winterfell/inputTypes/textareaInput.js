@@ -25,6 +25,7 @@ class TextareaInput extends React.Component {
                 className={this.props.classes.input}
                 placeholder={this.props.placeholder}
                 value={this.state.value}
+                autoFocus
                 required={this.props.required
                             ? 'required'
                             : undefined}

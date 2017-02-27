@@ -67,5 +67,4 @@ ButtonGroupSingleChoice.defaultProps = {
     onBlur: () => {
     }
 };
-
-module.exports = ButtonGroupSingleChoice;
+export default ButtonGroupSingleChoice;

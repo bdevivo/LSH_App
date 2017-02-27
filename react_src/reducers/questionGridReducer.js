@@ -20,6 +20,34 @@ export default function questionGridReducer(questionGrids = initialState.questio
                 });
         }
 
+        case types.SET_QUESTION_ANSWERS: {
+            let newQuestionGrid = questionGrids[action.gridName];
+            Object.keys(action.questionAnswers).forEach((key) => {
+                let clonedAnswers = cloneDeep(action.questionAnswers[key]);
+                newQuestionGrid = update(newQuestionGrid, {
+                    questionAnswers: {
+                        [key]: {$set: clonedAnswers}
+                    }
+                });
+            });
+
+            return update(questionGrids,
+                {
+                    [action.gridName]: {$set: newQuestionGrid}
+                });
+
+            // return update(questionGrids,
+            //     {
+            //         [action.gridName]: {
+            //             questionAnswers: {
+            //                 [action.questionId]: {$set: newAnswers}
+            //             }
+            //         }
+            //     });
+
+            //return questionGrids;
+        }
+
         case types.CLEAR_QUESTION_ANSWERS: {
             return update(questionGrids,
                 {

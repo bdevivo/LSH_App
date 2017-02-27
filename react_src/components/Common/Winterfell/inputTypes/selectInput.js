@@ -58,7 +58,7 @@ SelectInput.propTypes = {
     name        : PropTypes.string,
     id          : PropTypes.string,
     value       : PropTypes.string,
-    options     : PropTypes.aarray,
+    options     : PropTypes.array,
     onChange    : PropTypes.func,
     onBlur      : PropTypes.func,
     required    : PropTypes.bool

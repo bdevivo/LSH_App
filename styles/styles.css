@@ -290,3 +290,13 @@ div.question {
     margin-top: 25px;
     margin-left: 50px;
 }
+
+.questionPanels {
+
+}
+
+.formCheckbox {
+    margin-right: 10px !important;
+    position:relative;
+    top:1px;
+}

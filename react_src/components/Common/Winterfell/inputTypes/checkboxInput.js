@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import {Checkbox} from 'react-bootstrap';
 
 class CheckboxInput extends React.Component {
 
@@ -6,14 +7,20 @@ class CheckboxInput extends React.Component {
         super(props);
 
         this.state = {
-            checked: props.defaultChecked
+            checked: typeof props.value === 'undefined' ? props.defaultChecked : props.value
         };
     }
 
     componentDidMount() {
-        if (this.state.checked) {
-            this.handleChange();
-        }
+        // if (this.state.checked) {
+        //     this.handleChange();
+        // }
+
+        let label = $("label#" + this.props.name + "-label"); // this is the label
+        let checkbox = $("input[type='checkbox']#" + this.props.name);
+        checkbox.addClass("formCheckbox");
+        label.prepend(checkbox);
+
     }
 
     handleChange(e) {
@@ -21,27 +28,23 @@ class CheckboxInput extends React.Component {
             this.setState({
                 'checked': !this.state.checked
             }, () => {
-                this.props.onChange(this.state.checked
-                    ? this.props.value
-                    : undefined);
+                this.props.onChange(this.state.checked);
             });
         } else {
-            this.props.onChange(this.state.checked
-                ? this.props.value
-                : undefined);
+            this.props.onChange(!this.state.checked);
         }
     }
 
     render() {
         return (
             <div className={this.props.classes.checkboxInput}>
-                <label className={this.props.classes.checkboxLabel}
-                       id={this.props.labelId}>
-                    <input type="checkbox"
+
+                    <Checkbox
+                            id={this.props.name}
                            name={this.props.name}
-                           //aria-labelledby={this.props.labelId}
+                           checked={this.state.checked}
                            className={this.props.classes.checkbox}
-                           defaultChecked={this.state.checked}
+                           //defaultChecked={this.state.checked}
                            value={this.props.value}
                            required={this.props.required
                                ? 'required'
@@ -49,9 +52,10 @@ class CheckboxInput extends React.Component {
                            onChange={this.handleChange.bind(this)}
                            onBlur={this.props.onBlur.bind(null, (this.state.checked
                                ? this.props.value
-                               : undefined))}/>
-                    {this.props.text}
-                </label>
+                               : undefined))}>
+                        {this.props.text}
+                    </Checkbox>
+
             </div>
         );
     }
@@ -64,7 +68,7 @@ CheckboxInput.propTypes = {
     classes: PropTypes.object,
     name: PropTypes.string,
     labelId: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.bool,
     placeholder: PropTypes.string,
     onChange: PropTypes.func,
     onBlur: PropTypes.func,
@@ -73,10 +77,10 @@ CheckboxInput.propTypes = {
 
 CheckboxInput.defaultProps = {
     text: '',
-    defaultChecked: false,
+    defaultChecked: undefined,
     classes: {},
     name: undefined,
-    value: undefined,
+    value: false,
     onChange: () => {
     },
     onBlur: () => {

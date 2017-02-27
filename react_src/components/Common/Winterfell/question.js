@@ -206,7 +206,7 @@ Question.propTypes = {
     validations: PropTypes.array,
     text: PropTypes.string,
     postText: PropTypes.string,
-    value: PropTypes.node,
+    value: PropTypes.any,
     input: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired,
     validationErrors: PropTypes.object,

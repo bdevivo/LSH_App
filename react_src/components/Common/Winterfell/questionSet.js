@@ -89,5 +89,5 @@ QuestionSet.defaultProps = {
   onKeyDown              : () => {}
 };
 
-//module.exports = QuestionSet;
+//module.exports = JobPosting;
 export default CSSModules(QuestionSet, styles);

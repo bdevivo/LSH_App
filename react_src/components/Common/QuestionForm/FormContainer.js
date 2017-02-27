@@ -1,6 +1,9 @@
 import React, {PropTypes as T} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {Row, Col} from 'react-bootstrap';
+import QuestionAnswerPanel from './QuestionAnswersPanel';
+
 import * as questionPanelActions from '../../../actions/questionPanelActions';
 import * as questionSetActions from '../../../actions/questionSetActions';
 import * as questionActions from '../../../actions/questionActions';
@@ -351,7 +354,7 @@ class FormContainer extends React.Component {
             };
         }
 
-        return !hasData
+        let grid = !hasData
             ? null
             : <Winterfell schema={mySchema}
                           gridName={this.props.gridName}
@@ -361,6 +364,25 @@ class FormContainer extends React.Component {
                           onUpdate={this.onUpdate}
                           onSwitchPanel={this.onSwitchPanel}
                           onSubmit={this.onSubmit}/>;
+
+        return (
+            <div>
+                <Row>
+                    <Col md={8}>
+                        {grid}
+                    </Col>
+                    <Col md={4}>
+                        <QuestionAnswerPanel
+                            questions={this.props.questions}
+                            questionAnswers={this.state.questionAnswers} />
+                    </Col>
+
+                </Row>
+
+            </div>
+        );
+
+
     }
 }
 

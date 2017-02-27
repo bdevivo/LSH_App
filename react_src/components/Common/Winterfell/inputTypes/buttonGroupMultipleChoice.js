@@ -80,4 +80,4 @@ ButtonGroupMultipleChoice.defaultProps = {
     onBlur   : () => {}
 };
 
-module.exports = ButtonGroupMultipleChoice;
+export default ButtonGroupMultipleChoice;

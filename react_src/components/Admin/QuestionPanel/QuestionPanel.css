@@ -33,7 +33,7 @@
 }
 
 .inlineTextControl {
-    font-size: 8pt;
+    font-size: 8pt !important;
     height: 28px !important;
 }
 
@@ -74,7 +74,7 @@
     height: 28px !important;
     margin-left: 5px;
     margin-right: 10px;
-    font-size: 8pt;
+    font-size: 8pt !important;
 }
 
 .formInputActionSelectWide {

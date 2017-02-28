@@ -41,6 +41,12 @@ const QSetQuestionAddEdit = ({qSetQuestion, questions, qSetQuestionFunctions, ca
 
         </div>);
 
+    let subQuestionDiv = qSetQuestion.conditionalQuestions.length > 0
+        ? (<div styleName="subQuestionDiv">
+            {conditionalQuestionList}
+        </div>)
+        : null;
+
     return (
         <Row styleName="questionSetQuestionDiv">
             <Col>
@@ -67,22 +73,26 @@ const QSetQuestionAddEdit = ({qSetQuestion, questions, qSetQuestionFunctions, ca
                     <Col componentClass={ControlLabel} styleName="inlineLabelNoPadding" sm={2}>Sub-Questions:</Col>
 
                     <Col sm={9}>
+
+                        {subQuestionDiv}
+
                         <Button type="button" className="btn btn-xs btn-default"
+                                styleName="addSubQuestionButton"
                                 disabled={!canAddConditionalQuestion}
                                 onClick={addConditionalQuestion}>Add Sub-Question</Button>
-
-                        {conditionalQuestionList}
-                    </Col>
-
-                </Row>
-
-                <Row styleName="qSetQuestionButtonRow">
-                    {buttonGroup}
-                </Row>
             </Col>
 
         </Row>
-    );
+
+    <Row styleName="qSetQuestionButtonRow">
+        {buttonGroup}
+    </Row>
+    </Col>
+
+    </
+    Row >
+    )
+    ;
 
 
 };

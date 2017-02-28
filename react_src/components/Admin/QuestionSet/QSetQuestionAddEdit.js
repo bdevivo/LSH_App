@@ -64,12 +64,12 @@ const QSetQuestionAddEdit = ({qSetQuestion, questions, qSetQuestionFunctions, ca
 
                 {/* CONDITIONAL QUESTIONS */}
                 <Row styleName="conditionalQuestionsRow">
-                    <Col componentClass={ControlLabel} styleName="inlineLabelNoPadding" sm={2}>Conditional Questions:</Col>
+                    <Col componentClass={ControlLabel} styleName="inlineLabelNoPadding" sm={2}>Sub-Questions:</Col>
 
                     <Col sm={9}>
                         <Button type="button" className="btn btn-xs btn-default"
                                 disabled={!canAddConditionalQuestion}
-                                onClick={addConditionalQuestion}>Add Conditional Question</Button>
+                                onClick={addConditionalQuestion}>Add Sub-Question</Button>
 
                         {conditionalQuestionList}
                     </Col>

@@ -60,7 +60,6 @@ const ConditionalPanelActionEdit = ({conditionalAction, conditionalActionsFuncti
                                  onChange={onUpdateConditionalQuestion}>
                         {questionOptions}
                     </FormControl>
-
                     {' '}has answer{' '}
                     <FormControl styleName="formInputActionSelectWide"
                                  componentClass="select"

@@ -77,14 +77,19 @@
     font-size: 8pt !important;
 }
 
+.subQuestionElement {
+    display: inline;
+}
 .formInputActionSelectWide {
     composes: formInputActionSelect;
-    width: 340px !important;
+    width: 330px !important;
+    display: inline !important;
 }
 
 .formInputActionSelectSmall {
     composes: formInputActionSelect;
     width: 90px !important;
+    display: inline !important;
 }
 
 .conditionalActionButton {

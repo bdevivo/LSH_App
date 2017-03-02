@@ -222,7 +222,8 @@ class QuestionPanel extends React.Component {
           {questionSets}
         </div>
         <div styleName={this.props.classes.buttonBar}>
-          { this.props.backButton.text        //this.props.panelHistory.length > 1
+          {  this.props.backButton
+            && this.props.backButton.text        //this.props.panelHistory.length > 1
             && !this.props.backButton.disabled
             ? (
                 <Button text={this.props.backButton.text || 'Back'}
@@ -278,12 +279,6 @@ QuestionPanel.defaultProps = {
   action                 : {
     default    : {},
     conditions : []
-  },
-  button                 : {
-    text : 'Submit'
-  },
-  backButton             : {
-    text : 'Back'
   },
   questionSets           : [],
   questionAnswers        : {},

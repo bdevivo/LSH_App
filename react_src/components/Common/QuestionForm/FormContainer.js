@@ -359,6 +359,7 @@ class FormContainer extends React.Component {
             : <Winterfell schema={mySchema}
                           gridName={this.props.gridName}
                           questionAnswers={this.state.questionAnswers}
+                          panelHistory={this.props.panelHistory}
                           disableSubmit={true}
                           onRender={this.onRender}
                           onUpdate={this.onUpdate}
@@ -391,6 +392,7 @@ FormContainer.propTypes = {
     qSets: T.array,
     questions: T.array,
     qPanels: T.array,
+   panelHistory: T.array,
     questionAnswers: T.object,
     arePanelsLoaded: T.bool,
     areQuestionsLoaded: T.bool,
@@ -406,11 +408,13 @@ function mapStateToProps(state, ownProps) {
 
     //let gridName = ownProps.params.gridId === "post" ? "question_grid_job_posting" : "question_grid_user_profile";
     let questionAnswers = state.questionGrids[ownProps.gridName].questionAnswers;
+    let panelHistory = state.ui[ownProps.gridName].panelHistory;
 
     return {
         //gridName: gridName,
         qSets: [...state.questionSets],
         qPanels: [...state.questionPanels],
+        panelHistory: panelHistory,
         questions: [...state.questions],
         questionAnswers: questionAnswers,
         arePanelsLoaded: state.loadedData.questionSets,

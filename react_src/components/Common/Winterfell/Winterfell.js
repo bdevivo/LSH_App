@@ -22,7 +22,6 @@ class Winterfell extends React.Component {
                 classes: {}
             },
             questionAnswers: this.props.questionAnswers,
-            panelHistory: this.props.panelHistory,
             ref: 'form',
             encType: 'application/x-www-form-urlencoded',
             method: 'POST',
@@ -60,16 +59,18 @@ class Winterfell extends React.Component {
 
         this.state = {
             schema: schema,
+           panelId: panelId,
             currentPanel: currentPanel,
             action: props.action,
             questionAnswers: props.questionAnswers,
+            panelHistory: props.panelHistory
         };
 
         this.pushPanel = this.pushPanel.bind(this);
     }
 
     componentDidMount() {
-        //this.panelHistory.push(this.state.currentPanel.panelId);
+       this.props.uiActions.setCurrentPanel(this.state.panelId, this.props.gridName);
         this.props.onRender();
     }
 
@@ -231,7 +232,7 @@ Winterfell.propTypes = {
     onSubmit: PropTypes.func,
     onUpdate: PropTypes.func,
     onSwitchPanel: PropTypes.func,
-    panelId: PropTypes.string,
+    panelId: PropTypes.string.isRequired,
     gridName: PropTypes.string.isRequired,
     panelHistory: PropTypes.array,
     uiActions: PropTypes.object,
@@ -257,8 +258,7 @@ function mapStateToProps(state, ownProps) {
     let gridState = state.ui[ownProps.gridName];
 
     return {
-        panelId: gridState.currentPanelId,
-        panelHistory: gridState.panelHistory,
+        panelId: gridState.currentPanelId
     };
 }
 

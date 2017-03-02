@@ -17,7 +17,7 @@ const QuestionSet = ({qSetQuestionData}) => {
 
                 conditionalQuestionDiv = (
                     <div styleName="conditionalQuestionStaticDiv">
-                        <b>Conditional Questions: </b>
+                        <b>Sub-Questions: </b>
                         <div styleName="conditionalQuestionList">
                             <ol>
                                 {conditionalQuestionListItems}

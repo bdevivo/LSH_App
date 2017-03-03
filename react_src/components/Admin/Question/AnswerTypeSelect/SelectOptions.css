@@ -19,3 +19,7 @@
 .editItemTextArea {
     margin-top: 0;
 }
+
+.inlineLabel {
+    padding-left: 0;
+}

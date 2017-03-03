@@ -47,7 +47,7 @@ const QuestionAddEdit = ({
     }
 
 
-    let {onTextFieldChanged} = questionFunctions;
+    let {onTextFieldChanged, onQuestionFunctionChanged} = questionFunctions;
     let onAnswerTypeChanged = questionFunctions.onQuestionTypeSelectionChanged;
 
     let conditionalToggleText = (
@@ -96,38 +96,60 @@ const QuestionAddEdit = ({
                                      onChange={onTextFieldChanged}/>
                     </FormGroup>
 
+
+                    <FormGroup controlId="formControlsSelect">
+                        <Col md={2} styleName="inlineLabel">
+                            <ControlLabel>Function</ControlLabel>
+                        </Col>
+                        <Col md={5}>
+                            <FormControl componentClass="select" placeholder="select" styleName="selectControl"
+                                         value={question.function} onChange={onQuestionFunctionChanged} >
+                                <option value="none">none</option>
+                                <option value="name">job name</option>
+                            </FormControl>
+                        </Col>
+                    </FormGroup>
+
                     <FormGroup controlId="formControlsQuestionType">
-                        <Radio value="buttonGroupSingleChoice" checked={answerType === "buttonGroupSingleChoice"}
-                               onChange={onAnswerTypeChanged}>Single-Select Pushbutton</Radio>
+                        <ControlLabel styleName="inlineLabel">Question Type</ControlLabel>
+                    </FormGroup>
+                    <FormGroup controlId="formControlsQuestionType">
 
-                        <Radio value="buttonGroupMultipleChoice" checked={answerType === "buttonGroupMultipleChoice"}
-                               onChange={onAnswerTypeChanged}>Multi-Select Pushbutton</Radio>
+                        <Col md={6}>
+                            <Radio value="buttonGroupSingleChoice" checked={answerType === "buttonGroupSingleChoice"}
+                                   onChange={onAnswerTypeChanged}>Single-Select Pushbutton</Radio>
 
-                        {/*<Radio value="boolean" checked={answerType === "boolean"}*/}
-                               {/*onChange={onAnswerTypeChanged}>Boolean</Radio>*/}
+                            <Radio value="buttonGroupMultipleChoice" checked={answerType === "buttonGroupMultipleChoice"}
+                                   onChange={onAnswerTypeChanged}>Multi-Select Pushbutton</Radio>
 
-                        <Radio value="textInput" checked={answerType === "textInput"}
-                               onChange={onAnswerTypeChanged}>Text</Radio>
+                            {/*<Radio value="boolean" checked={answerType === "boolean"}*/}
+                                   {/*onChange={onAnswerTypeChanged}>Boolean</Radio>*/}
 
+                            <Radio value="textInput" checked={answerType === "textInput"}
+                                   onChange={onAnswerTypeChanged}>Text</Radio>
 
+                            <Radio value="textareaInput" checked={answerType === "textareaInput"}
+                                   onChange={onAnswerTypeChanged}>Text Area</Radio>
+                            <Radio value="emailInput" checked={answerType === "emailInput"}
+                                   onChange={onAnswerTypeChanged}>Email</Radio>
 
+                        </Col>
 
-                        <Radio value="textareaInput" checked={answerType === "textareaInput"}
-                               onChange={onAnswerTypeChanged}>Text Area</Radio>
-                        <Radio value="emailInput" checked={answerType === "emailInput"}
-                               onChange={onAnswerTypeChanged}>Email</Radio>
-                        <Radio value="fileInput" checked={answerType === "fileInput"}
-                               onChange={onAnswerTypeChanged}>File Upload</Radio>
-                        <Radio value="selectInput" checked={answerType === "selectInput"}
-                               onChange={onAnswerTypeChanged}>Dropdown Select</Radio>
-                        <Radio value="checkboxInput" checked={answerType === "checkboxInput"}
-                               onChange={onAnswerTypeChanged}>Single Checkbox</Radio>
-                        <Radio value="checkboxOptionsInput" checked={answerType === "checkboxOptionsInput"}
-                               onChange={onAnswerTypeChanged}>Multiple Checkboxes</Radio>
-                        <Radio value="radioOptionsInput" checked={answerType === "radioOptionsInput"}
-                               onChange={onAnswerTypeChanged}>Radio Buttons</Radio>
+                        <Col md={6}>
 
 
+                            <Radio value="fileInput" checked={answerType === "fileInput"}
+                                   onChange={onAnswerTypeChanged}>File Upload</Radio>
+                            <Radio value="selectInput" checked={answerType === "selectInput"}
+                                   onChange={onAnswerTypeChanged}>Dropdown Select</Radio>
+                            <Radio value="checkboxInput" checked={answerType === "checkboxInput"}
+                                   onChange={onAnswerTypeChanged}>Single Checkbox</Radio>
+                            <Radio value="checkboxOptionsInput" checked={answerType === "checkboxOptionsInput"}
+                                   onChange={onAnswerTypeChanged}>Multiple Checkboxes</Radio>
+                            <Radio value="radioOptionsInput" checked={answerType === "radioOptionsInput"}
+                                   onChange={onAnswerTypeChanged}>Radio Buttons</Radio>
+
+                        </Col>
 
                     </FormGroup>
 

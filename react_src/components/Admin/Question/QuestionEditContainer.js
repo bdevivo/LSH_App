@@ -30,6 +30,7 @@ class QuestionEditContainer extends React.Component {
         this.showModal = this.showModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.onTextFieldChanged = this.onTextFieldChanged.bind(this);
+        this.onQuestionFunctionChanged = this.onQuestionFunctionChanged.bind(this);
         this.onQuestionTypeSelectionChanged = this.onQuestionTypeSelectionChanged.bind(this);
         this.onAddSelectionOption = this.onAddSelectionOption.bind(this);
         this.onDeleteSelectionOption = this.onDeleteSelectionOption.bind(this);
@@ -199,6 +200,16 @@ class QuestionEditContainer extends React.Component {
         this.setState(newState);
     }
 
+    onQuestionFunctionChanged(event) {
+        let newState = update(this.state, {
+            question: {
+                function: {$set: event.target.value}
+            }
+        });
+
+        this.setState(newState);
+    }
+
     onQuestionTypeSelectionChanged(event) {
         let newAnswerType = event.target.value;
 
@@ -336,6 +347,7 @@ class QuestionEditContainer extends React.Component {
             handleSubmit: this.handleSubmit,
             handleCancel: this.handleCancel,
             onTextFieldChanged: this.onTextFieldChanged,
+            onQuestionFunctionChanged: this.onQuestionFunctionChanged,
             onQuestionTextChanged: this.onQuestionTextChanged,
             onQuestionTextForResourcesChanged: this.onQuestionTextForResourcesChanged,
             onQuestionTypeSelectionChanged: this.onQuestionTypeSelectionChanged

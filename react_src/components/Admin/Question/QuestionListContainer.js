@@ -48,7 +48,8 @@ class QuestionListContainer extends React.Component {
             name: "",
             text: "",
             textForResources: "",
-            answerType: "none"
+            answerType: "none",
+            function: "none"
         };
 
         let newState = update(this.state, {

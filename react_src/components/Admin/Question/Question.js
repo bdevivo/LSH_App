@@ -41,12 +41,16 @@ const Question = ({question, isExpanded, handleToggle, modalVisible, onAddQuesti
 
         let altText = (<p><b>Alternate text for resources: </b> {question.textForResources}</p>);
         let questionType = questionHelpers.getAsnwerTypeDisplayString(question.answerType);
+        let questionFunction = question.hasOwnProperty("function") && question.function !== "none"
+            ? <p><b>Function:</b> {question.function}</p>
+            : null;
 
         question_body =
             (<div>
                 <p><b>{question.index}: </b> {question.name}</p>
                 <p><b>Text: </b> {question.text}</p>
                 {question.textForResources.length > 0 && altText}
+                {questionFunction}
                 <p><b>Type:</b> {questionType}</p>
                 {questionDetails}
             </div>);

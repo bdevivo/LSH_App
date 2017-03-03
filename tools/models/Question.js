@@ -17,6 +17,7 @@ questionSchema = new Schema(
         index: { type: Number },
         displayType: { type: String },
         answerType: { type: String },
+        function: { type: String },
         selectOptionItems: [{
             text: { type: String },
             id: { type: String },

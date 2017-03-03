@@ -1,5 +1,5 @@
 import React, {PropTypes as T} from 'react';
-import {FormControl, ControlLabel, Button, Row, Col} from 'react-bootstrap';
+import {FormControl, ControlLabel, FormGroup, Row, Col} from 'react-bootstrap';
 import OptionItemContainer from './OptionItemContainer';
 import {DragDropContext} from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
@@ -32,7 +32,9 @@ class SelectOptionsForm extends React.Component {
 
         return (
             <div>
-                <ControlLabel>Options</ControlLabel>
+                <FormGroup controlId="formControlsQuestionType">
+                    <ControlLabel styleName="inlineLabel">Options</ControlLabel>
+                </FormGroup>
 
                 <Row styleName="optionItemForm">
                     <Col md={11}>

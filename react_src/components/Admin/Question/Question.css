@@ -49,3 +49,8 @@
 .inlineTextControl {
     font-size: 13px;
 }
+
+.selectControl {
+    height: 31px;
+    font-size: 13px;
+}

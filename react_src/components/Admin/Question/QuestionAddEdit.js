@@ -5,6 +5,7 @@ import BooleanForm from './AnswerTypeBoolean/BooleanForm';
 import * as questionHelpers from '../../../utils/questionHelpers';
 import styles from './Question.css';
 import CSSModules from 'react-css-modules';
+import * as enums from '../../../utils/enums';
 
 const classNames = require('classnames');
 
@@ -46,6 +47,14 @@ const QuestionAddEdit = ({
         }
     }
 
+    const questionFunctionList = [
+            { value: enums.QFUNC_NONE, label: 'none' },
+            { value: enums.QFUNC_JOB_NAME, label: 'job name' }
+    ];
+
+    let questionFunctionOptions = questionFunctionList.map(func => {
+        return <option key={func.value} value={func.value}>{func.label}</option>;
+    });
 
     let {onTextFieldChanged, onQuestionFunctionChanged} = questionFunctions;
     let onAnswerTypeChanged = questionFunctions.onQuestionTypeSelectionChanged;
@@ -104,8 +113,7 @@ const QuestionAddEdit = ({
                         <Col md={5}>
                             <FormControl componentClass="select" placeholder="select" styleName="selectControl"
                                          value={question.function} onChange={onQuestionFunctionChanged} >
-                                <option value="none">none</option>
-                                <option value="name">job name</option>
+                                {questionFunctionOptions}
                             </FormControl>
                         </Col>
                     </FormGroup>

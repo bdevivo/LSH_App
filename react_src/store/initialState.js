@@ -5,13 +5,17 @@ export default
     questions: [],
     questionPanels: [],
     questionSets: [],
-    questionGrids: {
-        question_grid_job_posting: {
-            questionAnswers:{}
-        },
-        question_grid_user_profile: {
-            questionAnswers:{}
-        }
+    // questionGrids: {
+    //     question_grid_job_posting: {
+    //         questionAnswers:{}
+    //     },
+    //     question_grid_user_profile: {
+    //         questionAnswers:{}
+    //     }
+    // },
+    draftJobPosting: {
+        jobId: undefined,
+        questionAnswers:{}
     },
     auth: {
         isLoggedIn: false

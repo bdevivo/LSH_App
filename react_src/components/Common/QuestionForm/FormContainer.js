@@ -375,7 +375,7 @@ class FormContainer extends React.Component {
                     <Col md={4}>
                         <QuestionAnswerPanel
                             questions={this.props.questions}
-                            questionAnswers={this.state.questionAnswers} />
+                            questionAnswers={this.state.questionAnswers}/>
                     </Col>
 
                 </Row>
@@ -392,7 +392,7 @@ FormContainer.propTypes = {
     qSets: T.array,
     questions: T.array,
     qPanels: T.array,
-   panelHistory: T.array,
+    panelHistory: T.array,
     questionAnswers: T.object,
     arePanelsLoaded: T.bool,
     areQuestionsLoaded: T.bool,

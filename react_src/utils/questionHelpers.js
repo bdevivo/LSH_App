@@ -172,8 +172,6 @@ export function isFileUploadAnswerType(answerType) {
     return answerType == "fileInput";
 }
 
-
-
 export function getAnswerTypeGroup(answerType) {
     if (isSelectAnswerType(answerType)) {
         return "select";

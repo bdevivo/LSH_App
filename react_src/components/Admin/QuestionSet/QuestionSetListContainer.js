@@ -92,7 +92,9 @@ class QuestionSetListContainer extends React.Component {
 
         let questionSetNav = sortedQuestionSets.map((qSet, index) => {
             let path = "/admin/qsets/qset/" + qSet._id;
-            let panelName = this.state.qPanels.find(p => p._id == qSet.questionPanelId).name;
+            let panel = this.state.qPanels.find(p => p._id == qSet.questionPanelId);
+            let panelName = panel ? panel.name : null;
+
             return (<LinkContainer to={path} key={index} active={this.state.activeQuestionSetId == qSet._id}>
                 <NavItem>{panelName}</NavItem>
             </LinkContainer>);

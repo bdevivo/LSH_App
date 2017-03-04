@@ -16,7 +16,7 @@ import QuestionPanelListContainer from './components/Admin/QuestionPanel/Questio
 import QuestionPanel from './components/Admin/QuestionPanel/QuestionPanelContainer';
 import QuestionSetListContainer from './components/Admin/QuestionSet/QuestionSetListContainer';
 import QuestionSet from './components/Admin/QuestionSet/QuestionSetContainer';
-import PostJobQuestionGrid from './components/JobPosting/PostJobQuestionGrid';
+import PostJob from './components/JobPosting/PostJob';
 import JobDashboard from './components/JobPosting/JobDashboardContainer';
 import {requireAuth} from './auth_utils/auth';
 
@@ -46,7 +46,7 @@ export default (
         </Route>
 
         <Route path="jobdash" component={JobDashboard} />
-        <Route path="postjobgrid/:gridId" component={PostJobQuestionGrid}/>
+        <Route path="postjob" component={PostJob}/>
 
     </Route>
 );

@@ -7,25 +7,26 @@ import * as enums from '../../utils/enums';
 
 const SubmitJobConfirmation = ({onPostingTimeChanged, onPostVisibilityChanged, postingTime, postVisibility, onPostJob}) => {
 
+    let {JOB_POST_TIME, JOB_STATUS} = enums;
+    
     const postVisibilityDiv = (postingTime === 'now')
         ? <div>
             <h3>Who can see this job posting?</h3>
             <Col md={6}>
-                <Radio value="private" checked={postVisibility === "private"}
+                <Radio value={JOB_STATUS.PostedPrivate} checked={postVisibility === JOB_STATUS.PostedPrivate}
                        onChange={onPostVisibilityChanged}>Only people I invite</Radio>
 
-                <Radio value="users_only" checked={postVisibility === "users_only"}
+                <Radio value={JOB_STATUS.PostedUsersOnly} checked={postVisibility === JOB_STATUS.PostedUsersOnly}
                        onChange={onPostVisibilityChanged}>Anyone with a LifeSciHub account</Radio>
 
-                <Radio value="public" checked={postVisibility === "public"}
+                <Radio value={JOB_STATUS.PostedPublic} checked={postVisibility === JOB_STATUS.PostedPublic}
                        onChange={onPostVisibilityChanged}>Anyone</Radio>
-
             </Col>
         </div>
         : null;
-
+    
     return (
-
+        
         <div>
             <Modal.Header closeButton>
                 <Modal.Title>Post Job</Modal.Title>
@@ -36,14 +37,14 @@ const SubmitJobConfirmation = ({onPostingTimeChanged, onPostVisibilityChanged, p
                 <FormGroup controlId="formControlsPostNowOrLater">
 
                     <Col md={6}>
-                        <Radio value="postJobNow" checked={postingTime === "now"}
+                        <Radio value={JOB_POST_TIME.Now} checked={postingTime === JOB_POST_TIME.Now}
                                onChange={onPostingTimeChanged}>Yes, post now</Radio>
 
-                        <Radio value="postJobLater" checked={postingTime === "later"}
+                        <Radio value={JOB_POST_TIME.Later} checked={postingTime === JOB_POST_TIME.Later}
                                onChange={onPostingTimeChanged}>No, just save the job details for now. (You may come back
                             to view or post the job at any time.)</Radio>
 
-                        <Radio value="doNotPost" checked={postingTime === "never"}
+                        <Radio value={JOB_POST_TIME.Never} checked={postingTime === JOB_POST_TIME.Never}
                                onChange={onPostingTimeChanged}>Cancel this job posting. (You will lose all the details you have entered for this job.) </Radio>
 
                         {postVisibilityDiv}

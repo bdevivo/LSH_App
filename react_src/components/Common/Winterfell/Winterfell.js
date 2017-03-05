@@ -3,7 +3,7 @@ import QuestionPanel from './questionPanel';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as uiActions from '../../../actions/uiActions';
-import * as questionGridActions from '../../../actions/questionGridActions';
+import * as jobActions from '../../../actions/jobActions';
 import update from 'immutability-helper';
 
 let _ = require('lodash').noConflict();
@@ -149,7 +149,7 @@ class Winterfell extends React.Component {
             }
         });
 
-        this.props.questionGridActions.setQuestionAnswers(clonedAnswers, this.props.gridName);
+        this.props.jobActions.setQuestionAnswers(this.props.jobId, clonedAnswers);
     }
 
     handleBackButtonClick() {
@@ -220,23 +220,24 @@ class Winterfell extends React.Component {
 }
 
 Winterfell.propTypes = {
-    questionAnswers: PropTypes.object,
-    action: PropTypes.func,
     schema: PropTypes.object.isRequired,
+    jobId: PropTypes.string.isRequired,
+    questionAnswers: PropTypes.object.isRequired,
+    panelHistory: PropTypes.array.isRequired,
+    disableSubmit: PropTypes.bool.isRequired,
+    onRender: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    onUpdate: PropTypes.func.isRequired,
+
+    onSwitchPanel: PropTypes.func,
+    panelId: PropTypes.string,
+    action: PropTypes.func,
     method: PropTypes.string,
     renderError: PropTypes.func,
     renderRequiredAsterisk: PropTypes.func,
     encType: PropTypes.string,
-    disableSubmit: PropTypes.bool,
-    onRender: PropTypes.func,
-    onSubmit: PropTypes.func,
-    onUpdate: PropTypes.func,
-    onSwitchPanel: PropTypes.func,
-    panelId: PropTypes.string.isRequired,
-    gridName: PropTypes.string.isRequired,
-    panelHistory: PropTypes.array,
     uiActions: PropTypes.object,
-    questionGridActions: PropTypes.object,
+    jobActions: PropTypes.object,
 };
 
 Winterfell.inputTypes = require('./inputTypes');
@@ -265,7 +266,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         uiActions: bindActionCreators(uiActions, dispatch),
-        questionGridActions: bindActionCreators(questionGridActions, dispatch),
+        jobActions: bindActionCreators(jobActions, dispatch),
     };
 }
 

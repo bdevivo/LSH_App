@@ -7,7 +7,6 @@ import QuestionAnswerPanel from './QuestionAnswersPanel';
 import * as questionPanelActions from '../../../actions/questionPanelActions';
 import * as questionSetActions from '../../../actions/questionSetActions';
 import * as questionActions from '../../../actions/questionActions';
-import * as questionGridActions from '../../../actions/questionGridActions';
 import * as questionHelpers from '../../../utils/questionHelpers';
 
 import ButtonGroupSingleChoice from '../../Common/Winterfell/inputTypes/buttonGroupSingleChoice';
@@ -31,20 +30,17 @@ class FormContainer extends React.Component {
     }
 
     componentDidMount() {
-        if (!this.props.arePanelsLoaded) {
-            this.props.questionPanelActions.getAllPanels();
-        }
 
         if (!this.props.areQuestionsLoaded) {
             this.props.questionActions.getAllQuestions();
         }
 
-        if (!this.props.areQuestionSetsLoaded) {
-            this.props.questionSetActions.getAllQuestionSets();
+        if (!this.props.arePanelsLoaded) {
+            this.props.questionPanelActions.getAllPanels();
         }
 
-        if (!this.props.areQuestionAnswersLoaded) {
-            this.props.questionGridActions.getAllQuestionAnswers();
+        if (!this.props.areQuestionSetsLoaded) {
+            this.props.questionSetActions.getAllQuestionSets();
         }
     }
 
@@ -357,7 +353,7 @@ class FormContainer extends React.Component {
         let grid = !hasData
             ? null
             : <Winterfell schema={mySchema}
-                          gridName={this.props.gridName}
+                          jobId={this.props.jobId}
                           questionAnswers={this.state.questionAnswers}
                           panelHistory={this.props.panelHistory}
                           disableSubmit={true}
@@ -388,39 +384,31 @@ class FormContainer extends React.Component {
 }
 
 FormContainer.propTypes = {
-    gridName: T.string.isRequired,
-    qSets: T.array,
+    jobId: T.string.isRequired,
+    questionAnswers: T.object.isRequired,
     questions: T.array,
     qPanels: T.array,
+    qSets: T.array,
     panelHistory: T.array,
-    questionAnswers: T.object,
     arePanelsLoaded: T.bool,
     areQuestionsLoaded: T.bool,
     areQuestionSetsLoaded: T.bool,
-    areQuestionAnswersLoaded: T.bool,
     questionPanelActions: T.object,
     questionSetActions: T.object,
-    questionGridActions: T.object,
     questionActions: T.object,
 };
 
 function mapStateToProps(state, ownProps) {
-
-    //let gridName = ownProps.params.gridId === "post" ? "question_grid_job_posting" : "question_grid_user_profile";
-    let questionAnswers = state.questionGrids[ownProps.gridName].questionAnswers;
     let panelHistory = state.ui[ownProps.gridName].panelHistory;
 
     return {
-        //gridName: gridName,
         qSets: [...state.questionSets],
         qPanels: [...state.questionPanels],
         panelHistory: panelHistory,
         questions: [...state.questions],
-        questionAnswers: questionAnswers,
+        areQuestionsLoaded: state.loadedData.questions,
         arePanelsLoaded: state.loadedData.questionSets,
         areQuestionSetsLoaded: state.loadedData.questionSets,
-        areQuestionsLoaded: state.loadedData.questions,
-        areQuestionAnswersLoaded: state.loadedData.questionAnswers,
     };
 }
 
@@ -429,7 +417,6 @@ function mapDispatchToProps(dispatch) {
         questionPanelActions: bindActionCreators(questionPanelActions, dispatch),
         questionSetActions: bindActionCreators(questionSetActions, dispatch),
         questionActions: bindActionCreators(questionActions, dispatch),
-        questionGridActions: bindActionCreators(questionGridActions, dispatch),
     };
 }
 

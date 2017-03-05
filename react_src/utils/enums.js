@@ -2,10 +2,21 @@
 export const QFUNC_NONE = 'none';
 export const QFUNC_JOB_NAME = 'name';
 
-// Job-Posting Statuses
-export const JSTAT_DRAFT = 'draft';
-export const JSTAT_POSTED_PRIVATE = 'private';
-export const JSTAT_POSTED_USERS_ONLY = 'users_only';
-export const JSTAT_POSTED_PUBLIC = 'public';
-export const JSTAT_HIDDEN = 'hidden';
-export const JSTAT_RETIRED = 'retired';
+// Job Statuses
+export const JOB_STATUS = {
+    Draft: "draft",
+    PostedPrivate: "private",
+    PostedUsersOnly: "users_only",
+    PostedPublic: "public",
+    Hidden: "hidden",
+    Retired: "retired",
+    Abandoned: "abandoned"
+};
+
+// Job Visibility
+export const JOB_POST_TIME = {
+    Now: "now",
+    Later: "later",
+    Never: "never"
+};
+

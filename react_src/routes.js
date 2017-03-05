@@ -16,7 +16,7 @@ import QuestionPanelListContainer from './components/Admin/QuestionPanel/Questio
 import QuestionPanel from './components/Admin/QuestionPanel/QuestionPanelContainer';
 import QuestionSetListContainer from './components/Admin/QuestionSet/QuestionSetListContainer';
 import QuestionSet from './components/Admin/QuestionSet/QuestionSetContainer';
-import PostJob from './components/JobPosting/PostJob';
+import PostJob from './components/JobPosting/PostOrEditJob';
 import JobDashboard from './components/JobPosting/JobDashboardContainer';
 import {requireAuth} from './auth_utils/auth';
 

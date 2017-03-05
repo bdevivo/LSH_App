@@ -13,10 +13,11 @@ export default
     //         questionAnswers:{}
     //     }
     // },
-    draftJobPosting: {
-        jobId: undefined,
-        questionAnswers:{}
-    },
+    jobPosts: [],
+    // draftJobPosting: {
+    //     jobId: undefined,
+    //     questionAnswers:{}
+    // },
     auth: {
         isLoggedIn: false
     },
@@ -58,7 +59,7 @@ export default
         questions: false,
         questionPanels: false,
         questionSets: false,
-        questionAnswers: false
+        userJobs: false
     },
     ajaxCallsInProgress: 0
 };

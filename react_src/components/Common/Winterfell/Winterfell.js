@@ -222,6 +222,7 @@ class Winterfell extends React.Component {
 Winterfell.propTypes = {
     schema: PropTypes.object.isRequired,
     jobId: PropTypes.string.isRequired,
+   gridName: PropTypes.string.isRequired,
     questionAnswers: PropTypes.object.isRequired,
     panelHistory: PropTypes.array.isRequired,
     disableSubmit: PropTypes.bool.isRequired,

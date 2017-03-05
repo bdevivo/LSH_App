@@ -1,4 +1,5 @@
 import React, {PropTypes as T} from 'react';
+import { Modal} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import styles from './JobPosting.css';
 import CSSModules from 'react-css-modules';
@@ -19,8 +20,8 @@ class PostOrEditJob extends React.Component {
 
         this.state = {
             jobPost: props.jobPost,
-            postingTime: undefined,
-            postVisibility: undefined,
+            postingTime: "",
+            postVisibility: "",
             modalVisible: false,
         };
 
@@ -41,7 +42,7 @@ class PostOrEditJob extends React.Component {
         // save the answers to local state, and show the confirmation popup
         let newState = update(this.state, {
             questionAnswers: {$set: questionAnswers},
-            modalVisible: true
+            modalVisible: {$set: true}
         });
 
         this.setState(newState);
@@ -98,10 +99,10 @@ class PostOrEditJob extends React.Component {
     render() {
         let {jobPost} = this.state;
         let path = this.props.location.pathname;
-        let headerText = path.contains("Edit") ? "Edit Project" : "Post a Project";
+        let headerText = path.indexOf("Edit") > -1 ? "Edit Project" : "Post a Project";
         // If the job is in Draft status, we can edit the QuestionAnswers directly. For any other status, the
         // job has already been posted, so we edit the DraftQuestionAnswers instead.
-        let questionAnswers = jobPost.status === enums.JSTAT_DRAFT ? jobPost.questionAnswers : jobPost.draftQuestionAnswers;
+        let questionAnswers = jobPost.status === enums.JOB_STATUS.Draft ? jobPost.questionAnswers : jobPost.draftQuestionAnswers;
 
         return (
             <div>
@@ -110,7 +111,9 @@ class PostOrEditJob extends React.Component {
 
                 <FormContainer
                     jobId={jobPost._id}
-                    questionAnswers={questionAnswers} />
+                    questionAnswers={questionAnswers}
+                    onSubmit={this.onSubmit}
+                    gridName={enums.QUESTION_GRID_TYPE.JobPosting} />
 
                 <Modal backdrop="static" dialogClassName="postJobModal" show={this.state.modalVisible}
                        onHide={this.handleCancel}>
@@ -134,7 +137,7 @@ PostOrEditJob.propTypes = {
     jobId: T.string,
     jobPost: T.object,
     jobActions: T.object,
-    location: T.string
+    location: T.object
 };
 
 
@@ -143,7 +146,7 @@ function createNewJob() {
     return {
         _id: newId,  // temporary ID
         hasBeenSaved: false,
-        status: enums.JSTAT_DRAFT,
+        status: enums.JOB_STATUS.Draft,
         hasDetails: true,   // setting this to True prevents the app from trying to obtain details from the server
         questionAnswers: {},
         draftQuestionAnswers: {},

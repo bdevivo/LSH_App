@@ -27,6 +27,8 @@ class FormContainer extends React.Component {
             qPanels: this.props.qPanels,
             questionAnswers: this.props.questionAnswers
         };
+
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -66,11 +68,12 @@ class FormContainer extends React.Component {
     }
 
     onSubmit(questionAnswers, target) {
-        console.log('Form submitted!', questionAnswers);
-        console.log('-----');
-        console.log('For this example, we disabled normal form submission functionality. ');
-        console.log('-----');
-        alert('Submitted. Check the console to see the answers!');
+       this.props.onSubmit(questionAnswers);
+        // console.log('Form submitted!', questionAnswers);
+        // console.log('-----');
+        // console.log('For this example, we disabled normal form submission functionality. ');
+        // console.log('-----');
+        // alert('Submitted. Check the console to see the answers!');
     }
 
     getActionText(action) {
@@ -354,6 +357,7 @@ class FormContainer extends React.Component {
             ? null
             : <Winterfell schema={mySchema}
                           jobId={this.props.jobId}
+                          gridName={this.props.gridName}
                           questionAnswers={this.state.questionAnswers}
                           panelHistory={this.props.panelHistory}
                           disableSubmit={true}
@@ -386,6 +390,8 @@ class FormContainer extends React.Component {
 FormContainer.propTypes = {
     jobId: T.string.isRequired,
     questionAnswers: T.object.isRequired,
+    gridName: T.string.isRequired,
+    onSubmit: T.func.isRequired,
     questions: T.array,
     qPanels: T.array,
     qSets: T.array,

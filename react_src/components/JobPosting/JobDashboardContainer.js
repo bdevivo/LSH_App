@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import {Row, Col} from 'react-bootstrap';
 
 import JobDashboard from './JobDashboard';
-import * as questionGridActions from '../../actions/questionGridActions';
+import * as jobActions from '../../actions/jobActions';
 
 
 class JobDashboardContainer extends React.Component {
@@ -45,7 +45,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
    return {
-      questionGridActions: bindActionCreators(questionGridActions, dispatch),
+      jobActions: bindActionCreators(jobActions, dispatch),
    };
 }
 

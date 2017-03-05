@@ -1,5 +1,5 @@
 import * as types from './actionTypes';
-import * as jobPostApi from '../api/jobPostApi';
+import jobPostApi from '../api/jobPostApi';
 import {beginAjaxCall, endAjaxCall} from './ajaxStatusActions';
 
 export function saveJobSuccess(jobPosting) {
@@ -11,7 +11,7 @@ export function updateJobSuccess(jobPosting) {
 }
 
 export function setQuestionAnswer(jobId, questionAnswer) {
-    return {type: types.SET_QUESTION_ANSWER, questionId, questionAnswer, gridName};
+    return {type: types.SET_QUESTION_ANSWER, jobId, questionAnswer};
 }
 
 export function setQuestionAnswers(jobId, questionAnswerSet) {

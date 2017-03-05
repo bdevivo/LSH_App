@@ -2,7 +2,7 @@ import {combineReducers} from 'redux';
 import questions from './questionReducer';
 import questionPanels from './questionPanelReducer';
 import questionSets from './questionSetReducer';
-import questionGrids from './questionGridReducer';
+import jobPosts from './jobPostReducer';
 import profile from './profileReducer';
 import auth from './authReducer';
 import ui from './uiReducer';
@@ -14,7 +14,7 @@ const rootReducer = combineReducers( {
     questions,
     questionPanels,
     questionSets,
-    questionGrids,
+    jobPosts,
     profile,
     auth,
     ui,

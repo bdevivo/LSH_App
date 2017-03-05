@@ -40,3 +40,5 @@ class JobPostApi {
     }
 
 }
+
+export default JobPostApi;

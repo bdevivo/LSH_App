@@ -22,12 +22,13 @@ export function clearQuestionAnswers(jobId) {
     return {type: types.CLEAR_QUESTION_ANSWERS, jobId};
 }
 
+
 export function getJobSummariesForUserSuccess(userJobs) {
     return {type: types.GET_JOBS_FOR_USER_SUCCESS, userJobs};
 }
 
-export function getJobDetailsSuccess(jobPost) {
-    return {type: types.GET_JOB_DETAILS_SUCCESS, jobPost};
+export function getJobDetailsSuccess(jobPosting) {
+    return {type: types.GET_JOB_DETAILS_SUCCESS, jobPosting};
 }
 
 // THUNKS
@@ -38,6 +39,7 @@ export function saveJob(jobPosting) {
         return jobPostApi.saveJob(jobPosting)
             .then(response => {
                 dispatch(endAjaxCall());
+                response.hasBeenSaved = true;
                 dispatch(saveJobSuccess(response));
             })
             .catch(error => {

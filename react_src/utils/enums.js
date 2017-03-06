@@ -1,6 +1,8 @@
 // Question Functions
-export const QFUNC_NONE = 'none';
-export const QFUNC_JOB_NAME = 'name';
+export const QUESTION_FUNCTION = {
+    None: 'none',
+    JobName: 'name'
+};
 
 // Job Statuses
 export const JOB_STATUS = {
@@ -13,11 +15,22 @@ export const JOB_STATUS = {
    Abandoned: "abandoned"
 };
 
+// Job Status Display Names
+export const JOB_STATUS_DISPLAY = {
+    "draft": "Draft",
+    "private": "Posted (invite only)",
+    "users_only": "Posted (users only)",
+    "public": "Posted (public)",
+    "hidden": "Hidden",
+    "retired": "Retired",
+    "abandoned": "Abandoned"
+};
+
 // Job Visibility
 export const JOB_POST_TIME = {
    Now: "now",
    Later: "later",
-   Never: "never"
+   Deferred: "deferred"
 };
 
 // Grid Types

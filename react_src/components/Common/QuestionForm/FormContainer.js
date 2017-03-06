@@ -356,7 +356,6 @@ class FormContainer extends React.Component {
         let grid = !hasData
             ? null
             : <Winterfell schema={mySchema}
-                          jobId={this.props.jobId}
                           gridName={this.props.gridName}
                           questionAnswers={this.state.questionAnswers}
                           panelHistory={this.props.panelHistory}
@@ -364,7 +363,8 @@ class FormContainer extends React.Component {
                           onRender={this.onRender}
                           onUpdate={this.onUpdate}
                           onSwitchPanel={this.onSwitchPanel}
-                          onSubmit={this.onSubmit}/>;
+                          onSubmit={this.onSubmit}
+                          saveQuestionAnswers={this.props.saveQuestionAnswers} />;
 
         return (
             <div>
@@ -388,10 +388,10 @@ class FormContainer extends React.Component {
 }
 
 FormContainer.propTypes = {
-    jobId: T.string.isRequired,
     questionAnswers: T.object.isRequired,
     gridName: T.string.isRequired,
     onSubmit: T.func.isRequired,
+    saveQuestionAnswers: T.func.isRequired,
     questions: T.array,
     qPanels: T.array,
     qSets: T.array,

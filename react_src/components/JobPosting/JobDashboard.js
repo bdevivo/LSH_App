@@ -15,10 +15,10 @@ const JobDashboard = ({jobPostings}) => {
 
    let jobTableRows = jobPostings.map(job => {
       return (
-         <tr key={job._id}>
-            <td>job.name</td>
-            <td>job.status</td>
-            <td>job.postedDate</td>
+         <tr key={job.jobId}>
+            <td>{job.name}</td>
+            <td>{job.status}</td>
+            <td>{job.postedDate}</td>
          </tr>
       );
    });

@@ -47,9 +47,11 @@ const QuestionAddEdit = ({
         }
     }
 
+    let {QUESTION_FUNCTION} = enums;
+
     const questionFunctionList = [
-            { value: enums.QFUNC_NONE, label: 'none' },
-            { value: enums.QFUNC_JOB_NAME, label: 'job name' }
+            { value: QUESTION_FUNCTION.None, label: 'none' },
+            { value: QUESTION_FUNCTION.JobName, label: 'job name' }
     ];
 
     let questionFunctionOptions = questionFunctionList.map(func => {

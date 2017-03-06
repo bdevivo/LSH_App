@@ -164,7 +164,6 @@ class QuestionSetContainer extends React.Component {
 
                 });
 
-
                 return {
                     index: i,
                     questionName: fullQuestion.name,

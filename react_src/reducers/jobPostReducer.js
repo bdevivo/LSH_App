@@ -8,7 +8,7 @@ export default function jobPostReducer(jobPosts = initialState.jobPosts, action)
 
     let answerSetType = action.isDraft ? "draftQuestionAnswers" : "questionAnswers";
 
-    const setNewJobPost = (jobPost) => {
+    const updateJobPost = (jobPost) => {
         let jobIndex = jobPosts.findIndex((x) => x._id == jobPost._id);
         if (jobIndex > -1) {
 
@@ -74,15 +74,15 @@ export default function jobPostReducer(jobPosts = initialState.jobPosts, action)
         }
 
         case types.GET_JOB_DETAILS_SUCCESS: {
-            return setNewJobPost(action.jobPost);
+            return updateJobPost(action.jobPosting);
         }
 
         case types.SAVE_JOB_SUCCESS: {
-            return setNewJobPost(action.jobPost);
+            return update(jobPosts, {$push: [action.jobPosting]});
         }
 
         case types.UPDATE_JOB_SUCCESS: {
-            return setNewJobPost(action.jobPost);
+            return updateJobPost(action.jobPosting);
         }
 
         default:

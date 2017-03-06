@@ -6,6 +6,7 @@ import CSSModules from 'react-css-modules';
 import {bindActionCreators} from 'redux';
 import * as jobActions from '../../actions/jobActions';
 import * as enums from '../../utils/enums';
+import * as questionHelpers from '../../utils/questionHelpers';
 import FormContainer from '../Common/QuestionForm/FormContainer';
 import SubmitJobConfirmation from './SubmitJobConfirmation';
 import update from 'immutability-helper';
@@ -18,8 +19,13 @@ class PostOrEditJob extends React.Component {
     constructor(props, context) {
         super(props, context);
 
+        let path = this.props.location.pathname;
+        let isNew = path.indexOf("Edit") === -1;
+        let jobPost = isNew ? this.createNewJob() : this.props.allJobPosts.find(x => x._id === this.props.jobId);
+
         this.state = {
-            jobPost: props.jobPost,
+            jobPost: jobPost,
+            isNew: isNew,
             postingTime: "",
             postVisibility: "",
             modalVisible: false,
@@ -29,26 +35,60 @@ class PostOrEditJob extends React.Component {
         this.onPostVisibilityChanged = this.onPostVisibilityChanged.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onPostJob = this.onPostJob.bind(this);
+        this.saveQuestionAnswers = this.saveQuestionAnswers.bind(this);
     }
 
     componentDidMount() {
         let {jobPost} = this.state;
-        if (jobPost.isSaved && !jobPost.hasDetails) {
+        if (jobPost.hasBeenSaved && !jobPost.hasDetails) {
             this.props.jobActions.getJobDetails(jobPost.jobId);
         }
     }
 
-    onSubmit(questionAnswers) {
+    componentWillReceiveProps(nextProps) {
+        let nextJobPost = nextProps.allJobPosts.find(x => x._id === nextProps.jobId);
+        if (nextJobPost) {
+            this.setState({jobPost: nextJobPost});
+        }
+    }
+
+    createNewJob() {
+        //let newId = uuidV1();
+        let newId = 0;
+        return {
+            _id: newId,  // temporary ID
+            hasBeenSaved: false,
+            status: enums.JOB_STATUS.Draft,
+            hasDetails: true,   // setting this to True prevents the app from trying to obtain details from the server
+            questionAnswers: {},
+            draftQuestionAnswers: {},
+            name: ""
+        };
+    }
+
+    saveQuestionAnswers(fullAnswerSet) {
+        let newState = update(this.state, {
+            jobPost: {
+                draftQuestionAnswers: {$set: fullAnswerSet}
+            }
+        });
+
+        this.setState(newState);
+    }
+
+    onSubmit(fullAnswerSet) {
         // save the answers to local state, and show the confirmation popup
         let newState = update(this.state, {
-            questionAnswers: {$set: questionAnswers},
+            jobPost: {
+                draftQuestionAnswers: {$set: fullAnswerSet}
+            },
             modalVisible: {$set: true}
         });
 
         this.setState(newState);
     }
 
-    onPostingTimeChanged() {
+    onPostingTimeChanged(event) {
         let newState = update(this.state, {
             postingTime: {$set: event.target.value}
         });
@@ -56,7 +96,7 @@ class PostOrEditJob extends React.Component {
         this.setState(newState);
     }
 
-    onPostVisibilityChanged() {
+    onPostVisibilityChanged(event) {
         let newState = update(this.state, {
             postVisibility: {$set: event.target.value}
         });
@@ -66,26 +106,38 @@ class PostOrEditJob extends React.Component {
 
     onPostJob() {
         this.setState(update(this.state, {
-            modalVisible: false
+            modalVisible: {$set: false}
         }));
 
         let saveJob = _.cloneDeep(this.state.jobPost);
         let {JOB_POST_TIME, JOB_STATUS} = enums;
+        let doSave = true;
 
         switch (this.state.postingTime) {
-            case JOB_POST_TIME.Never:
+            case JOB_POST_TIME.Deferred:
                 saveJob.status = JOB_STATUS.Abandoned;
+                doSave = false;
                 break;
 
             case JOB_POST_TIME.Later:
-                // don't change the job status
+                saveJob.Name = questionHelpers.getJobName(saveJob, this.props.allQuestions);
                 break;
 
             case JOB_POST_TIME.Now:
             {
                 saveJob.status = this.state.postVisibility;
+                saveJob.Name = questionHelpers.getJobName(saveJob, this.props.allQuestions);
+                // Draft answers become regular answers before saving
+                saveJob.questionAnswers = saveJob.draftQuestionAnswers;
+                saveJob.draftQuestionAnswers = {};
+                saveJob.postedDate = new Date();
+                saveJob.postedBy = this.props.userName;
                 break;
             }
+        }
+
+        if (!doSave) {
+            return;
         }
 
         if (saveJob.hasBeenSaved) {
@@ -98,11 +150,7 @@ class PostOrEditJob extends React.Component {
 
     render() {
         let {jobPost} = this.state;
-        let path = this.props.location.pathname;
-        let headerText = path.indexOf("Edit") > -1 ? "Edit Project" : "Post a Project";
-        // If the job is in Draft status, we can edit the QuestionAnswers directly. For any other status, the
-        // job has already been posted, so we edit the DraftQuestionAnswers instead.
-        let questionAnswers = jobPost.status === enums.JOB_STATUS.Draft ? jobPost.questionAnswers : jobPost.draftQuestionAnswers;
+        let headerText = this.state.isNew ? "Post a Project" : "Edit Project";
 
         return (
             <div>
@@ -111,9 +159,10 @@ class PostOrEditJob extends React.Component {
 
                 <FormContainer
                     jobId={jobPost._id}
-                    questionAnswers={questionAnswers}
+                    questionAnswers={jobPost.draftQuestionAnswers}
                     onSubmit={this.onSubmit}
-                    gridName={enums.QUESTION_GRID_TYPE.JobPosting} />
+                    gridName={enums.QUESTION_GRID_TYPE.JobPosting}
+                    saveQuestionAnswers={this.saveQuestionAnswers} />
 
                 <Modal backdrop="static" dialogClassName="postJobModal" show={this.state.modalVisible}
                        onHide={this.handleCancel}>
@@ -135,30 +184,22 @@ class PostOrEditJob extends React.Component {
 PostOrEditJob.propTypes = {
     params: T.object.isRequired,
     jobId: T.string,
-    jobPost: T.object,
+    allJobPosts: T.array,
+    allQuestions: T.array,
     jobActions: T.object,
-    location: T.object
+    location: T.object,
+    userName: T.string
 };
 
 
-function createNewJob() {
-    let newId = uuidV1();
-    return {
-        _id: newId,  // temporary ID
-        hasBeenSaved: false,
-        status: enums.JOB_STATUS.Draft,
-        hasDetails: true,   // setting this to True prevents the app from trying to obtain details from the server
-        questionAnswers: {},
-        draftQuestionAnswers: {},
-        name: ""
-    };
-}
-
 function mapStateToProps(state, ownProps) {
-    let jobPost = state.jobPosts.find(x => x._id === ownProps.params.jobId);
+    //let jobPost = state.jobPosts.find(x => x._id === ownProps.params.jobId);
 
     return {
-        jobPost: jobPost || createNewJob()
+        jobId: ownProps.params.jobId,
+        allJobPosts: state.jobPosts,
+        allQuestions: [...state.questions],
+        userName: state.profile.user_name.short
     };
 }
 

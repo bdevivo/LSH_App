@@ -59,7 +59,7 @@ class Winterfell extends React.Component {
 
         this.state = {
             schema: schema,
-           panelId: panelId,
+            panelId: panelId,
             currentPanel: currentPanel,
             action: props.action,
             questionAnswers: props.questionAnswers,
@@ -70,7 +70,7 @@ class Winterfell extends React.Component {
     }
 
     componentDidMount() {
-       this.props.uiActions.setCurrentPanel(this.state.panelId, this.props.gridName);
+        this.props.uiActions.setCurrentPanel(this.state.panelId, this.props.gridName);
         this.props.onRender();
     }
 
@@ -137,19 +137,21 @@ class Winterfell extends React.Component {
         // }, this.props.onSwitchPanel.bind(null, panel));
     }
 
-    saveQuestionAnswers(activeQuestions, questionAnswers) {
+    saveQuestionAnswers(activeQuestionsInPanel, allQuestionsInPanel, questionAnswers) {
         let clonedAnswers = _.cloneDeep(questionAnswers);
         // filter out any answers that are not in the activeQuestions array (these
         // are questions that were answered at some point, but were not active (i.e.,
         // visible) at the time the panel was switched)
-        let activeQuestionIds = activeQuestions.map(x => x.questionId);
+        let activeQuestionIds = activeQuestionsInPanel.map(x => x.questionId);
+        let allQuestionIdsInPanel = allQuestionsInPanel.map(x => x.questionId);
         Object.keys(clonedAnswers).forEach((key) => {
-            if (!activeQuestionIds.includes(key)) {
+            if (allQuestionIdsInPanel.includes(key) && !activeQuestionIds.includes(key)) {
                 delete clonedAnswers[key];
             }
         });
 
-        this.props.jobActions.setQuestionAnswers(this.props.jobId, clonedAnswers);
+        //this.props.jobActions.setQuestionAnswers(this.props.jobId, clonedAnswers);
+        this.props.saveQuestionAnswers(clonedAnswers);
     }
 
     handleBackButtonClick() {
@@ -221,14 +223,14 @@ class Winterfell extends React.Component {
 
 Winterfell.propTypes = {
     schema: PropTypes.object.isRequired,
-    jobId: PropTypes.string.isRequired,
-   gridName: PropTypes.string.isRequired,
+    gridName: PropTypes.string.isRequired,
     questionAnswers: PropTypes.object.isRequired,
     panelHistory: PropTypes.array.isRequired,
     disableSubmit: PropTypes.bool.isRequired,
     onRender: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
     onUpdate: PropTypes.func.isRequired,
+    saveQuestionAnswers: PropTypes.func.isRequired,
 
     onSwitchPanel: PropTypes.func,
     panelId: PropTypes.string,

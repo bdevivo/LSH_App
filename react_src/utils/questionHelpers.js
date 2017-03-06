@@ -1,3 +1,5 @@
+import * as enums from './enums';
+const dateFormat = require('dateformat');
 
 const questionTypeDisplayMap = {
     "singleSelect": "single select",
@@ -182,4 +184,28 @@ export function getAnswerTypeGroup(answerType) {
     else {
         return "other";
     }
+}
+
+export function getJobName(jobPost, allQuestions) {
+    let {QUESTION_FUNCTION, JOB_STATUS, JOB_STATUS_DISPLAY} = enums;
+    let answers = jobPost.status === JOB_STATUS.Draft ? jobPost.draftQuestionAnswers : jobPost.questionAnswers;
+
+    let nameQuestion = allQuestions.find(q => q.function = QUESTION_FUNCTION.JobName);
+    let nameAnswer = nameQuestion && answers.hasOwnProperty(nameQuestion._id) ? answers[nameQuestion._id] : null;
+    return nameAnswer || "No name specified";
+}
+
+export function getJobDisplayData(jobPost) {
+    let {JOB_STATUS_DISPLAY} = enums;
+
+    let jobData = {
+        jobId: jobPost.jobId
+    };
+
+    jobData.name = jobPost.name;
+
+    jobData.status = JOB_STATUS_DISPLAY[jobPost.status];
+    jobData.postedDate = jobPost.postedDate ? dateFormat(jobPost.postedDate, "mm.dd.yyyy HH:MM:ss") : "Not posted";
+
+    return jobData;
 }

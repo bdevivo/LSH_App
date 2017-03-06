@@ -3,3 +3,11 @@
     font-size: 30px;
     color: #31708f;
 }
+
+.visibilityDiv {
+    margin-top: 30px;
+}
+
+.promptDetails {
+    font-style:italic;
+}

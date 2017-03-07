@@ -4,11 +4,6 @@
     <list id="23724d5d-f374-4c1f-8907-1c5c6ffa7959" name="Default" comment="" />
     <list default="true" id="db9cce2d-2ebf-4e24-9d2e-9ec417bf0e97" name="Add all changelist" comment="Fixes for panel Next and Back buttons">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/JobPosting/JobDashboard.js" afterPath="$PROJECT_DIR$/react_src/components/JobPosting/JobDashboard.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/JobPosting/JobPosting.css" afterPath="$PROJECT_DIR$/react_src/components/JobPosting/JobPosting.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/JobPosting/PostOrEditJob.js" afterPath="$PROJECT_DIR$/react_src/components/JobPosting/PostOrEditJob.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/reducers/jobPostReducer.js" afterPath="$PROJECT_DIR$/react_src/reducers/jobPostReducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/utils/questionHelpers.js" afterPath="$PROJECT_DIR$/react_src/utils/questionHelpers.js" />
     </list>
     <ignored path="QuestionGrid.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1897,14 +1892,7 @@
       <workItem from="1487784693751" duration="6079000" />
       <workItem from="1488217795300" duration="7065000" />
       <workItem from="1488406787145" duration="6846000" />
-      <workItem from="1488824964554" duration="10730000" />
-    </task>
-    <task id="LOCAL-00001" summary="Update from NJ">
-      <created>1469553603490</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1469553603490</updated>
+      <workItem from="1488824964554" duration="10776000" />
     </task>
     <task id="LOCAL-00002" summary="Update from NJ">
       <created>1469554280400</created>
@@ -2242,11 +2230,18 @@
       <option name="project" value="LOCAL" />
       <updated>1488481281734</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Fixes for panel Next and Back buttons">
+      <created>1488918607137</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1488918607138</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1450069000" />
+    <option name="totallyTimeSpent" value="1450115000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">

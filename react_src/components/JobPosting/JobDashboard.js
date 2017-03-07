@@ -7,10 +7,10 @@ import styles from './JobPosting.css';
 const JobDashboard = ({jobPostings}) => {
 
    let jobTableHeaderRow = (
-      <tr>
-         <td>Name</td>
-         <td>Status</td>
-         <td>Posted</td>
+      <tr key="head">
+         <th>Name</th>
+         <th>Status</th>
+         <th>Posted</th>
       </tr>);
 
    let jobTableRows = jobPostings.map(job => {
@@ -26,27 +26,39 @@ const JobDashboard = ({jobPostings}) => {
    let jobPostingNode = jobPostings.length === 0
       ? <p>No job postings found.</p>
       :
-      <table>
-         {jobTableHeaderRow}
-         {jobTableRows}
+      <table className="table table-striped .table-hover">
+         <thead>
+            {jobTableHeaderRow}
+         </thead>
+         <tbody>
+            {jobTableRows}
+         </tbody>
       </table>;
 
 
    return (
       <div>
-         <h2>Job Dashboard</h2>
+
+         <Row styleName="headerRow">
+            <Col md={10} styleName="">
+               <h2>Job Dashboard</h2>
+            </Col>
+
+            <Col md={2} styleName="newJobCol">
+               <LinkContainer to="/postjobgrid/post">
+                  <Button type="button" className="btn-sm btn-default" styleName="">Create New Job...</Button>
+               </LinkContainer>
+            </Col>
+
+         </Row>
 
          <Row styleName="">
 
-            <Col md={10} styleName="">
+            <Col md={12} styleName="">
                {jobPostingNode}
             </Col>
 
-            <Col md={2} styleName="">
-               <LinkContainer to="/postjobgrid/post">
-                  <Button type="button" className="btn btn-default" styleName="">New Job Posting...</Button>
-               </LinkContainer>
-            </Col>
+
 
 
          </Row>

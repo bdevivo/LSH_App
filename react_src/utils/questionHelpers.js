@@ -192,20 +192,20 @@ export function getJobName(jobPost, allQuestions) {
 
     let nameQuestion = allQuestions.find(q => q.function = QUESTION_FUNCTION.JobName);
     let nameAnswer = nameQuestion && answers.hasOwnProperty(nameQuestion._id) ? answers[nameQuestion._id] : null;
-    return nameAnswer || "No name specified";
+    return nameAnswer || "[No name provided]";
 }
 
 export function getJobDisplayData(jobPost) {
     let {JOB_STATUS_DISPLAY} = enums;
 
     let jobData = {
-        jobId: jobPost.jobId
+        jobId: jobPost._id
     };
 
-    jobData.name = jobPost.name;
+    jobData.name = jobPost.name  || "[No name provided]";
 
     jobData.status = JOB_STATUS_DISPLAY[jobPost.status];
-    jobData.postedDate = jobPost.postedDate ? dateFormat(jobPost.postedDate, "mm.dd.yyyy HH:MM:ss") : "Not posted";
+    jobData.postedDate = jobPost.postedDate ? dateFormat(jobPost.postedDate, "mmmm dS, yyyy, h:MM TT") : "Not posted";
 
     return jobData;
 }

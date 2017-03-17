@@ -131,11 +131,11 @@ class PostOrEditJob extends React.Component {
             break;
 
          case JOB_POST_TIME.Now: {
-            //saveJob.status = this.state.postVisibility;
+            saveJob.status = this.state.postVisibility;
             // Draft answers become regular answers before saving
-            //saveJob.questionAnswers = _.cloneDeep(this.state.jobPost.draftQuestionAnswers);
-           // saveJob.postedDate = new Date();
-            //saveJob.postedBy = this.props.userName;
+            saveJob.questionAnswers = _.cloneDeep(this.state.jobPost.draftQuestionAnswers);
+            saveJob.postedDate = new Date();
+            saveJob.postedBy = this.props.userName;
             break;
          }
       }

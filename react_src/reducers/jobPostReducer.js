@@ -78,8 +78,7 @@ export default function jobPostReducer(jobPosts = initialState.jobPosts, action)
         }
 
         case types.SAVE_JOB_SUCCESS: {
-            //return update(jobPosts, {$push: [action.jobPosting]});
-           return jobPosts;
+           return update(jobPosts, {$push: [action.jobPosting]});
         }
 
         case types.UPDATE_JOB_SUCCESS: {

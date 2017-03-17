@@ -190,7 +190,7 @@ export function getJobName(jobPost, allQuestions) {
     let {QUESTION_FUNCTION, JOB_STATUS, JOB_STATUS_DISPLAY} = enums;
     let answers = jobPost.status === JOB_STATUS.Draft ? jobPost.draftQuestionAnswers : jobPost.questionAnswers;
 
-    let nameQuestion = allQuestions.find(q => q.function = QUESTION_FUNCTION.JobName);
+    let nameQuestion = allQuestions.find(q => q.function === QUESTION_FUNCTION.JobName);
     let nameAnswer = nameQuestion && answers.hasOwnProperty(nameQuestion._id) ? answers[nameQuestion._id] : null;
     return nameAnswer || "[No name provided]";
 }

@@ -72,7 +72,8 @@ export function getJobSummariesForUser(userId) {
         return jobPostApi.getJobSummariesForUser(userId)
             .then(response => {
                 dispatch(endAjaxCall());
-                dispatch(getJobSummariesForUserSuccess(response.userJobs));
+
+                dispatch(getJobSummariesForUserSuccess(response.jobPostings));
             })
             .catch(error => {
                 dispatch(endAjaxCall());

@@ -12,35 +12,42 @@ class JobDashboardContainer extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
-          allJobPosts: this.props.allJobPosts,
+         allJobPosts: this.props.allJobPosts,
 
       };
    }
 
+   componentDidMount() {
+      if (!this.props.areJobPostingsLoaded) {
+         this.props.jobActions.getJobSummariesForUser(this.props.userId);
+      }
+   }
+
    render() {
 
-    let jobDisplayData = this.props.allJobPosts.map(job => questionHelpers.getJobDisplayData(job));
+      let jobDisplayData = this.props.allJobPosts.map(job => questionHelpers.getJobDisplayData(job));
 
       return (
-         <JobDashboard jobPostings={jobDisplayData} />
+         <JobDashboard jobPostings={jobDisplayData}/>
       );
-
-
    }
 
 }
 
 
 JobDashboardContainer.propTypes = {
-    allJobPosts: T.array,
-
+   allJobPosts: T.array,
+   areJobPostingsLoaded: T.bool.isRequired,
+   jobActions: T.object.isRequired,
+   userId: T.string
 };
 
 function mapStateToProps(state) {
 
    return {
-      //jobPostings: [...state.jobPostings],
-       allJobPosts: state.jobPosts
+      allJobPosts: state.jobPosts,
+      areJobPostingsLoaded: state.loadedData.jobPostings,
+      userId: state.profile.auth0_id
    };
 }
 

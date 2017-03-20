@@ -4,12 +4,31 @@ class JobPostApi {
 
     static saveJob(jobPosting) {
 
-        //FOR TESTING ONLY
-        return new Promise((resolve, reject) => {
-            jobPosting._id = Math.floor(Math.random() * 1000);
-            resolve(jobPosting);
+       return new Promise((resolve, reject) => {
+          const headers = {
+             'Accept': 'application/json',
+             'Content-Type': 'application/json'
+          };
 
-        });
+          delete jobPosting._id;    // strip off the temporary id
+          const body = JSON.stringify(jobPosting);
+
+          return fetch('/api/jobPostings', {
+             method: 'POST',
+             headers: headers,
+             body: body
+          })
+             .then(response => {
+                return response.json();
+             })
+             .then(jobPosting => {
+                resolve(jobPosting);
+             })
+             .catch(err => {
+                alert("Error creating new job posting: " + err);
+                reject();
+             });
+       });
     }
 
     static updateJob(jobPosting) {
@@ -22,12 +41,31 @@ class JobPostApi {
     }
 
    static getJobSummariesForUser(userId) {
-       //FOR TESTING ONLY
-       return new Promise((resolve, reject) => {
-           resolve({
-               userJobs: []
-           });
-       });
+      return new Promise((resolve, reject) => {
+
+         const headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Cache-control': 'no-cache'
+         };
+
+         return fetch(`/api/jobPostings/${userId}`, {
+            method: 'GET',
+            headers: headers
+         })
+            .then((response) => {
+               return response.json();
+            })
+            .then(qSets => {
+               resolve(qSets);
+            })
+            .catch(
+               (err) => {
+                  alert("Error getting question sets: " + err);
+                  reject();
+               }
+            );
+      });
    }
 
     static getJobDetails(jobId) {

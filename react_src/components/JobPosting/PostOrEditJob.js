@@ -5,6 +5,7 @@ import styles from './JobPosting.css';
 import CSSModules from 'react-css-modules';
 import {bindActionCreators} from 'redux';
 import * as jobActions from '../../actions/jobActions';
+import * as uiActions from '../../actions/uiActions';
 import * as enums from '../../utils/enums';
 import * as questionHelpers from '../../utils/questionHelpers';
 import FormContainer from '../Common/QuestionForm/FormContainer';
@@ -80,9 +81,9 @@ class PostOrEditJob extends React.Component {
    onSubmit(fullAnswerSet) {
       // save the answers to local state, and show the confirmation popup
       let newState = update(this.state, {
-         // jobPost: {
-         //     draftQuestionAnswers: {$set: fullAnswerSet}
-         // },
+         jobPost: {
+             draftQuestionAnswers: {$set: fullAnswerSet}
+         },
          modalVisible: {$set: true}
       });
 
@@ -121,7 +122,7 @@ class PostOrEditJob extends React.Component {
          status: enums.JOB_STATUS.Draft,
          name: questionHelpers.getJobName(this.state.jobPost, this.props.allQuestions),
          createdDate: new Date(),
-         createdBy: this.props.userName
+         createdBy: this.props.userId
       };
 
       switch (this.state.postingTime) {
@@ -135,7 +136,7 @@ class PostOrEditJob extends React.Component {
             // Draft answers become regular answers before saving
             saveJob.questionAnswers = _.cloneDeep(this.state.jobPost.draftQuestionAnswers);
             saveJob.postedDate = new Date();
-            saveJob.postedBy = this.props.userName;
+            saveJob.postedBy = this.props.userId;
             break;
          }
       }
@@ -147,6 +148,7 @@ class PostOrEditJob extends React.Component {
          this.props.jobActions.saveJob(saveJob);
       }
 
+      this.props.uiActions.setCurrentPanel('0', enums.QUESTION_GRID_TYPE.JobPosting);
       browserHistory.push("/jobdash");
    }
 
@@ -189,8 +191,10 @@ PostOrEditJob.propTypes = {
    allJobPosts: T.array,
    allQuestions: T.array,
    jobActions: T.object,
+   uiActions: T.object,
    location: T.object,
-   userName: T.string
+   userName: T.string,
+   userId: T.string
 };
 
 
@@ -201,12 +205,14 @@ function mapStateToProps(state, ownProps) {
       jobId: ownProps.params.jobId,
       allJobPosts: state.jobPosts,
       allQuestions: [...state.questions],
-      userName: state.profile.user_name.short
+      userName: state.profile.user_name.short,
+      userId: state.profile.auth0_id
    };
 }
 
 function mapDispatchToProps(dispatch) {
    return {
+      uiActions: bindActionCreators(uiActions, dispatch),
       jobActions: bindActionCreators(jobActions, dispatch)
    };
 }

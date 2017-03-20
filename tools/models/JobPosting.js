@@ -7,11 +7,7 @@ let jobPostingSchema;
 jobPostingSchema = new Schema(
     {
         name: {type: String, required: true},
-        questionAnswers:
-            {
-                questionId: {type: String, required: true},
-                questionAnswer: {type: Schema.Types.Mixed }
-            },
+        questionAnswers:{type: Schema.Types.Mixed },
         status: {type: String, required: true},
         createdBy: {type: String},
         createdDate: {type: Date},

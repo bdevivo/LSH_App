@@ -59,7 +59,7 @@ export default
         questions: false,
         questionPanels: false,
         questionSets: false,
-        userJobs: false
+        jobPostings: false
     },
     ajaxCallsInProgress: 0
 };

@@ -25,7 +25,7 @@ const JobDashboard = ({jobPostings, onViewJob, onEditJob, onDeleteJob, onPostJob
       let jobDisplay = questionHelpers.getJobDisplayData(job);
 
       return (
-         <tr key={job.jobId}>
+         <tr key={job._id}>
             <td>{jobDisplay.name}</td>
             <td>{jobDisplay.status}</td>
             <td>{jobDisplay.postedDate}</td>

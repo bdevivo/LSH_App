@@ -17,12 +17,14 @@ function nocache(req, res, next) {
 // Get all job postings for user
 router.get("/:userId", nocache, function (req, res) {
    let userId = req.params.userId;
+   console.log("userId: " + userId);
    JobPosting.find({'createdBy': userId})
       .exec(function (err, jobPostings) {
          if (err) {
             res.status(400);
             res.json({error: "Bad request."});
-            return;
+            console.log("ERROR in Get All Job Postings for User: ");
+            console.error(err);
          }
          res.json({"jobPostings": jobPostings});
       });

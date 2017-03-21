@@ -16,7 +16,7 @@ class JobDashboardContainer extends React.Component {
    }
 
    componentDidMount() {
-      if (!this.props.areJobPostingsLoaded) {
+      if (!this.props.areJobPostingsLoaded && this.props.userId) {
          this.props.jobActions.getJobSummariesForUser(this.props.userId);
       }
    }

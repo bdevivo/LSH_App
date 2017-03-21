@@ -7,7 +7,8 @@ import styles from './JobPosting.css';
 
 const JobActionButtons = ({job, onViewJob, onEditJob, onDeleteJob, onPostJob, onChangeJobVisibility}) => {
 
-   let {status, jobId} = job;
+   let status = job.status;
+   let jobId = job._id;
    let {JOB_STATUS} = enums;
 
    return (

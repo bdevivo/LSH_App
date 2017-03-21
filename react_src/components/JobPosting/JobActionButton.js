@@ -11,7 +11,7 @@ const JobActionButton = ({clickHandler, jobId, isFirst, label, glyphName}) => {
       <span>
          {!isFirst && ' '}
          <Button type="button" className="btn btn-xs btn-default" aria-label={label}
-                 onClick={() => clickHandler(jobId)}>
+               title={label}  onClick={() => clickHandler(jobId)}>
             <span className={glyphClassName}></span>
          </Button>
 

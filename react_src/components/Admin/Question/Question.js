@@ -40,7 +40,7 @@ const Question = ({question, isExpanded, handleToggle, modalVisible, onAddQuesti
         }
 
         let altText = (<p><b>Alternate text for resources: </b> {question.textForResources}</p>);
-        let questionType = questionHelpers.getAsnwerTypeDisplayString(question.answerType);
+        let questionType = questionHelpers.getAnswerTypeDisplayString(question.answerType);
         let questionFunction = question.hasOwnProperty("function") && question.function !== "none"
             ? <p><b>Function:</b> {question.function}</p>
             : null;

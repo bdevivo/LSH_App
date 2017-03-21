@@ -1,8 +1,6 @@
 import React, {PropTypes as T} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {Row, Col} from 'react-bootstrap';
-
 import JobDashboard from './JobDashboard';
 import * as jobActions from '../../actions/jobActions';
 import * as questionHelpers from '../../utils/questionHelpers';
@@ -23,12 +21,39 @@ class JobDashboardContainer extends React.Component {
       }
    }
 
+   onViewJob(jobId) {
+
+   }
+
+   onEditJob(jobId) {
+
+   }
+
+   onDeleteJob(jobId) {
+
+   }
+
+   onPostJob(jobId) {
+
+   }
+
+   onChangeVisibility(jobId) {
+
+   }
+
    render() {
 
       let jobDisplayData = this.props.allJobPosts.map(job => questionHelpers.getJobDisplayData(job));
 
       return (
-         <JobDashboard jobPostings={jobDisplayData}/>
+         <JobDashboard
+            jobPostings={this.props.allJobPosts}
+            onViewJob={this.onViewJob}
+            onEditJob={this.onEditJob}
+            onDeleteJob={this.onDeleteJob}
+            onPostJob={this.onPostJob}
+            onChangeVisibility={this.onChangeVisibility}
+         />
       );
    }
 

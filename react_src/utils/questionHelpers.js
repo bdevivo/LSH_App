@@ -17,7 +17,7 @@ const questionTypeDisplayMap = {
 };
 
 
-export function getAsnwerTypeDisplayString(answerType) {
+export function getAnswerTypeDisplayString(answerType) {
     return questionTypeDisplayMap[answerType];
 }
 

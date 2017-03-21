@@ -1,10 +1,12 @@
 import React, {Component, PropTypes} from 'react';
 import {Row, Col, Button, Modal} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
+import * as questionHelpers from '../../utils/questionHelpers';
+import JobActionButtons from './JobActionButtons';
 import CSSModules from 'react-css-modules';
 import styles from './JobPosting.css';
 
-const JobDashboard = ({jobPostings, onViewJob, onEditJob, onDeleteJob, postClicked, visibilityClicked}) => {
+const JobDashboard = ({jobPostings, onViewJob, onEditJob, onDeleteJob, onPostJob, onChangeVisibility}) => {
 
    let jobTableHeaderRow = (
       <tr key="head">
@@ -12,40 +14,30 @@ const JobDashboard = ({jobPostings, onViewJob, onEditJob, onDeleteJob, postClick
          <th>Status</th>
          <th>Posted</th>
          <th>Actions</th>
+         <th>View Matches</th>
       </tr>);
 
-   const test = (status, jobId) => {
-      return "";
-   };
 
-   const getActions = (status, jobId) => {
-      return "";
-   };
 
-   const temp = (status, jobId) => {
-      return (<span>
-         <Button type="button" className="btn btn-xs btn-default" aria-label="View" onClick={() => onViewJob(jobId)}>
-            <span className="glyphicon glyphicon-eye-open"></span>
-         </Button>
-         {' '}
-         <Button type="button" className="btn btn-xs btn-default" aria-label="Edit" onClick={() => onEditJob(jobId)}>
-            <span className="glyphicon glyphicon-pencil"></span>
-         </Button>
-         {' '}
-         <Button type="button" className="btn btn-xs btn-default" aria-label="Delete" onClick={() => onDeleteJob(jobId)}>
-            <span className="glyphicon glyphicon-remove"></span>
-         </Button>
-
-      </span>);
-   };
 
    let jobTableRows = jobPostings.map(job => {
+
+      let jobDisplay = questionHelpers.getJobDisplayData(job);
+
       return (
          <tr key={job.jobId}>
-            <td>{job.name}</td>
-            <td>{job.status}</td>
-            <td>{job.postedDate}</td>
-            <td>{getActions(job.status, job.jobId)}</td>
+            <td>{jobDisplay.name}</td>
+            <td>{jobDisplay.status}</td>
+            <td>{jobDisplay.postedDate}</td>
+            <td>
+               <JobActionButtons
+                  job={job}
+                  onViewJob={onViewJob}
+                  onEditJob={onEditJob}
+                  onDeleteJob={onDeleteJob}
+                  onPostJob={onPostJob}
+                  onChangeJobVisibility={onChangeVisibility} />
+              </td>
          </tr>
       );
    });
@@ -97,8 +89,8 @@ JobDashboard.propTypes = {
    onViewJob: PropTypes.func.isRequired,
    onEditJob: PropTypes.func.isRequired,
    onDeleteJob: PropTypes.func.isRequired,
-   postClicked: PropTypes.func.isRequired,
-   visibilityClicked: PropTypes.func.isRequired,
+   onPostJob: PropTypes.func.isRequired,
+   onChangeVisibility: PropTypes.func.isRequired,
 };
 
 export default CSSModules(JobDashboard, styles);

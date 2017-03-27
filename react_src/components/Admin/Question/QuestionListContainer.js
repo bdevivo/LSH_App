@@ -1,14 +1,15 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {Button} from 'react-bootstrap';
+import {Button, Row, Col} from 'react-bootstrap';
 import update from 'immutability-helper';
 import QuestionContainer from './QuestionContainer';
 import * as questionActions from '../../../actions/questionActions';
 import CSSModules from 'react-css-modules';
 import styles from './Question.css';
-import {DragDropContext} from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
+//import HTML5Backend from 'react-dnd-html5-backend';
+//import {DragDropContext} from 'react-dnd';
+import WithDragDropContext from '../../Common/WithDragDropContext';
 
 class QuestionListContainer extends React.Component {
     constructor(props) {
@@ -16,12 +17,15 @@ class QuestionListContainer extends React.Component {
         this.state = {
             questions: [...props.questions],
             newQuestion: {_id: -1},    // -1 is code for "there is no new question in the current state" (new question would have _id == 0)
-            isMovingItem: false
+            isInReorderState: false
         };
 
         this.onAddQuestion = this.onAddQuestion.bind(this);
         this.onAddQuestionClose = this.onAddQuestionClose.bind(this);
         this.moveItem = this.moveItem.bind(this);
+        this.onReorderQuestions = this.onReorderQuestions.bind(this);
+        this.onSaveReorderedQuestions = this.onSaveReorderedQuestions.bind(this);
+        this.onCancelReorderedQuestions = this.onCancelReorderedQuestions.bind(this);
     }
 
     componentDidMount() {
@@ -43,13 +47,36 @@ class QuestionListContainer extends React.Component {
                 $splice: [
                     [dragIndex, 1],
                     [hoverIndex, 0, dragItem]
-                ]},
+                ]
+            },
             //isMovingItem: {$set: true}
         });
 
         this.setState(newState);
         //this.reOrderOptionItems(newState.optionItems);    // update the option items in the parent question
         //this.setState(update(this.state, {isMovingItem: {$set: false}}));
+    }
+
+    onReorderQuestions() {
+        this.setState(update(this.state, {
+            isInReorderState: {$set: true}
+        }));
+    }
+
+    onSaveReorderedQuestions()
+    {
+        // save the re-ordered questions here
+        this.setState(update(this.state, {
+            isInReorderState: {$set: false}
+        }));
+    }
+
+    onCancelReorderedQuestions()
+    {
+        // cancel the re-ordered questions here
+        this.setState(update(this.state, {
+            isInReorderState: {$set: false}
+        }));
     }
 
     // reOrderOptionItems(orderedItems) {
@@ -65,7 +92,7 @@ class QuestionListContainer extends React.Component {
 
         // Calculate the index number for the question to be added
         let nextIndex;
-        if(this.state.questions.length === 0) {
+        if (this.state.questions.length === 0) {
             nextIndex = 1;
         }
         else {
@@ -114,12 +141,13 @@ class QuestionListContainer extends React.Component {
         let questionList = (
             questions.length > 0
                 ? questions.map((q, i) => <QuestionContainer
-                    key={q.index}
-                    visualIndex={i}
-                    question={q}
-                    modalVisible={false}
-                    onAddQuestionClose={this.onAddQuestionClose}
-                    moveItem={this.moveItem}/>)
+                key={q.index}
+                visualIndex={i}
+                question={q}
+                modalVisible={false}
+                onAddQuestionClose={this.onAddQuestionClose}
+                moveItem={this.moveItem}
+                isInReorderState={this.state.isInReorderState} />)
 
                 : <p>No items to display</p>
         );
@@ -130,23 +158,38 @@ class QuestionListContainer extends React.Component {
                 question={newQuestion}
                 modalVisible={true}
                 onAddQuestionClose={this.onAddQuestionClose}
-                visualIndex="1"
-                moveItem={this.moveItem}/>
+                visualIndex={1}
+                moveItem={this.moveItem}
+                isInReorderState={this.state.isInReorderState} />
                 : null
         );
 
         return (
             <div>
-                <h3>Questions</h3>
+                <Row>
+                    <Col md={7}>
+                        <h3>Questions</h3>
+                    </Col>
+                    <Col md={3}>
+                        <div styleName="addQuestionDiv">
+                            <Button type="button" className="btn btn-sm btn-default" onClick={this.onAddQuestion}>Add Question</Button>
+                        </div>
+                    </Col>
+                    <Col md={2}>
+                        {!this.state.isInReorderState && <Button type="button" className="btn btn-sm btn-default" onClick={this.onReorderQuestions}>Reorder Questions</Button>}
+                        {' '}
+                        {this.state.isInReorderState && <Button type="button" className="btn btn-sm btn-default" onClick={this.onSaveReorderedQuestions}>Save Reorder</Button>}
+                        {' '}
+                        {this.state.isInReorderState && <Button type="button" className="btn btn-sm btn-default" onClick={this.onCancelReorderedQuestions}>Cancel Reorder</Button>}
+                    </Col>
+                </Row>
 
-                <div styleName="addQuestionDiv">
-                    <Button type="button" className="btn btn-sm btn-default" onClick={this.onAddQuestion}>Add
-                        Question</Button>
-                </div>
-
-                {questionList}
-
-                {newQuestionForm}
+                <Row>
+                    <Col>
+                        {questionList}
+                        {newQuestionForm}
+                    </Col>
+                </Row>
 
             </div>
         );
@@ -174,4 +217,5 @@ function mapDispatchToProps(dispatch) {
 
 //export default connect(mapStateToProps, mapDispatchToProps)(CSSModules(QuestionListContainer, styles));
 
-export default DragDropContext(HTML5Backend)(connect(mapStateToProps, mapDispatchToProps)(CSSModules(QuestionListContainer, styles)));
+//export default DragDropContext(HTML5Backend)(connect(mapStateToProps, mapDispatchToProps)(CSSModules(QuestionListContainer, styles)));
+export default WithDragDropContext(connect(mapStateToProps, mapDispatchToProps)(CSSModules(QuestionListContainer, styles)));

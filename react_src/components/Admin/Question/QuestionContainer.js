@@ -33,7 +33,8 @@ class QuestionContainer extends React.Component {
                 modalVisible={this.props.modalVisible}   // if we are editing an existing question, show the Edit Question modal
                 onAddQuestionClose={this.props.onAddQuestionClose}
                 moveItem={this.props.moveItem}
-                visualIndex={this.props.visualIndex} />
+                visualIndex={this.props.visualIndex}
+                isInReorderState={this.props.isInReorderState} />
             : <QuestionEditContainer  // this is a new question
                 question={question}
                 modalVisible={true}   // if we are adding a new question, show the Add Question modal
@@ -48,7 +49,8 @@ QuestionContainer.propTypes = {
     modalVisible: PropTypes.bool.isRequired,
     onAddQuestionClose: PropTypes.func.isRequired,
     visualIndex: PropTypes.number.isRequired,
-    moveItem: PropTypes.func.isRequired
+    moveItem: PropTypes.func.isRequired,
+    isInReorderState: PropTypes.bool.isRequired
 };
 
 

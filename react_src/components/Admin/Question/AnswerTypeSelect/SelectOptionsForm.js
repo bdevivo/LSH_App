@@ -1,8 +1,9 @@
 import React, {PropTypes as T} from 'react';
 import {FormControl, ControlLabel, FormGroup, Row, Col} from 'react-bootstrap';
 import OptionItemContainer from './OptionItemContainer';
-import {DragDropContext} from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
+//import {DragDropContext} from 'react-dnd';
+// import HTML5Backend from 'react-dnd-html5-backend';
+import WithDragDropContext from '../../../Common/WithDragDropContext';
 import styles from './SelectOptions.css';
 import CSSModules from 'react-css-modules';
 
@@ -63,4 +64,5 @@ SelectOptionsForm.propTypes = {
     moveItem: T.func.isRequired
 };
 
-export default DragDropContext(HTML5Backend)(CSSModules(SelectOptionsForm, styles));
+//export default DragDropContext(HTML5Backend)(CSSModules(SelectOptionsForm, styles));
+export default WithDragDropContext(CSSModules(SelectOptionsForm, styles));

@@ -1,5 +1,5 @@
 
 export default {
     SELECTOPTION: 'selectoption',
-    QUESTIONOPTION: 'questionoption'
+    QUESTION: 'question'
 };

@@ -10,7 +10,7 @@ import {DragSource, DropTarget} from 'react-dnd';
 
 let _ = require('lodash');
 
-const optionItemSource = {
+const questionItemSource = {
     beginDrag(props) {
         return {
             id: props.question._id,
@@ -19,7 +19,7 @@ const optionItemSource = {
     }
 };
 
-const optionItemTarget = {
+const questionItemTarget = {
     hover(props, monitor, component) {
         const dragIndex = monitor.getItem().visualIndex;
         const hoverIndex = props.visualIndex;
@@ -30,7 +30,10 @@ const optionItemTarget = {
         }
 
         // Determine rectangle on screen
-        const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
+        //const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
+        const domNode = findDOMNode(component);
+        const hoverBoundingRect = domNode.childNodes[0].getBoundingClientRect();
+
 
         // Get vertical middle
         const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
@@ -97,24 +100,7 @@ function collectTarget(connect, monitor) {
 }
 
 // The last 3 props are injected by the collectSource and collectTarget functions below
-const Question = ({question, isExpanded, handleToggle, modalVisible, onAddQuestionClose, isDragging, connectDragSource, connectDragPreview, connectDropTarget}) => {
-
-    const style = {
-        width: '90%',
-        border: '1px dashed gray',
-        padding: '0.5rem 0rem',
-        marginLeft: '5px',
-        marginBottom: '.5rem',
-        backgroundColor: 'white'
-    };
-
-    const dragStyle = {
-        cursor: 'move',
-        display: 'inline-block',
-        marginRight: '10px'
-    };
-
-    const opacity = isDragging ? 0 : 1;
+const Question = ({question, isExpanded, handleToggle, modalVisible, onAddQuestionClose, isDragging, connectDragSource, connectDragPreview, connectDropTarget, isInReorderState}) => {
 
     let question_body;
     let questionDetails;
@@ -173,29 +159,42 @@ const Question = ({question, isExpanded, handleToggle, modalVisible, onAddQuesti
 
     let buttonSymbol = isExpanded ? "-" : "+";
 
+    const dragStyle = {
+        cursor: 'move',
+        display: 'block',
+        marginRight: '10px'
+    };
+
+    const opacity = isDragging ? 0 : 1;
+
+    let dragSource = isInReorderState
+        ? (<Col md={1} style={dragStyle}>
+                {connectDragSource(<span className="glyphicon glyphicon-move"></span> )}
+            </Col>)
+        : null;
+
     return connectDragPreview(connectDropTarget(
         <div>
-            <Row styleName="questionDiv">
+            <Col md={8}>
+                <Row styleName="questionDiv" style={{opacity}}>
 
-                {connectDragSource(
-                    <div style={dragStyle}>
-                        <span className="glyphicon glyphicon-move"></span>
-                        <Col md={1} styleName="toggleButtonCol">
-                            <Button className="btn btn-xs btn-default" onClick={handleToggle}>{buttonSymbol}</Button>
-                        </Col>
+                        <div>
 
-                        <Col md={6} styleName="questionBodyDiv">
-                            { question_body }
-                        </Col>
+                            {dragSource}
 
-                    </div>
-                )}
+                            <Col md={8} styleName="questionBodyDiv">
+                                { question_body }
+                            </Col>
 
-                <Col md={2}>
-                    <QuestionEditContainer question={question} modalVisible={modalVisible} onAddQuestionClose={onAddQuestionClose} />
-                </Col>
+                        </div>
 
-            </Row>
+                </Row>
+            </Col>
+
+            <Col md={2}>
+                <QuestionEditContainer question={question} modalVisible={modalVisible} onAddQuestionClose={onAddQuestionClose} />
+            </Col>
+
         </div>
     ));
 };
@@ -213,11 +212,12 @@ Question.propTypes = {
     connectDragSource: PropTypes.func,
     connectDragPreview: PropTypes.func,
     connectDropTarget: PropTypes.func,
+    isInReorderState: PropTypes.bool.isRequired
 };
 
 export default _.flow(
-    DragSource(ItemTypes.QUESTIONOPTION, optionItemSource, collectSource),
-    DropTarget(ItemTypes.QUESTIONOPTION, optionItemTarget, collectTarget)
+    DragSource(ItemTypes.QUESTION, questionItemSource, collectSource),
+    DropTarget(ItemTypes.QUESTION, questionItemTarget, collectTarget)
 )(CSSModules(Question, styles));
 
 

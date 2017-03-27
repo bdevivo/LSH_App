@@ -19,7 +19,11 @@ export default function loadedDataReducer(loadedData = initialState.loadedData, 
         }
 
         case types.GET_JOBS_FOR_USER_SUCCESS: {
-            return update(loadedData, {userJobs: {$set: true}});
+            return update(loadedData, {jobPostings: {$set: true}});
+        }
+
+        case types.GET_USERNAMES_SUCCESS: {
+            return update(loadedData, {jobUserNames: {$set: true}});
         }
 
         default:

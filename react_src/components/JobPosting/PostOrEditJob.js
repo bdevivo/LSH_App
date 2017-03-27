@@ -7,7 +7,7 @@ import {bindActionCreators} from 'redux';
 import * as jobActions from '../../actions/jobActions';
 import * as uiActions from '../../actions/uiActions';
 import * as enums from '../../utils/enums';
-import * as questionHelpers from '../../utils/questionHelpers';
+import * as jobHelpers from '../../utils/jobHelpers';
 import FormContainer from '../Common/QuestionForm/FormContainer';
 import SubmitJobConfirmation from './SubmitJobConfirmation';
 import {browserHistory} from 'react-router';
@@ -107,9 +107,6 @@ class PostOrEditJob extends React.Component {
    }
 
    onPostJob() {
-      // this.setState(update(this.state, {
-      //     modalVisible: {$set: false}
-      // }));
 
       let {JOB_POST_TIME, JOB_STATUS} = enums;
 
@@ -120,7 +117,7 @@ class PostOrEditJob extends React.Component {
       // Create a new Job object to be saved
       let saveJob = {
          status: enums.JOB_STATUS.Draft,
-         name: questionHelpers.getJobName(this.state.jobPost, this.props.allQuestions),
+         name: jobHelpers.getJobName(this.state.jobPost, this.props.allQuestions),
          createdDate: new Date(),
          createdBy: this.props.userId
       };

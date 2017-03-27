@@ -31,7 +31,9 @@ class QuestionContainer extends React.Component {
                 handleToggle={this.toggleQuestion}
                 isExpanded={this.state.isExpanded}
                 modalVisible={this.props.modalVisible}   // if we are editing an existing question, show the Edit Question modal
-                onAddQuestionClose={this.props.onAddQuestionClose} />
+                onAddQuestionClose={this.props.onAddQuestionClose}
+                moveItem={this.props.moveItem}
+                visualIndex={this.props.visualIndex} />
             : <QuestionEditContainer  // this is a new question
                 question={question}
                 modalVisible={true}   // if we are adding a new question, show the Add Question modal
@@ -44,7 +46,9 @@ class QuestionContainer extends React.Component {
 QuestionContainer.propTypes = {
     question: PropTypes.object.isRequired,
     modalVisible: PropTypes.bool.isRequired,
-    onAddQuestionClose: PropTypes.func.isRequired
+    onAddQuestionClose: PropTypes.func.isRequired,
+    visualIndex: PropTypes.number.isRequired,
+    moveItem: PropTypes.func.isRequired
 };
 
 

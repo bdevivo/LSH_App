@@ -17,7 +17,7 @@ import QuestionPanel from './components/Admin/QuestionPanel/QuestionPanelContain
 import QuestionSetListContainer from './components/Admin/QuestionSet/QuestionSetListContainer';
 import QuestionSet from './components/Admin/QuestionSet/QuestionSetContainer';
 import PostJob from './components/JobPosting/PostOrEditJob';
-import JobDashboard from './components/JobPosting/JobDashboardContainer';
+import JobDashboard from './components/JobPosting/Dashboard/JobDashboardContainer';
 import {requireAuth} from './auth_utils/auth';
 
 //noinspection JSUnresolvedVariable

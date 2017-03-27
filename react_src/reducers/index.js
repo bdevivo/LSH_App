@@ -6,6 +6,7 @@ import jobPosts from './jobPostReducer';
 import profile from './profileReducer';
 import auth from './authReducer';
 import ui from './uiReducer';
+import users from './userReducer';
 import loadedData from './loadedDataReducer';
 import ajaxCallsInProgress from './ajaxStatusReducer';
 
@@ -18,6 +19,7 @@ const rootReducer = combineReducers( {
     profile,
     auth,
     ui,
+    users,
     loadedData,
     ajaxCallsInProgress
 });

@@ -7,17 +7,21 @@ import QuestionContainer from './QuestionContainer';
 import * as questionActions from '../../../actions/questionActions';
 import CSSModules from 'react-css-modules';
 import styles from './Question.css';
+import {DragDropContext} from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
 class QuestionListContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             questions: [...props.questions],
-            newQuestion: {_id: -1}    // -1 is code for "there is no new question in the current state" (new question would have _id == 0)
+            newQuestion: {_id: -1},    // -1 is code for "there is no new question in the current state" (new question would have _id == 0)
+            isMovingItem: false
         };
 
         this.onAddQuestion = this.onAddQuestion.bind(this);
         this.onAddQuestionClose = this.onAddQuestionClose.bind(this);
+        this.moveItem = this.moveItem.bind(this);
     }
 
     componentDidMount() {
@@ -29,6 +33,33 @@ class QuestionListContainer extends React.Component {
     componentWillReceiveProps(nextProps) {
         this.setState({questions: [...nextProps.questions]});
     }
+
+    moveItem(dragIndex, hoverIndex) {
+        const {questions} = this.state;
+        const dragItem = questions[dragIndex];
+
+        let newState = update(this.state, {
+            questions: {
+                $splice: [
+                    [dragIndex, 1],
+                    [hoverIndex, 0, dragItem]
+                ]},
+            //isMovingItem: {$set: true}
+        });
+
+        this.setState(newState);
+        //this.reOrderOptionItems(newState.optionItems);    // update the option items in the parent question
+        //this.setState(update(this.state, {isMovingItem: {$set: false}}));
+    }
+
+    // reOrderOptionItems(orderedItems) {
+    //     let newState = update(this.state, {
+    //         reOrderedOptionItems: {$set: orderedItems},
+    //         areOptionsReordered: {$set: true}
+    //     });
+    //
+    //     this.setState(newState);
+    // }
 
     onAddQuestion() {
 
@@ -77,20 +108,30 @@ class QuestionListContainer extends React.Component {
 
     render() {
 
-        let sortedQuestions = this.state.questions.sort((a, b) => { return a.index - b.index; });
+        let {questions} = this.state;
         let newQuestion = this.state.newQuestion;
 
         let questionList = (
-            sortedQuestions.length > 0
-                ? sortedQuestions.map(q => <QuestionContainer key={q.index} question={q} modalVisible={false}
-                                                                 onAddQuestionClose={this.onAddQuestionClose}/>)
+            questions.length > 0
+                ? questions.map((q, i) => <QuestionContainer
+                    key={q.index}
+                    visualIndex={i}
+                    question={q}
+                    modalVisible={false}
+                    onAddQuestionClose={this.onAddQuestionClose}
+                    moveItem={this.moveItem}/>)
+
                 : <p>No items to display</p>
         );
 
         let newQuestionForm = (
             newQuestion._id === 0
-                ? <QuestionContainer question={newQuestion} modalVisible={true}
-                                     onAddQuestionClose={this.onAddQuestionClose}/>
+                ? <QuestionContainer
+                question={newQuestion}
+                modalVisible={true}
+                onAddQuestionClose={this.onAddQuestionClose}
+                visualIndex="1"
+                moveItem={this.moveItem}/>
                 : null
         );
 
@@ -131,4 +172,6 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CSSModules(QuestionListContainer, styles));
+//export default connect(mapStateToProps, mapDispatchToProps)(CSSModules(QuestionListContainer, styles));
+
+export default DragDropContext(HTML5Backend)(connect(mapStateToProps, mapDispatchToProps)(CSSModules(QuestionListContainer, styles)));

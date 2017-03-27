@@ -3,7 +3,7 @@ import {Button, Row, Col} from 'react-bootstrap';
 import {findDOMNode} from 'react-dom';
 import styles from './SelectOptions.css';
 import CSSModules from 'react-css-modules';
-import ItemTypes from './ItemTypes';
+import ItemTypes from '../ItemTypes';
 import {DragSource, DropTarget} from 'react-dnd';
 
 let _ = require('lodash');
@@ -95,7 +95,7 @@ function collectTarget(connect, monitor) {
 }
 
 
-// The last 3 props are injected by the collectSource and collectTarget functions below
+// The last 4 props are injected by the collectSource and collectTarget functions
 const OptionItem = ({item, onEditItem, onDeleteItem, isDragging, connectDragSource, connectDragPreview, connectDropTarget}) => {
 
     const style = {

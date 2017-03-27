@@ -9,6 +9,10 @@ export function updateUserNameSuccess(user_name) {
     return { type: types.UPDATE_USERNAME_SUCCESS, user_name};
 }
 
+export function getUserNamesSuccess(userNames) {
+    return { type: types.GET_USERNAMES_SUCCESS, userNames};
+}
+
 export function updateAvatarSuccess(avatarUrl) {
     return { type: types.UPDATE_AVATAR_SUCCESS, avatarUrl};
 }
@@ -29,6 +33,15 @@ export function updateUserName(user_id, first, middle, last) {
         userApi.updateUserName(user_id, first, middle, last)
             .then(user_name => {
                 dispatch(updateUserNameSuccess(user_name));
+            });
+    };
+}
+
+export function getUserNames(userIdList) {
+    return function(dispatch) {
+        userApi.getUserNames(userIdList)
+            .then(userNames => {
+                dispatch(getUserNamesSuccess(userNames));
             });
     };
 }

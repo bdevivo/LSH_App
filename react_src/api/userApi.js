@@ -94,6 +94,39 @@ export default class UserApi {
         });
     }
 
+    static getUserNames(userIdList) {
+
+        return new Promise((resolve, reject) => {
+            const headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Cache-control': 'no-cache'
+            };
+
+            let user_data = {
+                idList: userIdList
+            };
+
+            const body = JSON.stringify(user_data);
+
+            return fetch('/api/users/names', {
+                method: 'POST',
+                headers: headers,
+                body: body
+            })
+                .then(response => {
+                    return response.json();
+                })
+                .then(userNames => {
+                    resolve(userNames);
+                })
+                .catch(err => {
+                    alert("Error getting user names: " + err);
+                    reject();
+                });
+        });
+    }
+
     static updateUserName(user_id, first, middle, last) {
 
         return new Promise((resolve, reject) => {

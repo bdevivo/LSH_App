@@ -26,7 +26,8 @@ export function getAllQuestions() {
         return questionApi.getAllQuestions()
             .then(response => {
                 dispatch(endAjaxCall());
-                dispatch(loadQuestionsSuccess(response.questions));
+                let sortedQuestions = response.questions.sort((a, b) => { return a.index - b.index; });
+                dispatch(loadQuestionsSuccess(sortedQuestions));
             })
             .catch(error => {
                 dispatch(endAjaxCall());

@@ -229,7 +229,7 @@ export const isLoggedIn = () => {
 
 
 export const getUserId = () => {
-    return localStorage.getItem(CONSTANTS.DB_USER_ID_KEY);
+    return localStorage.getItem(CONSTANTS.AUTH0_USER_ID_KEY);
 };
 
 export const isAdmin = () => {

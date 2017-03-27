@@ -49,6 +49,25 @@ router.get("/auth0/:userId", function (req, res) {
         });
 });
 
+
+// Get a list of user names by Auth0 ID
+router.post("/names", function (req, res) {
+    let idList = req.body.idList;
+
+    User.find()
+        .where('auth0_id')
+        .in(idList)
+        .select('auth0_id user_name')
+        .exec(function (err, userNames) {
+            if (err) {
+                res.status(400);
+                res.json({error: "Bad request."});
+                return;
+            }
+            res.json({"userNames": userNames});
+        });
+});
+
 // Create a new user
 router.post("/", function (req, res) {
     let auth0_id = req.body.auth0_id;

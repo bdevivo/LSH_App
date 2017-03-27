@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {Button} from 'react-bootstrap';
 import CSSModules from 'react-css-modules';
-import styles from './JobPosting.css';
+import styles from '../JobPosting.css';
 
 const JobActionButton = ({clickHandler, jobId, isFirst, label, glyphName}) => {
 

@@ -5,19 +5,8 @@ export default
     questions: [],
     questionPanels: [],
     questionSets: [],
-    // questionGrids: {
-    //     question_grid_job_posting: {
-    //         questionAnswers:{}
-    //     },
-    //     question_grid_user_profile: {
-    //         questionAnswers:{}
-    //     }
-    // },
     jobPosts: [],
-    // draftJobPosting: {
-    //     jobId: undefined,
-    //     questionAnswers:{}
-    // },
+    userNames: [],
     auth: {
         isLoggedIn: false
     },
@@ -59,7 +48,9 @@ export default
         questions: false,
         questionPanels: false,
         questionSets: false,
-        jobPostings: false
+        jobPostings: false,
+        jobUserNames: false
+
     },
     ajaxCallsInProgress: 0
 };

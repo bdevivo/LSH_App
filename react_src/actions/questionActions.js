@@ -14,6 +14,10 @@ export function updateQuestionSuccess(question) {
     return { type: types.UPDATE_QUESTION_SUCCESS, question};
 }
 
+export function reorderQuestionSuccess(orderedQuestions) {
+return { type: types.REORDER_QUESTION_SUCCESS, orderedQuestions};
+}
+
 export function removeQuestionSuccess(questionId) {
     return { type: types.REMOVE_QUESTION_SUCCESS, questionId};
 }
@@ -53,6 +57,21 @@ export function updateQuestion(question) {
              console.log(response.message);
              dispatch(updateQuestionSuccess(question));
           });
+    };
+}
+
+export function reorderQuestions(orderedQuestions) {
+    return function(dispatch) {
+        // re-set the indexes to match the physical order of the questions in the list
+        for(let i = 1; i <= orderedQuestions.length; i++) {
+            orderedQuestions[i-1].index = i;
+        }
+        // now save the questions with their new indexes
+        questionApi.reorderQuestions(orderedQuestions)
+            .then(response => {
+                console.log(response.message);
+                dispatch(reorderQuestionSuccess(orderedQuestions));
+            });
     };
 }
 

@@ -44,7 +44,7 @@ class QuestionApi {
 
             const body = JSON.stringify(question);
 
-            return fetch(`/api/questions/${question._id}`, {
+            return fetch(`/api/questions/update/${question._id}`, {
                 method: 'PATCH',
                 headers: headers,
                 body: body
@@ -57,6 +57,36 @@ class QuestionApi {
                 })
                 .catch(err => {
                     alert("Error updating question: " + err);
+                    reject();
+                });
+        });
+    }
+
+
+
+    static reorderQuestions(orderedQuestions) {
+
+        return new Promise((resolve, reject) => {
+            const headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            };
+
+            const body = JSON.stringify(orderedQuestions);
+
+            return fetch('/api/questions/reorder', {
+                method: 'PATCH',
+                headers: headers,
+                body: body
+            })
+                .then(response => {
+                    return response.json();
+                })
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(err => {
+                    alert("Error reordering questions: " + err);
                     reject();
                 });
         });

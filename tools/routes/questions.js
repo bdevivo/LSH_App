@@ -2,6 +2,7 @@ let bodyParser = require("body-parser");
 let express = require("express");
 let router = express.Router();
 let Question = new require("../models/Question");
+let mongoose = require('mongoose');
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
@@ -71,7 +72,7 @@ router.delete("/:questionId", function (req, res) {
 });
 
 // update a question
-router.patch("/:questionId", function (req, res) {
+router.patch("/update/:questionId", function (req, res) {
    let qid = req.params.questionId;
    let updatedQuestion = req.body;
 
@@ -87,5 +88,26 @@ router.patch("/:questionId", function (req, res) {
       }
    });
 });
+
+// re-order questions
+router.patch("/reorder", function (req, res) {
+    let orderedQuestions =req.body;
+    let bulk = Question.collection.initializeUnorderedBulkOp();
+    orderedQuestions.forEach(keyVal => {
+        bulk.find({'_id': mongoose.Types.ObjectId(keyVal.qId)}).update({$set: {index: keyVal.index}});
+    });
+    bulk.execute(function (err) {
+        if (err) {
+            res.status(400);
+            res.json({error: "Failed to update question order: " + err});
+            return;
+        }
+
+        res.json({message: "Updated question order"});
+    });
+
+});
+
+
 
 module.exports = router;

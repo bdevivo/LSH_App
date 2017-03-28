@@ -65,12 +65,15 @@ class QuestionListContainer extends React.Component {
 
     onSaveReorderedQuestions()
     {
-        for (let i = 0; i < this.state.questions.length; i++)
+        let orderedQuestions = this.state.questions.map(q =>
         {
+            return {
+                qId: q._id,
+                index: q.index
+            };
+        });
 
-        }
-
-        // save the re-ordered questions here
+        this.props.questionActions.reorderQuestions(orderedQuestions);
 
         this.setState(update(this.state, {
             isInReorderState: {$set: false}
@@ -85,14 +88,6 @@ class QuestionListContainer extends React.Component {
         }));
     }
 
-    // reOrderOptionItems(orderedItems) {
-    //     let newState = update(this.state, {
-    //         reOrderedOptionItems: {$set: orderedItems},
-    //         areOptionsReordered: {$set: true}
-    //     });
-    //
-    //     this.setState(newState);
-    // }
 
     onAddQuestion() {
 

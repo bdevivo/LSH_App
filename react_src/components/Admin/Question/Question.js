@@ -168,19 +168,25 @@ const Question = ({question, isExpanded, handleToggle, modalVisible, onAddQuesti
     const opacity = isDragging ? 0 : 1;
 
     let dragSource = isInReorderState
-        ? (<Col md={1} style={dragStyle}>
-                {connectDragSource(<span className="glyphicon glyphicon-move"></span> )}
-            </Col>)
+        ? connectDragSource(<div>
+                <Col md={1} style={dragStyle}>
+                    <span className="glyphicon glyphicon-move"></span>
+                </Col>
+            </div>)
         : null;
 
     return connectDragPreview(connectDropTarget(
         <div>
-            <Col md={8}>
+            <Col md={7}>
                 <Row styleName="questionDiv" style={{opacity}}>
 
                         <div>
 
                             {dragSource}
+
+                            <Col md={1} styleName="toggleButtonCol">
+                                <Button className="btn btn-xs btn-default" onClick={handleToggle}>{buttonSymbol}</Button>
+                            </Col>
 
                             <Col md={8} styleName="questionBodyDiv">
                                 { question_body }
@@ -192,7 +198,12 @@ const Question = ({question, isExpanded, handleToggle, modalVisible, onAddQuesti
             </Col>
 
             <Col md={2}>
-                <QuestionEditContainer question={question} modalVisible={modalVisible} onAddQuestionClose={onAddQuestionClose} />
+                <QuestionEditContainer
+                    question={question}
+                    modalVisible={modalVisible}
+                    onAddQuestionClose={onAddQuestionClose}
+                    isInReorderState={isInReorderState}
+                />
             </Col>
 
         </div>

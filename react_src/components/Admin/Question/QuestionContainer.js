@@ -38,7 +38,8 @@ class QuestionContainer extends React.Component {
             : <QuestionEditContainer  // this is a new question
                 question={question}
                 modalVisible={true}   // if we are adding a new question, show the Add Question modal
-                onAddQuestionClose={this.props.onAddQuestionClose} />);
+                onAddQuestionClose={this.props.onAddQuestionClose}
+                isInReorderState={this.props.isInReorderState}/>);
 
         return <div>{questionComponent}</div>;
     }

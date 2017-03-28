@@ -361,7 +361,7 @@ class QuestionEditContainer extends React.Component {
         };
 
         let buttonGroup = (
-            this.state.modalVisible
+            this.state.modalVisible || this.props.isInReorderState
                 ? null
                 : <div>
                     <Button type="button" className="btn btn-xs btn-default" aria-label="Edit" onClick={this.showModal}>
@@ -404,7 +404,8 @@ QuestionEditContainer.propTypes = {
     questionActions: PropTypes.object,
     modalVisible: PropTypes.bool.isRequired,
     onAddQuestionClose: PropTypes.func.isRequired,
-    userName: PropTypes.string
+    userName: PropTypes.string,
+    isInReorderState: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {

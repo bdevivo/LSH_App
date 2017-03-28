@@ -65,7 +65,13 @@ class QuestionListContainer extends React.Component {
 
     onSaveReorderedQuestions()
     {
+        for (let i = 0; i < this.state.questions.length; i++)
+        {
+
+        }
+
         // save the re-ordered questions here
+
         this.setState(update(this.state, {
             isInReorderState: {$set: false}
         }));
@@ -167,7 +173,7 @@ class QuestionListContainer extends React.Component {
         return (
             <div>
                 <Row>
-                    <Col md={7}>
+                    <Col md={4}>
                         <h3>Questions</h3>
                     </Col>
                     <Col md={3}>
@@ -175,13 +181,18 @@ class QuestionListContainer extends React.Component {
                             <Button type="button" className="btn btn-sm btn-default" onClick={this.onAddQuestion}>Add Question</Button>
                         </div>
                     </Col>
-                    <Col md={2}>
-                        {!this.state.isInReorderState && <Button type="button" className="btn btn-sm btn-default" onClick={this.onReorderQuestions}>Reorder Questions</Button>}
+
+                </Row>
+
+                <Row styleName="reorderRow">
+                    <Col md={5}>
+                        {!this.state.isInReorderState && <Button type="button" className="btn btn-xs btn-default" onClick={this.onReorderQuestions}>Reorder Questions</Button>}
                         {' '}
-                        {this.state.isInReorderState && <Button type="button" className="btn btn-sm btn-default" onClick={this.onSaveReorderedQuestions}>Save Reorder</Button>}
+                        {this.state.isInReorderState && <Button type="button" className="btn btn-xs btn-default" onClick={this.onSaveReorderedQuestions}>Save Reorder</Button>}
                         {' '}
-                        {this.state.isInReorderState && <Button type="button" className="btn btn-sm btn-default" onClick={this.onCancelReorderedQuestions}>Cancel Reorder</Button>}
+                        {this.state.isInReorderState && <Button type="button" className="btn btn-xs btn-default" onClick={this.onCancelReorderedQuestions}>Cancel Reorder</Button>}
                     </Col>
+
                 </Row>
 
                 <Row>

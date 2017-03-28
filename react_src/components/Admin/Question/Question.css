@@ -11,6 +11,23 @@
     padding-top: 5px;
 }
 
+.questionListDiv {
+    position: relative;
+}
+
+.headerRow {
+    position: absolute;
+    top:0;
+    left: 0;
+}
+
+.reorderRow {
+    margin-bottom: 10px;
+    /*position: absolute;*/
+    /*top: 15%;*/
+    /*left: 0;*/
+}
+
 .toggleButtonCol {
     width: 15px;
 }

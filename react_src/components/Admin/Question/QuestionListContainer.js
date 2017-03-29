@@ -49,12 +49,9 @@ class QuestionListContainer extends React.Component {
                     [hoverIndex, 0, dragItem]
                 ]
             },
-            //isMovingItem: {$set: true}
         });
 
         this.setState(newState);
-        //this.reOrderOptionItems(newState.optionItems);    // update the option items in the parent question
-        //this.setState(update(this.state, {isMovingItem: {$set: false}}));
     }
 
     onReorderQuestions() {
@@ -82,8 +79,9 @@ class QuestionListContainer extends React.Component {
 
     onCancelReorderedQuestions()
     {
-        // cancel the re-ordered questions here
+        // revert to original order
         this.setState(update(this.state, {
+            questions: {$set: [...this.props.questions]},
             isInReorderState: {$set: false}
         }));
     }

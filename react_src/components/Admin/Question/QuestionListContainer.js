@@ -190,7 +190,9 @@ class QuestionListContainer extends React.Component {
 
                 <Row>
                     <Col>
-                        {questionList}
+                        <div styleName="questionListDiv">
+                            {questionList}
+                        </div>
                         {newQuestionForm}
                     </Col>
                 </Row>

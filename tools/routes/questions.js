@@ -45,8 +45,6 @@ router.get("/", nocache, function (req, res) {
 // Create a new question
 router.post("/", function (req, res) {
    let newQuestion = req.body;
-   console.log("req.body: " + newQuestion);
-
    let qModel = new Question({...newQuestion});
    qModel.save(function (err, qModel) {
       if (err)
@@ -59,7 +57,6 @@ router.post("/", function (req, res) {
 // delete a question
 router.delete("/:questionId", function (req, res) {
    let qid = req.params.questionId;
-   console.log("qid: " + qid);
    Question.findOne({'_id': qid}).remove(function (err) {
       if (err) {
          res.status(400);
@@ -82,7 +79,6 @@ router.patch("/update/:questionId", function (req, res) {
          res.json({error: "Bad request: " + err});
       }
       else {
-         console.log('The raw response from Mongo was ', raw);
          //res.send("Updated question " + qid);
          res.json({message: "Updated question: " + qid});
       }

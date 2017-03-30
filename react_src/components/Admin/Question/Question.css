@@ -12,7 +12,8 @@
 }
 
 .questionListDiv {
-    position: relative;
+    max-height: 65vh;
+    overflow-y: auto
 }
 
 .headerRow {
@@ -23,9 +24,7 @@
 
 .reorderRow {
     margin-bottom: 10px;
-    /*position: absolute;*/
-    /*top: 15%;*/
-    /*left: 0;*/
+    margin-top: 15px;
 }
 
 .toggleButtonCol {

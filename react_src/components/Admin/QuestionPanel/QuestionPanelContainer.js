@@ -93,10 +93,10 @@ class QuestionPanelContainer extends React.Component {
             name: "",
             header: "",
             subHeader: "",
-            nextButtonText: "",
-            backButtonText: "",
+            nextButtonText: "Next",
+            backButtonText: "Back",
             defaultAction: {
-                action: "goto",
+                action: "submit",
                 target: ""
             },
             conditionalActions: []

@@ -1,18 +1,19 @@
 import React, {Component, PropTypes} from 'react';
-import {Row, Col, Button, Modal} from 'react-bootstrap';
+import {Row, Col, Button, Modal, Panel} from 'react-bootstrap';
 import * as questionHelpers from '../../../utils/questionHelpers';
 import * as jobHelpers from '../../../utils/jobHelpers';
+import * as enums from '../../../utils/enums';
 import CSSModules from 'react-css-modules';
 import styles from '../JobPosting.css';
 
 const JobDetails = ({job, jobDetails, modalVisible, onCloseModal, allQuestions}) => {
 
 
-    let questionAnswers = (jobHelpers.isJobPosted(job) ? job.questionAnswers : job.draftQuestionAnswers);
+    let questionAnswers = jobHelpers.getJobAnswers(job);
     let questionItems = [];
     Object.keys(questionAnswers).forEach((key) => {
         let question = allQuestions.find(x => x._id === key);
-        if (question) {
+        if (question && question.function !== enums.QUESTION_FUNCTION.JobName) {
             let answerString = questionHelpers.getQuestionAnswer(question, questionAnswers[key]);
 
             if (answerString) {
@@ -36,14 +37,23 @@ const JobDetails = ({job, jobDetails, modalVisible, onCloseModal, allQuestions})
             </Modal.Header>
 
             <Modal.Body>
-                <div>
-                    <p><strong>Name: </strong>{jobDetails.name}</p>
-                    <p><strong>Status: </strong>{jobDetails.status}</p>
-                    <p><strong>Created: </strong>{jobDetails.createdDate}</p>
-                    <p><strong>Created By: </strong>{jobDetails.createdBy}</p>
-                    {postedData}
-                    {questionItems}
-                </div>
+                <Row>
+                    <Col md={5}>
+                        <p><strong>Name: </strong>{jobDetails.name}</p>
+                        <p><strong>Status: </strong>{jobDetails.status}</p>
+                        <p><strong>Created: </strong>{jobDetails.createdDate}</p>
+                        <p><strong>Created By: </strong>{jobDetails.createdBy}</p>
+                        {postedData}
+                    </Col>
+
+                    <Col md={7}>
+                        <Panel header="Question Answers" styleName="questionPanel">
+                            <div styleName="questionItems">
+                                {questionItems}
+                            </div>
+                        </Panel>
+                    </Col>
+                </Row>
             </Modal.Body>
 
             <Modal.Footer>

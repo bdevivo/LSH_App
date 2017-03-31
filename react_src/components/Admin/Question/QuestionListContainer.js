@@ -7,8 +7,6 @@ import QuestionContainer from './QuestionContainer';
 import * as questionActions from '../../../actions/questionActions';
 import CSSModules from 'react-css-modules';
 import styles from './Question.css';
-//import HTML5Backend from 'react-dnd-html5-backend';
-//import {DragDropContext} from 'react-dnd';
 import WithDragDropContext from '../../Common/WithDragDropContext';
 
 class QuestionListContainer extends React.Component {

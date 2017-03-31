@@ -8,6 +8,7 @@ import * as userActions from '../../../actions/userActions';
 import * as questionActions from '../../../actions/questionActions';
 import * as jobHelpers from '../../../utils/jobHelpers';
 import update from 'immutability-helper';
+import {confirm} from '../../../utils/confirm';
 
 
 class JobDashboardContainer extends React.Component {
@@ -32,6 +33,8 @@ class JobDashboardContainer extends React.Component {
         this.onDeleteJob = this.onDeleteJob.bind(this);
         this.onPostJob = this.onPostJob.bind(this);
         this.onChangeVisibility = this.onChangeVisibility.bind(this);
+        this.getJob = this.getJob.bind(this);
+        this.getJobDetails = this.getJobDetails.bind(this);
     }
 
     componentDidMount() {
@@ -67,11 +70,19 @@ class JobDashboardContainer extends React.Component {
         });
     }
 
+    getJob(jobId) {
+        return this.props.allJobPosts.find(x => x._id === jobId);
+    }
+
+    getJobDetails (jobId) {
+        return this.state.allJobDetails.find(x => x.jobId === jobId);
+    }
+
     onViewJob(jobId) {
-        let selectedJob = this.props.allJobPosts.find(x => x._id === jobId);
+        let selectedJob = this.getJob(jobId);
         if (selectedJob)
         {
-            let selectedJobDetails = this.state.allJobDetails.find(x => x.jobId === jobId);
+            let selectedJobDetails = this.getJobDetails(jobId);
             let newState = update(this.state, {
                 selectedJob: {$set: selectedJob},
                 selectedJobDetails: {$set: selectedJobDetails},
@@ -94,7 +105,12 @@ class JobDashboardContainer extends React.Component {
     }
 
     onDeleteJob(jobId) {
-
+        let jobDetails = this.getJobDetails(jobId);
+        confirm(`Delete job "${jobDetails.name}"?`).then(() => {
+            this.props.jobActions.deleteJob(jobId);
+        }, () => {
+            // user clicked Cancel -- do nothing
+        });
     }
 
     onPostJob(jobId) {

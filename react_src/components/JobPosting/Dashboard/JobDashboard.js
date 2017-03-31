@@ -1,8 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {Row, Col, Button, Modal} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
-import * as questionHelpers from '../../../utils/questionHelpers';
-import * as jobHelpers from '../../../utils/jobHelpers';
 import JobActionButtons from './JobActionButtons';
 import CSSModules from 'react-css-modules';
 import styles from '../JobPosting.css';
@@ -37,6 +35,7 @@ const JobDashboard = ({jobPostings, jobDetails, onViewJob, onEditJob, onDeleteJo
                         onPostJob={onPostJob}
                         onChangeJobVisibility={onChangeVisibility}/>
                 </td>
+                <td></td>
             </tr>
         );
     });

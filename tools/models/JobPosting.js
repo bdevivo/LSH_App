@@ -7,6 +7,7 @@ let jobPostingSchema;
 jobPostingSchema = new Schema(
     {
         name: {type: String, required: true},
+        draftQuestionAnswers:{type: Schema.Types.Mixed },
         questionAnswers:{type: Schema.Types.Mixed },
         status: {type: String, required: true},
         createdBy: {type: String},

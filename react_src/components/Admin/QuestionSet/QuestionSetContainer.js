@@ -164,9 +164,11 @@ class QuestionSetContainer extends React.Component {
 
                 });
 
+                let qeustionName = fullQuestion ? fullQuestion.name : "";
+
                 return {
                     index: i,
-                    questionName: fullQuestion.name,
+                    questionName: qeustionName,
                     conditionalQuestions: conditionalQuestionData
                 };
             });

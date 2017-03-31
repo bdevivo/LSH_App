@@ -38,3 +38,7 @@ export function getJobDisplayData(jobPost, jobUserNames) {
 
     return jobData;
 }
+
+export function getJobAnswers(jobPost) {
+    return (isJobPosted(jobPost) ? jobPost.questionAnswers : jobPost.draftQuestionAnswers);
+}

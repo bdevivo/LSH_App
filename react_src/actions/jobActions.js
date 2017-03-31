@@ -13,6 +13,10 @@ export function updateJobSuccess(jobPosting) {
     return {type: types.UPDATE_JOB_SUCCESS, jobPosting};
 }
 
+export function deleteJobSuccess(jobId) {
+    return {type: types.DELETE_JOB_SUCCESS, jobId};
+}
+
 export function setQuestionAnswer(jobId, questionAnswer) {
     return {type: types.SET_QUESTION_ANSWER, jobId, questionAnswer};
 }
@@ -59,7 +63,24 @@ export function updateJob(jobPosting) {
         return jobPostApi.updateJob(jobPosting)
             .then(response => {
                 dispatch(endAjaxCall());
-                dispatch(updateJobSuccess(response));
+                // TODO: check response here
+                dispatch(updateJobSuccess(jobPosting));
+            })
+            .catch(error => {
+                dispatch(endAjaxCall());
+                //throw(error);   // TODO: add real error handler action
+                console.log(error.stack);
+            });
+    };
+}
+
+export function deleteJob(jobId) {
+    return function(dispatch) {
+        dispatch(beginAjaxCall());
+        return jobPostApi.deleteJob(jobId)
+            .then(response => {
+                dispatch(endAjaxCall());
+                dispatch(deleteJobSuccess(jobId));
             })
             .catch(error => {
                 dispatch(endAjaxCall());

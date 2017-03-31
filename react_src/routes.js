@@ -47,6 +47,7 @@ export default (
 
         <Route path="jobdash" component={JobDashboard} />
         <Route path="postjob" component={PostJob}/>
+        <Route path="editjob/:jobId" component={PostJob}/>
 
     </Route>
 );

@@ -102,7 +102,9 @@ class QuestionPanel extends React.Component {
      */
 
     let activeQuestionsInPanel = Validation.getActiveQuestionsFromQuestionSets(questionSets, this.props.questionAnswers);
-    let allQuestionsInPanel = questionSets.map(qSet => qSet.questions).reduce((a, b) => { return a.questions.concat(b.questions); });
+    let allQuestionsInPanel = questionSets.length === 0
+        ? []
+        : questionSets.map(qSet => qSet.questions).reduce((a, b) => { return a.questions.concat(b.questions); });
     this.props.saveQuestionAnswers(activeQuestionsInPanel, allQuestionsInPanel, this.props.questionAnswers);
 
     conditions

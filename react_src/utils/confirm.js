@@ -9,7 +9,6 @@ export function confirm(message, options = {}) {
    return defaultConfirmation({ message, ...options });
 }
 
-
 export function alertError(title, message) {
    return defaultAlertError({title, message});
 }

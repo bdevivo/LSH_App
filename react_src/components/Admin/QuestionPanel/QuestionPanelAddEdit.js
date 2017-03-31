@@ -132,19 +132,19 @@ const QuestionPanelAddEdit = ({qPanel, questions, pageTitle, questionPanelFuncti
                     {/* "NEXT" and "BACK" BUTTON TEXT*/}
                     <FormGroup controlId="formControlsQuestionPanelNextButton">
                         <h4>Button Text</h4>
-                        {/* "NEXT" BUTTON */}
-                        <Col componentClass={ControlLabel} styleName="inlineLabel" sm={1} smOffset={1}>"Next":</Col>
-                        <Col sm={3} styleName="inlineTextCol">
-                            <FormControl name="nextButtonText" type="text" placeholder="add text"
-                                         value={qPanel.nextButtonText}
-                                         onChange={onTextFieldChanged} styleName="inlineTextControl"/>
-                        </Col>
-
                         {/* "BACK" BUTTON */}
                         <Col componentClass={ControlLabel} styleName="inlineLabel" sm={1} smOffset={1}>"Back":</Col>
                         <Col sm={3} styleName="inlineTextCol">
                             <FormControl name="backButtonText" type="text" placeholder="add text"
                                          value={qPanel.backButtonText}
+                                         onChange={onTextFieldChanged} styleName="inlineTextControl"/>
+                        </Col>
+
+                        {/* "NEXT" BUTTON */}
+                        <Col componentClass={ControlLabel} styleName="inlineLabel" sm={1} smOffset={1}>"Next":</Col>
+                        <Col sm={3} styleName="inlineTextCol">
+                            <FormControl name="nextButtonText" type="text" placeholder="add text"
+                                         value={qPanel.nextButtonText}
                                          onChange={onTextFieldChanged} styleName="inlineTextControl"/>
                         </Col>
                     </FormGroup>

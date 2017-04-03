@@ -22,7 +22,6 @@ const HeaderCenterNav = ({isLoggedIn, isAdmin, isBuyer}) => {
 
             // admin users get all center nav links
             rootNavItems = [
-               <HeaderLink to="/postjob" key="postJob" className="navItem">Preview Job Post</HeaderLink>,
                 <HeaderLink to="/jobdash" key="jobdash" className="navItem">Job Dashboard</HeaderLink>,
                 <HeaderLink to="/browseJobs" key="browseJobs" className="navItem">Browse Jobs</HeaderLink>,
                 <HeaderLink to="/browseTalent" key="browseTalent" className="navItem">Browse Talent</HeaderLink>

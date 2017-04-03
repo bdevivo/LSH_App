@@ -43,6 +43,7 @@ export function getJobDetailsSuccess(jobPosting) {
 export function saveJob(jobPosting) {
     return function(dispatch) {
         dispatch(beginAjaxCall());
+
         return jobPostApi.saveJob(jobPosting)
             .then(response => {
                 dispatch(endAjaxCall());

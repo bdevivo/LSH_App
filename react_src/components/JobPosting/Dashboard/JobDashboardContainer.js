@@ -122,6 +122,11 @@ class JobDashboardContainer extends React.Component {
     }
 
     render() {
+        // if the user hit the Back button from the question grid, don't render this page (the user
+        // will be automatically re-directed to the page they're on)
+        if(this.props.isInQuestionAnswerMode) {
+            return null;
+        }
 
         let dashboardComponent = (this.props.areJobPostingsLoaded && this.props.areJobUserNamesLoaded
                 ? (<JobDashboard
@@ -166,7 +171,8 @@ JobDashboardContainer.propTypes = {
     jobActions: T.object.isRequired,
     userActions: T.object.isRequired,
     questionActions: T.object.isRequired,
-    userId: T.string
+    userId: T.string,
+    isInQuestionAnswerMode: T.bool
 };
 
 function mapStateToProps(state) {
@@ -178,7 +184,8 @@ function mapStateToProps(state) {
         areJobPostingsLoaded: state.loadedData.jobPostings,
         areJobUserNamesLoaded: state.loadedData.jobUserNames,
         areQuestionsLoaded: state.loadedData.questions,
-        userId: state.profile.auth0_id
+        userId: state.profile.auth0_id,
+        isInQuestionAnswerMode: state.ui.isInQuestionAnswerMode
     };
 }
 

@@ -364,7 +364,10 @@ class FormContainer extends React.Component {
                           onUpdate={this.onUpdate}
                           onSwitchPanel={this.onSwitchPanel}
                           onSubmit={this.onSubmit}
-                          saveQuestionAnswers={this.props.saveQuestionAnswers} />;
+                          saveQuestionAnswers={this.props.saveQuestionAnswers}
+                          headerText={this.props.headerText}
+                          hasDraftAnswers={this.props.hasDraftAnswers}
+                          onSaveJob={this.props.onSaveJob}/>;
 
         return (
             <div>
@@ -374,8 +377,9 @@ class FormContainer extends React.Component {
                     </Col>
                     <Col md={4}>
                         <QuestionAnswerPanel
-                            questions={this.props.questions}
-                            questionAnswers={this.state.questionAnswers}/>
+                            allQuestions={this.props.questions}
+                            questionAnswers={this.state.questionAnswers}
+                            orderedAnswers={this.props.questionAnswerOrder} />
                     </Col>
 
                 </Row>
@@ -389,6 +393,7 @@ class FormContainer extends React.Component {
 
 FormContainer.propTypes = {
     questionAnswers: T.object.isRequired,
+    questionAnswerOrder: T.array.isRequired,
     gridName: T.string.isRequired,
     onSubmit: T.func.isRequired,
     saveQuestionAnswers: T.func.isRequired,
@@ -402,6 +407,9 @@ FormContainer.propTypes = {
     questionPanelActions: T.object,
     questionSetActions: T.object,
     questionActions: T.object,
+    headerText: T.string.isRequired,
+    hasDraftAnswers: T.bool.isRequired,
+    onSaveJob: T.func.isRequired,
 };
 
 function mapStateToProps(state, ownProps) {

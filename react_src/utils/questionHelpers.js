@@ -186,4 +186,35 @@ export function getAnswerTypeGroup(answerType) {
     }
 }
 
+export function gertOrderedQuestionAnswers(allQuestions, questionAnswers, orderedAnswers) {
+    let questionItems = [];
+    Object.keys(questionAnswers).forEach((key) => {
+        let question = allQuestions.find(x => x._id === key);
+        if (question) {
+            let answerString = getQuestionAnswer(question, questionAnswers[key]);
+            if (answerString) {
+                questionItems.push({
+                    question: question,
+                    answerString: answerString
+                });
+            }
+        }
+    });
+
+    // sort answers into the order in which they were answered
+    let orderedQuestionItems = [];
+    if (orderedAnswers && orderedAnswers.length > 0) {
+        for (let i = 0; i < orderedAnswers.length; i++) {
+            let qItem = questionItems.find(item => item.question._id === orderedAnswers[i]);
+            if (qItem) {
+                orderedQuestionItems.push(qItem);
+            }
+        }
+    }
+    else {
+        orderedQuestionItems = questionItems;
+    }
+
+    return orderedQuestionItems;
+}
 

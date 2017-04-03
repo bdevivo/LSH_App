@@ -34,3 +34,7 @@ export function clearPanelHistory(gridName) {
     return {type: types.CLEAR_PANEL_HISTORY, gridName};
 }
 
+export function toggleQuestionAnswerMode(isInMode) {
+    return {type: types.TOGGLE_QUESTION_ANSWER_MODE, isInMode};
+}
+

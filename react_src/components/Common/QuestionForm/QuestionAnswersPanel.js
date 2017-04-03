@@ -4,25 +4,18 @@ import * as questionHelpers from '../../../utils/questionHelpers';
 import CSSModules from 'react-css-modules';
 import styles from './QuestionForm.css';
 
-const QuestionAnswerPanel = ({questions, questionAnswers}) => {
+const QuestionAnswerPanel = ({allQuestions, questionAnswers, orderedAnswers}) => {
 
-    let questionItems = [];
-    Object.keys(questionAnswers).forEach((key) => {
-        let question = questions.find(x => x._id === key);
-        if (question) {
-            let answerString = questionHelpers.getQuestionAnswer(question, questionAnswers[key]);
-
-            if (answerString) {
-                questionItems.push(<p key={question._id}><b>{question.name}: </b>{answerString}</p>);
-            }
-        }
+    // sort answers into the order in which they were answered
+    let orderedQuestions = questionHelpers.gertOrderedQuestionAnswers(allQuestions, questionAnswers, orderedAnswers);
+    let orderedQuestionItems = orderedQuestions.map(qItem => {
+        return (<p key={qItem.question._id}><b>{qItem.question.name}: </b>{qItem.answerString}</p>);
     });
-
 
     return (
         <Panel header="Project Details">
             <div styleName="projectDetailItems">
-                {questionItems}
+                {orderedQuestionItems}
             </div>
         </Panel>
     );
@@ -30,8 +23,9 @@ const QuestionAnswerPanel = ({questions, questionAnswers}) => {
 
 
 QuestionAnswerPanel.propTypes = {
-    questions: PropTypes.array.isRequired,
+    allQuestions: PropTypes.array.isRequired,
     questionAnswers: PropTypes.object.isRequired,
+    orderedAnswers: PropTypes.array.isRequired,
 };
 
 export default CSSModules(QuestionAnswerPanel, styles);

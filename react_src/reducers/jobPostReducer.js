@@ -12,9 +12,7 @@ export default function jobPostReducer(jobPosts = initialState.jobPosts, action)
         let jobIndex = jobPosts.findIndex((x) => x._id === jobPost._id);
         if (jobIndex > -1) {
 
-            return update(jobPosts, {
-                [jobIndex]: {$splice: [[jobIndex, 1, jobPost]]}
-            });
+            return update(jobPosts, {$splice: [[jobIndex, 1, jobPost]]});
         }
         else {
             return jobPosts;

@@ -37,6 +37,7 @@ export default
     ui: {
         profile_section: 'account',
         profile_section_name: 'Account',
+        isInQuestionAnswerMode: false,
         admin_active_panel_id: '0',
         admin_active_qSet_id: '0',
         question_grid_job_posting: {

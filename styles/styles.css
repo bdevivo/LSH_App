@@ -39,6 +39,10 @@ body {
     height: 900px;
 }
 
+.questionWizardModal {
+    width: 1050px;
+}
+
 .skillsModal {
     width: 600px;
 }

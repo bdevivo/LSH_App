@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import * as uiActions from '../../../actions/uiActions';
 import * as jobActions from '../../../actions/jobActions';
 import update from 'immutability-helper';
+import {browserHistory} from 'react-router';
 
 let _ = require('lodash').noConflict();
 
@@ -67,6 +68,7 @@ class Winterfell extends React.Component {
         };
 
         this.pushPanel = this.pushPanel.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
     }
 
     componentDidMount() {
@@ -101,7 +103,7 @@ class Winterfell extends React.Component {
         return (typeof schema !== 'undefined'
         && typeof schema.formPanels !== 'undefined'
         && typeof panelId !== 'undefined'
-            ? _.find(schema.formPanels, panel => panel.panelId == panelId)
+            ? _.find(schema.formPanels, panel => panel.panelId === panelId)
             : undefined);
     }
 
@@ -127,14 +129,9 @@ class Winterfell extends React.Component {
 
         if (!preventHistory) {
             this.pushPanel(this.state.panelId);
-
         }
 
         this.props.uiActions.setCurrentPanel(panel.panelId, this.props.gridName);
-
-        // this.setState({
-        //     currentPanel: panel
-        // }, this.props.onSwitchPanel.bind(null, panel));
     }
 
     saveQuestionAnswers(activeQuestionsInPanel, allQuestionsInPanel, questionAnswers) {
@@ -151,7 +148,7 @@ class Winterfell extends React.Component {
         });
 
         //this.props.jobActions.setQuestionAnswers(this.props.jobId, clonedAnswers);
-        this.props.saveQuestionAnswers(clonedAnswers);
+        this.props.saveQuestionAnswers(clonedAnswers, activeQuestionsInPanel);
     }
 
     handleBackButtonClick() {
@@ -163,14 +160,20 @@ class Winterfell extends React.Component {
         );
     }
 
+    handleCancel() {
+        this.props.uiActions.toggleQuestionAnswerMode(false);
+        browserHistory.push("/jobdash");
+    }
+
     pushPanel(panelId) {
         //this.panelHistory.push(panelId);
         this.props.uiActions.pushPanelHistory(panelId, this.props.gridName);
     }
 
-    handleSubmit(action) {
+    handleSubmit() {
+
         if (this.props.disableSubmit) {
-            this.props.onSubmit(this.state.questionAnswers, action);
+            this.props.onSubmit(this.state.questionAnswers);
         }
 
         /*
@@ -187,7 +190,7 @@ class Winterfell extends React.Component {
 
     render() {
         let currentPanel = _.find(this.state.schema.questionPanels,
-            panel => panel.panelId == this.state.currentPanel.panelId);
+            panel => panel.panelId === this.state.currentPanel.panelId);
 
         return (
             <form method={this.props.method}
@@ -214,7 +217,11 @@ class Winterfell extends React.Component {
                                    saveQuestionAnswers={this.saveQuestionAnswers.bind(this)}
                                    onPanelBack={this.handleBackButtonClick.bind(this)}
                                    onSwitchPanel={this.handleSwitchPanel.bind(this)}
-                                   onSubmit={this.handleSubmit.bind(this)}/>
+                                   onSubmit={this.handleSubmit.bind(this)}
+                                   headerText={this.props.headerText}
+                                   hasDraftAnswers={this.props.hasDraftAnswers}
+                                   onSaveJob={this.props.onSaveJob}
+                                   onCancelJob={this.handleCancel}/>
                 </div>
             </form>
         );
@@ -231,6 +238,9 @@ Winterfell.propTypes = {
     onSubmit: PropTypes.func.isRequired,
     onUpdate: PropTypes.func.isRequired,
     saveQuestionAnswers: PropTypes.func.isRequired,
+    headerText: PropTypes.string.isRequired,
+    hasDraftAnswers: PropTypes.bool.isRequired,
+    onSaveJob: PropTypes.func.isRequired,
 
     onSwitchPanel: PropTypes.func,
     panelId: PropTypes.string,

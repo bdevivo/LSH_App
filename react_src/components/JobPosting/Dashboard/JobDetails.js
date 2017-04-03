@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PropTypes} from 'react';
 import {Row, Col, Button, Modal, Panel} from 'react-bootstrap';
 import * as questionHelpers from '../../../utils/questionHelpers';
 import * as jobHelpers from '../../../utils/jobHelpers';
@@ -7,19 +7,22 @@ import CSSModules from 'react-css-modules';
 import styles from '../JobPosting.css';
 
 const JobDetails = ({job, jobDetails, modalVisible, onCloseModal, allQuestions}) => {
-
-
     let questionAnswers = jobHelpers.getJobAnswers(job);
-    let questionItems = [];
-    Object.keys(questionAnswers).forEach((key) => {
-        let question = allQuestions.find(x => x._id === key);
-        if (question && question.function !== enums.QUESTION_FUNCTION.JobName) {
-            let answerString = questionHelpers.getQuestionAnswer(question, questionAnswers[key]);
 
-            if (answerString) {
-                questionItems.push(<p key={question._id}><strong>{question.name}: </strong>{answerString}</p>);
-            }
-        }
+    // sort answers into the order in which they were answered
+    let orderedQuestions = questionHelpers.gertOrderedQuestionAnswers(allQuestions, questionAnswers, job.orderedQuestions);
+
+    // remove the Name question, which is shown elsewhere
+    let {QUESTION_FUNCTION} = enums;
+    let nameQuestion = allQuestions.find(q => q.function === QUESTION_FUNCTION.JobName);
+    let orderedNameQuestionIndex = orderedQuestions.findIndex(x => x.question._id === nameQuestion._id);
+    if (orderedNameQuestionIndex > -1) {
+        orderedQuestions.splice(orderedNameQuestionIndex, 1);
+    }
+
+
+    let orderedQuestionItems = orderedQuestions.map(qItem => {
+        return (<p key={qItem.question._id}><b>{qItem.question.name}: </b>{qItem.answerString}</p>);
     });
 
     let postedData = jobHelpers.isJobPosted(job)
@@ -49,7 +52,7 @@ const JobDetails = ({job, jobDetails, modalVisible, onCloseModal, allQuestions})
                     <Col md={7}>
                         <Panel header="Question Answers" styleName="questionPanel">
                             <div styleName="questionItems">
-                                {questionItems}
+                                {orderedQuestionItems}
                             </div>
                         </Panel>
                     </Col>

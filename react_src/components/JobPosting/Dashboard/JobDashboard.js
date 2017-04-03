@@ -62,7 +62,7 @@ const JobDashboard = ({jobPostings, jobDetails, onViewJob, onEditJob, onDeleteJo
                 </Col>
 
                 <Col md={2} styleName="newJobCol">
-                    <LinkContainer to="/postjobgrid/post">
+                    <LinkContainer to="/postJob">
                         <Button type="button" className="btn-sm btn-default" styleName="">Create New Job...</Button>
                     </LinkContainer>
                 </Col>

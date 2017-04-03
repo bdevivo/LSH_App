@@ -53,6 +53,15 @@ export default function uiReducer(ui = initialState.ui, action) {
             return [];
         }
 
+        case types.TOGGLE_QUESTION_ANSWER_MODE: {
+            return update(ui,
+                {
+                    isInQuestionAnswerMode: {$set: action.isInMode}
+                });
+        }
+
+
+
         default:
             return ui;
     }

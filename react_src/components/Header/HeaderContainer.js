@@ -52,6 +52,10 @@ class HeaderContainer extends React.Component {
 
     render() {
 
+        // if(this.props.isInQuestionAnswerMode) {
+        //     return null;
+        // }
+
         let {profile, isAdmin, isBuyer} = this.state;
         let user_name = profile.user_name || {};
         let email = profile.email || '';
@@ -78,14 +82,16 @@ HeaderContainer.propTypes = {
     isLoggedIn: PropTypes.bool,
     authActions: PropTypes.object,
     loading: PropTypes.bool,
-    currentPath: PropTypes.string.isRequired
+    currentPath: PropTypes.string.isRequired,
+    isInQuestionAnswerMode: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {
     return {
         profile: state.profile,
         isLoggedIn: state.auth.isLoggedIn,
-        loading: state.ajaxCallsInProgress > 0
+        loading: state.ajaxCallsInProgress > 0,
+        isInQuestionAnswerMode: state.ui.isInQuestionAnswerMode
     };
 }
 

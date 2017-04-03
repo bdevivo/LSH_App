@@ -1,3 +1,16 @@
+.pageHeader {
+    font-family: "Avenir LT W01 45 Book", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 30px;
+    color: #31708f;
+}
+
+.saveButton {
+    margin-left: 60px;
+}
+
+.cancelButton {
+    float:right;
+}
 
 .questionPanel {
 
@@ -22,7 +35,7 @@
 }
 
 .buttonBar {
-    width: 60%;
+    width: 80%;
 }
 
 .questionPanelHeaderText {

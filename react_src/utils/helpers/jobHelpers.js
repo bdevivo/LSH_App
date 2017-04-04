@@ -1,4 +1,4 @@
-import * as enums from './enums';
+import * as enums from '../constants/enums';
 const dateFormat = require('dateformat');
 
 export function isJobPosted(job) {

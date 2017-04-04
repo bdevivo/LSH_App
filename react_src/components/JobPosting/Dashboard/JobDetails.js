@@ -1,8 +1,8 @@
 import React, {PropTypes} from 'react';
 import {Row, Col, Button, Modal, Panel} from 'react-bootstrap';
-import * as questionHelpers from '../../../utils/questionHelpers';
-import * as jobHelpers from '../../../utils/jobHelpers';
-import * as enums from '../../../utils/enums';
+import * as questionHelpers from '../../../utils/helpers/questionHelpers';
+import * as jobHelpers from '../../../utils/helpers/jobHelpers';
+import * as enums from '../../../utils/constants/enums';
 import CSSModules from 'react-css-modules';
 import styles from '../JobPosting.css';
 

@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import ConditionalPanelActionEdit from './ConditionalPanelActionEdit';
-import * as optionHelpers from '../../../utils/questionHelpers';
+import * as optionHelpers from '../../../utils/helpers/questionHelpers';
 import update from 'immutability-helper';
 
 class ConditionalPanelActionEditContainer extends React.Component {

@@ -6,9 +6,10 @@ import JobDetails from './JobDetails';
 import * as jobActions from '../../../actions/jobActions';
 import * as userActions from '../../../actions/userActions';
 import * as questionActions from '../../../actions/questionActions';
-import * as jobHelpers from '../../../utils/jobHelpers';
+import * as jobHelpers from '../../../utils/helpers/jobHelpers';
 import update from 'immutability-helper';
 import {confirm} from '../../../utils/confirm';
+import * as jobMaps from '../../../utils/mappers/jobPostingMapper';
 
 
 class JobDashboardContainer extends React.Component {
@@ -38,6 +39,11 @@ class JobDashboardContainer extends React.Component {
     }
 
     componentDidMount() {
+
+        jobMaps.createMaps();
+
+
+
         if (!this.props.areQuestionsLoaded) {
             this.props.questionActions.getAllQuestions();
         }
@@ -53,6 +59,10 @@ class JobDashboardContainer extends React.Component {
         let allJobDetails = this.state.allJobDetails;
 
         if (nextProps.allJobPosts && nextProps.allJobPosts.length > 0 && nextProps.areJobUserNamesLoaded) {
+
+            let jobPostFull = jobMaps.mapJobPost(nextProps.allJobPosts[0]);
+
+
             let jobUserNames = this.props.userNames.map(x => {
                 let userName = x.hasOwnProperty('user_name') ? `${x.user_name.first} ${x.user_name.last}` : '[no name provided]';
                return {

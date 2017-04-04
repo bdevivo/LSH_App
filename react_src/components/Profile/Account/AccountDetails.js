@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import {Row, Col, Image, Button} from 'react-bootstrap';
-import * as StringUtils from '../../../string_utils/UrlHelper';
+import * as StringUtils from '../../../utils/helpers/UrlHelper';
 import CSSModules from 'react-css-modules';
 import styles from './Account.css';
 
@@ -41,7 +41,7 @@ const AccountDetails = ({profile, enterAccountEditMode}) => {
             </Col>
         </Row>
     );
-    
+
 };
 
 AccountDetails.propTypes = {

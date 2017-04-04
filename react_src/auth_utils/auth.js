@@ -1,5 +1,5 @@
 import CustomAuthService from './CustomAuthService';
-import * as StringUtils from '../string_utils/UrlHelper';
+import * as StringUtils from '../utils/helpers/UrlHelper';
 import userApi from '../api/userApi';
 import * as CONSTANTS from './constants';
 

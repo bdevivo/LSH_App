@@ -1,6 +1,6 @@
 import React, {PropTypes as T} from 'react';
 import {Row, Col, Form, FormGroup, FormControl, Button, ButtonGroup} from 'react-bootstrap';
-import * as optionHelpers from '../../../utils/questionHelpers';
+import * as optionHelpers from '../../../utils/helpers/questionHelpers';
 import styles from './QuestionSet.css';
 import CSSModules from 'react-css-modules';
 const classNames = require('classnames');

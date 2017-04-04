@@ -6,7 +6,7 @@ import QuestionAddEdit from './QuestionAddEdit';
 import update from 'immutability-helper';
 import * as questionActions from '../../../actions/questionActions';
 import {alertError, confirm} from '../../../utils/confirm';
-import * as questionHelpers from '../../../utils/questionHelpers';
+import * as questionHelpers from '../../../utils/helpers/questionHelpers';
 
 const uuidV1 = require('uuid/v1');
 let _ = require('lodash');

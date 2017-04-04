@@ -2,7 +2,7 @@ import React, {PropTypes as T} from 'react';
 import {Row, Col, Form, FormGroup, FormControl, ControlLabel, Button, Radio, Modal} from 'react-bootstrap';
 import styles from './JobPosting.css';
 import CSSModules from 'react-css-modules';
-import * as enums from '../../utils/enums';
+import * as enums from '../../utils/constants/enums';
 
 
 const SubmitJobConfirmation = ({onPostingTimeChanged, onPostVisibilityChanged, postingTime, postVisibility, onPostJob}) => {

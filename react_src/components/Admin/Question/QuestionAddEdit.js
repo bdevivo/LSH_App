@@ -2,10 +2,10 @@ import React, {PropTypes as T} from 'react';
 import {Row, Col, Form, FormGroup, FormControl, ControlLabel, Button, Radio, Modal} from 'react-bootstrap';
 import SelectOptionsContainer from "./AnswerTypeSelect/SelectOptionsContainer";
 import BooleanForm from './AnswerTypeBoolean/BooleanForm';
-import * as questionHelpers from '../../../utils/questionHelpers';
+import * as questionHelpers from '../../../utils/helpers/questionHelpers';
 import styles from './Question.css';
 import CSSModules from 'react-css-modules';
-import * as enums from '../../../utils/enums';
+import * as enums from '../../../utils/constants/enums';
 
 const classNames = require('classnames');
 

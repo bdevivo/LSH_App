@@ -1,8 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import JobActionButton from './JobActionButton';
 import JobLinkButton from './JobLinkButton';
-import * as enums from '../../../utils/enums';
-import * as jobHelpers from '../../../utils/jobHelpers';
+import * as enums from '../../../utils/constants/enums';
+import * as jobHelpers from '../../../utils/helpers/jobHelpers';
 import CSSModules from 'react-css-modules';
 import styles from '../JobPosting.css';
 

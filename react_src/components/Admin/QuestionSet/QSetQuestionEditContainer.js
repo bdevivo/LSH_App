@@ -3,7 +3,7 @@ import {Modal} from 'react-bootstrap';
 import QSetQuestionAddEdit from './QSetQuestionAddEdit';
 import update from 'immutability-helper';
 import {alertError, confirm} from '../../../utils/confirm';
-import * as questionHelpers from '../../../utils/questionHelpers';
+import * as questionHelpers from '../../../utils/helpers/questionHelpers';
 import CSSModules from 'react-css-modules';
 import styles from './QuestionSet.css';
 

@@ -7,7 +7,7 @@ import QuestionAnswerPanel from './QuestionAnswersPanel';
 import * as questionPanelActions from '../../../actions/questionPanelActions';
 import * as questionSetActions from '../../../actions/questionSetActions';
 import * as questionActions from '../../../actions/questionActions';
-import * as questionHelpers from '../../../utils/questionHelpers';
+import * as questionHelpers from '../../../utils/helpers/questionHelpers';
 
 import ButtonGroupSingleChoice from '../../Common/Winterfell/inputTypes/buttonGroupSingleChoice';
 import ButtonGroupMultipleChoice from '../../Common/Winterfell/inputTypes/buttonGroupMultipleChoice';

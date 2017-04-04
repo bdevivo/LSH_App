@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {Panel} from 'react-bootstrap';
-import * as questionHelpers from '../../../utils/questionHelpers';
+import * as questionHelpers from '../../../utils/helpers/questionHelpers';
 import CSSModules from 'react-css-modules';
 import styles from './QuestionForm.css';
 

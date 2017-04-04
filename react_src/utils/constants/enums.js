@@ -39,3 +39,13 @@ export const QUESTION_GRID_TYPE = {
    UserProfile: "question_grid_user_profile"
 };
 
+// Paths for uploading/retrieving image files
+export const IMAGE_PATH = {
+    ImageUrlRoot: 'https://s3.amazonaws.com',
+    ImageFolder: 'app_images',
+    AvatarFolder: 'avatars',
+    AvatarFilename: 'avatar_placeholder.png',
+    ImageBucketName: 'lifescihub'
+};
+
+

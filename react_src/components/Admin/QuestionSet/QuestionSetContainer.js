@@ -3,7 +3,7 @@ import {Button, Row, Col} from 'react-bootstrap';
 import update from 'immutability-helper';
 import QuestionSet from './QuestionSet';
 import QuestionSetEditContainer from './QuestionSetEditContainer';
-import * as questionHelpers from '../../../utils/questionHelpers';
+import * as questionHelpers from '../../../utils/helpers/questionHelpers';
 import {browserHistory} from 'react-router';
 import {alertError, confirm} from '../../../utils/confirm';
 import CSSModules from 'react-css-modules';

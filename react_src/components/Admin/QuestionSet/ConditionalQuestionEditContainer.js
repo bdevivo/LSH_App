@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import ConditionalQuestionEdit from './ConditionalQuestionEdit';
-import * as optionHelpers from '../../../utils/questionHelpers';
+import * as optionHelpers from '../../../utils/helpers/questionHelpers';
 import update from 'immutability-helper';
 let _ = require('lodash');
 const uuidV1 = require('uuid/v1');

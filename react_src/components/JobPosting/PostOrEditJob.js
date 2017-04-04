@@ -61,7 +61,7 @@ class PostOrEditJob extends React.Component {
     }
 
     componentDidMount() {
-        this.props.uiActions.toggleQuestionAnswerMode(true);
+        //this.props.uiActions.toggleQuestionAnswerMode(true);
 
         let {jobPost} = this.state;
         if (jobPost.hasBeenSaved && !jobPost.hasDetails) {
@@ -136,7 +136,7 @@ class PostOrEditJob extends React.Component {
     }
 
     onSaveJob() {
-        this.props.uiActions.toggleQuestionAnswerMode(false);
+        //this.props.uiActions.toggleQuestionAnswerMode(false);
         let {JOB_POST_TIME} = enums;
 
         // Create a new Job object to be saved
@@ -179,7 +179,7 @@ class PostOrEditJob extends React.Component {
 
     onPostJob() {
 
-        this.props.uiActions.toggleQuestionAnswerMode(false);
+       // this.props.uiActions.toggleQuestionAnswerMode(false);
         let {JOB_POST_TIME} = enums;
 
         if (this.state.postingTime === JOB_POST_TIME.Deferred) {

@@ -30,8 +30,8 @@ class Confirmation extends React.Component {
                   {message}
                </Modal.Body>
                <Modal.Footer>
-                  <Button onClick={cancel}>{cancelLabel}</Button>
-                  <Button onClick={proceed}>{okLabel}</Button>
+                  <Button type="button" className="btn btn-sm btn-default float-left" onClick={cancel}>{cancelLabel}</Button>
+                  <Button type="button" className="btn btn-sm btn-primary" onClick={proceed}>{okLabel}</Button>
                </Modal.Footer>
             </Modal>
          </div>

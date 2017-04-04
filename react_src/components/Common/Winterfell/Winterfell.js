@@ -51,7 +51,8 @@ class Winterfell extends React.Component {
         schema.formPanels = schema.formPanels
             .sort((a, b) => a.index - b.index);
 
-        let panelId = this.getPanelId(props.panelId, schema);
+        //let panelId = this.getPanelId(props.panelId, schema);
+        let panelId = this.getPanelId('0', schema);
         let currentPanel = this.getCurrentPanel(panelId, schema);
 
         if (!currentPanel) {
@@ -72,8 +73,8 @@ class Winterfell extends React.Component {
     }
 
     componentDidMount() {
-        this.props.uiActions.setCurrentPanel(this.state.panelId, this.props.gridName);
-        this.props.onRender();
+        //this.props.uiActions.setCurrentPanel(this.state.panelId, this.props.gridName);
+        //this.props.onRender();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -131,7 +132,10 @@ class Winterfell extends React.Component {
             this.pushPanel(this.state.panelId);
         }
 
-        this.props.uiActions.setCurrentPanel(panel.panelId, this.props.gridName);
+       // this.props.uiActions.setCurrentPanel(panel.panelId, this.props.gridName);
+        this.setState(update(this.state, {
+            panelId: {$set: panel.panelId}
+        }));
     }
 
     saveQuestionAnswers(activeQuestionsInPanel, allQuestionsInPanel, questionAnswers) {
@@ -161,7 +165,7 @@ class Winterfell extends React.Component {
     }
 
     handleCancel() {
-        this.props.uiActions.toggleQuestionAnswerMode(false);
+        //this.props.uiActions.toggleQuestionAnswerMode(false);
         browserHistory.push("/jobdash");
     }
 
@@ -267,14 +271,14 @@ Winterfell.addValidationMethod = Winterfell.validation.addValidationMethod;
 Winterfell.addValidationMethods = Winterfell.validation.addValidationMethods;
 
 
-function mapStateToProps(state, ownProps) {
-
-    let gridState = state.ui[ownProps.gridName];
-
-    return {
-        panelId: gridState.currentPanelId
-    };
-}
+// function mapStateToProps(state, ownProps) {
+//
+//     let gridState = state.ui[ownProps.gridName];
+//
+//     return {
+//         panelId: gridState.currentPanelId
+//     };
+// }
 
 function mapDispatchToProps(dispatch) {
     return {
@@ -283,4 +287,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Winterfell);
+export default connect(null, mapDispatchToProps)(Winterfell);

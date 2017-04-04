@@ -283,6 +283,14 @@ nav > div.container {
     background-color: #337433;
 }
 
+.btn-default.btn-primary {
+    text-shadow: none;
+}
+
+.float-left {
+    float:left;
+}
+
 div.question {
     margin-bottom: 40px;
 }

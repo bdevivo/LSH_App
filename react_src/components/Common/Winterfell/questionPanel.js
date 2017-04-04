@@ -195,7 +195,11 @@ class QuestionPanel extends React.Component {
     }
 
     handleCancel() {
-        confirm("Cancel this job posting? (You will lose any data you have entered.)").then(() => {
+        let confirmOptions = {
+            okLabel: 'Cancel changes and return to Job Dashboard',
+            cancelLabel: 'Continue to edit Job Posting',
+        };
+        confirm("Cancel this job posting? (You will lose any data you have entered since your last save.)", confirmOptions).then(() => {
             this.props.onCancelJob();
         }, () => {
             // user clicked Cancel -- do nothing
@@ -242,7 +246,7 @@ class QuestionPanel extends React.Component {
                     <Col md={6}>
                         {this.props.hasDraftAnswers &&
                         <Button type="button" className="btn btn-xs btn-default" styleName="saveButton"
-                                onClick={this.onSave}>Save and Continue Later</Button>}
+                                onClick={this.handleSave}>Save and Continue Later</Button>}
                         {' '}
                         <Button type="button" className="btn btn-xs btn-default" styleName="cancelButton"
                                 onClick={this.handleCancel}>Cancel</Button>

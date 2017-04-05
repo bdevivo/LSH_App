@@ -30,8 +30,8 @@ export function clearQuestionAnswers(jobId) {
 }
 
 
-export function getJobSummariesForUserSuccess(userJobs) {
-    return {type: types.GET_JOBS_FOR_USER_SUCCESS, userJobs};
+export function getJobSummariesForUserSuccess(userJobs, userJobsDisplay) {
+    return {type: types.GET_JOBS_FOR_USER_SUCCESS, userJobs, userJobsDisplay};
 }
 
 export function getJobDetailsSuccess(jobPosting) {

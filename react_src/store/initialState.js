@@ -6,6 +6,7 @@ export default
     questionPanels: [],
     questionSets: [],
     jobPosts: [],
+    jobPostsDisplay: [],
     userNames: [],
     auth: {
         isLoggedIn: false
@@ -50,7 +51,6 @@ export default
         questionPanels: false,
         questionSets: false,
         jobPostings: false,
-        jobUserNames: false
 
     },
     ajaxCallsInProgress: 0

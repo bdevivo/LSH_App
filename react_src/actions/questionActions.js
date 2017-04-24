@@ -32,6 +32,7 @@ export function getAllQuestions() {
                 dispatch(endAjaxCall());
                 let sortedQuestions = response.questions.sort((a, b) => { return a.index - b.index; });
                 dispatch(loadQuestionsSuccess(sortedQuestions));
+                return sortedQuestions;
             })
             .catch(error => {
                 dispatch(endAjaxCall());

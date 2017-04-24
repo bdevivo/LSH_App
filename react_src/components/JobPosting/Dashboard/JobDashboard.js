@@ -5,7 +5,7 @@ import JobActionButtons from './JobActionButtons';
 import CSSModules from 'react-css-modules';
 import styles from '../JobPosting.css';
 
-const JobDashboard = ({jobPostings, jobDetails, onViewJob, onEditJob, onDeleteJob, onPostJob, onChangeVisibility}) => {
+const JobDashboard = ({jobPostings, onViewJob, onEditJob, onDeleteJob, onPostJob, onChangeVisibility}) => {
 
     let jobTableHeaderRow = (
         <tr key="head">
@@ -19,13 +19,13 @@ const JobDashboard = ({jobPostings, jobDetails, onViewJob, onEditJob, onDeleteJo
 
     let jobTableRows = jobPostings.map(job => {
 
-        let jobDisplay = jobDetails.find(x => x.jobId === job._id);
+        //let jobDisplay = jobDetails.find(x => x.jobId === job._id);
 
         return (
             <tr key={job._id}>
-                <td>{jobDisplay.name}</td>
-                <td>{jobDisplay.status}</td>
-                <td>{jobDisplay.postedDate}</td>
+                <td>{job.name}</td>
+                <td>{job.status}</td>
+                <td>{job.postedDate}</td>
                 <td>
                     <JobActionButtons
                         job={job}
@@ -84,7 +84,6 @@ const JobDashboard = ({jobPostings, jobDetails, onViewJob, onEditJob, onDeleteJo
 
 JobDashboard.propTypes = {
     jobPostings: PropTypes.array.isRequired,
-    jobDetails: PropTypes.array.isRequired,
     onViewJob: PropTypes.func.isRequired,
     onEditJob: PropTypes.func.isRequired,
     onDeleteJob: PropTypes.func.isRequired,

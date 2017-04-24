@@ -3,6 +3,7 @@ import jobPostApi from '../api/jobPostApi';
 import userApi from '../api/userApi';
 import * as authUtils from '../auth_utils/auth';
 import * as userActions from './userActions';
+import * as jobMaps from '../utils/mappers/jobPostingMapper';
 import {beginAjaxCall, endAjaxCall} from './ajaxStatusActions';
 
 export function saveJobSuccess(jobPosting) {
@@ -39,6 +40,58 @@ export function getJobDetailsSuccess(jobPosting) {
 }
 
 // THUNKS
+
+export function getJobDashboardData(loadedData, jobPostsDisplay) {
+
+    return function(dispatch) {
+
+        if (loadedData.jobPostings) {
+            return jobPostsDisplay;
+        }
+
+        dispatch(beginAjaxCall());
+        let allJobPosts;
+
+        let userId = authUtils.getUserId();
+
+        return jobPostApi.getJobSummariesForUser(userId)
+            .then(response => {
+                allJobPosts = response.jobPostings;
+
+
+                let jobUserIds = [];
+                allJobPosts.forEach((job) => {
+                    if (job.createdBy && !jobUserIds.includes(job.createdBy)) {
+                        jobUserIds.push(job.createdBy);
+                    }
+                    if (job.postedBy && !jobUserIds.includes(job.postedBy)) {
+                        jobUserIds.push(job.postedBy);
+                    }
+                });
+
+                return userApi.getUserNames(jobUserIds);
+
+            })
+            .then(response => {
+                dispatch(userActions.getUserNamesSuccess(response.userNames));
+
+                let jobPostsDisplay = jobMaps.mapJobPosts(allJobPosts, response.userNames);
+                dispatch(endAjaxCall());
+                dispatch(getJobSummariesForUserSuccess(allJobPosts, jobPostsDisplay));
+                return jobPostsDisplay;
+            })
+            .catch(error => {
+                dispatch(endAjaxCall());
+               // reject(error);   // TODO: add real error handler action
+                console.log(error.stack);
+            });
+
+
+    };
+
+}
+
+
 
 export function saveJob(jobPosting) {
     return function(dispatch) {
@@ -91,40 +144,40 @@ export function deleteJob(jobId) {
     };
 }
 
-export function getJobDashboardData() {
-    let userId = authUtils.getUserId();
-    return function(dispatch) {
-        dispatch(beginAjaxCall());
-
-        return jobPostApi.getJobSummariesForUser(userId)
-            .then(response => {
-                let allJobPosts = response.jobPostings;
-                dispatch(getJobSummariesForUserSuccess(allJobPosts));
-
-                let jobUserIds = [];
-                allJobPosts.forEach((job) => {
-                    if (job.createdBy && !jobUserIds.includes(job.createdBy)) {
-                        jobUserIds.push(job.createdBy);
-                    }
-                    if (job.postedBy && !jobUserIds.includes(job.postedBy)) {
-                        jobUserIds.push(job.postedBy);
-                    }
-                });
-
-                return userApi.getUserNames(jobUserIds);
-
-            })
-            .then(userNames => {
-                dispatch(userActions.getUserNamesSuccess(userNames));
-                dispatch(endAjaxCall());
-            })
-            .catch(error => {
-                dispatch(endAjaxCall());
-                //throw(error);   // TODO: add real error handler action
-                console.log(error.stack);
-            });
-    };
-}
+// export function getJobDashboardData() {
+//     let userId = authUtils.getUserId();
+//     return function(dispatch) {
+//         dispatch(beginAjaxCall());
+//
+//         return jobPostApi.getJobSummariesForUser(userId)
+//             .then(response => {
+//                 let allJobPosts = response.jobPostings;
+//                 dispatch(getJobSummariesForUserSuccess(allJobPosts));
+//
+//                 let jobUserIds = [];
+//                 allJobPosts.forEach((job) => {
+//                     if (job.createdBy && !jobUserIds.includes(job.createdBy)) {
+//                         jobUserIds.push(job.createdBy);
+//                     }
+//                     if (job.postedBy && !jobUserIds.includes(job.postedBy)) {
+//                         jobUserIds.push(job.postedBy);
+//                     }
+//                 });
+//
+//                 return userApi.getUserNames(jobUserIds);
+//
+//             })
+//             .then(userNames => {
+//                 dispatch(userActions.getUserNamesSuccess(userNames));
+//                 dispatch(endAjaxCall());
+//             })
+//             .catch(error => {
+//                 dispatch(endAjaxCall());
+//                 //throw(error);   // TODO: add real error handler action
+//                 console.log(error.stack);
+//             });
+//     };
+// }
 
 export function getJobSummariesForUser(userId) {
     return function(dispatch) {

@@ -1,7 +1,7 @@
 import store from '../index';
 import {beginAjaxCall, endAjaxCall} from '../actions/ajaxStatusActions';
 import jobPostApi from '../api/jobPostApi';
-import userApi from '../api/userApi'
+import userApi from '../api/userApi';
 import * as authUtils from '../auth_utils/auth';
 import * as jobActions from '../actions/jobActions';
 import * as userActions from '../actions/userActions';
@@ -13,9 +13,9 @@ import * as jobMaps from '../utils/mappers/jobPostingMapper';
 
 
 
-export function getJobDashboardData() {
+export function getJobDashboardData(state) {
 
-    let state = store.state;
+    //let state = store.getState();
     let userId = authUtils.getUserId();
 
     return new Promise((resolve, reject) => {
@@ -48,15 +48,7 @@ export function getJobDashboardData() {
             .then(userNames => {
                 store.dispatch(userActions.getUserNamesSuccess(userNames));
 
-                let jobUserNames = userNames.map(x => {
-                    let userName = x.hasOwnProperty('user_name') ? `${x.user_name.first} ${x.user_name.last}` : '[no name provided]';
-                    return {
-                        userId: x.auth0_id,
-                        name: userName
-                    };
-                });
-
-                let jobPostsDisplay = allJobPosts.map(post => { return jobMaps.mapJobPost(post, jobUserNames); });
+                let jobPostsDisplay = jobMaps.mapJobPosts(allJobPosts, userNames);
                 store.dispatch(endAjaxCall());
                 store.dispatch(jobActions.getJobSummariesForUserSuccess(allJobPosts, jobPostsDisplay));
                 resolve(jobPostsDisplay);
@@ -66,11 +58,7 @@ export function getJobDashboardData() {
                 //throw(error);   // TODO: add real error handler action
                 console.log(error.stack);
             });
-
-
-    }
-
-
+    });
 
 }
 

@@ -38,7 +38,7 @@ export default function jobPostReducer(jobPostsDisplay = initialState.jobPostsDi
         }
 
         case types.UPDATE_JOB_SUCCESS: {
-            return updateJobPost(action.jobPostDisplay);
+            return updateJobPostDisplay(action.jobPostDisplay);
         }
 
         default:

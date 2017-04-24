@@ -6,10 +6,14 @@ import configureStore from './store/configureStore';
 import {Provider} from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import {syncHistoryWithStore} from 'react-router-redux';
+import * as jobMaps from './utils/mappers/jobPostingMapper';
 import routes from './routes';
 import initialState from './store/initialState';
 
 const store = configureStore(initialState);
+
+// initialize automapper maps
+jobMaps.createMaps();
 
 render(
     <Provider store={store}>

@@ -6,23 +6,17 @@ import JobDetails from './JobDetails';
 import * as jobActions from '../../../actions/jobActions';
 import * as userActions from '../../../actions/userActions';
 import * as questionActions from '../../../actions/questionActions';
-import * as jobHelpers from '../../../utils/helpers/jobHelpers';
 import update from 'immutability-helper';
 import {confirm} from '../../../utils/confirm';
-import * as jobMaps from '../../../utils/mappers/jobPostingMapper';
 
 
 class JobDashboardContainer extends React.Component {
     constructor(props) {
         super(props);
 
-        let allJobDetails;
-        if (this.props.allJobPosts && this.props.allJobPosts.length > 0 && this.props.areJobUserNamesLoaded) {
-            allJobDetails = this.props.allJobPosts.map(job => jobHelpers.getJobDisplayData(job, this.props.userNames));
-        }
-
         this.state = {
-            allJobDetails: allJobDetails,
+            allJobDetails: null,
+            allQuestions: null,
             selectedJob: null,
             selectedJobDetails: {},
             viewDetailsModalVisible: false
@@ -38,46 +32,40 @@ class JobDashboardContainer extends React.Component {
         this.getJobDetails = this.getJobDetails.bind(this);
     }
 
-    componentDidMount() {
+    componentWillMount() {
 
-        jobMaps.createMaps();
+        // load the initial jobs with details
+        this.props.dispatch(jobActions.getJobDashboardData(this.props.loadedData, this.props.jobPostsDisplay))
+            .then(jobPostsDisplay => {
+                this.setState({
+                    allJobDetails: jobPostsDisplay
+                });
+            })
+            .catch(error => {
+                throw(error);   // TODO: add real error handler action
+            });
 
 
+        this.props.dispatch(questionActions.getAllQuestions())
+            .then(questions => {
+                this.setState({
+                    allQuestions: questions
+                });
+            })
+            .catch(error => {
+                throw(error);   // TODO: add real error handler action
+            });
 
-        if (!this.props.areQuestionsLoaded) {
-            this.props.questionActions.getAllQuestions();
-        }
-
-        if (!this.props.areJobPostingsLoaded) {
-            this.props.jobActions.getJobDashboardData();
-        }
 
     }
 
+
     componentWillReceiveProps(nextProps) {
 
-        let allJobDetails = this.state.allJobDetails;
-
-        if (nextProps.allJobPosts && nextProps.allJobPosts.length > 0 && nextProps.areJobUserNamesLoaded) {
-
-            let jobPostFull = jobMaps.mapJobPost(nextProps.allJobPosts[0]);
-
-
-            let jobUserNames = this.props.userNames.map(x => {
-                let userName = x.hasOwnProperty('user_name') ? `${x.user_name.first} ${x.user_name.last}` : '[no name provided]';
-               return {
-                   userId: x.auth0_id,
-                   name: userName
-                };
-            });
-
-            allJobDetails = nextProps.allJobPosts.map(job => jobHelpers.getJobDisplayData(job, jobUserNames));
-        }
-
-        this.setState({
-            allJobDetails: allJobDetails,
-            ...nextProps
-        });
+        // this.setState({
+        //     allJobDetails: allJobDetails,
+        //     ...nextProps
+        // });
     }
 
     getJob(jobId) {
@@ -138,10 +126,9 @@ class JobDashboardContainer extends React.Component {
             return null;
         }
 
-        let dashboardComponent = (this.props.areJobPostingsLoaded && this.props.areJobUserNamesLoaded
+        let dashboardComponent = (this.state.allJobDetails
                 ? (<JobDashboard
-                    jobPostings={this.props.allJobPosts}
-                    jobDetails={this.state.allJobDetails}
+                    jobPostings={this.state.allJobDetails }
                     onViewJob={this.onViewJob}
                     onEditJob={this.onEditJob}
                     onDeleteJob={this.onDeleteJob}
@@ -150,13 +137,13 @@ class JobDashboardContainer extends React.Component {
                 />)
                 : null);
 
-        let jobDetailsComponent = (this.state.selectedJob && this.props.areQuestionsLoaded
+        let jobDetailsComponent = (this.state.selectedJob && this.state.allQuestions
             ? (<JobDetails
                 job={this.state.selectedJob}
                 jobDetails={this.state.selectedJobDetails}
                 modalVisible={this.state.viewDetailsModalVisible}
                 onCloseModal={this.onCloseViewJob}
-                allQuestions={this.props.allQuestions}
+                allQuestions={this.state.allQuestions}
             />)
             : null);
 
@@ -172,11 +159,12 @@ class JobDashboardContainer extends React.Component {
 
 
 JobDashboardContainer.propTypes = {
+    dispatch: T.func,
+    loadedData: T.object,
+    jobPostsDisplay: T.array,
     allJobPosts: T.array,
     userNames: T.array,
     allQuestions: T.array,
-    areJobPostingsLoaded: T.bool.isRequired,
-    areJobUserNamesLoaded: T.bool.isRequired,
     areQuestionsLoaded: T.bool,
     jobActions: T.object.isRequired,
     userActions: T.object.isRequired,
@@ -188,11 +176,11 @@ JobDashboardContainer.propTypes = {
 function mapStateToProps(state) {
 
     return {
+        loadedData: state.loadedData,
+        jobPostsDisplay: state.jobPostsDisplay,
         allJobPosts: state.jobPosts,
         userNames: state.users.userNames,
         allQuestions: [...state.questions],
-        areJobPostingsLoaded: state.loadedData.jobPostings,
-        areJobUserNamesLoaded: state.loadedData.jobUserNames,
         areQuestionsLoaded: state.loadedData.questions,
         userId: state.profile.auth0_id,
         isInQuestionAnswerMode: state.ui.isInQuestionAnswerMode
@@ -201,6 +189,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
+        dispatch: dispatch,
         jobActions: bindActionCreators(jobActions, dispatch),
         userActions: bindActionCreators(userActions, dispatch),
         questionActions: bindActionCreators(questionActions, dispatch),

@@ -20,7 +20,6 @@ const MAP_DESTINATION_TYPE = {
 export function createMaps() {
     autoMapper
         .createMap(MAP_SOURCE_TYPE.jobPosting, MAP_DESTINATION_TYPE.jobPosting)
-        .forMember('jobId', opts => { return opts.mapFrom('_id'); })
         .forMember('name', opts => { return opts.sourceObject.name || "[No name provided]"; })
         .forMember('status', opts => { return JOB_STATUS_DISPLAY[opts.sourceObject.status]; })
         .forMember('createdDate', opts => { return opts.sourceObject.createdDate ? dateFormat(opts.sourceObject.createdDate, "mmmm dS, yyyy, h:MM TT") : ""; })
@@ -30,15 +29,27 @@ export function createMaps() {
 
 }
 
+export function mapJobPosts(jobPosts, userNames) {
+    let jobUserNames = userNames.map(x => {
+        let userName = x.hasOwnProperty('user_name') ? `${x.user_name.first} ${x.user_name.last}` : '[no name provided]';
+        return {
+            userId: x.auth0_id,
+            name: userName
+        };
+    });
+
+    return jobPosts.map(post => { return mapJobPost(post, jobUserNames); });
+}
+
 export function mapJobPost(jobPost, jobUserNames) {
 
     // we need to pre-map the properties involving usernames, since they depend on the jobUserNames lookup table
     //let createdBy = jobUserNames.find(x => x.userId === jobPost.createdBy);
-    jobPost.createdByDisplay = jobUserNames.find(x => x.userId === jobPost.createdBy) ? createdBy.name : "";
-
     //let postedBy = jobUserNames.find(x => x.userId === jobPost.postedBy);
-    jobPost.postedByDisplay =  jobUserNames.find(x => x.userId === jobPost.postedBy) ? postedBy.name : "";
 
+    let {createdBy, postedBy} = jobPost;
+    jobPost.createdByDisplay = jobUserNames.find(x => x.userId === createdBy) ? createdBy.name : "";
+    jobPost.postedByDisplay =  jobUserNames.find(x => x.userId === postedBy) ? postedBy.name : "";
 
     return autoMapper.map(MAP_SOURCE_TYPE.jobPosting, MAP_DESTINATION_TYPE.jobPosting, jobPost);
 }

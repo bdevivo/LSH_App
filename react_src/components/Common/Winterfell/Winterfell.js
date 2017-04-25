@@ -72,14 +72,9 @@ class Winterfell extends React.Component {
         this.handleCancel = this.handleCancel.bind(this);
     }
 
-    componentDidMount() {
-        //this.props.uiActions.setCurrentPanel(this.state.panelId, this.props.gridName);
-        //this.props.onRender();
-    }
-
     componentWillReceiveProps(nextProps) {
         let schema = nextProps.schema;
-        let panelId = this.getPanelId(nextProps.panelId, schema);
+        let panelId = nextProps.panelId ? this.getPanelId(nextProps.panelId, schema) : this.state.panelId;
         let newCurrentPanel = this.getCurrentPanel(panelId, schema);
 
         this.setState({
@@ -193,6 +188,11 @@ class Winterfell extends React.Component {
     }
 
     render() {
+
+        if (this.state.currentPanel === null) {
+            return null;
+        }
+
         let currentPanel = _.find(this.state.schema.questionPanels,
             panel => panel.panelId === this.state.currentPanel.panelId);
 

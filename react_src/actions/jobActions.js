@@ -41,12 +41,14 @@ export function getJobDetailsSuccess(jobPosting) {
 
 // THUNKS
 
-export function getJobDashboardData(loadedData, jobPostsDisplay) {
+export function getJobDashboardData() {
 
-    return function(dispatch) {
+    return function(dispatch, getState) {
+
+        let {loadedData, jobPostsDisplay} = getState();
 
         if (loadedData.jobPostings) {
-            return jobPostsDisplay;
+            return Promise.resolve(jobPostsDisplay);
         }
 
         dispatch(beginAjaxCall());
@@ -90,8 +92,6 @@ export function getJobDashboardData(loadedData, jobPostsDisplay) {
     };
 
 }
-
-
 
 export function saveJob(jobPosting) {
     return function(dispatch) {
@@ -143,41 +143,6 @@ export function deleteJob(jobId) {
             });
     };
 }
-
-// export function getJobDashboardData() {
-//     let userId = authUtils.getUserId();
-//     return function(dispatch) {
-//         dispatch(beginAjaxCall());
-//
-//         return jobPostApi.getJobSummariesForUser(userId)
-//             .then(response => {
-//                 let allJobPosts = response.jobPostings;
-//                 dispatch(getJobSummariesForUserSuccess(allJobPosts));
-//
-//                 let jobUserIds = [];
-//                 allJobPosts.forEach((job) => {
-//                     if (job.createdBy && !jobUserIds.includes(job.createdBy)) {
-//                         jobUserIds.push(job.createdBy);
-//                     }
-//                     if (job.postedBy && !jobUserIds.includes(job.postedBy)) {
-//                         jobUserIds.push(job.postedBy);
-//                     }
-//                 });
-//
-//                 return userApi.getUserNames(jobUserIds);
-//
-//             })
-//             .then(userNames => {
-//                 dispatch(userActions.getUserNamesSuccess(userNames));
-//                 dispatch(endAjaxCall());
-//             })
-//             .catch(error => {
-//                 dispatch(endAjaxCall());
-//                 //throw(error);   // TODO: add real error handler action
-//                 console.log(error.stack);
-//             });
-//     };
-// }
 
 export function getJobSummariesForUser(userId) {
     return function(dispatch) {

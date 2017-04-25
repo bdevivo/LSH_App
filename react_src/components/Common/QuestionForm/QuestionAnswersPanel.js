@@ -7,7 +7,7 @@ import styles from './QuestionForm.css';
 const QuestionAnswerPanel = ({allQuestions, questionAnswers, orderedAnswers}) => {
 
     // sort answers into the order in which they were answered
-    let orderedQuestions = questionHelpers.gertOrderedQuestionAnswers(allQuestions, questionAnswers, orderedAnswers);
+    let orderedQuestions = questionHelpers.getOrderedQuestionAnswers(allQuestions, questionAnswers, orderedAnswers);
     let orderedQuestionItems = orderedQuestions.map(qItem => {
         return (<p key={qItem.question._id}><b>{qItem.question.name}: </b>{qItem.answerString}</p>);
     });

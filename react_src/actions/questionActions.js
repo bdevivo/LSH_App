@@ -25,7 +25,12 @@ export function removeQuestionSuccess(questionId) {
 // THUNKS
 
 export function getAllQuestions() {
-    return function(dispatch) {
+    return function(dispatch, getState) {
+        let {loadedData, questions} = getState();
+        if (loadedData.questions) {
+            return Promise.resolve(questions);
+        }
+
         dispatch(beginAjaxCall());
         return questionApi.getAllQuestions()
             .then(response => {

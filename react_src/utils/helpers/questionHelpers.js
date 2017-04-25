@@ -186,7 +186,11 @@ export function getAnswerTypeGroup(answerType) {
     }
 }
 
-export function gertOrderedQuestionAnswers(allQuestions, questionAnswers, orderedAnswers) {
+export function getOrderedQuestionAnswers(allQuestions, questionAnswers, orderedAnswers) {
+    if (questionAnswers === null) {
+        return [];
+    }
+
     let questionItems = [];
     Object.keys(questionAnswers).forEach((key) => {
         let question = allQuestions.find(x => x._id === key);

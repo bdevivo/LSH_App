@@ -4,7 +4,6 @@ import {bindActionCreators} from 'redux';
 import JobDashboard from './JobDashboard';
 import JobDetails from './JobDetails';
 import * as jobActions from '../../../actions/jobActions';
-import * as userActions from '../../../actions/userActions';
 import * as questionActions from '../../../actions/questionActions';
 import update from 'immutability-helper';
 import {confirm} from '../../../utils/confirm';
@@ -17,8 +16,7 @@ class JobDashboardContainer extends React.Component {
         this.state = {
             allJobDetails: null,
             allQuestions: null,
-            selectedJob: null,
-            selectedJobDetails: {},
+            selectedJobDetails: null,
             viewDetailsModalVisible: false
         };
 
@@ -28,14 +26,13 @@ class JobDashboardContainer extends React.Component {
         this.onDeleteJob = this.onDeleteJob.bind(this);
         this.onPostJob = this.onPostJob.bind(this);
         this.onChangeVisibility = this.onChangeVisibility.bind(this);
-        this.getJob = this.getJob.bind(this);
         this.getJobDetails = this.getJobDetails.bind(this);
     }
 
     componentWillMount() {
 
         // load the initial jobs with details
-        this.props.dispatch(jobActions.getJobDashboardData(this.props.loadedData, this.props.jobPostsDisplay))
+        this.props.dispatch(jobActions.getJobDashboardData())
             .then(jobPostsDisplay => {
                 this.setState({
                     allJobDetails: jobPostsDisplay
@@ -55,34 +52,17 @@ class JobDashboardContainer extends React.Component {
             .catch(error => {
                 throw(error);   // TODO: add real error handler action
             });
-
-
-    }
-
-
-    componentWillReceiveProps(nextProps) {
-
-        // this.setState({
-        //     allJobDetails: allJobDetails,
-        //     ...nextProps
-        // });
-    }
-
-    getJob(jobId) {
-        return this.props.allJobPosts.find(x => x._id === jobId);
     }
 
     getJobDetails (jobId) {
-        return this.state.allJobDetails.find(x => x.jobId === jobId);
+        return this.state.allJobDetails.find(x => x._id === jobId);
     }
 
     onViewJob(jobId) {
-        let selectedJob = this.getJob(jobId);
-        if (selectedJob)
+        let selectedJobDetails = this.getJobDetails(jobId);
+        if (selectedJobDetails)
         {
-            let selectedJobDetails = this.getJobDetails(jobId);
             let newState = update(this.state, {
-                selectedJob: {$set: selectedJob},
                 selectedJobDetails: {$set: selectedJobDetails},
                 viewDetailsModalVisible: {$set: true}
             });
@@ -137,9 +117,8 @@ class JobDashboardContainer extends React.Component {
                 />)
                 : null);
 
-        let jobDetailsComponent = (this.state.selectedJob && this.state.allQuestions
+        let jobDetailsComponent = (this.state.selectedJobDetails && this.state.allQuestions
             ? (<JobDetails
-                job={this.state.selectedJob}
                 jobDetails={this.state.selectedJobDetails}
                 modalVisible={this.state.viewDetailsModalVisible}
                 onCloseModal={this.onCloseViewJob}
@@ -160,29 +139,13 @@ class JobDashboardContainer extends React.Component {
 
 JobDashboardContainer.propTypes = {
     dispatch: T.func,
-    loadedData: T.object,
-    jobPostsDisplay: T.array,
-    allJobPosts: T.array,
-    userNames: T.array,
-    allQuestions: T.array,
-    areQuestionsLoaded: T.bool,
     jobActions: T.object.isRequired,
-    userActions: T.object.isRequired,
-    questionActions: T.object.isRequired,
-    userId: T.string,
     isInQuestionAnswerMode: T.bool
 };
 
 function mapStateToProps(state) {
 
     return {
-        loadedData: state.loadedData,
-        jobPostsDisplay: state.jobPostsDisplay,
-        allJobPosts: state.jobPosts,
-        userNames: state.users.userNames,
-        allQuestions: [...state.questions],
-        areQuestionsLoaded: state.loadedData.questions,
-        userId: state.profile.auth0_id,
         isInQuestionAnswerMode: state.ui.isInQuestionAnswerMode
     };
 }
@@ -191,8 +154,6 @@ function mapDispatchToProps(dispatch) {
     return {
         dispatch: dispatch,
         jobActions: bindActionCreators(jobActions, dispatch),
-        userActions: bindActionCreators(userActions, dispatch),
-        questionActions: bindActionCreators(questionActions, dispatch),
     };
 }
 

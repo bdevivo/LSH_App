@@ -6,11 +6,11 @@ import * as enums from '../../../utils/constants/enums';
 import CSSModules from 'react-css-modules';
 import styles from '../JobPosting.css';
 
-const JobDetails = ({job, jobDetails, modalVisible, onCloseModal, allQuestions}) => {
-    let questionAnswers = jobHelpers.getJobAnswers(job);
+const JobDetails = ({jobDetails, modalVisible, onCloseModal, allQuestions}) => {
+    let questionAnswers = jobHelpers.getJobAnswers(jobDetails);
 
     // sort answers into the order in which they were answered
-    let orderedQuestions = questionHelpers.gertOrderedQuestionAnswers(allQuestions, questionAnswers, job.orderedQuestions);
+    let orderedQuestions = questionHelpers.getOrderedQuestionAnswers(allQuestions, questionAnswers, jobDetails.orderedQuestions);
 
     // remove the Name question, which is shown elsewhere
     let {QUESTION_FUNCTION} = enums;
@@ -25,7 +25,7 @@ const JobDetails = ({job, jobDetails, modalVisible, onCloseModal, allQuestions})
         return (<p key={qItem.question._id}><b>{qItem.question.name}: </b>{qItem.answerString}</p>);
     });
 
-    let postedData = jobHelpers.isJobPosted(job)
+    let postedData = jobHelpers.isJobPosted(jobDetails)
         ? (<span>
             <p><strong>Posted: </strong>{jobDetails.postedDate}</p>
             <p><strong>Posted By: </strong>{jobDetails.postedBy}</p>
@@ -43,7 +43,7 @@ const JobDetails = ({job, jobDetails, modalVisible, onCloseModal, allQuestions})
                 <Row>
                     <Col md={5}>
                         <p><strong>Name: </strong>{jobDetails.name}</p>
-                        <p><strong>Status: </strong>{jobDetails.status}</p>
+                        <p><strong>Status: </strong>{jobDetails.statusDisplay}</p>
                         <p><strong>Created: </strong>{jobDetails.createdDate}</p>
                         <p><strong>Created By: </strong>{jobDetails.createdBy}</p>
                         {postedData}
@@ -70,7 +70,6 @@ const JobDetails = ({job, jobDetails, modalVisible, onCloseModal, allQuestions})
 
 
 JobDetails.propTypes = {
-    job: PropTypes.object.isRequired,
     jobDetails: PropTypes.object.isRequired,
     modalVisible: PropTypes.bool.isRequired,
     onCloseModal: PropTypes.func.isRequired,

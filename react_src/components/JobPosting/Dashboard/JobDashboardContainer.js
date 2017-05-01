@@ -1,4 +1,5 @@
 import React, {PropTypes as T} from 'react';
+import {Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import JobDashboard from './JobDashboard';
@@ -7,7 +8,13 @@ import * as jobActions from '../../../actions/jobActions';
 import * as questionActions from '../../../actions/questionActions';
 import update from 'immutability-helper';
 import {confirm} from '../../../utils/confirm';
+import {Notify, createNotification, NOTIFICATION_TYPE_SUCCESS, NOTIFICATIONS_POS_TOP_RIGHT} from 'react-redux-notify';
+import 'react-redux-notify/dist/ReactReduxNotify.css';
+import CustomNotification from '../../Common/CustomNotification';
 
+const customNotifyStyles = {
+    'containerTopCenter': 'containerTopCenter'
+};
 
 class JobDashboardContainer extends React.Component {
     constructor(props) {
@@ -27,15 +34,8 @@ class JobDashboardContainer extends React.Component {
         this.onPostJob = this.onPostJob.bind(this);
         this.onChangeVisibility = this.onChangeVisibility.bind(this);
         this.getJobDetails = this.getJobDetails.bind(this);
-    }
-
-    componentWillReceiveProps(nextProps) {
-
-        if (nextProps.allJobDetails) {
-            this.setState({
-                allJobDetails: nextProps.allJobDetails,
-            });
-        }
+        this.showPostNotification = this.showPostNotification.bind(this);
+        this.testNotification = this.testNotification.bind(this);
     }
 
     componentWillMount() {
@@ -61,6 +61,19 @@ class JobDashboardContainer extends React.Component {
             .catch(error => {
                 throw(error);   // TODO: add real error handler action
             });
+    }
+
+    componentWillReceiveProps(nextProps) {
+
+        if (nextProps.allJobDetails && this.state.allJobDetails && nextProps.allJobDetails.length > this.state.allJobDetails.length) {
+            this.showPostNotification("");
+        }
+
+        if (nextProps.allJobDetails) {
+            this.setState({
+                allJobDetails: nextProps.allJobDetails,
+            });
+        }
     }
 
     getJobDetails (jobId) {
@@ -108,6 +121,27 @@ class JobDashboardContainer extends React.Component {
 
     }
 
+    testNotification()
+    {
+        this.showPostNotification();
+    }
+
+    showPostNotification(jobName) {
+
+        let icon = <i className="fa fa-check" />;
+
+        const jobPostNotification = {
+            message: 'Job has been posted',
+            type: NOTIFICATION_TYPE_SUCCESS,
+            duration: 0,
+            canDismiss: true,
+            globalCustomNotification: false,
+            position: NOTIFICATIONS_POS_TOP_RIGHT
+        };
+
+        this.props.createNotification(jobPostNotification);
+    }
+
     render() {
         // if the user hit the Back button from the question grid, don't render this page (the user
         // will be automatically re-directed to the page they're on)
@@ -135,8 +169,15 @@ class JobDashboardContainer extends React.Component {
             />)
             : null);
 
+
+
         return (
             <div>
+                <Button onClick={this.testNotification}>Test Notification</Button>
+                <Notify remove={true}
+                        removeAll={true}
+                        position={NOTIFICATIONS_POS_TOP_RIGHT}
+                        customStyles={customNotifyStyles} />
                 {dashboardComponent}
                 {jobDetailsComponent}
             </div>
@@ -150,7 +191,9 @@ JobDashboardContainer.propTypes = {
     dispatch: T.func,
     allJobDetails: T.array.isRequired,
     jobActions: T.object.isRequired,
-    isInQuestionAnswerMode: T.bool
+    isInQuestionAnswerMode: T.bool,
+    createNotification: T.func,
+    notifications: T.array
 };
 
 function mapStateToProps(state) {
@@ -158,6 +201,7 @@ function mapStateToProps(state) {
     return {
         isInQuestionAnswerMode: state.ui.isInQuestionAnswerMode,
         allJobDetails: state.jobPostsDisplay,
+        notifications: state.notifications
     };
 }
 
@@ -165,6 +209,9 @@ function mapDispatchToProps(dispatch) {
     return {
         dispatch: dispatch,
         jobActions: bindActionCreators(jobActions, dispatch),
+        createNotification: (config) => {
+            dispatch(createNotification(config));
+        }
     };
 }
 

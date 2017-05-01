@@ -10,6 +10,7 @@ import ui from './uiReducer';
 import users from './userReducer';
 import loadedData from './loadedDataReducer';
 import ajaxCallsInProgress from './ajaxStatusReducer';
+import notifications from 'react-redux-notify';
 
 const rootReducer = combineReducers( {
     // using shorthand property names
@@ -23,7 +24,8 @@ const rootReducer = combineReducers( {
     ui,
     users,
     loadedData,
-    ajaxCallsInProgress
+    ajaxCallsInProgress,
+    notifications
 });
 
 export default rootReducer;

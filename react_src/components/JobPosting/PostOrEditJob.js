@@ -11,7 +11,6 @@ import * as jobHelpers from '../../utils/helpers/jobHelpers';
 import * as authUtils from '../../auth_utils/auth';
 import FormContainer from '../Common/QuestionForm/FormContainer';
 import SubmitJobConfirmation from './SubmitJobConfirmation';
-import {confirm} from '../../utils/confirm';
 import {browserHistory} from 'react-router';
 import update from 'immutability-helper';
 
@@ -305,7 +304,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         uiActions: bindActionCreators(uiActions, dispatch),
-        jobActions: bindActionCreators(jobActions, dispatch)
+        jobActions: bindActionCreators(jobActions, dispatch),
     };
 }
 

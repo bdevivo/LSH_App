@@ -317,3 +317,19 @@ div.question {
     position:relative;
     top:1px;
 }
+
+
+.containerTopCenter {
+    z-index: 1;
+    position: fixed;
+    overflow-y: auto;
+    max-height: 100vh;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    flex-direction: column;
+    top: 0;
+}
+.containerTopCenter::-webkit-scrollbar {
+    display: none;
+}
+

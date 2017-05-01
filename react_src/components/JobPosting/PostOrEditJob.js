@@ -100,7 +100,36 @@ class PostOrEditJob extends React.Component {
     }
 
     saveQuestionAnswers(fullAnswerSet, activeQuestionsInPanel) {
-        /// save the order in which the questions were answered
+        // save the order in which the questions were answered
+        let newOrder = this.getNewQuestionOrder(activeQuestionsInPanel);
+
+        let newState = update(this.state, {
+            jobPost: {
+                draftQuestionAnswers: {$set: fullAnswerSet},
+                orderedQuestions: {$set: newOrder}
+            }
+        });
+
+        this.setState(newState);
+    }
+
+    onSubmit(fullAnswerSet, activeQuestionsInPanel) {
+        // save the order in which the questions were answered
+        let newOrder = this.getNewQuestionOrder(activeQuestionsInPanel);
+
+        // save the answers to local state, and show the confirmation popup
+        let newState = update(this.state, {
+            jobPost: {
+                draftQuestionAnswers: {$set: fullAnswerSet},
+                orderedQuestions: {$set: newOrder}
+            },
+            modalVisible: {$set: true}
+        });
+
+        this.setState(newState);
+    }
+
+    getNewQuestionOrder(activeQuestionsInPanel) {
         let {orderedQuestions} = this.state.jobPost;
         orderedQuestions = orderedQuestions || [];
         // remove any questions that were already in the list
@@ -113,26 +142,7 @@ class PostOrEditJob extends React.Component {
             newOrder = newOrder.concat(questionsToAdd.map(q => q.questionId));
         }
 
-        let newState = update(this.state, {
-            jobPost: {
-                draftQuestionAnswers: {$set: fullAnswerSet},
-                orderedQuestions: {$set: newOrder}
-            }
-        });
-
-        this.setState(newState);
-    }
-
-    onSubmit(fullAnswerSet) {
-        // save the answers to local state, and show the confirmation popup
-        let newState = update(this.state, {
-            jobPost: {
-                draftQuestionAnswers: {$set: fullAnswerSet}
-            },
-            modalVisible: {$set: true}
-        });
-
-        this.setState(newState);
+        return newOrder;
     }
 
     onSaveJob() {

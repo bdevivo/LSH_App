@@ -56,19 +56,19 @@ class FormContainer extends React.Component {
     }
 
     onRender() {
-        console.log('Great news! Winterfell rendered successfully');
+        //console.log('Great news! Winterfell rendered successfully');
     }
 
     onUpdate(questionAnswers) {
-        console.log('Question Updated! The current set of answers is: ', questionAnswers);
+        //console.log('Question Updated! The current set of answers is: ', questionAnswers);
     }
 
     onSwitchPanel(panel) {
-        console.log('Moving on to the panel that is identified as "' + panel.panelId + '"');
+        //console.log('Moving on to the panel that is identified as "' + panel.panelId + '"');
     }
 
-    onSubmit(questionAnswers, target) {
-       this.props.onSubmit(questionAnswers);
+    onSubmit(questionAnswers, activeQuestionsInPanel) {
+       this.props.onSubmit(questionAnswers, activeQuestionsInPanel);
         // console.log('Form submitted!', questionAnswers);
         // console.log('-----');
         // console.log('For this example, we disabled normal form submission functionality. ');

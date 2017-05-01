@@ -29,6 +29,15 @@ class JobDashboardContainer extends React.Component {
         this.getJobDetails = this.getJobDetails.bind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+
+        if (nextProps.allJobDetails) {
+            this.setState({
+                allJobDetails: nextProps.allJobDetails,
+            });
+        }
+    }
+
     componentWillMount() {
 
         // load the initial jobs with details
@@ -139,6 +148,7 @@ class JobDashboardContainer extends React.Component {
 
 JobDashboardContainer.propTypes = {
     dispatch: T.func,
+    allJobDetails: T.array.isRequired,
     jobActions: T.object.isRequired,
     isInQuestionAnswerMode: T.bool
 };
@@ -146,7 +156,8 @@ JobDashboardContainer.propTypes = {
 function mapStateToProps(state) {
 
     return {
-        isInQuestionAnswerMode: state.ui.isInQuestionAnswerMode
+        isInQuestionAnswerMode: state.ui.isInQuestionAnswerMode,
+        allJobDetails: state.jobPostsDisplay,
     };
 }
 

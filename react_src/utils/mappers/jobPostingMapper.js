@@ -42,14 +42,14 @@ export function mapJobPosts(jobPosts, userNames) {
 }
 
 export function mapJobPost(jobPost, jobUserNames) {
-
     // we need to pre-map the properties involving usernames, since they depend on the jobUserNames lookup table
-    //let createdBy = jobUserNames.find(x => x.userId === jobPost.createdBy);
-    //let postedBy = jobUserNames.find(x => x.userId === jobPost.postedBy);
-
     let {createdBy, postedBy} = jobPost;
-    jobPost.createdByDisplay = jobUserNames.find(x => x.userId === createdBy) ? createdBy.name : "";
-    jobPost.postedByDisplay =  jobUserNames.find(x => x.userId === postedBy) ? postedBy.name : "";
+
+    let createdByUser = jobUserNames.find(x => x.userId === createdBy);
+    jobPost.createdByDisplay = createdByUser ? createdByUser.name : "";
+
+    let postedByUser = jobUserNames.find(x => x.userId === postedBy);
+    jobPost.postedByDisplay =  postedByUser ? postedByUser.name : "";
 
     return autoMapper.map(MAP_SOURCE_TYPE.jobPosting, MAP_DESTINATION_TYPE.jobPosting, jobPost);
 }

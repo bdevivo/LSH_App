@@ -10,9 +10,18 @@ export function saveJobSuccess(jobPosting) {
     return {type: types.SAVE_JOB_SUCCESS, jobPosting};
 }
 
+export function addJobDisplay(jobPostDisplay) {
+    return {type: types.ADD_JOB_DISPLAY, jobPostDisplay};
+}
+
 export function updateJobSuccess(jobPosting) {
     return {type: types.UPDATE_JOB_SUCCESS, jobPosting};
 }
+
+export function updateJobDisplay(jobPostDisplay) {
+    return {type: types.UPDATE_JOB_DISPLAY, jobPostDisplay};
+}
+
 
 export function deleteJobSuccess(jobId) {
     return {type: types.DELETE_JOB_SUCCESS, jobId};
@@ -94,14 +103,25 @@ export function getJobDashboardData() {
 }
 
 export function saveJob(jobPosting) {
-    return function(dispatch) {
+    return function(dispatch, getState) {
         dispatch(beginAjaxCall());
 
         return jobPostApi.saveJob(jobPosting)
-            .then(response => {
+            .then(savedJob => {
                 dispatch(endAjaxCall());
-                response.hasBeenSaved = true;
-                dispatch(saveJobSuccess(response));
+                savedJob.hasBeenSaved = true;
+
+
+                let userId = authUtils.getUserId();
+                let {profile} = getState();
+                let userName = `${profile.user_name.first} ${profile.user_name.last}`;
+                let userNames = [{ userId: userId, name: userName }];
+
+                let jobPostDisplay = jobMaps.mapJobPost(savedJob, userNames);
+                dispatch(addJobDisplay(jobPostDisplay));
+
+                dispatch(saveJobSuccess(savedJob));
+
             })
             .catch(error => {
                 dispatch(endAjaxCall());

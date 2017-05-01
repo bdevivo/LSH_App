@@ -23,7 +23,7 @@ export default function jobPostReducer(jobPostsDisplay = initialState.jobPostsDi
             return update(jobPostsDisplay, {$set: action.userJobsDisplay});
         }
 
-        case types.SAVE_JOB_SUCCESS: {
+        case types.ADD_JOB_DISPLAY: {
             return update(jobPostsDisplay, {$push: [action.jobPostDisplay]});
         }
 

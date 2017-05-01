@@ -74,16 +74,16 @@ class Winterfell extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         let schema = nextProps.schema;
-        let panelId = nextProps.panelId ? this.getPanelId(nextProps.panelId, schema) : this.state.panelId;
-        let newCurrentPanel = this.getCurrentPanel(panelId, schema);
+        //let panelId = nextProps.panelId ? this.getPanelId(nextProps.panelId, schema) : this.state.panelId;
+        //let newCurrentPanel = this.getCurrentPanel(panelId, schema);
 
         this.setState({
             action: nextProps.action,
             schema: schema,
             questionAnswers: nextProps.questionAnswers,
             panelHistory: nextProps.panelHistory,
-            panelId: panelId,
-            currentPanel: newCurrentPanel
+           // panelId: panelId,
+            //currentPanel: newCurrentPanel
         });
     }
 
@@ -129,7 +129,8 @@ class Winterfell extends React.Component {
 
        // this.props.uiActions.setCurrentPanel(panel.panelId, this.props.gridName);
         this.setState(update(this.state, {
-            panelId: {$set: panel.panelId}
+            panelId: {$set: panel.panelId},
+            currentPanel: {$set: panel}
         }));
     }
 
@@ -169,10 +170,10 @@ class Winterfell extends React.Component {
         this.props.uiActions.pushPanelHistory(panelId, this.props.gridName);
     }
 
-    handleSubmit() {
+    handleSubmit(activeQuestionsInPanel) {
 
         if (this.props.disableSubmit) {
-            this.props.onSubmit(this.state.questionAnswers);
+            this.props.onSubmit(this.state.questionAnswers, activeQuestionsInPanel);
         }
 
         /*

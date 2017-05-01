@@ -72,7 +72,7 @@ class QuestionPanel extends React.Component {
             .value();
     }
 
-    saveQuestionAnswers(questionSets) {
+    saveQuestionAnswers(questionSets, activeQuestionsInPanel) {
         // Get any incorrect fields that need error messages.
         let invalidQuestions = Validation.getQuestionPanelInvalidQuestions(
             questionSets, this.props.questionAnswers
@@ -98,7 +98,7 @@ class QuestionPanel extends React.Component {
         }
 
         // panel is valid
-        let activeQuestionsInPanel = Validation.getActiveQuestionsFromQuestionSets(questionSets, this.props.questionAnswers);
+        //let activeQuestionsInPanel = Validation.getActiveQuestionsFromQuestionSets(questionSets, this.props.questionAnswers);
         let allQuestionsInPanel = questionSets.length === 0
             ? []
             : questionSets.map(qSet => qSet.questions).reduce((a, b) => {
@@ -111,7 +111,8 @@ class QuestionPanel extends React.Component {
 
     handleMainButtonClick() {
         let questionSets = this.getQuestionSets();
-        if (!this.saveQuestionAnswers(questionSets)) {
+        let activeQuestionsInPanel = Validation.getActiveQuestionsFromQuestionSets(questionSets, this.props.questionAnswers);
+        if (!this.saveQuestionAnswers(questionSets, activeQuestionsInPanel)) {
             // panel is not valid
             return;
         }
@@ -143,7 +144,7 @@ class QuestionPanel extends React.Component {
                 break;
 
             case 'SUBMIT':
-                this.props.onSubmit(action.target);
+                this.props.onSubmit(activeQuestionsInPanel);
                 break;
         }
     }

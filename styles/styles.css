@@ -319,17 +319,15 @@ div.question {
 }
 
 
-.containerTopCenter {
-    z-index: 1;
-    position: fixed;
-    overflow-y: auto;
-    max-height: 100vh;
-    left: 50%;
-    transform: translate3d(-50%, 0, 0);
-    flex-direction: column;
-    top: 0;
-}
-.containerTopCenter::-webkit-scrollbar {
-    display: none;
+.item--message {
+    padding: 10px;
+    font-weight: 900;
+    font-family: 'Lato', sans-serif;
+    border-top: 1px solid hsla(0,0%,0%,.1);
+    -webkit-font-smoothing: antialiased;
+     font-size: 1.2rem;
+     max-height: 150px;
+     overflow-y: auto;
+     border-top: none;
 }
 

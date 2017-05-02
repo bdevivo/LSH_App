@@ -130,13 +130,19 @@ class JobDashboardContainer extends React.Component {
 
         let icon = <i className="fa fa-check" />;
 
+        const customNotifyStyles = {
+            'item--message': 'item--message'
+        };
+
         const jobPostNotification = {
             message: 'Job has been posted',
             type: NOTIFICATION_TYPE_SUCCESS,
             duration: 0,
             canDismiss: true,
             globalCustomNotification: false,
-            position: NOTIFICATIONS_POS_TOP_RIGHT
+            position: NOTIFICATIONS_POS_TOP_RIGHT,
+            icon: icon,
+            customStyles: customNotifyStyles
         };
 
         this.props.createNotification(jobPostNotification);
@@ -169,15 +175,12 @@ class JobDashboardContainer extends React.Component {
             />)
             : null);
 
-
-
         return (
             <div>
                 <Button onClick={this.testNotification}>Test Notification</Button>
                 <Notify remove={true}
                         removeAll={true}
-                        position={NOTIFICATIONS_POS_TOP_RIGHT}
-                        customStyles={customNotifyStyles} />
+                        position={NOTIFICATIONS_POS_TOP_RIGHT} />
                 {dashboardComponent}
                 {jobDetailsComponent}
             </div>
@@ -193,7 +196,6 @@ JobDashboardContainer.propTypes = {
     jobActions: T.object.isRequired,
     isInQuestionAnswerMode: T.bool,
     createNotification: T.func,
-    notifications: T.array
 };
 
 function mapStateToProps(state) {
@@ -201,7 +203,6 @@ function mapStateToProps(state) {
     return {
         isInQuestionAnswerMode: state.ui.isInQuestionAnswerMode,
         allJobDetails: state.jobPostsDisplay,
-        notifications: state.notifications
     };
 }
 

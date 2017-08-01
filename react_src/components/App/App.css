@@ -2,6 +2,22 @@
     font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: #4d4d4d;
     min-width: 550px;
-    max-width: 950px;
+    /*max-width: 950px;*/
     margin: 0 auto;
+    height:100%;
+    position:relative;
+}
+
+.footer {
+    background-color: #515860;
+    color:cyan;
+    font-family:'Century Gothic';
+    margin-top:50px;
+    position: absolute;
+    height:110px;
+    margin-top: -110px; /* negative value of footer height */
+    clear:both;
+    height:110px;
+    bottom:0;
+    width:100%;
 }

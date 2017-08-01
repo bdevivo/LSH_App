@@ -3,13 +3,13 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {browserHistory} from 'react-router';
 import * as authActions from '../../actions/authActions';
-import styles, {active} from './Header.css';
 import HeaderCenterNav from './HeaderCenterNav';
 import HeaderUserName from './HeaderUserName';
 import HeaderLogin from './HeaderLogin';
+import Logo from './Logo';
 import * as Auth from '../../auth_utils/auth';
-import {Navbar} from 'react-bootstrap';
-//import LoadingDots from '../Common/LoadingDots';
+import {Nav, Navbar, Image} from 'react-bootstrap';
+
 
 class HeaderContainer extends React.Component {
 
@@ -64,6 +64,9 @@ class HeaderContainer extends React.Component {
 
         return (
             <Navbar>
+
+                <Logo/>
+
                 <HeaderCenterNav isLoggedIn={isLoggedIn} isAdmin={isAdmin} isBuyer={isBuyer}/>
 
                 <HeaderUserName user_name={user_name} email={email} isLoggedIn={isLoggedIn}/>

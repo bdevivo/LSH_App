@@ -10,9 +10,45 @@ body {
 
     /*color: #4d4d4d;*/
     min-width: 550px;
-    max-width: 950px;
+    /*max-width: 950px;*/
     margin: 0 auto;
 }
+
+/* Necessary to keep the footer at the bottom of the page */
+* {margin:0;padding:0;}
+html, body {height: 100%;}
+#wrap {min-height: 100%;}
+#app {  height:100%;  }
+
+#main {
+    overflow:auto;
+    padding-bottom: 110px; /* must be same height as the footer */
+}
+
+/*Hide controls and indicators on home page carousel*/
+.carousel-indicators li { visibility: hidden; }
+
+.right.carousel-control, .left.carousel-control {
+    display: none;
+}
+
+
+div.featureBox:hover {
+    background-color: #31708f;
+    color: #eeeeee;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 .has-success .form-control {
     border-color: #ccc !important;

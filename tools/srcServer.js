@@ -40,6 +40,8 @@ app.get('/api/private', authenticate, function(req, res) {
 });
 
 app.use('/styles', express.static(path.join(__dirname, '../styles')));  // TODO: change this to a real Public directory to serve all static files
+app.use('/videos', express.static(path.join(__dirname, '../videos')));
+app.use('/images', express.static(path.join(__dirname, '../images')));
 
 app.get('*', function(req, res) {
    res.sendFile(path.join( __dirname, "../react_src/index.html"));

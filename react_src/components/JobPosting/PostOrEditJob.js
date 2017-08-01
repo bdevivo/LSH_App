@@ -11,6 +11,7 @@ import * as jobHelpers from '../../utils/helpers/jobHelpers';
 import * as authUtils from '../../auth_utils/auth';
 import FormContainer from '../Common/QuestionForm/FormContainer';
 import SubmitJobConfirmation from './SubmitJobConfirmation';
+import UpdateJobConfirmation from './UpdateJobConfirmation';
 import {browserHistory} from 'react-router';
 import update from 'immutability-helper';
 
@@ -30,7 +31,8 @@ class PostOrEditJob extends React.Component {
             isNew: isNew,
             postingTime: "",
             postVisibility: "",
-            modalVisible: false,
+            submitModalVisible: false,
+            updateModalVisible: false,
         };
 
         this.onPostingTimeChanged = this.onPostingTimeChanged.bind(this);
@@ -40,6 +42,7 @@ class PostOrEditJob extends React.Component {
         this.saveQuestionAnswers = this.saveQuestionAnswers.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.onSaveJob = this.onSaveJob.bind(this);
+        this.onCancelUpdate = this.onCancelUpdate.bind(this);
     }
 
     componentWillMount() {
@@ -79,7 +82,7 @@ class PostOrEditJob extends React.Component {
 
     handleClose() {
         this.setState(update(this.state, {
-            modalVisible: {$set: false}
+            submitModalVisible: {$set: false}
         }));
     }
 
@@ -121,9 +124,15 @@ class PostOrEditJob extends React.Component {
             jobPost: {
                 draftQuestionAnswers: {$set: fullAnswerSet},
                 orderedQuestions: {$set: newOrder}
-            },
-            modalVisible: {$set: true}
+            }
         });
+
+        if (this.state.isNew) {
+            newState.submitModalVisible = true;
+        }
+        else {
+            newState.updateModalVisible = true;
+        }
 
         this.setState(newState);
     }
@@ -186,6 +195,12 @@ class PostOrEditJob extends React.Component {
         }));
     }
 
+    onCancelUpdate(event) {
+        this.setState(update(this.state, {
+            updateModalVisible: {$set: false}
+        }));
+    }
+
     onPostJob() {
 
        // this.props.uiActions.toggleQuestionAnswerMode(false);
@@ -193,7 +208,7 @@ class PostOrEditJob extends React.Component {
 
         if (this.state.postingTime === JOB_POST_TIME.Deferred) {
             this.setState(update(this.state, {
-                modalVisible: {$set: false}
+                submitModalVisible: {$set: false}
             }));
             return;
         }
@@ -259,7 +274,7 @@ class PostOrEditJob extends React.Component {
                         hasDraftAnswers={hasDraftAnswers}
                         onSaveJob={this.onSaveJob} />
 
-                    <Modal backdrop="static" dialogClassName="postJobModal" show={this.state.modalVisible}
+                    <Modal backdrop="static" dialogClassName="postJobModal" show={this.state.submitModalVisible}
                            onHide={this.handleClose}>
                         <SubmitJobConfirmation
                             onPostingTimeChanged={this.onPostingTimeChanged}
@@ -270,6 +285,13 @@ class PostOrEditJob extends React.Component {
                         />
                     </Modal>
 
+                    <Modal backdrop="static" dialogClassName="postJobModal" show={this.state.updateModalVisible}
+                           onHide={this.handleClose}>
+                        <UpdateJobConfirmation
+                            onPostJob={this.onPostJob}
+                            onCancelUpdate={this.onCancelUpdate}
+                        />
+                    </Modal>
 
                 </div>
             </Modal>

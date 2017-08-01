@@ -137,7 +137,7 @@ class JobDashboardContainer extends React.Component {
         const jobPostNotification = {
             message: 'Job has been posted',
             type: NOTIFICATION_TYPE_SUCCESS,
-            duration: 0,
+            duration: 5000,
             canDismiss: true,
             globalCustomNotification: false,
             position: NOTIFICATIONS_POS_TOP_RIGHT,
@@ -177,7 +177,7 @@ class JobDashboardContainer extends React.Component {
 
         return (
             <div>
-                <Button onClick={this.testNotification}>Test Notification</Button>
+                {/*<Button onClick={this.testNotification}>Test Notification</Button>*/}
                 <Notify remove={true}
                         removeAll={true}
                         position={NOTIFICATIONS_POS_TOP_RIGHT} />

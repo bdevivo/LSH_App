@@ -13,8 +13,12 @@
     /*background-color: transparent !important;*/
     /*-webkit-box-shadow: none !important;*/
 }
+.logo {
+    height: 50px;
+}
 
-{
+.logoNav {
+
 }
 
 .topNavbar {
@@ -60,3 +64,5 @@
     text-shadow: none !important;
     margin-left: 7px;
 }
+
+

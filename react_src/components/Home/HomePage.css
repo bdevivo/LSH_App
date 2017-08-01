@@ -1,5 +1,93 @@
 .container {
-    margin-top:50px;
-    margin-left:40px;
-
+    position:absolute;
+    top:0;
+    width:100%;
+    z-index: -1;
 }
+
+.carouselItemWrapper {
+    width:100%;
+    overflow:hidden;
+    height: 500px;
+}
+.carouselItemWrapper img {
+    min-width:100%;
+    min-height:100%;
+}
+
+.banner {
+    position: absolute;
+    top: 25%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding-left: 35px;
+    padding-right: 25px;
+    padding-bottom: 5px;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+
+.boxTable
+{
+    display: table;
+    width: 72%;
+    /*border: 1px solid yellow;*/
+
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.boxCell
+{
+    display: table-cell;
+    /*border: 1px solid blue;*/
+    vertical-align: bottom;
+    padding-left:2%
+}
+
+.featureBoxContainer {
+    position: absolute;
+    top: 638px;
+    width: 100%;
+    z-index:99;
+}
+
+.featureBox {
+    display: inline-block;
+    background-color: #eeeeee;
+    height: 125px;
+    width: 180px;
+    text-align: center;
+    line-height: 125px;
+    letter-spacing: .6px;
+    font-family: "Avenir LT W01 45 Book", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    color: #778199;
+    border: 2px solid #778199;
+    border-radius: 6px;
+    z-index:9999;
+    /*box-shadow: 0 0 0 1px #fff, 0 0 0 2px #4C3C1B;*/
+}
+
+.featureBoxHover {
+    composes: featureBox;
+    background-color: #31708f;
+    color: #eeeeee;
+}
+
+div.featureBox:hover {
+    background-color: #31708f;
+    color: #eeeeee;
+}
+

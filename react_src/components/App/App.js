@@ -10,9 +10,14 @@ class App extends React.Component {
    render() {
 
       return (
-         <div className="container-fluid" styleName="appStyle">
-            <HeaderContainer currentPath={this.props.routerPath}/>
-            {this.props.children}
+         <div  styleName="appStyle">
+             <div id="main">
+                 <HeaderContainer currentPath={this.props.routerPath}/>
+                {this.props.children}
+             </div>
+             <div styleName="footer">
+                 This is the footer
+             </div>
          </div>
       );
    }

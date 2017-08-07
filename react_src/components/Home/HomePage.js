@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import CSSModules from 'react-css-modules';
 import {Row, Col, Carousel} from 'react-bootstrap';
 import FeatureBox from './FeatureBox';
+import HowItWorks from './HowItWorks';
 import styles from './HomePage.css';
 
 class HomePage extends Component {
    render() {
       return (
-         <div styleName="container">
+         <div styleName="homeContainer">
             <Row>
                 <Col md={12}>
                     <Carousel>
@@ -37,6 +38,8 @@ class HomePage extends Component {
                  </div>
 
              </div>
+
+            <HowItWorks />
 
          </div>
       );

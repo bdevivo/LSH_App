@@ -1,3 +1,4 @@
+
 .active {
     color: orange;
 }
@@ -6,19 +7,54 @@
     padding-top: 20px;
 }
 
-.centerNav > li > a {
-    /*padding-left: 5px;*/
-    /*padding-right: 5px;*/
-    /*background-image: none !important;*/
-    /*background-color: transparent !important;*/
-    /*-webkit-box-shadow: none !important;*/
+.centerNav {
+    position:fixed;
+    right:0;
+    left:-350px;
+    margin-left: auto;
+    margin-right:auto;
+    width:350px;
+    z-index:99;
 }
+
+.centerNav > li > a {
+    padding-left: 5px;
+    padding-right: 5px;
+    background-image: none !important;
+    background-color: transparent !important;
+    -webkit-box-shadow: none !important;
+}
+
 .logo {
     height: 50px;
 }
 
-.logoNav {
+.logoContainer {
+    display:inline-block;
+    float: left;
+    margin-left: 15px;
+    margin-top:8px;
+    z-index: 99;
+    position:relative;
+}
 
+.navbarContainer {
+    width: auto;
+    position: relative;
+    z-index: 99;
+}
+
+.headerLogin {
+    display:inline-block;
+    float: right;
+    margin-right: 15px;
+    margin-top:8px;
+    z-index: 99;
+    position:relative;
+
+
+    /*right: 0;*/
+    /*top: 25%;*/
 }
 
 .topNavbar {
@@ -32,12 +68,13 @@
 .navUserName {
     position: absolute;
     right: 20%;
+    z-index:99;
 }
 
 .navLogin {
-    position: absolute;
-    right: 0;
-    top: 25%;
+    /*position: absolute;*/
+    /*right: 0;*/
+    /*top: 25%;*/
 }
 
 .navRight {

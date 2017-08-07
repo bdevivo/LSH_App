@@ -52,3 +52,10 @@
 .item--message {
     font-size: 12pt;
 }
+
+
+.viewMatchesCell {
+    cursor: pointer;
+    text-align: center;
+    width: 110px;
+}

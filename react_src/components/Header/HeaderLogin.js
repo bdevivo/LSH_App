@@ -13,18 +13,20 @@ const HeaderLogin = ({isLoggedIn, isOnLoginPage, onLogout}) => {
     }
     else if (isLoggedIn) {
         login = (
-            <div className="hidden-sm hidden-xs" styleName="navLogin">
+            <div className="hidden-sm hidden-xs" styleName="headerLogin">
                <a styleName="link" onClick={onLogout}>Logout</a>
             </div>
         );
     }
     else {
         login = (
-         <Nav className="hidden-sm hidden-xs" styleName="navLogin">
-            <HeaderLinkButton to="/login/default" type="success">Login</HeaderLinkButton>
-            <HeaderLinkButton to="/login/hire" type="primary">Sign up to hire resources</HeaderLinkButton>
-            <HeaderLinkButton to="/login/work" type="primary">Sign up to find work</HeaderLinkButton>
-         </Nav>);
+            <div styleName="headerLogin">
+                 <Nav className="hidden-sm hidden-xs navbar-nav" styleName="navLogin">
+                    <HeaderLinkButton to="/login/default" type="success">Login</HeaderLinkButton>
+                    <HeaderLinkButton to="/login/hire" type="primary">Sign up to hire resources</HeaderLinkButton>
+                    <HeaderLinkButton to="/login/work" type="primary">Sign up to find work</HeaderLinkButton>
+                 </Nav>
+            </div>);
     }
 
     return login;

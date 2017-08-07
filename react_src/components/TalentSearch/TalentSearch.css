@@ -1,0 +1,41 @@
+.cannedSearchResultsContainer {
+    padding-left:0;
+}
+
+.browseResultsContainer {
+    padding-top:15px;
+    /*display:none;*/
+}
+
+/* Browse Results */
+td.talentImage {
+    width:45px;
+    padding-right:50px !important;
+    padding-left:50px;
+    text-align:center;
+}
+
+td.invite {
+    text-align:center;
+    vertical-align:middle !important;
+}
+
+ul.resource-details {
+    font-size:12px;
+}
+
+ul.resource-details li {
+    margin-top:5px;
+}
+
+td.browse-result-cell {
+    padding-top:12px;
+}
+
+.resource-item-header {
+    font-weight:bold;
+}
+
+.btnInvite {
+    height:44px;
+}

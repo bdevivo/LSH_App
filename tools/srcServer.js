@@ -26,7 +26,9 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-mongoose.connect('mongodb://localhost:27017/qgrid');  // connect to local Mongo DB in db "qgrid"
+let options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
+                Replicaset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };
+mongoose.connect('mongodb://localhost:27017/qgrid', options);  // connect to local Mongo DB in db "qgrid"
 
 // Establish routes
 app.use('/api', require("./routes"));

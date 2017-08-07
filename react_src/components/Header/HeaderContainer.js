@@ -9,6 +9,8 @@ import HeaderLogin from './HeaderLogin';
 import Logo from './Logo';
 import * as Auth from '../../auth_utils/auth';
 import {Nav, Navbar, Image} from 'react-bootstrap';
+import CSSModules from 'react-css-modules';
+import styles from './Header.css';
 
 
 class HeaderContainer extends React.Component {
@@ -63,18 +65,20 @@ class HeaderContainer extends React.Component {
         let isOnLoginPage = this.props.currentPath.startsWith("/login");
 
         return (
-            <Navbar>
-
+            <div>
                 <Logo/>
 
-                <HeaderCenterNav isLoggedIn={isLoggedIn} isAdmin={isAdmin} isBuyer={isBuyer}/>
+                {/*<Navbar styleName="navbarContainer">*/}
 
-                <HeaderUserName user_name={user_name} email={email} isLoggedIn={isLoggedIn}/>
+                    <HeaderCenterNav isLoggedIn={isLoggedIn} isAdmin={isAdmin} isBuyer={isBuyer}/>
 
-                <HeaderLogin isLoggedIn={isLoggedIn} isOnLoginPage={isOnLoginPage} onLogout={this.onLogout} />
+                    <HeaderUserName user_name={user_name} email={email} isLoggedIn={isLoggedIn}/>
 
-               {/*{this.props.loading && <LoadingDots interval={100} dots={20}/>}*/}
-            </Navbar>
+                    <HeaderLogin isLoggedIn={isLoggedIn} isOnLoginPage={isOnLoginPage} onLogout={this.onLogout} />
+
+                   {/*{this.props.loading && <LoadingDots interval={100} dots={20}/>}*/}
+                {/*</Navbar>*/}
+            </div>
 
         );
     }
@@ -104,4 +108,6 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);
+//export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);
+
+export default connect(mapStateToProps, mapDispatchToProps)(CSSModules(HeaderContainer, styles));

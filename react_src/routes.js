@@ -18,6 +18,7 @@ import QuestionSetListContainer from './components/Admin/QuestionSet/QuestionSet
 import QuestionSet from './components/Admin/QuestionSet/QuestionSetContainer';
 import PostJob from './components/JobPosting/PostOrEditJob';
 import JobDashboard from './components/JobPosting/Dashboard/JobDashboardContainer';
+import SearchResultsContainer from './components/TalentSearch/SearchResultsContainer';
 import {requireAuth} from './auth_utils/auth';
 
 //noinspection JSUnresolvedVariable
@@ -48,6 +49,7 @@ export default (
         <Route path="jobdash" component={JobDashboard} />
         <Route path="postjob" component={PostJob}/>
         <Route path="editjob/:jobId" component={PostJob}/>
+        <Route path="talentMatches" component={SearchResultsContainer}/>
 
     </Route>
 );

@@ -1,8 +1,7 @@
-.container {
+.homeContainer {
     position:absolute;
     top:0;
     width:100%;
-    z-index: -1;
 }
 
 .carouselItemWrapper {
@@ -58,7 +57,7 @@
 
 .featureBoxContainer {
     position: absolute;
-    top: 638px;
+    top: 338px;
     width: 100%;
     z-index:99;
 }
@@ -91,3 +90,7 @@ div.featureBox:hover {
     color: #eeeeee;
 }
 
+
+.howItWorksPanel {
+    padding-top:10px;
+}

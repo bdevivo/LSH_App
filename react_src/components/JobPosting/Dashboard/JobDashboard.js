@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Row, Col, Button, Modal} from 'react-bootstrap';
+import {Row, Col, Button} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 import JobActionButtons from './JobActionButtons';
 import CSSModules from 'react-css-modules';
@@ -35,7 +35,7 @@ const JobDashboard = ({jobPostings, onViewJob, onEditJob, onDeleteJob, onPostJob
                         onPostJob={onPostJob}
                         onChangeJobVisibility={onChangeVisibility}/>
                 </td>
-                <td></td>
+                <td styleName="viewMatchesCell"><LinkContainer to="/talentMatches"><span className="material-icons">people</span></LinkContainer></td>
             </tr>
         );
     });

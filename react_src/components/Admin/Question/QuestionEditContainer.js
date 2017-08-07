@@ -361,7 +361,7 @@ class QuestionEditContainer extends React.Component {
         };
 
         let buttonGroup = (
-            this.state.submitModalVisible || this.props.isInReorderState
+            this.state.modalVisible || this.props.isInReorderState
                 ? null
                 : <div>
                     <Button type="button" className="btn btn-xs btn-default" aria-label="Edit" onClick={this.showModal}>
@@ -379,7 +379,7 @@ class QuestionEditContainer extends React.Component {
 
         return (
             <div>
-                <Modal backdrop="static" dialogClassName="questionModal" show={this.state.submitModalVisible}
+                <Modal backdrop="static" dialogClassName="questionModal" show={this.state.modalVisible}
                        onHide={this.handleCancel}>
                     <QuestionAddEdit
                         question={question}

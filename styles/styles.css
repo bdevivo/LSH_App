@@ -21,6 +21,7 @@ html, body {height: 100%;}
 #app {  height:100%;  }
 
 #main {
+    height:100%;
     overflow:auto;
     padding-bottom: 110px; /* must be same height as the footer */
 }
@@ -271,8 +272,9 @@ div.add-selection-option {
 
 /*This applies to the Navbar created in the HeaderContainer*/
 nav > div.container {
-    width: auto;
-    position: relative;
+    /*width: auto;*/
+    /*position: relative;*/
+    /*z-index: 99;*/
 }
 
 .nav > li.navItemWithSep > a:after {
@@ -283,6 +285,21 @@ nav > div.container {
     padding-left: 10px;
 }
 
+.nav > li.navItemWithSep > a {
+    padding-left: 5px;
+    padding-right: 5px;
+    background-image: none !important;
+    background-color: transparent !important;
+    -webkit-box-shadow: none !important;
+}
+
+.nav > li.navItem > a {
+    padding-left: 5px;
+    padding-right: 5px;
+    background-image: none !important;
+    background-color: transparent !important;
+    -webkit-box-shadow: none !important;
+}
 
 .alertError {
    width: 30%;
@@ -367,3 +384,6 @@ div.question {
      border-top: none;
 }
 
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    color: rebeccapurple;
+}

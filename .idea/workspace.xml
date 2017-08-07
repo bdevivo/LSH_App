@@ -1,33 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="db9cce2d-2ebf-4e24-9d2e-9ec417bf0e97" name="Add all changelist" comment="Home page layout">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/Footer/Footer.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/Footer/FooterContainer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/Home/HowItWorks.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/TalentSearch/CannedSearchResults.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/TalentSearch/SearchResultsContainer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/react_src/components/TalentSearch/TalentSearch.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Admin/Question/Question.css" afterPath="$PROJECT_DIR$/react_src/components/Admin/Question/Question.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Admin/Question/QuestionEditContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Admin/Question/QuestionEditContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/App/App.css" afterPath="$PROJECT_DIR$/react_src/components/App/App.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/App/App.js" afterPath="$PROJECT_DIR$/react_src/components/App/App.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Header/Header.css" afterPath="$PROJECT_DIR$/react_src/components/Header/Header.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Header/HeaderCenterNav.js" afterPath="$PROJECT_DIR$/react_src/components/Header/HeaderCenterNav.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Header/HeaderContainer.js" afterPath="$PROJECT_DIR$/react_src/components/Header/HeaderContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Header/HeaderLogin.js" afterPath="$PROJECT_DIR$/react_src/components/Header/HeaderLogin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Header/Logo.js" afterPath="$PROJECT_DIR$/react_src/components/Header/Logo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Home/FeatureBox.js" afterPath="$PROJECT_DIR$/react_src/components/Home/FeatureBox.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Home/HomePage.css" afterPath="$PROJECT_DIR$/react_src/components/Home/HomePage.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Home/HomePage.js" afterPath="$PROJECT_DIR$/react_src/components/Home/HomePage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/JobPosting/Dashboard/JobDashboard.js" afterPath="$PROJECT_DIR$/react_src/components/JobPosting/Dashboard/JobDashboard.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/JobPosting/JobPosting.css" afterPath="$PROJECT_DIR$/react_src/components/JobPosting/JobPosting.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/components/Login/Login.css" afterPath="$PROJECT_DIR$/react_src/components/Login/Login.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/index.html" afterPath="$PROJECT_DIR$/react_src/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/react_src/routes.js" afterPath="$PROJECT_DIR$/react_src/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/styles.css" afterPath="$PROJECT_DIR$/styles/styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tools/srcServer.js" afterPath="$PROJECT_DIR$/tools/srcServer.js" />
+    <list default="true" id="db9cce2d-2ebf-4e24-9d2e-9ec417bf0e97" name="Add all changelist" comment="More UI, including canned talent results">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/bundle.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/bundle.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/styles.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/styles.css.map" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/index.html" afterPath="$PROJECT_DIR$/dist/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tools/prodServer.js" afterPath="$PROJECT_DIR$/tools/prodServer.js" />
     </list>
     <list id="23724d5d-f374-4c1f-8907-1c5c6ffa7959" name="Default" comment="" />
     <ignored path="QuestionGrid.iws" />
@@ -62,6 +42,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="srcServer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tools/srcServer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="70" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="prodServer.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tools/prodServer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="496">
+              <caret line="31" column="11" lean-forward="true" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="JobDashboard.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react_src/components/JobPosting/Dashboard/JobDashboard.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -196,7 +196,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="styles.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="styles.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/styles/styles.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="559">
@@ -251,7 +251,6 @@
       <find>submitModalVisible</find>
       <find>navuser</find>
       <find>max</find>
-      <find>main</find>
       <find>to=</find>
       <find>HeaderContainer</find>
       <find>&lt;Row style</find>
@@ -271,6 +270,7 @@
       <find>fa-</find>
       <find>&lt;Link</find>
       <find>LinkContainer</find>
+      <find>main</find>
     </findStrings>
     <replaceStrings>
       <replace>booleanItem</replace>
@@ -301,7 +301,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/react_src/utils/questionHelpers.js" />
         <option value="$PROJECT_DIR$/react_src/components/JobPosting/Dashboard/JobDetails.js" />
         <option value="$PROJECT_DIR$/react_src/store/initialState.js" />
         <option value="$PROJECT_DIR$/react_src/actions/uiActions.js" />
@@ -352,6 +351,7 @@
         <option value="$PROJECT_DIR$/react_src/components/JobPosting/Dashboard/JobDashboard.js" />
         <option value="$PROJECT_DIR$/react_src/components/JobPosting/JobPosting.css" />
         <option value="$PROJECT_DIR$/styles/styles.css" />
+        <option value="$PROJECT_DIR$/tools/prodServer.js" />
       </list>
     </option>
   </component>
@@ -467,6 +467,11 @@
               <item name="QuestionGrid" type="b2602c69:ProjectViewProjectNode" />
               <item name="QuestionGrid" type="462c0819:PsiDirectoryNode" />
               <item name="styles" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="QuestionGrid" type="b2602c69:ProjectViewProjectNode" />
+              <item name="QuestionGrid" type="462c0819:PsiDirectoryNode" />
+              <item name="tools" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -1768,14 +1773,7 @@
       <workItem from="1501034166869" duration="12000" />
       <workItem from="1501034212858" duration="31000" />
       <workItem from="1501034301400" duration="10315000" />
-      <workItem from="1501446208462" duration="47645000" />
-    </task>
-    <task id="LOCAL-00001" summary="Update from NJ">
-      <created>1469553603490</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1469553603490</updated>
+      <workItem from="1501446208462" duration="48197000" />
     </task>
     <task id="LOCAL-00002" summary="Update from NJ">
       <created>1469554280400</created>
@@ -2113,11 +2111,18 @@
       <option name="project" value="LOCAL" />
       <updated>1501557601618</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="More UI, including canned talent results">
+      <created>1502075702024</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1502075702025</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1400525000" />
+    <option name="totallyTimeSpent" value="1401077000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2189,7 +2194,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added Education profile" />
     <MESSAGE value="Added initial skills" />
     <MESSAGE value="Adding modal windows, Education and Employment profile" />
     <MESSAGE value="Mongo fixes" />
@@ -2214,7 +2218,8 @@
     <MESSAGE value="Bug fixes" />
     <MESSAGE value="Styled the notifications" />
     <MESSAGE value="Home page layout" />
-    <option name="LAST_COMMIT_MESSAGE" value="Home page layout" />
+    <MESSAGE value="More UI, including canned talent results" />
+    <option name="LAST_COMMIT_MESSAGE" value="More UI, including canned talent results" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2271,14 +2276,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/react_src/components/Common/Winterfell/Winterfell.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2688">
-          <caret line="175" column="82" lean-forward="false" selection-start-line="175" selection-start-column="60" selection-end-line="175" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/react_src/components/JobPosting/Dashboard/JobDetails.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
@@ -2581,14 +2578,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tools/srcServer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="39" column="58" lean-forward="true" selection-start-line="39" selection-start-column="58" selection-end-line="39" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/react_src/components/Footer/Footer.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
@@ -2711,6 +2700,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="559">
           <caret line="387" column="25" lean-forward="false" selection-start-line="387" selection-start-column="25" selection-end-line="387" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/srcServer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/prodServer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="31" column="11" lean-forward="true" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
           <folding />
         </state>
       </provider>

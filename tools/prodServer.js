@@ -20,6 +20,7 @@ mongoose.connect('mongodb://bob:poivcx@ds047166.mlab.com:47166/heroku_fgvsh90k/q
 app.use('/api', require("./routes"));
 
 app.use('/styles', express.static(path.join(__dirname, '../styles')));  // TODO: change this to a real Public directory to serve all static files
+app.use('/images', express.static(path.join(__dirname, '../images')));
 
 app.get('*', function(req, res) {
    res.sendFile(path.join(__dirname, '../dist/index.html'));

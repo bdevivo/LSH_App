@@ -2,7 +2,7 @@
     height:110px;
     position:relative;
     bottom:0;
-    width:100%;
+    /*width:100%;*/
     background-color: #515860;
     color:cyan;
     font-family:'Century Gothic';
@@ -22,6 +22,11 @@
 
 .footerList {
     margin-top:10px;
+    list-style: none;
+}
+
+.footerList li {
+    margin-top:5px;
 }
 
 .footerContainer > hr {

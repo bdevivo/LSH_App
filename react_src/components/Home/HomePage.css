@@ -16,7 +16,7 @@
 
 .banner {
     position: absolute;
-    top: 25%;
+    top: 18%;
     left: 0;
     right: 0;
     margin-left: auto;
@@ -57,7 +57,7 @@
 
 .featureBoxContainer {
     position: absolute;
-    top: 338px;
+    top: 290px;
     width: 100%;
     z-index:99;
 }

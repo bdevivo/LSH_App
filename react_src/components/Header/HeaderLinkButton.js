@@ -6,7 +6,7 @@ import styles from './Header.css';
 
 const HeaderLinkButton = ({to, children, type}) => {
 
-    let className = "btn btn-xs btn-" + type;   // "type" should be one of the bootstrap button types: primary, success, etc.
+    let className = "btn btn-sm btn-" + type;   // "type" should be one of the bootstrap button types: primary, success, etc.
 
     return (
         <LinkContainer to={to}>

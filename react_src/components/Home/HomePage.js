@@ -11,10 +11,30 @@ class HomePage extends Component {
          <div styleName="homeContainer">
             <Row>
                 <Col md={12}>
-                    <Carousel>
+                    <Carousel interval={10000}>
                         <Carousel.Item>
                             <div styleName="carouselItemWrapper">
                                 <img src="images/stock-photo-assorted-pills-70250746.jpg" />
+                            </div>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <div styleName="carouselItemWrapper">
+                                <img src="images/stock-photo-researcher-is-dropping-the-reagent-into-test-tube-with-chemical-equations-background-in-laboratory-236819650.jpg" />
+                            </div>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <div styleName="carouselItemWrapper">
+                                <img src="images/stock-photo-modern-business-workplace-with-tablet-laptop-and-some-papers-with-charts-graphs-and-numbers-on-a-218096314.jpg" />
+                            </div>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <div styleName="carouselItemWrapper">
+                                <img src="images/stock-photo-pill-bottle-and-prescription-concept-for-healthcare-and-medicine-97588826.jpg" />
+                            </div>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <div styleName="carouselItemWrapper">
+                                <img src="images/pexels-photo-263370.jpeg" />
                             </div>
                         </Carousel.Item>
                     </Carousel>

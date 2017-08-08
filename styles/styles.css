@@ -281,8 +281,8 @@ nav > div.container {
     content: "|";
     display: inline-block;
     width: 5px;
-    padding-right: 2px;
-    padding-left: 10px;
+    padding-right: 12px;
+    padding-left: 21px;
 }
 
 .nav > li.navItemWithSep > a {
@@ -386,4 +386,9 @@ div.question {
 
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
     color: rebeccapurple;
+}
+
+footer hr {
+    margin-top:0;
+    margin-bottom:0;
 }

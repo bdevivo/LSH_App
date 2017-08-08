@@ -201,12 +201,14 @@ class PostOrEditJob extends React.Component {
         }));
     }
 
-    onPostJob() {
+    onPostJob(postingTime) {
 
        // this.props.uiActions.toggleQuestionAnswerMode(false);
         let {JOB_POST_TIME} = enums;
 
-        if (this.state.postingTime === JOB_POST_TIME.Deferred) {
+        let jobPostingTime = this.state.postingTime || postingTime;
+
+        if (jobPostingTime === JOB_POST_TIME.Deferred) {
             this.setState(update(this.state, {
                 submitModalVisible: {$set: false}
             }));
@@ -223,7 +225,7 @@ class PostOrEditJob extends React.Component {
             createdBy: userId
         };
 
-        switch (this.state.postingTime) {
+        switch (jobPostingTime) {
 
             case JOB_POST_TIME.Later:
                 saveJob.draftQuestionAnswers = _.cloneDeep(this.state.jobPost.draftQuestionAnswers);
@@ -256,7 +258,8 @@ class PostOrEditJob extends React.Component {
         let {jobPost} = this.state;
         let orderedQuestions = jobPost.orderedQuestions || [];
         let headerText = this.state.isNew ? "Post a Project" : "Edit Project";
-        let hasDraftAnswers = Object.keys(jobPost.draftQuestionAnswers).length > 0;
+        let hasDraftAnswers = jobPost.draftQuestionAnswers ? Object.keys(jobPost.draftQuestionAnswers).length > 0 : false;
+        let questionAnswers = hasDraftAnswers ? jobPost.draftQuestionAnswers : jobPost.questionAnswers;
 
         return (
             <Modal backdrop="static" dialogClassName="questionWizardModal" show={true}>
@@ -265,7 +268,7 @@ class PostOrEditJob extends React.Component {
 
                     <FormContainer
                         jobId={jobPost._id}
-                        questionAnswers={jobPost.draftQuestionAnswers}
+                        questionAnswers={questionAnswers}
                         onSubmit={this.onSubmit}
                         gridName={enums.QUESTION_GRID_TYPE.JobPosting}
                         saveQuestionAnswers={this.saveQuestionAnswers}

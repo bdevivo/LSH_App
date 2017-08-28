@@ -3,5 +3,7 @@ dist/
 npm-debug.log
 .DS_Store
 /*.env
-.workspace.xml
+.idea/.workspace.xml
 awsconfig.json
+log.txt
+npm*.log.*
